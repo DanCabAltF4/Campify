@@ -24,8 +24,6 @@ public class Parcela {
     private EstadoParcela estado_parcela;
     @Column
     private int capacidad_maxima;
-    @Column
-    private boolean activa;
 
     public Parcela() {
     }
@@ -94,14 +92,6 @@ public class Parcela {
         this.capacidad_maxima = capacidad_maxima;
     }
 
-    public boolean isActiva() {
-        return activa;
-    }
-
-    public void setActiva(boolean activa) {
-        this.activa = activa;
-    }
-
     @Override
     public String toString() {
         return "Parcela{" +
@@ -112,7 +102,6 @@ public class Parcela {
                 ", zona_sombra=" + zona_sombra +
                 ", estado_parcela=" + estado_parcela +
                 ", capacidad_maxima=" + capacidad_maxima +
-                ", activa=" + activa +
                 ", id=" + id +
                 '}';
     }
