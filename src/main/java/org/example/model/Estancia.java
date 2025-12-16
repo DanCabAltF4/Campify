@@ -1,6 +1,7 @@
 package org.example.model;
 
 import jakarta.persistence.*;
+import org.example.model.enums.Temporada;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -17,6 +18,9 @@ public class Estancia {
     private LocalDate checkIn;
     @Column(name = "check_out")
     private LocalDate checkOut;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Temporada temporada;
     @Column(name = "numero_adultos",nullable = false)
     private int numeroAdultos;
     @Column(name = "numero_niños")
@@ -110,5 +114,29 @@ public class Estancia {
 
     public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
+    }
+
+    public Temporada getTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(Temporada temporada) {
+        this.temporada = temporada;
+    }
+
+    @Override
+    public String toString() {
+        return "Estancia{" +
+                "id=" + id +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", temporada=" + temporada +
+                ", numeroAdultos=" + numeroAdultos +
+                ", numeroNinos=" + numeroNinos +
+                ", numeroMascotas=" + numeroMascotas +
+                ", cantidadEquipajeExtra=" + cantidadEquipajeExtra +
+                ", costeMiscelaneo=" + costeMiscelaneo +
+                ", precioFinal=" + precioFinal +
+                '}';
     }
 }
