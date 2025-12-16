@@ -34,12 +34,15 @@ public class Estancia {
     @Column(name = "precio_final")
     private double precioFinal;
 
-    //@ManyToOne
-    //private Cliente cliente;
-    //@ManyToOne
-    //private Parcela parcelas;
-    //@ManyToOne
-    //private Empleado empleados;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "clientes_estancia")
+    private List<Cliente> cliente;
+    @ManyToOne
+    @JoinColumn(name = "id_parcela")
+    private Parcela parcelas;
+    @ManyToOne
+    @JoinColumn(name = "id_empleado")
+    private Empleado empleados;
 
     public Estancia() {
     }
