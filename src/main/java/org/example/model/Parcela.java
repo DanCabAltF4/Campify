@@ -1,8 +1,8 @@
 package org.example.model;
 
 import jakarta.persistence.*;
-import org.example.enums.EstadoParcela;
-import org.example.enums.TipoParcela;
+import org.example.model.enums.EstadoParcela;
+import org.example.model.enums.TipoParcela;
 
 @Entity(name = "Parcelas")
 public class Parcela {
