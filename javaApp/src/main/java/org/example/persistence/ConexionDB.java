@@ -53,14 +53,13 @@ public class ConexionDB {
     }
 
     //Metodo para crear base de datos al inicio del programa
-    public static void crearBaseDatos(){
-        String sql = "CREATE DATABASE IF NOT EXISTS "+NOMBRE_DB;
-        Connection con = getInstance().getConexionJDBC();
-        try(PreparedStatement st = con.prepareStatement(sql);){
+    public static void crearBaseDatos() {
+        String sql = "CREATE DATABASE IF NOT EXISTS " + NOMBRE_DB;
+        try (Connection con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
+                PreparedStatement st = con.prepareStatement(sql);) {
             st.execute(sql);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }
