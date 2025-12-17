@@ -13,9 +13,6 @@ public class Main {
 
         ConexionDB.crearBaseDatos();
 
-        EntityManagerFactory emf = ConexionDB.getInstance().getConexion().getEntityManagerFactory();
-        EntityManager em = emf.createEntityManager();
-
 
         int opcion;
         do {
