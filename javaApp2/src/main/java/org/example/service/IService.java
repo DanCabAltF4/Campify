@@ -1,9 +1,9 @@
 package org.example.service;
 
 public interface IService<T, Integer> {
-    void insert(T t);
-    void update (T t);
-    void delete (T t);
+    T insert(T t);
+    T update (int id, T t);
+    void delete (int id);
     T findById(int id);
 
 }

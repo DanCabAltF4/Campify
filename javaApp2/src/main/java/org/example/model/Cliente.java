@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
 
-@Entity(name = "clientes")
+@Entity
+@Table(name = "clientes")
 public class Cliente {
 
     @Id

@@ -1,4 +1,6 @@
 package org.example.service;
 
-public interface IServiceEstancia extends IService<Estancia< Integer>> {
+import org.example.model.Estancia;
+
+public interface IServiceEstancia extends IService<Estancia, Integer> {
 }
