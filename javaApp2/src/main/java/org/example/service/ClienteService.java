@@ -30,7 +30,7 @@ public class ClienteService implements IServiceCliente {
             buscado.setFechaNacimiento(nuevo.getFechaNacimiento());
             buscado.setEmail(nuevo.getEmail());
             buscado.setTelefono(nuevo.getTelefono());
-            buscado= repo.save(nuevo);
+            buscado= repo.save(buscado);
         }
         return buscado;
     }
