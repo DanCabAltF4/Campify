@@ -10,17 +10,21 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
+        ConexionDB.crearBaseDatos();
+
         EntityManagerFactory emf = ConexionDB.getInstance().getConexion().getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
 
 
         int opcion;
         do {
-            System.out.println("1.");
-            System.out.println("2. ");
-            System.out.println("3. ");
-            System.out.println("4. ");
-            System.out.println("0. Salir");
+            System.out.println("""
+                    1.
+                    2.
+                    3.
+                    4.
+                    0. Salir""");
             System.out.print("Opción: ");
             opcion = new Scanner(System.in).nextInt();
             switch (opcion) {
