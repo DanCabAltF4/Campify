@@ -7,7 +7,7 @@
         <class>org.example.model.Parcela</class>
         <class>org.example.model.Servicio</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="--------"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/campifyDB"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="mysql"/>
 
