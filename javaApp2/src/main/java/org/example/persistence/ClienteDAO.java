@@ -1,17 +1,16 @@
 package org.example.persistence;
 
 import jakarta.persistence.EntityManager;
-import org.example.dao.EmpleadoDAO;
-import org.example.model.Empleado;
+import org.example.model.Cliente;
 
-public class IEmpleadoDAO implements EmpleadoDAO {
+public class ClienteDAO implements IDAOCliente {
 
     @Override
-    public void insert(Empleado empleado) {
+    public void insert(Cliente cliente) {
         EntityManager em = ConexionDB.getInstance().getConexion();
         try{
             em.getTransaction().begin();
-            em.persist(empleado);
+            em.persist(cliente);
             em.getTransaction().commit();
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -21,11 +20,11 @@ public class IEmpleadoDAO implements EmpleadoDAO {
     }
 
     @Override
-    public void update(Empleado empleado) {
+    public void update(Cliente cliente) {
         EntityManager em = ConexionDB.getInstance().getConexion();
         try{
             em.getTransaction().begin();
-            em.merge(empleado);
+            em.merge(cliente);
             em.getTransaction().commit();
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -35,11 +34,11 @@ public class IEmpleadoDAO implements EmpleadoDAO {
     }
 
     @Override
-    public void delete(Empleado empleado) {
+    public void delete(Cliente cliente) {
         EntityManager em = ConexionDB.getInstance().getConexion();
         try{
             em.getTransaction().begin();
-            em.remove(empleado);
+            em.remove(cliente);
             em.getTransaction().commit();
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -49,16 +48,16 @@ public class IEmpleadoDAO implements EmpleadoDAO {
     }
 
     @Override
-    public Empleado findById(Integer integer) {
+    public Cliente findById(Integer integer) {
         EntityManager em = ConexionDB.getInstance().getConexion();
-        Empleado empleado = null;
+        Cliente cliente = null;
         try{
-            empleado = em.find(Empleado.class, integer);
+            cliente = em.find(Cliente.class, integer);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
             em.close();
         }
-        return empleado;
+        return cliente;
     }
 }

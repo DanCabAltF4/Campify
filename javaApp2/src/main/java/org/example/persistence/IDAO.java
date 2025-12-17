@@ -1,6 +1,6 @@
-package org.example.dao;
+package org.example.persistence;
 
-public interface GenericDAO <T,ID>{
+public interface IDAO<T,ID>{
     void insert(T t);
     void update(T t);
     void delete(T t);
