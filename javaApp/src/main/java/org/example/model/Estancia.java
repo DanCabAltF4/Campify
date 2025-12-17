@@ -44,6 +44,9 @@ public class Estancia {
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleados;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "servicios_estancia")
+    private List<Servicio> servicio;
 
     public Estancia() {
     }
