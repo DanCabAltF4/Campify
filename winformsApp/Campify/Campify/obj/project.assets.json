@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
+      "projectUniqueName": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
       "projectName": "Campify",
-      "projectPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
+      "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
       "packagesPath": "C:\\Users\\doowy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\",
+      "outputPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,7 +51,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -75,7 +75,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

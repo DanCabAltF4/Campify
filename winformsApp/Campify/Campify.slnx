@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="Campify/Campify.csproj" />
+  <Project Path="Controles/Controles.csproj" Id="5eeb6fca-303c-4030-b383-c0633bc31050" />
+  <Project Path="Model/Model.csproj" Id="dc9c7e53-341f-4fd6-847b-9710bd9a544b" />
 </Solution>
