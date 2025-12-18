@@ -35,8 +35,11 @@ public class Estancia {
     @Column(name = "precio_final")
     private double precioFinal;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "clientes_estancia")
+    @ManyToMany
+    @JoinTable(name = "clientes_estancia",
+            joinColumns = @JoinColumn(name = "id_estancia"),
+            inverseJoinColumns = @JoinColumn(name = "id_cliente")
+    )
     private List<Cliente> cliente;
     @ManyToOne
     @JoinColumn(name = "id_parcela")
@@ -44,7 +47,7 @@ public class Estancia {
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleados;
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(
             name = "estancia_servicios",
             joinColumns = @JoinColumn(name = "id_estancia"),
@@ -143,6 +146,40 @@ public class Estancia {
         this.servicio = servicio;
     }
 
+    public List<Cliente> getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(List<Cliente> cliente) {
+        this.cliente = cliente;
+    }
+
+    public Parcela getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(Parcela parcelas) {
+        this.parcelas = parcelas;
+    }
+
+    public Empleado getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Empleado empleados) {
+        this.empleados = empleados;
+    }
+
+    public void addCliente(Cliente cliente){
+        getCliente().add(cliente);
+        cliente.getEstancia().add(this);
+    }
+
+    public void removeCliente(Cliente cliente){
+        getServicio().remove(servicio);
+        cliente.getEstancia().remove(this);
+    }
+
     public void addServicio(Servicio servicio){
         getServicio().add(servicio);
         servicio.getEstancia().add(this);
@@ -168,4 +205,5 @@ public class Estancia {
                 ", precioFinal=" + precioFinal +
                 '}';
     }
+
 }
