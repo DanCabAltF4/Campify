@@ -33,23 +33,27 @@
             btnEmpleados = new Button();
             btnParcelas = new Button();
             pbAjustes = new PictureBox();
-            btnEstanciaActual = new Button();
-            btnHistorial = new Button();
-            btnRegistrar = new Button();
             btnServicios = new Button();
+            pnlServicios = new Panel();
             btnDatos = new Button();
-            btMapa = new Button();
+            btnRegistrar = new Button();
             btLista = new Button();
+            btnHistorial = new Button();
             panelMapaLista = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             pbMapa = new PictureBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            btnEstanciaActual = new Button();
             panelDatos = new Panel();
             ucVistaDatos1 = new Controles.ucVistaDatos();
+            btMapa = new Button();
+            pnlParcelas = new Panel();
+            pnlEmpleados = new Panel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
             panelDatos.SuspendLayout();
+            pnlParcelas.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
@@ -102,51 +106,6 @@
             pbAjustes.TabIndex = 3;
             pbAjustes.TabStop = false;
             // 
-            // btnEstanciaActual
-            // 
-            btnEstanciaActual.BackColor = Color.FromArgb(255, 222, 171);
-            btnEstanciaActual.FlatAppearance.BorderSize = 0;
-            btnEstanciaActual.FlatStyle = FlatStyle.Flat;
-            btnEstanciaActual.Font = new Font("Segoe UI", 12F);
-            btnEstanciaActual.ForeColor = Color.FromArgb(95, 65, 0);
-            btnEstanciaActual.Location = new Point(619, 112);
-            btnEstanciaActual.Margin = new Padding(0);
-            btnEstanciaActual.Name = "btnEstanciaActual";
-            btnEstanciaActual.Size = new Size(154, 48);
-            btnEstanciaActual.TabIndex = 5;
-            btnEstanciaActual.Text = "Estancia actual";
-            btnEstanciaActual.UseVisualStyleBackColor = false;
-            // 
-            // btnHistorial
-            // 
-            btnHistorial.BackColor = Color.FromArgb(255, 222, 171);
-            btnHistorial.FlatAppearance.BorderSize = 0;
-            btnHistorial.FlatStyle = FlatStyle.Flat;
-            btnHistorial.Font = new Font("Segoe UI", 12F);
-            btnHistorial.ForeColor = Color.FromArgb(95, 65, 0);
-            btnHistorial.Location = new Point(773, 112);
-            btnHistorial.Margin = new Padding(0);
-            btnHistorial.Name = "btnHistorial";
-            btnHistorial.Size = new Size(136, 48);
-            btnHistorial.TabIndex = 6;
-            btnHistorial.Text = "Historial";
-            btnHistorial.UseVisualStyleBackColor = false;
-            // 
-            // btnRegistrar
-            // 
-            btnRegistrar.BackColor = Color.Peru;
-            btnRegistrar.FlatAppearance.BorderSize = 0;
-            btnRegistrar.FlatStyle = FlatStyle.Flat;
-            btnRegistrar.Font = new Font("Segoe UI", 12F);
-            btnRegistrar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnRegistrar.Location = new Point(488, 548);
-            btnRegistrar.Margin = new Padding(0);
-            btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(421, 45);
-            btnRegistrar.TabIndex = 9;
-            btnRegistrar.Text = "Registrar";
-            btnRegistrar.UseVisualStyleBackColor = false;
-            // 
             // btnServicios
             // 
             btnServicios.FlatAppearance.BorderSize = 0;
@@ -161,6 +120,14 @@
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = true;
             // 
+            // pnlServicios
+            // 
+            pnlServicios.Location = new Point(0, 115);
+            pnlServicios.Name = "pnlServicios";
+            pnlServicios.Size = new Size(913, 483);
+            pnlServicios.TabIndex = 19;
+            pnlServicios.Visible = false;
+            // 
             // btnDatos
             // 
             btnDatos.BackColor = Color.FromArgb(255, 222, 171);
@@ -168,7 +135,7 @@
             btnDatos.FlatStyle = FlatStyle.Flat;
             btnDatos.Font = new Font("Segoe UI", 12F);
             btnDatos.ForeColor = Color.FromArgb(95, 65, 0);
-            btnDatos.Location = new Point(488, 112);
+            btnDatos.Location = new Point(489, -3);
             btnDatos.Margin = new Padding(0);
             btnDatos.Name = "btnDatos";
             btnDatos.Size = new Size(131, 48);
@@ -176,21 +143,20 @@
             btnDatos.Text = "Datos";
             btnDatos.UseVisualStyleBackColor = false;
             // 
-            // btMapa
+            // btnRegistrar
             // 
-            btMapa.BackColor = Color.Peru;
-            btMapa.FlatAppearance.BorderSize = 0;
-            btMapa.FlatStyle = FlatStyle.Flat;
-            btMapa.Font = new Font("Segoe UI", 12F);
-            btMapa.ForeColor = Color.FromArgb(255, 222, 171);
-            btMapa.Location = new Point(56, 115);
-            btMapa.Margin = new Padding(0);
-            btMapa.Name = "btMapa";
-            btMapa.Size = new Size(127, 45);
-            btMapa.TabIndex = 12;
-            btMapa.Text = "Mapa";
-            btMapa.UseVisualStyleBackColor = false;
-            btMapa.Click += btMapa_Click;
+            btnRegistrar.BackColor = Color.Peru;
+            btnRegistrar.FlatAppearance.BorderSize = 0;
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
+            btnRegistrar.Font = new Font("Segoe UI", 12F);
+            btnRegistrar.ForeColor = Color.FromArgb(255, 222, 171);
+            btnRegistrar.Location = new Point(489, 433);
+            btnRegistrar.Margin = new Padding(0);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(421, 45);
+            btnRegistrar.TabIndex = 9;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = false;
             // 
             // btLista
             // 
@@ -199,7 +165,7 @@
             btLista.FlatStyle = FlatStyle.Flat;
             btLista.Font = new Font("Segoe UI", 12F);
             btLista.ForeColor = Color.FromArgb(255, 222, 171);
-            btLista.Location = new Point(223, 115);
+            btLista.Location = new Point(224, 0);
             btLista.Margin = new Padding(0);
             btLista.Name = "btLista";
             btLista.Size = new Size(127, 45);
@@ -208,25 +174,30 @@
             btLista.UseVisualStyleBackColor = false;
             btLista.Click += btLista_Click;
             // 
+            // btnHistorial
+            // 
+            btnHistorial.BackColor = Color.FromArgb(255, 222, 171);
+            btnHistorial.FlatAppearance.BorderSize = 0;
+            btnHistorial.FlatStyle = FlatStyle.Flat;
+            btnHistorial.Font = new Font("Segoe UI", 12F);
+            btnHistorial.ForeColor = Color.FromArgb(95, 65, 0);
+            btnHistorial.Location = new Point(774, -3);
+            btnHistorial.Margin = new Padding(0);
+            btnHistorial.Name = "btnHistorial";
+            btnHistorial.Size = new Size(136, 48);
+            btnHistorial.TabIndex = 6;
+            btnHistorial.Text = "Historial";
+            btnHistorial.UseVisualStyleBackColor = false;
+            // 
             // panelMapaLista
             // 
             panelMapaLista.Controls.Add(flowLayoutPanel1);
             panelMapaLista.Controls.Add(pbMapa);
-            panelMapaLista.Location = new Point(0, 160);
+            panelMapaLista.Location = new Point(1, 45);
             panelMapaLista.Margin = new Padding(0);
             panelMapaLista.Name = "panelMapaLista";
             panelMapaLista.Size = new Size(488, 433);
             panelMapaLista.TabIndex = 16;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(488, 433);
-            flowLayoutPanel1.TabIndex = 15;
-            flowLayoutPanel1.Visible = false;
             // 
             // pbMapa
             // 
@@ -240,10 +211,35 @@
             pbMapa.TabIndex = 15;
             pbMapa.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(488, 433);
+            flowLayoutPanel1.TabIndex = 15;
+            flowLayoutPanel1.Visible = false;
+            // 
+            // btnEstanciaActual
+            // 
+            btnEstanciaActual.BackColor = Color.FromArgb(255, 222, 171);
+            btnEstanciaActual.FlatAppearance.BorderSize = 0;
+            btnEstanciaActual.FlatStyle = FlatStyle.Flat;
+            btnEstanciaActual.Font = new Font("Segoe UI", 12F);
+            btnEstanciaActual.ForeColor = Color.FromArgb(95, 65, 0);
+            btnEstanciaActual.Location = new Point(620, -3);
+            btnEstanciaActual.Margin = new Padding(0);
+            btnEstanciaActual.Name = "btnEstanciaActual";
+            btnEstanciaActual.Size = new Size(154, 48);
+            btnEstanciaActual.TabIndex = 5;
+            btnEstanciaActual.Text = "Estancia actual";
+            btnEstanciaActual.UseVisualStyleBackColor = false;
+            // 
             // panelDatos
             // 
             panelDatos.Controls.Add(ucVistaDatos1);
-            panelDatos.Location = new Point(488, 160);
+            panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
@@ -257,21 +253,55 @@
             ucVistaDatos1.Size = new Size(421, 388);
             ucVistaDatos1.TabIndex = 0;
             // 
+            // btMapa
+            // 
+            btMapa.BackColor = Color.Peru;
+            btMapa.FlatAppearance.BorderSize = 0;
+            btMapa.FlatStyle = FlatStyle.Flat;
+            btMapa.Font = new Font("Segoe UI", 12F);
+            btMapa.ForeColor = Color.FromArgb(255, 222, 171);
+            btMapa.Location = new Point(57, 0);
+            btMapa.Margin = new Padding(0);
+            btMapa.Name = "btMapa";
+            btMapa.Size = new Size(127, 45);
+            btMapa.TabIndex = 12;
+            btMapa.Text = "Mapa";
+            btMapa.UseVisualStyleBackColor = false;
+            btMapa.Click += btMapa_Click;
+            // 
+            // pnlParcelas
+            // 
+            pnlParcelas.Controls.Add(btMapa);
+            pnlParcelas.Controls.Add(btLista);
+            pnlParcelas.Controls.Add(panelMapaLista);
+            pnlParcelas.Controls.Add(btnDatos);
+            pnlParcelas.Controls.Add(btnEstanciaActual);
+            pnlParcelas.Controls.Add(btnHistorial);
+            pnlParcelas.Controls.Add(btnRegistrar);
+            pnlParcelas.Controls.Add(panelDatos);
+            pnlParcelas.Location = new Point(0, 118);
+            pnlParcelas.Name = "pnlParcelas";
+            pnlParcelas.Size = new Size(913, 480);
+            pnlParcelas.TabIndex = 18;
+            // 
+            // pnlEmpleados
+            // 
+            pnlEmpleados.Location = new Point(1, 115);
+            pnlEmpleados.Name = "pnlEmpleados";
+            pnlEmpleados.Size = new Size(913, 483);
+            pnlEmpleados.TabIndex = 20;
+            pnlEmpleados.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(913, 597);
-            Controls.Add(panelDatos);
-            Controls.Add(panelMapaLista);
-            Controls.Add(btLista);
-            Controls.Add(btMapa);
-            Controls.Add(btnDatos);
-            Controls.Add(btnRegistrar);
+            ClientSize = new Size(1238, 732);
+            Controls.Add(pnlParcelas);
+            Controls.Add(pnlEmpleados);
+            Controls.Add(pnlServicios);
             Controls.Add(btnServicios);
-            Controls.Add(btnHistorial);
-            Controls.Add(btnEstanciaActual);
             Controls.Add(pbAjustes);
             Controls.Add(btnParcelas);
             Controls.Add(btnEmpleados);
@@ -285,6 +315,7 @@
             panelMapaLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
             panelDatos.ResumeLayout(false);
+            pnlParcelas.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -294,17 +325,20 @@
         private Button btnEmpleados;
         private Button btnParcelas;
         private PictureBox pbAjustes;
-        private Button btnEstanciaActual;
-        private Button btnHistorial;
-        private Button btnRegistrar;
         private Button btnServicios;
+        private Panel pnlServicios;
         private Button btnDatos;
-        private Button btMapa;
+        private Button btnRegistrar;
         private Button btLista;
+        private Button btnHistorial;
         private Panel panelMapaLista;
         private FlowLayoutPanel flowLayoutPanel1;
         private PictureBox pbMapa;
+        private Button btnEstanciaActual;
         private Panel panelDatos;
         private Controles.ucVistaDatos ucVistaDatos1;
+        private Button btMapa;
+        private Panel pnlParcelas;
+        private Panel pnlEmpleados;
     }
 }
