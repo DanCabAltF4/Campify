@@ -13,7 +13,7 @@ public class ParcelaController {
         this.service = service;
     }
 
-    @RequestMapping
+    @PostMapping
     public Parcela insert (@RequestBody Parcela parcela){
         return service.insert(parcela);
     }
@@ -23,7 +23,7 @@ public class ParcelaController {
         service.delete(id);
     }
 
-    @RequestMapping("/{id}")
+    @PutMapping("/{id}")
     public Parcela update (@PathVariable int id, @RequestBody Parcela parcela){
         return service.update(id, parcela);
     }
@@ -32,6 +32,5 @@ public class ParcelaController {
     public Parcela findById(@RequestParam int id){
         return service.findById(id);
     }
-
-
+    
 }
