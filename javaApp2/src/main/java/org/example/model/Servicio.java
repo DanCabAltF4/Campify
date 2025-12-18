@@ -1,7 +1,9 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,8 @@ public class Servicio {
     @Column(columnDefinition = "DECIMAL(10,2)",nullable = false)
     private double precio;
     @ManyToMany(mappedBy = "servicio")
-    private List<Estancia> estancia;
+    @JsonBackReference
+    private List<Estancia> estancia = new ArrayList<>();
 
     public Servicio() {
     }

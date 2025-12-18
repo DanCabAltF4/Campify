@@ -30,7 +30,7 @@ public class EstanciaController {
     }
 
     @GetMapping("/{id}")
-    public Estancia findById(@RequestParam int id){
+    public Estancia findById(@PathVariable  int id){
         return service.findById(id);
     }
 }

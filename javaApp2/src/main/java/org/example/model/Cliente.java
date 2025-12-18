@@ -1,10 +1,12 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,7 +34,9 @@ public class Cliente {
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
     @ManyToMany(mappedBy = "cliente")
-    private List<Estancia> estancia;
+    @JsonBackReference
+    private List<Estancia> estancia = new ArrayList<>();
+
 
     //Constructor por defecto para uso de Hibernate
     public Cliente(){

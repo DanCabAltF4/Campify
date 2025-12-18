@@ -1,9 +1,11 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.model.enums.Temporada;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,25 +37,32 @@ public class Estancia {
     @Column(name = "precio_final")
     private double precioFinal;
 
-    @ManyToMany
-    @JoinTable(name = "clientes_estancia",
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "clientes_estancia",
             joinColumns = @JoinColumn(name = "id_estancia"),
             inverseJoinColumns = @JoinColumn(name = "id_cliente")
     )
-    private List<Cliente> cliente;
+    @JsonManagedReference
+    private List<Cliente> cliente = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "estancia_servicios",
+            joinColumns = @JoinColumn(name = "id_estancia"),
+            inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    @JsonManagedReference
+    private List<Servicio> servicio = new ArrayList<>();
+
+
     @ManyToOne
     @JoinColumn(name = "id_parcela")
     private Parcela parcelas;
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleados;
-    @ManyToMany
-    @JoinTable(
-            name = "estancia_servicios",
-            joinColumns = @JoinColumn(name = "id_estancia"),
-            inverseJoinColumns = @JoinColumn(name = "id_servicio")
-    )
-    private List<Servicio> servicio;
+
 
     public Estancia() {
     }
