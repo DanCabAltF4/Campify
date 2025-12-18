@@ -2,7 +2,8 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
-@Entity(name = "servicios")
+@Entity
+@Table(name = "servicios")
 public class Servicio {
 
     @Id

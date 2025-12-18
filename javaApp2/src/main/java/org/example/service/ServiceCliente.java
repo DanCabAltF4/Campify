@@ -5,11 +5,11 @@ import org.example.persistence.ClienteRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClienteService implements IServiceCliente {
+public class ServiceCliente implements IServiceCliente {
 
     private ClienteRepository repo;
 
-    public ClienteService(ClienteRepository repo){
+    public ServiceCliente(ClienteRepository repo){
         this.repo=repo;
     }
 
