@@ -1,6 +1,7 @@
 package org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Servicio {
     @Column(columnDefinition = "DECIMAL(10,2)",nullable = false)
     private double precio;
     @ManyToMany(mappedBy = "servicio")
-    @JsonBackReference
+    @JsonIgnore
     private List<Estancia> estancia = new ArrayList<>();
 
     public Servicio() {

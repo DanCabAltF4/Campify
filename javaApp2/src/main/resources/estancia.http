@@ -1,0 +1,51 @@
+### buscar empleado -> recibe id por ruta
+GET http://localhost:8080/api/estancias/1
+
+### insertar empleado -> recibe servicio por body en json
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+### eliminar empleado -> recibe id por ruta
+DELETE http://localhost:8080/api/estancias/1
+
+### modificar empleado -> recibe id por ruta y empleado por body en json
+PUT http://localhost:8080/api/estancias/1
+Content-Type: application/json
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 60.0,
+  "numeroAdultos": 4,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "BAJA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+
+
+
+
+

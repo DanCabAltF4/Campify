@@ -43,7 +43,6 @@ public class Estancia {
             joinColumns = @JoinColumn(name = "id_estancia"),
             inverseJoinColumns = @JoinColumn(name = "id_cliente")
     )
-    @JsonManagedReference
     private List<Cliente> cliente = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -52,7 +51,6 @@ public class Estancia {
             joinColumns = @JoinColumn(name = "id_estancia"),
             inverseJoinColumns = @JoinColumn(name = "id_servicio")
     )
-    @JsonManagedReference
     private List<Servicio> servicio = new ArrayList<>();
 
 
