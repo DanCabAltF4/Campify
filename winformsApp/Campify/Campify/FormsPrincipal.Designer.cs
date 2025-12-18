@@ -1,6 +1,6 @@
 ﻿namespace Campify
 {
-    partial class Form1
+    partial class FormsPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsPrincipal));
             pbLogo = new PictureBox();
             btnEmpleados = new Button();
             btnParcelas = new Button();
@@ -36,15 +36,15 @@
             btnServicios = new Button();
             pnlServicios = new Panel();
             btnDatos = new Button();
-            btnRegistrar = new Button();
+            btnReservar = new Button();
             btLista = new Button();
             btnHistorial = new Button();
             panelMapaLista = new Panel();
-            pbMapa = new PictureBox();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
-            ucVistaDatos1 = new Controles.ucVistaDatos();
+            ucParcelaDatos = new Controles.ucParcelaDatos();
             btMapa = new Button();
             pnlParcelas = new Panel();
             pnlEmpleados = new Panel();
@@ -143,20 +143,21 @@
             btnDatos.Text = "Datos";
             btnDatos.UseVisualStyleBackColor = false;
             // 
-            // btnRegistrar
+            // btnReservar
             // 
-            btnRegistrar.BackColor = Color.Peru;
-            btnRegistrar.FlatAppearance.BorderSize = 0;
-            btnRegistrar.FlatStyle = FlatStyle.Flat;
-            btnRegistrar.Font = new Font("Segoe UI", 12F);
-            btnRegistrar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnRegistrar.Location = new Point(489, 433);
-            btnRegistrar.Margin = new Padding(0);
-            btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(421, 45);
-            btnRegistrar.TabIndex = 9;
-            btnRegistrar.Text = "Registrar";
-            btnRegistrar.UseVisualStyleBackColor = false;
+            btnReservar.BackColor = Color.Peru;
+            btnReservar.FlatAppearance.BorderSize = 0;
+            btnReservar.FlatStyle = FlatStyle.Flat;
+            btnReservar.Font = new Font("Segoe UI", 12F);
+            btnReservar.ForeColor = Color.FromArgb(255, 222, 171);
+            btnReservar.Location = new Point(489, 433);
+            btnReservar.Margin = new Padding(0);
+            btnReservar.Name = "btnReservar";
+            btnReservar.Size = new Size(421, 45);
+            btnReservar.TabIndex = 9;
+            btnReservar.Text = "Reservar";
+            btnReservar.UseVisualStyleBackColor = false;
+            btnReservar.Click += btnReservar_Click;
             // 
             // btLista
             // 
@@ -199,6 +200,17 @@
             panelMapaLista.Size = new Size(488, 433);
             panelMapaLista.TabIndex = 16;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(488, 433);
+            flowLayoutPanel1.TabIndex = 15;
+            flowLayoutPanel1.Visible = false;
+            // 
             // pbMapa
             // 
             pbMapa.Dock = DockStyle.Fill;
@@ -210,16 +222,6 @@
             pbMapa.SizeMode = PictureBoxSizeMode.StretchImage;
             pbMapa.TabIndex = 15;
             pbMapa.TabStop = false;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(488, 433);
-            flowLayoutPanel1.TabIndex = 15;
-            flowLayoutPanel1.Visible = false;
             // 
             // btnEstanciaActual
             // 
@@ -238,20 +240,20 @@
             // 
             // panelDatos
             // 
-            panelDatos.Controls.Add(ucVistaDatos1);
+            panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
             // 
-            // ucVistaDatos1
+            // ucParcelaDatos
             // 
-            ucVistaDatos1.Location = new Point(0, 0);
-            ucVistaDatos1.Margin = new Padding(0);
-            ucVistaDatos1.Name = "ucVistaDatos1";
-            ucVistaDatos1.Size = new Size(421, 388);
-            ucVistaDatos1.TabIndex = 0;
+            ucParcelaDatos.Location = new Point(0, 0);
+            ucParcelaDatos.Margin = new Padding(0);
+            ucParcelaDatos.Name = "ucParcelaDatos";
+            ucParcelaDatos.Size = new Size(421, 388);
+            ucParcelaDatos.TabIndex = 0;
             // 
             // btMapa
             // 
@@ -277,7 +279,7 @@
             pnlParcelas.Controls.Add(btnDatos);
             pnlParcelas.Controls.Add(btnEstanciaActual);
             pnlParcelas.Controls.Add(btnHistorial);
-            pnlParcelas.Controls.Add(btnRegistrar);
+            pnlParcelas.Controls.Add(btnReservar);
             pnlParcelas.Controls.Add(panelDatos);
             pnlParcelas.Location = new Point(0, 118);
             pnlParcelas.Name = "pnlParcelas";
@@ -292,12 +294,12 @@
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
             // 
-            // Form1
+            // FormsPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(1238, 732);
+            ClientSize = new Size(915, 598);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlServicios);
@@ -307,7 +309,7 @@
             Controls.Add(btnEmpleados);
             Controls.Add(pbLogo);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Form1";
+            Name = "FormsPrincipal";
             Text = "Daniel capullo";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
@@ -328,7 +330,7 @@
         private Button btnServicios;
         private Panel pnlServicios;
         private Button btnDatos;
-        private Button btnRegistrar;
+        private Button btnReservar;
         private Button btLista;
         private Button btnHistorial;
         private Panel panelMapaLista;
@@ -336,7 +338,7 @@
         private PictureBox pbMapa;
         private Button btnEstanciaActual;
         private Panel panelDatos;
-        private Controles.ucVistaDatos ucVistaDatos1;
+        private Controles.ucParcelaDatos ucParcelaDatos;
         private Button btMapa;
         private Panel pnlParcelas;
         private Panel pnlEmpleados;

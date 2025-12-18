@@ -55,9 +55,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
-      "projectName": "Campify",
-      "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Campify.csproj",
+      "projectUniqueName": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
+      "projectName": "Forms",
+      "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
       "packagesPath": "C:\\Users\\doowy\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\",
       "projectStyle": "PackageReference",

@@ -4,7 +4,7 @@
     <Compile Update="ucParcelaLista.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ucVistaDatos.cs">
+    <Compile Update="ucParcelaDatos.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

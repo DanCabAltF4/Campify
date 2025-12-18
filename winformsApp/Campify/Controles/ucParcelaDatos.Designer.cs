@@ -1,6 +1,6 @@
 ﻿namespace Controles
 {
-    partial class ucVistaDatos
+    partial class ucParcelaDatos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

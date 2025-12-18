@@ -78,6 +78,7 @@
             Controls.Add(lblEstado);
             Controls.Add(lblTipo);
             Controls.Add(lblId);
+            Margin = new Padding(8, 5, 8, 5);
             Name = "ucParcela";
             Size = new Size(138, 208);
             DoubleClick += ucParcela_DoubleClick;

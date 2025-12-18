@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Campify")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c688efb7dc5edeff7434824621d9b56e969314ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d683906b1cdf578792e2915e82f2be1da19c25a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Campify")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Campify")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

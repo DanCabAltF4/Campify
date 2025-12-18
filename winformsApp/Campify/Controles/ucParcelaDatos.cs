@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Controles
 {
-    public partial class ucVistaDatos : UserControl
+    public partial class ucParcelaDatos : UserControl
     {
-        public ucVistaDatos()
+        public ucParcelaDatos()
         {
             InitializeComponent();
             Limpiar();

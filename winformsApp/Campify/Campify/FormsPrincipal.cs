@@ -1,11 +1,12 @@
 using Controles;
+using Forms;
 using Model;
 
 namespace Campify
 {
-    public partial class Form1 : Form
+    public partial class FormsPrincipal : Form
     {
-        public Form1()
+        public FormsPrincipal()
         {
             InitializeComponent();
         }
@@ -31,7 +32,7 @@ namespace Campify
 
         private void ParcelaDobleClick(object? sender, Parcela e)
         {
-            ucVistaDatos1.MostrarDatos(e);
+            ucParcelaDatos.MostrarDatos(e);
         }
 
         private void btMapa_Click(object sender, EventArgs e)
@@ -49,6 +50,12 @@ namespace Campify
         private void Form1_Load(object sender, EventArgs e)
         {
             CargarParcelas();
+        }
+
+        private void btnReservar_Click(object sender, EventArgs e)
+        {
+            var form = new FormsNuevaEstancia();
+            form.ShowDialog(this);
         }
     }
 }
