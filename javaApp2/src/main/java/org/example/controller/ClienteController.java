@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Cliente;
-import org.example.service.ClienteService;
+import org.example.service.ServiceCliente;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private ClienteService service;
+    private ServiceCliente service;
 
-    public ClienteController(ClienteService service){
+    public ClienteController(ServiceCliente service){
         this.service=service;
     }
 
