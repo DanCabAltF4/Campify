@@ -1,5 +1,5 @@
 ### buscar cliente -> se pasa id por ruta
-GET http://localhost:8080/api/clientes/2
+GET http://localhost:8080/api/clientes/1
 
 ### eliminar cliente -> se pasa id por ruta
 DELETE http://localhost:8080/api/clientes/1
