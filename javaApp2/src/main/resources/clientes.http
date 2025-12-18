@@ -1,0 +1,35 @@
+### buscar cliente -> se pasa id por ruta
+GET http://localhost:8080/api/clientes/2
+
+### eliminar cliente -> se pasa id por ruta
+DELETE http://localhost:8080/api/clientes/1
+
+### insertar cliente -> se pasa cliente por body en json
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+### modificar cliente -> se pasa id por ruta y cliente por body en json
+PUT localhost:8080/api/clientes/2
+Content-Type: application/json
+
+{
+  "nombre": "Raul",
+  "apellidos": "Gómez",
+  "dni": "33333333C",
+  "direccion": "Calle 23",
+  "cPostal": "33333",
+  "email": "raul@test.com",
+  "telefono": "633333333",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}

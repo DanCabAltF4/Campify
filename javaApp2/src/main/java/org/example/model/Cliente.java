@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
@@ -20,6 +21,7 @@ public class Cliente {
     private String dni;
     @Column(length = 150, nullable = false)
     private String direccion;
+    @JsonProperty("cPostal")
     @Column(columnDefinition = "CHAR(5)", nullable = false)
     private String cPostal;
     @Column(nullable = false)
