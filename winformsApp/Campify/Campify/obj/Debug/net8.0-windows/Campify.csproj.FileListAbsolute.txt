@@ -34,3 +34,9 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\n
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.pdb
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.genruntimeconfig.cache
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\ref\Campify.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Controles.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Model.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Controles.pdb
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Model.pdb
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.csproj.AssemblyReference.cache
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.csproj.Up2Date

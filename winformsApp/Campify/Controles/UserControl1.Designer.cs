@@ -37,7 +37,7 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(19, 20);
+            lblId.Location = new Point(12, 15);
             lblId.Name = "lblId";
             lblId.Size = new Size(22, 20);
             lblId.TabIndex = 0;
@@ -46,7 +46,7 @@
             // lblTipo
             // 
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(19, 65);
+            lblTipo.Location = new Point(12, 60);
             lblTipo.Name = "lblTipo";
             lblTipo.Size = new Size(39, 20);
             lblTipo.TabIndex = 1;
@@ -55,7 +55,7 @@
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(19, 111);
+            lblEstado.Location = new Point(12, 106);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(54, 20);
             lblEstado.TabIndex = 2;
@@ -64,7 +64,7 @@
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(19, 157);
+            lblPrecioNoche.Location = new Point(12, 152);
             lblPrecioNoche.Name = "lblPrecioNoche";
             lblPrecioNoche.Size = new Size(96, 20);
             lblPrecioNoche.TabIndex = 3;
@@ -79,7 +79,7 @@
             Controls.Add(lblTipo);
             Controls.Add(lblId);
             Name = "ucParcela";
-            Size = new Size(128, 208);
+            Size = new Size(138, 208);
             ResumeLayout(false);
             PerformLayout();
         }

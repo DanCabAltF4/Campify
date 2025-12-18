@@ -258,6 +258,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Daniel capullo";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).EndInit();
             panelMapaLista.ResumeLayout(false);

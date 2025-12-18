@@ -18,6 +18,13 @@ namespace Controles
             lblTipo.Text = p.tipo.ToString();
             lblEstado.Text = p.estado.ToString();
             lblPrecioNoche.Text = p.PrecioPorNoche.ToString("C2");
+            BackColor = p.estado switch
+            {
+                EnumEstados.LIBRE => Color.LightGreen,
+                EnumEstados.RESERVADA => Color.LightYellow,
+                EnumEstados.OCUPADA => Color.IndianRed,
+                EnumEstados.MANTENIMIENTO => Color.RebeccaPurple
+            };
         }
 
     }
