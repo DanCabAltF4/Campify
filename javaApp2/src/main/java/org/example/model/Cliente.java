@@ -1,10 +1,14 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -30,6 +34,10 @@ public class Cliente {
     private String email;
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
+    @ManyToMany(mappedBy = "cliente")
+    @JsonIgnore
+    private List<Estancia> estancia = new ArrayList<>();
+
 
     //Constructor por defecto para uso de Hibernate
     public Cliente(){
@@ -73,6 +81,10 @@ public class Cliente {
         return telefono;
     }
 
+    public List<Estancia> getEstancia() {
+        return estancia;
+    }
+
     //Metodos set
     public void setId(int id) {
         this.id = id;
@@ -110,6 +122,9 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public void setEstancia(List<Estancia> estancia) {
+        this.estancia = estancia;
+    }
 
     @Override
     public String toString() {

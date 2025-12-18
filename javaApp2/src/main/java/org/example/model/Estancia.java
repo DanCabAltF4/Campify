@@ -1,9 +1,11 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.model.enums.Temporada;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,22 +37,30 @@ public class Estancia {
     @Column(name = "precio_final")
     private double precioFinal;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "clientes_estancia")
-    private List<Cliente> cliente;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "clientes_estancia",
+            joinColumns = @JoinColumn(name = "id_estancia"),
+            inverseJoinColumns = @JoinColumn(name = "id_cliente")
+    )
+    private List<Cliente> cliente = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "estancia_servicios",
+            joinColumns = @JoinColumn(name = "id_estancia"),
+            inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    private List<Servicio> servicio = new ArrayList<>();
+
+
     @ManyToOne
     @JoinColumn(name = "id_parcela")
     private Parcela parcelas;
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleados;
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable(
-            name = "estancia_servicios",
-            joinColumns = @JoinColumn(name = "id_estancia"),
-            inverseJoinColumns = @JoinColumn(name = "id_servicio")
-    )
-    private List<Servicio> servicio;
+
 
     public Estancia() {
     }
@@ -143,6 +153,40 @@ public class Estancia {
         this.servicio = servicio;
     }
 
+    public List<Cliente> getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(List<Cliente> cliente) {
+        this.cliente = cliente;
+    }
+
+    public Parcela getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(Parcela parcelas) {
+        this.parcelas = parcelas;
+    }
+
+    public Empleado getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Empleado empleados) {
+        this.empleados = empleados;
+    }
+
+    public void addCliente(Cliente cliente){
+        getCliente().add(cliente);
+        cliente.getEstancia().add(this);
+    }
+
+    public void removeCliente(Cliente cliente){
+        getServicio().remove(servicio);
+        cliente.getEstancia().remove(this);
+    }
+
     public void addServicio(Servicio servicio){
         getServicio().add(servicio);
         servicio.getEstancia().add(this);
@@ -168,4 +212,5 @@ public class Estancia {
                 ", precioFinal=" + precioFinal +
                 '}';
     }
+
 }
