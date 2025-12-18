@@ -13,19 +13,25 @@ namespace Campify
         private void CargarParcelas()
         {
             flowLayoutPanel1.Controls.Clear();
-            List<Parcela> parcelas = new List<Parcela>
+            List<Parcela> parcelas = new List<Parcela>  //Cambiar por metodo para recibir parcelas de la BD por Spring
             {
-                new Parcela(1, EnumTipos.PEQUENA, 50, false, false, false, false, false, EnumEstados.LIBRE, 4),
-                new Parcela(2, EnumTipos.MEDIANA, 70, false, false, false, false, false, EnumEstados.RESERVADA, 4),
+                new Parcela(1, EnumTipos.PEQUENA, 50, false, true, false, false, false, EnumEstados.LIBRE, 2),
+                new Parcela(2, EnumTipos.MEDIANA, 70, false, false, true, true, false, EnumEstados.RESERVADA, 3),
                 new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.OCUPADA, 4),
-                new Parcela(4, EnumTipos.MEDIANA, 70, false, false, false, false, false, EnumEstados.MANTENIMIENTO, 4),
+                new Parcela(4, EnumTipos.MEDIANA, 70, true, true, true, true, true, EnumEstados.MANTENIMIENTO, 2),
             };
             foreach (Parcela p in parcelas)
             {
                 ucParcela uc = new ucParcela();
                 uc.SetData(p);
+                uc.ParcelaDobleClick += ParcelaDobleClick;
                 flowLayoutPanel1.Controls.Add(uc);
             }
+        }
+
+        private void ParcelaDobleClick(object? sender, Parcela e)
+        {
+            ucVistaDatos1.MostrarDatos(e);
         }
 
         private void btMapa_Click(object sender, EventArgs e)

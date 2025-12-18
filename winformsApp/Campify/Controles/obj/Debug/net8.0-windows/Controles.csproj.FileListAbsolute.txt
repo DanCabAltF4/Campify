@@ -16,3 +16,4 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\bin\Debug
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.csproj.AssemblyReference.cache
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucParcela.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.csproj.Up2Date
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucVistaDatos.resources

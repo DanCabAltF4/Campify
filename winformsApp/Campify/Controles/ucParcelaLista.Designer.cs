@@ -80,6 +80,7 @@
             Controls.Add(lblId);
             Name = "ucParcela";
             Size = new Size(138, 208);
+            DoubleClick += ucParcela_DoubleClick;
             ResumeLayout(false);
             PerformLayout();
         }

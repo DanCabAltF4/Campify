@@ -43,19 +43,22 @@
             panelMapaLista = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             pbMapa = new PictureBox();
+            panelDatos = new Panel();
+            ucVistaDatos1 = new Controles.ucVistaDatos();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
+            panelDatos.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
             // 
             pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(-10, -9);
+            pbLogo.Location = new Point(0, -5);
             pbLogo.Margin = new Padding(3, 4, 3, 4);
             pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(93, 113);
+            pbLogo.Size = new Size(106, 116);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 0;
             pbLogo.TabStop = false;
@@ -237,12 +240,30 @@
             pbMapa.TabIndex = 15;
             pbMapa.TabStop = false;
             // 
+            // panelDatos
+            // 
+            panelDatos.Controls.Add(ucVistaDatos1);
+            panelDatos.Location = new Point(488, 160);
+            panelDatos.Margin = new Padding(0);
+            panelDatos.Name = "panelDatos";
+            panelDatos.Size = new Size(421, 388);
+            panelDatos.TabIndex = 17;
+            // 
+            // ucVistaDatos1
+            // 
+            ucVistaDatos1.Location = new Point(0, 0);
+            ucVistaDatos1.Margin = new Padding(0);
+            ucVistaDatos1.Name = "ucVistaDatos1";
+            ucVistaDatos1.Size = new Size(421, 388);
+            ucVistaDatos1.TabIndex = 0;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(913, 597);
+            Controls.Add(panelDatos);
             Controls.Add(panelMapaLista);
             Controls.Add(btLista);
             Controls.Add(btMapa);
@@ -263,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)pbAjustes).EndInit();
             panelMapaLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
+            panelDatos.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -282,5 +304,7 @@
         private Panel panelMapaLista;
         private FlowLayoutPanel flowLayoutPanel1;
         private PictureBox pbMapa;
+        private Panel panelDatos;
+        private Controles.ucVistaDatos ucVistaDatos1;
     }
 }
