@@ -2,6 +2,8 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "servicios")
 public class Servicio {
@@ -15,6 +17,8 @@ public class Servicio {
     private String descripcion;
     @Column(columnDefinition = "DECIMAL(10,2)",nullable = false)
     private double precio;
+    @ManyToMany(mappedBy = "servicio")
+    private List<Estancia> estancia;
 
     public Servicio() {
     }
@@ -49,6 +53,14 @@ public class Servicio {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Estancia> getEstancia() {
+        return estancia;
+    }
+
+    public void setEstancia(List<Estancia> estancia) {
+        this.estancia = estancia;
     }
 
     @Override

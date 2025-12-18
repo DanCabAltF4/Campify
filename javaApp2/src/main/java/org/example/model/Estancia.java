@@ -44,6 +44,13 @@ public class Estancia {
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleados;
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(
+            name = "estancia_servicios",
+            joinColumns = @JoinColumn(name = "id_estancia"),
+            inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    private List<Servicio> servicio;
 
     public Estancia() {
     }
@@ -126,6 +133,24 @@ public class Estancia {
 
     public void setTemporada(Temporada temporada) {
         this.temporada = temporada;
+    }
+
+    public List<Servicio> getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(List<Servicio> servicio) {
+        this.servicio = servicio;
+    }
+
+    public void addServicio(Servicio servicio){
+        getServicio().add(servicio);
+        servicio.getEstancia().add(this);
+    }
+
+    public void removeServicio(Servicio servicio){
+        getServicio().remove(servicio);
+        servicio.getEstancia().remove(this);
     }
 
     @Override
