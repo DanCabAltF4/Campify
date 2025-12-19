@@ -1,32 +1,41 @@
 using Controles;
 using Forms;
 using Model;
+using Repository;
 
 namespace Campify
 {
     public partial class FormPrincipal : Form
     {
+
+        private readonly ParcelaAPI _api = new ParcelaAPI("http://localhost:8080");
         public FormPrincipal()
         {
             InitializeComponent();
         }
 
-        private void CargarParcelas()
+        private async void CargarParcelas()
         {
-            flowLayoutPanel1.Controls.Clear();
-            List<Parcela> parcelas = new List<Parcela>  //Cambiar por metodo para recibir parcelas de la BD por Spring
+            try
             {
-                new Parcela(1, EnumTipos.PEQUENA, 50, false, true, false, false, false, EnumEstados.LIBRE, 2),
-                new Parcela(2, EnumTipos.MEDIANA, 70, false, false, true, true, false, EnumEstados.RESERVADA, 3),
-                new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.INTERESADO, 4),
-                new Parcela(4, EnumTipos.MEDIANA, 70, true, true, true, true, true, EnumEstados.MANTENIMIENTO, 2),
-            };
-            foreach (Parcela p in parcelas)
+                flowLayoutPanel1.Controls.Clear();
+                List<Parcela> parcelas = await _api.GetParcelasAsync();  //Cambiar por metodo para recibir parcelas de la BD por Spring
+                                                                         //{
+                                                                         //    new Parcela(1, EnumTipos.PEQUENA, 50, false, true, false, false, false, EnumEstados.LIBRE, 2),
+                                                                         //    new Parcela(2, EnumTipos.MEDIANA, 70, false, false, true, true, false, EnumEstados.RESERVADA, 3),
+                                                                         //    new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.INTERESADO, 4),
+                                                                         //    new Parcela(4, EnumTipos.MEDIANA, 70, true, true, true, true, true, EnumEstados.MANTENIMIENTO, 2),
+                                                                         //};
+                foreach (Parcela p in parcelas)
+                {
+                    ucParcela uc = new ucParcela();
+                    uc.SetData(p);
+                    uc.ParcelaDobleClick += ParcelaDobleClick;
+                    flowLayoutPanel1.Controls.Add(uc);
+                }
+            }catch(HttpRequestException ex)
             {
-                ucParcela uc = new ucParcela();
-                uc.SetData(p);
-                uc.ParcelaDobleClick += ParcelaDobleClick;
-                flowLayoutPanel1.Controls.Add(uc);
+                MessageBox.Show("No se pudo conectar a la API- ¿Está corriendo Spring?", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
