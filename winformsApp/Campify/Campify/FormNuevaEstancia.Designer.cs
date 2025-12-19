@@ -62,10 +62,9 @@
             btnGuardarReserva.FlatStyle = FlatStyle.Flat;
             btnGuardarReserva.Font = new Font("Segoe UI", 12F);
             btnGuardarReserva.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardarReserva.Location = new Point(380, 350);
-            btnGuardarReserva.Margin = new Padding(3, 2, 3, 2);
+            btnGuardarReserva.Location = new Point(434, 467);
             btnGuardarReserva.Name = "btnGuardarReserva";
-            btnGuardarReserva.Size = new Size(94, 50);
+            btnGuardarReserva.Size = new Size(107, 67);
             btnGuardarReserva.TabIndex = 0;
             btnGuardarReserva.Text = "Guardar reserva";
             btnGuardarReserva.UseVisualStyleBackColor = false;
@@ -77,10 +76,9 @@
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 10F);
-            btnClientes.Location = new Point(71, 366);
-            btnClientes.Margin = new Padding(3, 2, 3, 2);
+            btnClientes.Location = new Point(81, 488);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(82, 25);
+            btnClientes.Size = new Size(94, 33);
             btnClientes.TabIndex = 1;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
@@ -92,10 +90,9 @@
             btnServicios.FlatAppearance.BorderSize = 0;
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 10F);
-            btnServicios.Location = new Point(213, 366);
-            btnServicios.Margin = new Padding(3, 2, 3, 2);
+            btnServicios.Location = new Point(243, 488);
             btnServicios.Name = "btnServicios";
-            btnServicios.Size = new Size(82, 25);
+            btnServicios.Size = new Size(94, 33);
             btnServicios.TabIndex = 2;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = false;
@@ -104,201 +101,197 @@
             // lbltxtParcela
             // 
             lbltxtParcela.AutoSize = true;
-            lbltxtParcela.Location = new Point(35, 32);
+            lbltxtParcela.Location = new Point(40, 43);
             lbltxtParcela.Name = "lbltxtParcela";
-            lbltxtParcela.Size = new Size(48, 15);
+            lbltxtParcela.Size = new Size(59, 20);
             lbltxtParcela.TabIndex = 3;
             lbltxtParcela.Text = "Parcela:";
             // 
             // lbltxtCheckout
             // 
             lbltxtCheckout.AutoSize = true;
-            lbltxtCheckout.Location = new Point(35, 127);
+            lbltxtCheckout.Location = new Point(40, 169);
             lbltxtCheckout.Name = "lbltxtCheckout";
-            lbltxtCheckout.Size = new Size(64, 15);
+            lbltxtCheckout.Size = new Size(77, 20);
             lbltxtCheckout.TabIndex = 7;
             lbltxtCheckout.Text = "Check out:";
             // 
             // lbltxtMascotas
             // 
             lbltxtMascotas.AutoSize = true;
-            lbltxtMascotas.Location = new Point(401, 127);
+            lbltxtMascotas.Location = new Point(458, 169);
             lbltxtMascotas.Name = "lbltxtMascotas";
-            lbltxtMascotas.Size = new Size(77, 15);
+            lbltxtMascotas.Size = new Size(95, 20);
             lbltxtMascotas.TabIndex = 10;
             lbltxtMascotas.Text = "Nº Mascotas:";
             // 
             // lbltxtTemporada
             // 
             lbltxtTemporada.AutoSize = true;
-            lbltxtTemporada.Location = new Point(35, 184);
+            lbltxtTemporada.Location = new Point(40, 245);
             lbltxtTemporada.Name = "lbltxtTemporada";
-            lbltxtTemporada.Size = new Size(70, 15);
+            lbltxtTemporada.Size = new Size(88, 20);
             lbltxtTemporada.TabIndex = 11;
             lbltxtTemporada.Text = "Temporada:";
             // 
             // lbltxtPrecioFinal
             // 
             lbltxtPrecioFinal.AutoSize = true;
-            lbltxtPrecioFinal.Location = new Point(37, 285);
+            lbltxtPrecioFinal.Location = new Point(42, 380);
             lbltxtPrecioFinal.Name = "lbltxtPrecioFinal";
-            lbltxtPrecioFinal.Size = new Size(69, 15);
+            lbltxtPrecioFinal.Size = new Size(86, 20);
             lbltxtPrecioFinal.TabIndex = 12;
             lbltxtPrecioFinal.Text = "Precio final:";
             // 
             // lbltxtCheckin
             // 
             lbltxtCheckin.AutoSize = true;
-            lbltxtCheckin.Location = new Point(35, 76);
+            lbltxtCheckin.Location = new Point(40, 101);
             lbltxtCheckin.Name = "lbltxtCheckin";
-            lbltxtCheckin.Size = new Size(50, 15);
+            lbltxtCheckin.Size = new Size(60, 20);
             lbltxtCheckin.TabIndex = 13;
             lbltxtCheckin.Text = "Chek in:";
             // 
             // lbltxtNinos
             // 
             lbltxtNinos.AutoSize = true;
-            lbltxtNinos.Location = new Point(401, 76);
+            lbltxtNinos.Location = new Point(458, 101);
             lbltxtNinos.Name = "lbltxtNinos";
-            lbltxtNinos.Size = new Size(58, 15);
+            lbltxtNinos.Size = new Size(71, 20);
             lbltxtNinos.TabIndex = 18;
             lbltxtNinos.Text = "Nº Niños:";
             // 
             // lbltxtEquipajeAdicional
             // 
             lbltxtEquipajeAdicional.AutoSize = true;
-            lbltxtEquipajeAdicional.Location = new Point(401, 184);
+            lbltxtEquipajeAdicional.Location = new Point(458, 245);
             lbltxtEquipajeAdicional.Name = "lbltxtEquipajeAdicional";
-            lbltxtEquipajeAdicional.Size = new Size(106, 15);
+            lbltxtEquipajeAdicional.Size = new Size(135, 20);
             lbltxtEquipajeAdicional.TabIndex = 17;
             lbltxtEquipajeAdicional.Text = "Equipaje adicional:";
             // 
             // lbltxtCargoAdicional
             // 
             lbltxtCargoAdicional.AutoSize = true;
-            lbltxtCargoAdicional.Location = new Point(401, 248);
+            lbltxtCargoAdicional.Location = new Point(458, 331);
             lbltxtCargoAdicional.Name = "lbltxtCargoAdicional";
-            lbltxtCargoAdicional.Size = new Size(93, 15);
+            lbltxtCargoAdicional.Size = new Size(117, 20);
             lbltxtCargoAdicional.TabIndex = 15;
             lbltxtCargoAdicional.Text = "Cargo adicional:";
             // 
             // lbltxtAdultos
             // 
             lbltxtAdultos.AutoSize = true;
-            lbltxtAdultos.Location = new Point(401, 32);
+            lbltxtAdultos.Location = new Point(458, 43);
             lbltxtAdultos.Name = "lbltxtAdultos";
-            lbltxtAdultos.Size = new Size(68, 15);
+            lbltxtAdultos.Size = new Size(84, 20);
             lbltxtAdultos.TabIndex = 14;
             lbltxtAdultos.Text = "Nº Adultos:";
             // 
             // cbTemporada
             // 
             cbTemporada.FormattingEnabled = true;
-            cbTemporada.Location = new Point(117, 182);
-            cbTemporada.Margin = new Padding(3, 2, 3, 2);
+            cbTemporada.Location = new Point(134, 243);
             cbTemporada.Name = "cbTemporada";
-            cbTemporada.Size = new Size(86, 23);
+            cbTemporada.Size = new Size(98, 28);
             cbTemporada.TabIndex = 22;
             // 
             // lblParcela
             // 
             lblParcela.AutoSize = true;
-            lblParcela.Location = new Point(92, 32);
+            lblParcela.Location = new Point(105, 43);
             lblParcela.Name = "lblParcela";
-            lblParcela.Size = new Size(38, 15);
+            lblParcela.Size = new Size(50, 20);
             lblParcela.TabIndex = 23;
             lblParcela.Text = "label1";
             // 
             // lblAdultos
             // 
             lblAdultos.AutoSize = true;
-            lblAdultos.Location = new Point(480, 32);
+            lblAdultos.Location = new Point(549, 43);
             lblAdultos.Name = "lblAdultos";
-            lblAdultos.Size = new Size(38, 15);
+            lblAdultos.Size = new Size(50, 20);
             lblAdultos.TabIndex = 24;
             lblAdultos.Text = "label2";
             // 
             // lblNinos
             // 
             lblNinos.AutoSize = true;
-            lblNinos.Location = new Point(468, 76);
+            lblNinos.Location = new Point(535, 101);
             lblNinos.Name = "lblNinos";
-            lblNinos.Size = new Size(38, 15);
+            lblNinos.Size = new Size(50, 20);
             lblNinos.TabIndex = 25;
             lblNinos.Text = "label3";
             // 
             // lblPrecioFinal
             // 
             lblPrecioFinal.AutoSize = true;
-            lblPrecioFinal.Location = new Point(117, 285);
+            lblPrecioFinal.Location = new Point(134, 380);
             lblPrecioFinal.Name = "lblPrecioFinal";
-            lblPrecioFinal.Size = new Size(38, 15);
+            lblPrecioFinal.Size = new Size(50, 20);
             lblPrecioFinal.TabIndex = 27;
             lblPrecioFinal.Text = "label5";
             // 
             // txbEquipajeAdicional
             // 
-            txbEquipajeAdicional.Location = new Point(524, 182);
-            txbEquipajeAdicional.Margin = new Padding(3, 2, 3, 2);
+            txbEquipajeAdicional.Location = new Point(599, 243);
             txbEquipajeAdicional.Name = "txbEquipajeAdicional";
-            txbEquipajeAdicional.Size = new Size(64, 23);
+            txbEquipajeAdicional.Size = new Size(73, 27);
             txbEquipajeAdicional.TabIndex = 28;
             // 
             // txbCargoAdicional
             // 
-            txbCargoAdicional.Location = new Point(508, 245);
-            txbCargoAdicional.Margin = new Padding(3, 2, 3, 2);
+            txbCargoAdicional.Location = new Point(581, 327);
             txbCargoAdicional.Name = "txbCargoAdicional";
-            txbCargoAdicional.Size = new Size(64, 23);
+            txbCargoAdicional.Size = new Size(73, 27);
             txbCargoAdicional.TabIndex = 29;
             // 
             // dtpCheckin
             // 
-            dtpCheckin.Location = new Point(93, 72);
-            dtpCheckin.Margin = new Padding(3, 2, 3, 2);
+            dtpCheckin.Location = new Point(106, 96);
             dtpCheckin.Name = "dtpCheckin";
-            dtpCheckin.Size = new Size(282, 23);
+            dtpCheckin.Size = new Size(322, 27);
             dtpCheckin.TabIndex = 30;
             // 
             // dtpCheckout
             // 
-            dtpCheckout.Location = new Point(108, 123);
-            dtpCheckout.Margin = new Padding(3, 2, 3, 2);
+            dtpCheckout.Location = new Point(123, 164);
             dtpCheckout.Name = "dtpCheckout";
-            dtpCheckout.Size = new Size(267, 23);
+            dtpCheckout.Size = new Size(305, 27);
             dtpCheckout.TabIndex = 31;
             // 
             // txt
             // 
-            txt.Location = new Point(484, 124);
+            txt.Location = new Point(553, 165);
+            txt.Margin = new Padding(3, 4, 3, 4);
             txt.Name = "txt";
-            txt.Size = new Size(54, 23);
+            txt.Size = new Size(61, 27);
             txt.TabIndex = 32;
             // 
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(117, 253);
+            lblPrecioNoche.Location = new Point(145, 337);
             lblPrecioNoche.Name = "lblPrecioNoche";
-            lblPrecioNoche.Size = new Size(38, 15);
+            lblPrecioNoche.Size = new Size(50, 20);
             lblPrecioNoche.TabIndex = 34;
             lblPrecioNoche.Text = "label5";
             // 
             // lbltxtPrecioNoche
             // 
             lbltxtPrecioNoche.AutoSize = true;
-            lbltxtPrecioNoche.Location = new Point(37, 253);
+            lbltxtPrecioNoche.Location = new Point(42, 337);
             lbltxtPrecioNoche.Name = "lbltxtPrecioNoche";
-            lbltxtPrecioNoche.Size = new Size(69, 15);
+            lbltxtPrecioNoche.Size = new Size(97, 20);
             lbltxtPrecioNoche.TabIndex = 33;
-            lbltxtPrecioNoche.Text = "Precio final:";
+            lbltxtPrecioNoche.Text = "Precio noche:";
             // 
             // FormNuevaEstancia
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(612, 419);
+            ClientSize = new Size(699, 559);
             Controls.Add(lblPrecioNoche);
             Controls.Add(lbltxtPrecioNoche);
             Controls.Add(txt);
@@ -324,7 +317,6 @@
             Controls.Add(btnServicios);
             Controls.Add(btnClientes);
             Controls.Add(btnGuardarReserva);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormNuevaEstancia";
             Text = "Registrar nueva estancia";
             ResumeLayout(false);

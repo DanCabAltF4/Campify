@@ -19,6 +19,12 @@ namespace Campify
             CargarParcelas();
         }
 
+
+
+        // ----------------------------------
+        // METODOS PRINCIPALES
+
+
         private async void CargarParcelas()
         {
             try
@@ -42,6 +48,11 @@ namespace Campify
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        // ----------------------------------
+        // FUNCIONES DE LOS BOTONES
 
         private void ParcelaDobleClick(object? sender, Parcela e)
         {

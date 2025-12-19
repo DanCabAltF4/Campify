@@ -17,7 +17,22 @@ namespace Forms
             InitializeComponent();
         }
 
+
+
+        // ----------------------------------
+        // FUNCIONES DE LOS BOTONES
+
         private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }

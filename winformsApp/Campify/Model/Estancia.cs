@@ -12,39 +12,51 @@ namespace Model
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("check_in")]
+        [JsonPropertyName("checkIn")]
         public DateTime CheckIn { get; set; }
 
-        [JsonPropertyName("check_out")]
+        [JsonPropertyName("checkOut")]
         public DateTime CheckOut { get; set; }
 
         [JsonPropertyName("temporada")]
         public EnumTemporadas Temporada { get; set; }
 
-        [JsonPropertyName("numero_adultos")]
+        [JsonPropertyName("numeroAdultos")]
         public int NumeroAdultos { get; set; }
 
-        [JsonPropertyName("numero_niños")]
+        [JsonPropertyName("numeroNinos")]
         public int NumeroNinos { get; set; }
 
-        [JsonPropertyName("numero_mascotas")]
+        [JsonPropertyName("numeroMascotas")]
         public int NumeroMascotas { get; set; }
 
-        [JsonPropertyName("cantidad_equipaje_extra")]
+        [JsonPropertyName("cantidadEquipajeExtra")]
         public double CargoEquipajeExtra { get; set; }
 
-        [JsonPropertyName("coste_miscelaneo")]
+        [JsonPropertyName("costeMiscelaneo")]
         public double CargoAdicional { get; set; }
 
-        [JsonPropertyName("precio_final")]
+        [JsonPropertyName("precioFinal")]
         public double PrecioFinal { get; set; }
 
-        [JsonPropertyName("id_parcela")]
+        [JsonPropertyName("parcela")]
         public Parcela Parcela { get; set; }
 
+        [JsonPropertyName("empleado")]
+        public Empleado Empleado { get; set; }
 
+        [JsonPropertyName("clientes")]
         public List<Cliente> Clientes { get; set; }
+
+        [JsonPropertyName("servicios")]
         public List<Servicio> Servicios { get; set; }
+
+
+        public Estancia()
+        {
+            Clientes = new List<Cliente>();
+            Servicios = new List<Servicio>();
+        }
 
         public Estancia(int id, DateTime checkIn, DateTime checkOut, EnumTemporadas temporada, int numeroAdultos, int numeroNinos, int numeroMascotas, double cargoEquipajeExtra, double cargoAdicional, double precioFinal, Parcela parcela, List<Cliente> clientes, List<Servicio> servicios)
         {

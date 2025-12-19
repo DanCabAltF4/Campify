@@ -19,9 +19,9 @@ namespace Model
         public string Dni { get; set; }
         [JsonPropertyName("direccion")]
         public string Direccion { get; set; }
-        [JsonPropertyName("c_postal")]
+        [JsonPropertyName("cPostal")]
         public string CPostal { get; set; }
-        [JsonPropertyName("fecha_nacimiento")]
+        [JsonPropertyName("fechaNacimiento")]
         public DateTime FechaNacimiento { get; set; }
         [JsonPropertyName("email")]
         public string Email { get; set; }

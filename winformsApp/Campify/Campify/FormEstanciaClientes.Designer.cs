@@ -56,18 +56,22 @@
             dgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaClientes.Location = new Point(12, 12);
             dgvListaClientes.Name = "dgvListaClientes";
+            dgvListaClientes.ReadOnly = true;
             dgvListaClientes.RowHeadersWidth = 51;
             dgvListaClientes.Size = new Size(776, 202);
             dgvListaClientes.TabIndex = 1;
+            dgvListaClientes.CellDoubleClick += dgvListaClientes_CellDoubleClick;
             // 
             // dgvClientesEstancia
             // 
             dgvClientesEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientesEstancia.Location = new Point(12, 237);
             dgvClientesEstancia.Name = "dgvClientesEstancia";
+            dgvClientesEstancia.ReadOnly = true;
             dgvClientesEstancia.RowHeadersWidth = 51;
             dgvClientesEstancia.Size = new Size(776, 188);
             dgvClientesEstancia.TabIndex = 2;
+            dgvClientesEstancia.CellDoubleClick += dgvClientesEstancia_CellDoubleClick;
             // 
             // btnNuevoCliente
             // 
@@ -95,6 +99,7 @@
             Controls.Add(btnGuardar);
             Name = "FormEstanciaClientes";
             Text = "FormEstanciaClientes";
+            Load += FormEstanciaClientes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListaClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientesEstancia).EndInit();
             ResumeLayout(false);

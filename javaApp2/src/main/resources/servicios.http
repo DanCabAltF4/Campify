@@ -6,9 +6,9 @@ POST http://localhost:8080/api/servicios
 Content-Type: application/json
 
 {
-  "descripcion": "tarde de spa y masajes",
-  "nombre": "relax",
-  "precio": 80.0
+  "descripcion": "ruta por el monte",
+  "nombre": "excursion",
+  "precio": 50.0
 }
 
 ### eliminar servicio -> recibe id por ruta

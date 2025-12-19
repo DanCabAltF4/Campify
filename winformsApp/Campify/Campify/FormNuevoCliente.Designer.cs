@@ -132,6 +132,7 @@
             btnGuardar.TabIndex = 9;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnVolver
             // 
@@ -145,6 +146,7 @@
             btnVolver.TabIndex = 10;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
             // 
             // txbNombre
             // 
@@ -208,14 +210,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(896, 450);
-            Controls.Add(dtpFechaNacimiento);
-            Controls.Add(txbEmail);
-            Controls.Add(txbTelefono);
-            Controls.Add(txbCodigoPostal);
-            Controls.Add(txbDireccion);
-            Controls.Add(txbDni);
-            Controls.Add(txbApellidos);
             Controls.Add(txbNombre);
+            Controls.Add(txbApellidos);
+            Controls.Add(txbDni);
+            Controls.Add(txbDireccion);
+            Controls.Add(txbEmail);
+            Controls.Add(txbCodigoPostal);
+            Controls.Add(txbTelefono);
+            Controls.Add(dtpFechaNacimiento);
             Controls.Add(btnVolver);
             Controls.Add(btnGuardar);
             Controls.Add(lbltxtDni);

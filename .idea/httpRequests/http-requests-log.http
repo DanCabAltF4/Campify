@@ -1,0 +1,744 @@
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcela": {"id": 1},
+  "empleado": {"id": 1},
+  "clientes": [{"id": 1}, {"id": 2}],
+  "servicios": [{"id": 1}]
+}
+
+<> 2025-12-20T000119.200.json
+
+###
+
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "descripcion": "ruta por el monte",
+  "nombre": "excursion",
+  "precio": 50.0
+}
+
+<> 2025-12-20T000112.200.json
+
+###
+
+POST http://localhost:8080/api/parcelas
+Content-Type: application/json
+Content-Length: 180
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "tipo_parcela": "NORMAL",
+  "precio_noche": 35.50,
+  "cerca_baño": true,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 4
+}
+
+<> 2025-12-20T000108.200.json
+
+###
+
+POST http://localhost:8080/api/empleados
+Content-Type: application/json
+Content-Length: 149
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Daniel",
+  "apellidos": "Cabeza Berrazueta",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "true"
+}
+
+<> 2025-12-20T000103.200.json
+
+###
+
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+Content-Length: 225
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+<> 2025-12-20T000059.200.json
+
+###
+
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+Content-Length: 225
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+<> 2025-12-20T000012.200.json
+
+###
+
+DELETE http://localhost:8080/api/clientes/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-12-20T000000.500.json
+
+###
+
+DELETE http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcela": {"id": 1},
+  "empleado": {"id": 1},
+  "clientes": [{"id": 1}, {"id": 2}],
+  "servicios": [{"id": 1}]
+}
+
+<> 2025-12-19T234808.200.json
+
+###
+
+GET http://localhost:8080/api/clientes/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-12-19T234802.200.json
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T234659.200.json
+
+###
+
+GET http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+###
+
+GET http://localhost:8080/api/servicios/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-12-19T234614.200.json
+
+###
+
+GET http://localhost:8080/api/parcelas/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-12-19T234605.200.json
+
+###
+
+GET http://localhost:8080/api/empleados/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-12-19T234554.200.json
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T234348.200.json
+
+###
+
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "descripcion": "ruta por el monte",
+  "nombre": "excursion",
+  "precio": 50.0
+}
+
+<> 2025-12-19T234323.200.json
+
+###
+
+POST http://localhost:8080/api/parcelas
+Content-Type: application/json
+Content-Length: 180
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "tipo_parcela": "NORMAL",
+  "precio_noche": 35.50,
+  "cerca_baño": true,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 4
+}
+
+<> 2025-12-19T234320.200.json
+
+###
+
+POST http://localhost:8080/api/empleados
+Content-Type: application/json
+Content-Length: 149
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Daniel",
+  "apellidos": "Cabeza Berrazueta",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "true"
+}
+
+<> 2025-12-19T234314.200.json
+
+###
+
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+Content-Length: 225
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+<> 2025-12-19T234309.200.json
+
+###
+
+GET http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T234112.200.json
+
+###
+
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "descripcion": "ruta por el monte",
+  "nombre": "excursion",
+  "precio": 50.0
+}
+
+<> 2025-12-19T234105.200.json
+
+###
+
+POST http://localhost:8080/api/parcelas
+Content-Type: application/json
+Content-Length: 180
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "tipo_parcela": "NORMAL",
+  "precio_noche": 35.50,
+  "cerca_baño": true,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 4
+}
+
+<> 2025-12-19T234100.200.json
+
+###
+
+POST http://localhost:8080/api/empleados
+Content-Type: application/json
+Content-Length: 149
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Daniel",
+  "apellidos": "Cabeza Berrazueta",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "true"
+}
+
+<> 2025-12-19T234055.200.json
+
+###
+
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+Content-Length: 225
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+<> 2025-12-19T234049.200.json
+
+###
+
+DELETE http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T234026.200.json
+
+###
+
+GET http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T233814.200.json
+
+###
+
+DELETE http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T233249.200.json
+
+###
+
+DELETE http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+###
+
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+Content-Length: 225
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Miguel",
+  "apellidos": "Inglés",
+  "dni": "11111111A",
+  "direccion": "Barrio bajo",
+  "cPostal": "36987",
+  "email": "miguel@test.com",
+  "telefono": "622222222",
+  "fechaNacimiento": "1998-03-12T00:00:00"
+}
+
+<> 2025-12-19T233229.200.json
+
+###
+
+GET http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-12-19T230707.200.json
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T230655.200.json
+
+###
+
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+Content-Length: 83
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "descripcion": "ruta por el monte",
+  "nombre": "excursion",
+  "precio": 50.0
+}
+
+<> 2025-12-19T230646.200.json
+
+###
+
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+Content-Length: 84
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "descripcion": "tarde de spa y masajes",
+  "nombre": "relax",
+  "precio": 80.0
+}
+
+<> 2025-12-19T230619.200.json
+
+###
+
+POST http://localhost:8080/api/empleados
+Content-Type: application/json
+Content-Length: 149
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "nombre": "Daniel",
+  "apellidos": "Cabeza Berrazueta",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "true"
+}
+
+<> 2025-12-19T230612.200.json
+
+###
+
+POST http://localhost:8080/api/parcelas
+Content-Type: application/json
+Content-Length: 180
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "tipo_parcela": "NORMAL",
+  "precio_noche": 35.50,
+  "cerca_baño": true,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 4
+}
+
+<> 2025-12-19T230605.200.json
+
+###
+
+POST http://localhost:8080/api/estancias
+Content-Type: application/json
+Content-Length: 341
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cantidadEquipajeExtra": 2,
+  "costeMiscelaneo": 50.0,
+  "numeroAdultos": 2,
+  "numeroNinos": 1,
+  "numeroMascotas": 0,
+  "precioFinal": 500.0,
+  "temporada": "ALTA",
+  "parcelas": {"id": 1},
+  "empleados": {"id": 1},
+  "cliente": [{"id": 1}, {"id": 2}],
+  "servicio": [{"id": 1}]
+}
+
+<> 2025-12-19T230551.500.json
+
+###
+
+GET http://localhost:8080/api/estancias/1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+###
+

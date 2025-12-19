@@ -1,7 +1,6 @@
 package org.example.service;
 
 import jakarta.transaction.Transactional;
-import org.example.model.Empleado;
 import org.example.model.Estancia;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
@@ -36,34 +35,34 @@ public class ServiceEstancia implements IServiceEstancia{
     public Estancia insert(Estancia estancia) {
 
 
-        if (estancia.getParcelas() != null) {
-            estancia.setParcelas(
-                    parcelaRepo.findById(estancia.getParcelas().getId())
+        if (estancia.getParcela() != null) {
+            estancia.setParcela(
+                    parcelaRepo.findById(estancia.getParcela().getId())
                             .orElseThrow(() -> new RuntimeException("Parcela no existe"))
             );
         }
 
-        if (estancia.getEmpleados() != null) {
-            estancia.setEmpleados(
-                    empleadoRepo.findById(estancia.getEmpleados().getId())
+        if (estancia.getEmpleado() != null) {
+            estancia.setEmpleado(
+                    empleadoRepo.findById(estancia.getEmpleado().getId())
                             .orElseThrow(() -> new RuntimeException("Empleado no existe"))
             );
         }
 
-        if (estancia.getCliente() != null && !estancia.getCliente().isEmpty()) {
+        if (estancia.getClientes() != null && !estancia.getClientes().isEmpty()) {
             var clientesManaged = clienteRepo.findAllById(
-                    estancia.getCliente().stream().map(c -> c.getId()).toList()
+                    estancia.getClientes().stream().map(c -> c.getId()).toList()
             );
-            estancia.getCliente().clear();
+            estancia.getClientes().clear();
             clientesManaged.forEach(estancia::addCliente);
         }
 
         // Servicios (gestión ManyToMany)
-        if (estancia.getServicio() != null && !estancia.getServicio().isEmpty()) {
+        if (estancia.getServicios() != null && !estancia.getServicios().isEmpty()) {
             var serviciosManaged = servicioRepo.findAllById(
-                    estancia.getServicio().stream().map(s -> s.getId()).toList()
+                    estancia.getServicios().stream().map(s -> s.getId()).toList()
             );
-            estancia.getServicio().clear();         // Limpiamos la lista original
+            estancia.getServicios().clear();         // Limpiamos la lista original
             serviciosManaged.forEach(estancia::addServicio);
         }
 
@@ -93,35 +92,35 @@ public class ServiceEstancia implements IServiceEstancia{
         buscada.setTemporada(estancia.getTemporada());
 
         // Parcela
-        if (estancia.getParcelas() != null) {
-            buscada.setParcelas(
-                    parcelaRepo.findById(estancia.getParcelas().getId())
+        if (estancia.getParcela() != null) {
+            buscada.setParcela(
+                    parcelaRepo.findById(estancia.getParcela().getId())
                             .orElseThrow(() -> new RuntimeException("Parcela no existe"))
             );
         }
 
         // Empleado
-        if (estancia.getEmpleados() != null) {
-            buscada.setEmpleados(
-                    empleadoRepo.findById(estancia.getEmpleados().getId())
+        if (estancia.getEmpleado() != null) {
+            buscada.setEmpleado(
+                    empleadoRepo.findById(estancia.getEmpleado().getId())
                             .orElseThrow(() -> new RuntimeException("Empleado no existe"))
             );
         }
 
         // Clientes
-        if (estancia.getCliente() != null) {
-            buscada.getCliente().clear();
+        if (estancia.getClientes() != null) {
+            buscada.getClientes().clear();
             var clientesManaged = clienteRepo.findAllById(
-                    estancia.getCliente().stream().map(c -> c.getId()).toList()
+                    estancia.getClientes().stream().map(c -> c.getId()).toList()
             );
             clientesManaged.forEach(buscada::addCliente);
         }
 
         // Servicios
-        if (estancia.getServicio() != null) {
-            buscada.getServicio().clear();
+        if (estancia.getServicios() != null) {
+            buscada.getServicios().clear();
             var serviciosManaged = servicioRepo.findAllById(
-                    estancia.getServicio().stream().map(s -> s.getId()).toList()
+                    estancia.getServicios().stream().map(s -> s.getId()).toList()
             );
             serviciosManaged.forEach(buscada::addServicio);
         }
