@@ -22,8 +22,7 @@ public class Parcela {
     private boolean zona_sombra;
     @Enumerated(EnumType.STRING)
     private EstadoParcela estado_parcela;
-    @Column
-    private int capacidad_maxima;
+
 
     public Parcela() {
     }
@@ -84,14 +83,6 @@ public class Parcela {
         this.estado_parcela = estado_parcela;
     }
 
-    public int getCapacidad_maxima() {
-        return capacidad_maxima;
-    }
-
-    public void setCapacidad_maxima(int capacidad_maxima) {
-        this.capacidad_maxima = capacidad_maxima;
-    }
-
     @Override
     public String toString() {
         return "Parcela{" +
@@ -101,7 +92,6 @@ public class Parcela {
                 ", tiene_vistas=" + tiene_vistas +
                 ", zona_sombra=" + zona_sombra +
                 ", estado_parcela=" + estado_parcela +
-                ", capacidad_maxima=" + capacidad_maxima +
                 ", id=" + id +
                 '}';
     }
