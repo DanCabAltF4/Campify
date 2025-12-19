@@ -8,6 +8,6 @@ namespace Model
 {
     public enum EnumEstados
     {
-        LIBRE, RESERVADA, OCUPADA, MANTENIMIENTO
+        LIBRE, RESERVADA, INTERESADO, MANTENIMIENTO
     }
 }

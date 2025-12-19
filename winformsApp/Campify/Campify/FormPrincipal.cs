@@ -18,7 +18,7 @@ namespace Campify
             {
                 new Parcela(1, EnumTipos.PEQUENA, 50, false, true, false, false, false, EnumEstados.LIBRE, 2),
                 new Parcela(2, EnumTipos.MEDIANA, 70, false, false, true, true, false, EnumEstados.RESERVADA, 3),
-                new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.OCUPADA, 4),
+                new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.INTERESADO, 4),
                 new Parcela(4, EnumTipos.MEDIANA, 70, true, true, true, true, true, EnumEstados.MANTENIMIENTO, 2),
             };
             foreach (Parcela p in parcelas)
@@ -60,7 +60,7 @@ namespace Campify
                 MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(p.Estado != EnumEstados.LIBRE)
+            if (p.Estado != EnumEstados.LIBRE)
             {
                 MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -110,6 +110,13 @@ namespace Campify
             ucEstanciaActual1.Visible = false;
             ucHistorial1.Visible = true;
 
+        }
+
+        private void btnMantenimiento_Click(object sender, EventArgs e)
+        {
+            Parcela parcela = ucParcelaDatos.ParcelaActual;
+            parcela.Estado = EnumEstados.MANTENIMIENTO;
+            CargarParcelas();
         }
     }
 }

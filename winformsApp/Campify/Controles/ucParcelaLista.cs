@@ -28,8 +28,8 @@ namespace Controles
             BackColor = p.Estado switch
             {
                 EnumEstados.LIBRE => Color.LightGreen,
-                EnumEstados.RESERVADA => Color.LightYellow,
-                EnumEstados.OCUPADA => Color.IndianRed,
+                EnumEstados.RESERVADA => Color.OrangeRed,
+                EnumEstados.INTERESADO => Color.YellowGreen,
                 EnumEstados.MANTENIMIENTO => Color.RebeccaPurple
             };
         }
