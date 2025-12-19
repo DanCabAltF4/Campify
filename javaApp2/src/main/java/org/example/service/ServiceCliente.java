@@ -4,6 +4,8 @@ import org.example.model.Cliente;
 import org.example.persistence.ClienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceCliente implements IServiceCliente {
 
@@ -43,5 +45,9 @@ public class ServiceCliente implements IServiceCliente {
     @Override
     public Cliente findById(int id) {
         return repo.findById(id).orElse(null);
+    }
+
+    public List<Cliente> findAll(){
+        return repo.findAll();
     }
 }

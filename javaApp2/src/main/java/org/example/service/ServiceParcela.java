@@ -4,6 +4,8 @@ import org.example.model.Parcela;
 import org.example.persistence.ParcelaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceParcela implements  IServiceParcela{
 
@@ -46,5 +48,9 @@ public class ServiceParcela implements  IServiceParcela{
     public Parcela findById(int id) {
         Parcela parcela = repo.findById(id).orElse(null);
         return parcela;
+    }
+
+    public List<Parcela> findAll() {
+        return repo.findAll();
     }
 }

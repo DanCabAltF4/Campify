@@ -6,6 +6,8 @@ import org.example.model.Estancia;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ServiceEstancia implements IServiceEstancia{
@@ -137,5 +139,9 @@ public class ServiceEstancia implements IServiceEstancia{
     public Estancia findById(int id) {
         Estancia estancia = repo.findById(id).orElse(null);
         return estancia;
+    }
+
+    public List<Estancia> findAll() {
+        return repo.findAll();
     }
 }

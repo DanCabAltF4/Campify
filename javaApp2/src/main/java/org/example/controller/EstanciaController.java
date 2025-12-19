@@ -4,6 +4,8 @@ import org.example.model.Estancia;
 import org.example.service.ServiceEstancia;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/estancias")
 public class EstanciaController {
@@ -32,5 +34,10 @@ public class EstanciaController {
     @GetMapping("/{id}")
     public Estancia findById(@PathVariable  int id){
         return service.findById(id);
+    }
+
+    @GetMapping
+    public List<Estancia> findAll(){
+        return service.findAll();
     }
 }
