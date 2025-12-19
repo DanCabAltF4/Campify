@@ -1,0 +1,25 @@
+### buscar servicio -> recibe id por ruta
+GET http://localhost:8080/api/servicios/1
+
+### insertar servicio -> recibe servicio por body en json
+POST http://localhost:8080/api/servicios
+Content-Type: application/json
+
+{
+  "descripcion": "tarde de spa y masajes",
+  "nombre": "relax",
+  "precio": 80.0
+}
+
+### eliminar servicio -> recibe id por ruta
+DELETE http://localhost:8080/api/servicios/2
+
+### modificar servicio -> recibe id por ruta y servicio por bodu en json
+PUT http://localhost:8080/api/servicios/1
+Content-Type: application/json
+
+{
+  "descripcion": "ciclismo, natacion y running",
+  "nombre": "triatlon",
+  "precio": 30.0
+}

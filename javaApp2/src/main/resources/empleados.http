@@ -1,0 +1,31 @@
+### buscar empleado -> recibe id por ruta
+GET http://localhost:8080/api/empleados/1
+
+### insertar empleado -> recibe servicio por body en json
+POST http://localhost:8080/api/empleados
+Content-Type: application/json
+
+{
+  "nombre": "Daniel",
+  "apellidos": "Cabeza Berrazueta",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "true"
+}
+
+### eliminar empleado -> recibe id por ruta
+DELETE http://localhost:8080/api/empleados/1
+
+### modificar empleado -> recibe id por ruta y empleado por body en json
+PUT http://localhost:8080/api/empleados/1
+Content-Type: application/json
+
+{
+  "nombre": "Oriol",
+  "apellidos": "Fernandez Saiz",
+  "dni": "7195495s",
+  "telefono": "633533344",
+  "puesto": "CAMPO",
+  "activo": "false"
+}

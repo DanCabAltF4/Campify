@@ -1,0 +1,33 @@
+### buscar parcela -> se pasa id por ruta
+GET http://localhost:8080/api/parcelas/1
+
+### eliminar parcela -> se pasa id por ruta
+DELETE http://localhost:8080/api/parcelas/1
+
+### insertar parcela -> se pasa cliente por body en json
+POST http://localhost:8080/api/parcelas
+Content-Type: application/json
+
+{
+  "tipo_parcela": "NORMAL",
+  "precio_noche": 35.50,
+  "cerca_baño": true,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 4
+}
+
+### modificar parcela -> se pasa id por ruta y parcela por body en json
+PUT localhost:8080/api/parcelas/2
+Content-Type: application/json
+
+{
+  "tipo_parcela": "SEMIPARCELA",
+  "precio_noche": 50.00,
+  "cerca_baño": false,
+  "tiene_vistas": false,
+  "zona_sombra": true,
+  "estado_parcela": "LIBRE",
+  "capacidad_maxima": 6
+}

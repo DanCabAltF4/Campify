@@ -1,11 +1,17 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "clientes")
+@Entity
+@Table(name = "clientes")
 public class Cliente {
 
     @Id
@@ -19,14 +25,19 @@ public class Cliente {
     private String dni;
     @Column(length = 150, nullable = false)
     private String direccion;
+    @JsonProperty("cPostal")
     @Column(columnDefinition = "CHAR(5)", nullable = false)
     private String cPostal;
     @Column(nullable = false)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(length = 100)
     private String email;
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
+    @ManyToMany(mappedBy = "cliente")
+    @JsonIgnore
+    private List<Estancia> estancia = new ArrayList<>();
+
 
     //Constructor por defecto para uso de Hibernate
     public Cliente(){
@@ -58,7 +69,7 @@ public class Cliente {
         return cPostal;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -68,6 +79,10 @@ public class Cliente {
 
     public String getTelefono() {
         return telefono;
+    }
+
+    public List<Estancia> getEstancia() {
+        return estancia;
     }
 
     //Metodos set
@@ -95,7 +110,7 @@ public class Cliente {
         this.cPostal = cPostal;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -107,6 +122,9 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public void setEstancia(List<Estancia> estancia) {
+        this.estancia = estancia;
+    }
 
     @Override
     public String toString() {
