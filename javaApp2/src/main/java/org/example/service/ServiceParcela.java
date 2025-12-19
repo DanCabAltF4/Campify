@@ -26,7 +26,6 @@ public class ServiceParcela implements  IServiceParcela{
             buscada.setTipo_parcela(parcela.getTipo_parcela());
             buscada.setCerca_baño(parcela.isCerca_baño());
             buscada.setTiene_vistas(parcela.isTiene_vistas());
-            buscada.setCapacidad_maxima(parcela.getCapacidad_maxima());
             buscada.setPrecio_noche(parcela.getPrecio_noche());
             buscada.setZona_sombra(parcela.isZona_sombra());
             repo.save(buscada);

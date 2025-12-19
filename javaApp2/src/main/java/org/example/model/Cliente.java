@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class Cliente {
     @Column(columnDefinition = "CHAR(5)", nullable = false)
     private String cPostal;
     @Column(nullable = false)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(length = 100)
     private String email;
     @Column(columnDefinition = "CHAR(9)")
@@ -69,7 +69,7 @@ public class Cliente {
         return cPostal;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -110,7 +110,7 @@ public class Cliente {
         this.cPostal = cPostal;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
