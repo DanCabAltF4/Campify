@@ -11,37 +11,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.campify.views.EstadoParcela
+import com.campify.views.HomeViewCampify
+import com.campify.views.Parcela
 import com.example.campify.ui.theme.CampifyTheme
+import com.example.campify.views.ListaView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CampifyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            //HomeViewCampify()
+            ListaView(generarParcelas())
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
+private fun generarParcelas(): List<Parcela> {
+    return listOf(
+        Parcela("245", EstadoParcela.OCUPADA),
+        Parcela("246", EstadoParcela.VACIA),
+        Parcela("247", EstadoParcela.INTERESADO),
+        Parcela("248", EstadoParcela.VACIA),
+        Parcela("249", EstadoParcela.OCUPADA)
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CampifyTheme {
-        Greeting("Android")
-    }
 }
