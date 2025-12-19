@@ -17,3 +17,5 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucParcela.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.csproj.Up2Date
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucParcelaDatos.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEstanciaActual.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucHistorial.resources

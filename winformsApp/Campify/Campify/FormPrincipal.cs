@@ -55,7 +55,7 @@ namespace Campify
         private void btnReservar_Click(object sender, EventArgs e)
         {
             Parcela p = ucParcelaDatos.ParcelaActual;
-            if(p == null)
+            if (p == null)
             {
                 MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -83,6 +83,28 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlParcelas.Visible = false;
             pnlEmpleados.Visible = true;
+        }
+
+        private void btnDatos_Click(object sender, EventArgs e)
+        {
+            ucEstanciaActual1.Visible = false;
+            ucHistorial1.Visible = false;
+            ucParcelaDatos.Visible = true;
+        }
+
+        private void btnEstanciaActual_Click(object sender, EventArgs e)
+        {
+            ucParcelaDatos.Visible = false;
+            ucHistorial1.Visible = false;
+            ucEstanciaActual1.Visible = true;
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            ucParcelaDatos.Visible = false;
+            ucEstanciaActual1.Visible = false;
+            ucHistorial1.Visible = true;
+
         }
     }
 }

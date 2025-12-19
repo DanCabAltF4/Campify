@@ -45,6 +45,8 @@
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
             ucParcelaDatos = new Controles.ucParcelaDatos();
+            ucEstanciaActual1 = new Controles.ucEstanciaActual();
+            ucHistorial1 = new Controles.ucHistorial();
             btMapa = new Button();
             pnlParcelas = new Panel();
             pnlEmpleados = new Panel();
@@ -145,6 +147,7 @@
             btnDatos.TabIndex = 11;
             btnDatos.Text = "Datos";
             btnDatos.UseVisualStyleBackColor = false;
+            btnDatos.Click += btnDatos_Click;
             // 
             // btnReservar
             // 
@@ -240,10 +243,13 @@
             btnEstanciaActual.TabIndex = 5;
             btnEstanciaActual.Text = "Estancia actual";
             btnEstanciaActual.UseVisualStyleBackColor = false;
+            btnEstanciaActual.Click += btnEstanciaActual_Click;
             // 
             // panelDatos
             // 
             panelDatos.Controls.Add(ucParcelaDatos);
+            panelDatos.Controls.Add(ucEstanciaActual1);
+            panelDatos.Controls.Add(ucHistorial1);
             panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
@@ -257,6 +263,20 @@
             ucParcelaDatos.Name = "ucParcelaDatos";
             ucParcelaDatos.Size = new Size(421, 388);
             ucParcelaDatos.TabIndex = 0;
+            // 
+            // ucEstanciaActual1
+            // 
+            ucEstanciaActual1.Location = new Point(0, 0);
+            ucEstanciaActual1.Name = "ucEstanciaActual1";
+            ucEstanciaActual1.Size = new Size(422, 388);
+            ucEstanciaActual1.TabIndex = 21;
+            // 
+            // ucHistorial1
+            // 
+            ucHistorial1.Location = new Point(0, 0);
+            ucHistorial1.Name = "ucHistorial1";
+            ucHistorial1.Size = new Size(422, 388);
+            ucHistorial1.TabIndex = 21;
             // 
             // btMapa
             // 
@@ -345,5 +365,7 @@
         private Button btMapa;
         private Panel pnlParcelas;
         private Panel pnlEmpleados;
+        private Controles.ucEstanciaActual ucEstanciaActual1;
+        private Controles.ucHistorial ucHistorial1;
     }
 }
