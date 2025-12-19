@@ -36,7 +36,6 @@ namespace Controles
             lblTipo.Text = p.Tipo.ToString();
             lblEstado.Text = p.Estado.ToString();
             lblPrecio.Text = $"{p.PrecioNoche} €";
-            lblCapacidad.Text = p.CapacidadMaxima.ToString();
             lblBanosCerca.Text = p.CercaBanos ? "Sí" : "No";
             lblVistas.Text = p.TieneVistas ? "Sí" : "No";
             lblSombra.Text = p.ZonaSombra ? "Sí" : "No";
@@ -53,7 +52,6 @@ namespace Controles
             lblTipo.Text = "";
             lblEstado.Text = "";
             lblPrecio.Text = "";
-            lblCapacidad.Text = "";
             lblBanosCerca.Text = "";
             lblVistas.Text = "";
             lblSombra.Text = "";

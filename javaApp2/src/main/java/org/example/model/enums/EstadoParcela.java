@@ -4,5 +4,5 @@ public enum EstadoParcela {
     LIBRE,
     RESERVADA,
     INTERESADO,
-    BLOQUEADA
+    MANTENIMIENTO
 }
