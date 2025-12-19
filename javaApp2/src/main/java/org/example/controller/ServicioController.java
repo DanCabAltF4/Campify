@@ -4,6 +4,8 @@ import org.example.model.Servicio;
 import org.example.service.ServiceServicio;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/servicios")
 public class ServicioController {
@@ -17,6 +19,11 @@ public class ServicioController {
     @GetMapping("/{id}")
     public Servicio findById(@PathVariable int id){
         return service.findById(id);
+    }
+
+    @GetMapping
+    public List<Servicio> findAll(){
+        return service.findAll();
     }
 
     @PostMapping

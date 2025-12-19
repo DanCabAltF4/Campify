@@ -4,6 +4,8 @@ import org.example.model.Parcela;
 import org.example.service.ServiceParcela;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/parcelas")
 public class ParcelaController {
@@ -32,5 +34,9 @@ public class ParcelaController {
     public Parcela findById(@RequestParam int id){
         return service.findById(id);
     }
-    
+
+    @GetMapping
+    public List<Parcela> findAll(){
+        return service.findAll();
+    }
 }

@@ -4,6 +4,8 @@ import org.example.model.Servicio;
 import org.example.persistence.ServicioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceServicio implements IServiceServicio{
 
@@ -38,5 +40,9 @@ public class ServiceServicio implements IServiceServicio{
     @Override
     public Servicio findById(int id) {
         return repo.findById(id).orElse(null);
+    }
+
+    public List<Servicio> findAll() {
+        return repo.findAll();
     }
 }

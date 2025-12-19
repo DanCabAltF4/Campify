@@ -4,6 +4,8 @@ import org.example.model.Empleado;
 import org.example.service.ServiceEmpleado;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/empleados")
 class EmpleadoController {
@@ -32,5 +34,10 @@ class EmpleadoController {
     @GetMapping("/{id}")
     public Empleado findById(@PathVariable int id){
         return service.findById(id);
+    }
+
+    @GetMapping
+    public List<Empleado> findAll(){
+        return service.findAll();
     }
 }
