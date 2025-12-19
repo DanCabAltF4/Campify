@@ -11,9 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.campify.views.EstadoParcela
 import com.campify.views.HomeViewCampify
-import com.campify.views.Parcela
+import com.example.campify.model.EstadoParcela
+import com.example.campify.model.Parcela
 import com.example.campify.ui.theme.CampifyTheme
 import com.example.campify.views.ListaView
 
@@ -31,10 +31,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun generarParcelas(): List<Parcela> {
     return listOf(
-        Parcela("245", EstadoParcela.OCUPADA),
-        Parcela("246", EstadoParcela.VACIA),
+        Parcela("245", EstadoParcela.RESERVADA),
+        Parcela("246", EstadoParcela.LIBRE),
         Parcela("247", EstadoParcela.INTERESADO),
-        Parcela("248", EstadoParcela.VACIA),
-        Parcela("249", EstadoParcela.OCUPADA)
+        Parcela("248", EstadoParcela.LIBRE),
+        Parcela("249", EstadoParcela.BLOQUEADA)
     )
 }

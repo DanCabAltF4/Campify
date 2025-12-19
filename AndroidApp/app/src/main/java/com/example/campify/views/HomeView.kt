@@ -17,24 +17,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
 import com.example.campify.R
+import com.example.campify.model.EstadoParcela
+import com.example.campify.model.Parcela
 import com.example.campify.views.ListaView
 
-// Modelo de parcela
-data class Parcela(
-    val numero: String,
-    val estado: EstadoParcela
-)
-
-enum class EstadoParcela {
-    VACIA, OCUPADA, INTERESADO
-}
 
 // Datos de ejemplo
 val parcelasSample = listOf(
-    Parcela("245", EstadoParcela.OCUPADA),
-    Parcela("246", EstadoParcela.VACIA),
+    Parcela("245", EstadoParcela.RESERVADA),
+    Parcela("246", EstadoParcela.LIBRE),
     Parcela("247", EstadoParcela.INTERESADO),
-    Parcela("248", EstadoParcela.VACIA),
+    Parcela("248", EstadoParcela.LIBRE),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
