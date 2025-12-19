@@ -4,9 +4,9 @@ using Model;
 
 namespace Campify
 {
-    public partial class FormsPrincipal : Form
+    public partial class FormPrincipal : Form
     {
-        public FormsPrincipal()
+        public FormPrincipal()
         {
             InitializeComponent();
         }
@@ -54,7 +54,7 @@ namespace Campify
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            var form = new FormsNuevaEstancia();
+            var form = new FormNuevaEstancia();
             form.ShowDialog(this);
         }
     }

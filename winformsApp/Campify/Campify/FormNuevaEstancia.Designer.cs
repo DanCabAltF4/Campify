@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class FormsNuevaEstancia
+    partial class FormNuevaEstancia
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            btnGuardarReserva = new Button();
             btnClientes = new Button();
             btnServicios = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btnGuardarReserva
             // 
-            button1.BackColor = Color.Peru;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(176, 372);
-            button1.Name = "button1";
-            button1.Size = new Size(108, 66);
-            button1.TabIndex = 0;
-            button1.Text = "Guardar reserva";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnGuardarReserva.BackColor = Color.Peru;
+            btnGuardarReserva.FlatAppearance.BorderSize = 0;
+            btnGuardarReserva.FlatStyle = FlatStyle.Flat;
+            btnGuardarReserva.Font = new Font("Segoe UI", 12F);
+            btnGuardarReserva.ForeColor = Color.FromArgb(255, 222, 171);
+            btnGuardarReserva.Location = new Point(176, 372);
+            btnGuardarReserva.Name = "btnGuardarReserva";
+            btnGuardarReserva.Size = new Size(108, 66);
+            btnGuardarReserva.TabIndex = 0;
+            btnGuardarReserva.Text = "Guardar reserva";
+            btnGuardarReserva.UseVisualStyleBackColor = false;
+            btnGuardarReserva.Click += btnGuardarReserva_Click;
             // 
             // btnClientes
             // 
+            btnClientes.BackColor = Color.YellowGreen;
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 10F);
@@ -57,22 +59,24 @@
             btnClientes.Size = new Size(94, 29);
             btnClientes.TabIndex = 1;
             btnClientes.Text = "Clientes";
-            btnClientes.UseVisualStyleBackColor = true;
+            btnClientes.UseVisualStyleBackColor = false;
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnServicios
             // 
-            btnServicios.BackColor = Color.Green;
+            btnServicios.BackColor = Color.YellowGreen;
             btnServicios.FlatAppearance.BorderSize = 0;
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 10F);
-            btnServicios.Location = new Point(336, 313);
+            btnServicios.Location = new Point(325, 313);
             btnServicios.Name = "btnServicios";
             btnServicios.Size = new Size(94, 29);
             btnServicios.TabIndex = 2;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = false;
+            btnServicios.Click += btnServicios_Click;
             // 
-            // FormsNuevaEstancia
+            // FormNuevaEstancia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -80,15 +84,15 @@
             ClientSize = new Size(486, 450);
             Controls.Add(btnServicios);
             Controls.Add(btnClientes);
-            Controls.Add(button1);
-            Name = "FormsNuevaEstancia";
+            Controls.Add(btnGuardarReserva);
+            Name = "FormNuevaEstancia";
             Text = "Registrar nueva estancia";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Button btnGuardarReserva;
         private Button btnClientes;
         private Button btnServicios;
     }

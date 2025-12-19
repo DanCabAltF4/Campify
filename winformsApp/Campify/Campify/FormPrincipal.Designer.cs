@@ -1,6 +1,6 @@
 ﻿namespace Campify
 {
-    partial class FormsPrincipal
+    partial class FormPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             pbLogo = new PictureBox();
             btnEmpleados = new Button();
             btnParcelas = new Button();

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Forms
 {
-    public partial class FormsNuevaEstancia : Form
+    public partial class FormEstanciaServicios : Form
     {
-        public FormsNuevaEstancia()
+        public FormEstanciaServicios()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
