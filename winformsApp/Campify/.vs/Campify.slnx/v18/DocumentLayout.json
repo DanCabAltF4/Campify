@@ -11,11 +11,11 @@
       "RelativeMoniker": "D:0:0:{0274EA15-E463-4F0D-95CB-4B66C10BB0D1}|Repository\\Repository.csproj|solutionrelative:repository\\parcelaapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|solutionrelative:controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\model\\enumtipos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|solutionrelative:model\\enumtipos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -27,12 +27,16 @@
       "RelativeMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|solutionrelative:controles\\ucestanciaactual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\model\\enumestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|solutionrelative:model\\enumestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|solutionrelative:controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|solutionrelative:controles\\ucparcelalista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|c:\\users\\doowy\\desktop\\github\\campify\\winformsapp\\campify\\model\\enumestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9C7E53-341F-4FD6-847B-9710BD9A544B}|Model\\Model.csproj|solutionrelative:model\\enumestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +62,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EnumTipos.cs",
+              "DocumentMoniker": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Model\\EnumTipos.cs",
+              "RelativeDocumentMoniker": "Model\\EnumTipos.cs",
+              "ToolTip": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Model\\EnumTipos.cs",
+              "RelativeToolTip": "Model\\EnumTipos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T17:11:30.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ParcelaAPI.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\ParcelaAPI.cs",
               "RelativeDocumentMoniker": "Repository\\ParcelaAPI.cs",
               "ToolTip": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\ParcelaAPI.cs",
               "RelativeToolTip": "Repository\\ParcelaAPI.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T15:14:42.484Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "ucParcelaLista.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\ucParcelaLista.cs",
               "RelativeDocumentMoniker": "Controles\\ucParcelaLista.cs",
@@ -90,14 +107,14 @@
               "RelativeDocumentMoniker": "Campify\\FormPrincipal.cs",
               "ToolTip": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs",
               "RelativeToolTip": "Campify\\FormPrincipal.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAQwCMAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCQAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T14:20:46.983Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "EnumEstados.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Model\\EnumEstados.cs",
               "RelativeDocumentMoniker": "Model\\EnumEstados.cs",
@@ -145,14 +162,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ucParcelaLista.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\ucParcelaLista.cs",
               "RelativeDocumentMoniker": "Controles\\ucParcelaLista.cs",
               "ToolTip": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\ucParcelaLista.cs [Dise\u00F1o]",
               "RelativeToolTip": "Controles\\ucParcelaLista.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T14:01:55.928Z"
+              "WhenOpened": "2025-12-19T14:01:55.928Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

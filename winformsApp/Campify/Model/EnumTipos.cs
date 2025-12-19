@@ -8,6 +8,6 @@ namespace Model
 {
     public enum EnumTipos
     {
-        PEQUENA, MEDIANA, GRANDE
+        NORMAL, SEMIPARCELA
     }
 }

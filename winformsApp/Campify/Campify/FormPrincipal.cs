@@ -8,7 +8,7 @@ namespace Campify
     public partial class FormPrincipal : Form
     {
 
-        private readonly ParcelaAPI _api = new ParcelaAPI("http://localhost:8080");
+        private readonly ParcelaAPI _api = new ParcelaAPI("http://localhost:8080/api");
         public FormPrincipal()
         {
             InitializeComponent();
@@ -19,13 +19,7 @@ namespace Campify
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                List<Parcela> parcelas = await _api.GetParcelasAsync();  //Cambiar por metodo para recibir parcelas de la BD por Spring
-                                                                         //{
-                                                                         //    new Parcela(1, EnumTipos.PEQUENA, 50, false, true, false, false, false, EnumEstados.LIBRE, 2),
-                                                                         //    new Parcela(2, EnumTipos.MEDIANA, 70, false, false, true, true, false, EnumEstados.RESERVADA, 3),
-                                                                         //    new Parcela(3, EnumTipos.GRANDE, 70, false, false, false, false, false, EnumEstados.INTERESADO, 4),
-                                                                         //    new Parcela(4, EnumTipos.MEDIANA, 70, true, true, true, true, true, EnumEstados.MANTENIMIENTO, 2),
-                                                                         //};
+                List<Parcela> parcelas = await _api.GetParcelasAsync();
                 foreach (Parcela p in parcelas)
                 {
                     ucParcela uc = new ucParcela();
@@ -33,9 +27,14 @@ namespace Campify
                     uc.ParcelaDobleClick += ParcelaDobleClick;
                     flowLayoutPanel1.Controls.Add(uc);
                 }
-            }catch(HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 MessageBox.Show("No se pudo conectar a la API- ¿Está corriendo Spring?", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -56,7 +55,7 @@ namespace Campify
             flowLayoutPanel1.Visible = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             CargarParcelas();
         }
