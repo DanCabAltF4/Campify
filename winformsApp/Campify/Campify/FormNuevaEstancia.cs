@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,23 @@ namespace Forms
 {
     public partial class FormNuevaEstancia : Form
     {
-        public FormNuevaEstancia()
+
+        private readonly Parcela _parcela;
+        public FormNuevaEstancia( Parcela parcela)
         {
             InitializeComponent();
+            _parcela = parcela;
+
+            dtpCheckin.Value = DateTime.Today;
+            dtpCheckout.Value = DateTime.Today;
+            cbTemporada.DataSource = Enum.GetValues(typeof(Model.EnumTemporadas));
+
+            CargarDatosParcela();
+        }
+
+        private void CargarDatosParcela()
+        {
+            lblParcela.Text = _parcela.Id.ToString();
         }
 
         private void btnGuardarReserva_Click(object sender, EventArgs e)

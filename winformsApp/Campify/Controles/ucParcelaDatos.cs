@@ -13,6 +13,8 @@ namespace Controles
 {
     public partial class ucParcelaDatos : UserControl
     {
+
+        public Parcela ParcelaActual { get; private set; }
         public ucParcelaDatos()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace Controles
                 Limpiar();
                 return;
             }
+            ParcelaActual = p;
             lblId.Text = p.Id.ToString();
             lblTipo.Text = p.Tipo.ToString();
             lblEstado.Text = p.Estado.ToString();

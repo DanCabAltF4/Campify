@@ -54,7 +54,13 @@ namespace Campify
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            var form = new FormNuevaEstancia();
+            Parcela p = ucParcelaDatos.ParcelaActual;
+            if(p == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var form = new FormNuevaEstancia(p);
             form.ShowDialog(this);
         }
 
