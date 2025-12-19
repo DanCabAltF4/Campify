@@ -21,5 +21,11 @@ namespace Forms
         {
             this.Close();
         }
+
+        private void btnNuevoCliente_Click(object sender, EventArgs e)
+        {
+            var form = new FormNuevoCliente();
+            form.ShowDialog(this);
+        }
     }
 }

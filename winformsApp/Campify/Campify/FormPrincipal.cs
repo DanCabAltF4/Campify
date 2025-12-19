@@ -57,7 +57,12 @@ namespace Campify
             Parcela p = ucParcelaDatos.ParcelaActual;
             if (p == null)
             {
-                MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(p.Estado != EnumEstados.LIBRE)
+            {
+                MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             var form = new FormNuevaEstancia(p);

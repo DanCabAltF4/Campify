@@ -25,3 +25,4 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\n
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormEstanciaServicios.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormNuevaEstancia.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.FormPrincipal.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormNuevoCliente.resources
