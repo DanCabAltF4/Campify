@@ -80,6 +80,7 @@
             btnEmpleados.TabIndex = 1;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.UseVisualStyleBackColor = true;
+            btnEmpleados.Click += btnEmpleados_Click;
             // 
             // btnParcelas
             // 
@@ -94,6 +95,7 @@
             btnParcelas.TabIndex = 2;
             btnParcelas.Text = "Parcelas";
             btnParcelas.UseVisualStyleBackColor = true;
+            btnParcelas.Click += btnParcelas_Click;
             // 
             // pbAjustes
             // 
@@ -119,6 +121,7 @@
             btnServicios.TabIndex = 10;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = true;
+            btnServicios.Click += btnServicios_Click;
             // 
             // pnlServicios
             // 
@@ -294,7 +297,7 @@
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
             // 
-            // FormsPrincipal
+            // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -309,7 +312,7 @@
             Controls.Add(btnEmpleados);
             Controls.Add(pbLogo);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "FormsPrincipal";
+            Name = "FormPrincipal";
             Text = "Daniel capullo";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();

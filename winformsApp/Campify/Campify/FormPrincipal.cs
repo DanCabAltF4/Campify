@@ -57,5 +57,26 @@ namespace Campify
             var form = new FormNuevaEstancia();
             form.ShowDialog(this);
         }
+
+        private void btnServicios_Click(object sender, EventArgs e)
+        {
+            pnlEmpleados.Visible = false;
+            pnlParcelas.Visible = false;
+            pnlServicios.Visible = true;
+        }
+
+        private void btnParcelas_Click(object sender, EventArgs e)
+        {
+            pnlEmpleados.Visible = false;
+            pnlServicios.Visible = false;
+            pnlParcelas.Visible = true;
+        }
+
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            pnlServicios.Visible = false;
+            pnlParcelas.Visible = false;
+            pnlEmpleados.Visible = true;
+        }
     }
 }
