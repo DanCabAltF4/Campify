@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Model
 {
     public class Cliente
     {
+        [JsonPropertyName("id")]
         public int Id { get; set; }
+        [JsonPropertyName("nombre")]
         public string Nombre { get; set; }
+        [JsonPropertyName("apellidos")]
         public string Apellidos { get; set; }
+        [JsonPropertyName("dni")]
         public string Dni { get; set; }
+        [JsonPropertyName("direccion")]
         public string Direccion { get; set; }
+        [JsonPropertyName("c_postal")]
         public string CPostal { get; set; }
+        [JsonPropertyName("fecha_nacimiento")]
         public DateTime FechaNacimiento { get; set; }
+        [JsonPropertyName("email")]
         public string Email { get; set; }
+        [JsonPropertyName("telefono")]
         public string Telefono { get; set; }
 
         public Cliente(int id, string nombre, string apellidos, string dni, string direccion, string cPostal, DateTime fechaNacimiento, string email, string telefono)

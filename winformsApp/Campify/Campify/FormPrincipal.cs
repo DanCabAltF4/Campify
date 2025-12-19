@@ -8,10 +8,15 @@ namespace Campify
     public partial class FormPrincipal : Form
     {
 
-        private readonly ParcelaAPI _api = new ParcelaAPI("http://localhost:8080/api");
+        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
         public FormPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CargarParcelas();
         }
 
         private async void CargarParcelas()
@@ -19,7 +24,7 @@ namespace Campify
             try
             {
                 flowLayoutPanel1.Controls.Clear();
-                List<Parcela> parcelas = await _api.GetParcelasAsync();
+                List<Parcela> parcelas = await _api.GetAllAsync<Parcela>("api/parcelas");
                 foreach (Parcela p in parcelas)
                 {
                     ucParcela uc = new ucParcela();
@@ -55,10 +60,6 @@ namespace Campify
             flowLayoutPanel1.Visible = true;
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
-        {
-            CargarParcelas();
-        }
 
         private void btnReservar_Click(object sender, EventArgs e)
         {

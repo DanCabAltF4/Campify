@@ -37,51 +37,55 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(29, 17);
+            lblId.Location = new Point(33, 23);
             lblId.Name = "lblId";
-            lblId.Size = new Size(17, 15);
+            lblId.Size = new Size(22, 20);
             lblId.TabIndex = 0;
             lblId.Text = "Id";
+            lblId.Click += lblId_Click;
             // 
             // lblTipo
             // 
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(96, 17);
+            lblTipo.Location = new Point(110, 23);
             lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(31, 15);
+            lblTipo.Size = new Size(39, 20);
             lblTipo.TabIndex = 1;
             lblTipo.Text = "Tipo";
+            lblTipo.Click += lblTipo_Click;
             // 
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(198, 17);
+            lblEstado.Location = new Point(226, 23);
             lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(42, 15);
+            lblEstado.Size = new Size(54, 20);
             lblEstado.TabIndex = 2;
             lblEstado.Text = "Estado";
+            lblEstado.Click += lblEstado_Click;
             // 
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(296, 17);
+            lblPrecioNoche.Location = new Point(338, 23);
             lblPrecioNoche.Name = "lblPrecioNoche";
-            lblPrecioNoche.Size = new Size(78, 15);
+            lblPrecioNoche.Size = new Size(96, 20);
             lblPrecioNoche.TabIndex = 3;
             lblPrecioNoche.Text = "Precio/noche";
+            lblPrecioNoche.Click += lblPrecioNoche_Click;
             // 
             // ucParcela
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(lblPrecioNoche);
             Controls.Add(lblEstado);
             Controls.Add(lblTipo);
             Controls.Add(lblId);
-            Margin = new Padding(7, 4, 7, 4);
+            Margin = new Padding(8, 5, 8, 5);
             Name = "ucParcela";
-            Size = new Size(415, 50);
-            DoubleClick += ucParcela_DoubleClick;
+            Size = new Size(474, 67);
+            Click += ucParcela_Click;
             ResumeLayout(false);
             PerformLayout();
         }
