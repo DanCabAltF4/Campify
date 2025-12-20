@@ -74,20 +74,21 @@ namespace Campify
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            Parcela p = ucParcelaDatos.ParcelaActual;
-            if (p == null)
+            Parcela parcelaSeleccionada = ucParcelaDatos.ParcelaActual;
+            if (parcelaSeleccionada == null)
             {
                 MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (p.Estado != EnumEstados.LIBRE)
+            if (parcelaSeleccionada.Estado != EnumEstados.LIBRE)
             {
                 MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var form = new FormNuevaEstancia(p);
+            var form = new FormNuevaEstancia(parcelaSeleccionada);
             if(form.ShowDialog(this) == DialogResult.OK)
             {
+                ucEstanciaActual1.SetData(form.EstanciaCreada);
                 CargarParcelas();
             }
         }

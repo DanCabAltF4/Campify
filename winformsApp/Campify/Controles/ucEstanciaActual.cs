@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,42 @@ namespace Controles
         public ucEstanciaActual()
         {
             InitializeComponent();
+        }
+
+
+        public void SetData(Estancia estancia)
+        {
+            if (estancia == null)
+            {
+                Limpiar();
+                return;
+            }
+            lblParcela.Text = estancia.Parcela.Id.ToString();
+            lblCheckin.Text = estancia.CheckIn.ToShortDateString();
+            lblCheckout.Text = estancia.CheckOut.ToShortDateString();
+            lblTemporada.Text = estancia.Temporada.ToString();
+            lblPrecioNoche.Text = $"{estancia.Parcela.PrecioNoche} €";
+            lblAdultos.Text = estancia.NumeroAdultos.ToString();
+            lblNinos.Text = estancia.NumeroNinos.ToString();
+            lblMascotas.Text = estancia.NumeroMascotas.ToString();
+            lblEquipajeAdicional.Text = $"{estancia.CargoEquipajeExtra} €";
+            lblCargoAdicional.Text = $"{estancia.CargoAdicional} €";
+            lblPrecioFinal.Text = $"{estancia.PrecioFinal} €";
+        }
+
+        public void Limpiar()
+        {
+            lblParcela.Text = "";
+            lblCheckin.Text = "";
+            lblCheckout.Text = "";
+            lblTemporada.Text = "";
+            lblPrecioNoche.Text = "";
+            lblAdultos.Text = "";
+            lblNinos.Text = "";
+            lblMascotas.Text = "";
+            lblEquipajeAdicional.Text = "";
+            lblCargoAdicional.Text = "";
+            lblPrecioFinal.Text = "";
         }
     }
 }

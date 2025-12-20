@@ -49,7 +49,7 @@
             lblMascotas = new Label();
             lblEquipajeAdicional = new Label();
             lblCargoAdicional = new Label();
-            label1 = new Label();
+            lblPrecioFinal = new Label();
             SuspendLayout();
             // 
             // lbltxtPrecioNoche
@@ -241,20 +241,20 @@
             lblCargoAdicional.TabIndex = 54;
             lblCargoAdicional.Text = "label10";
             // 
-            // label1
+            // lblPrecioFinal
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(216, 349);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 55;
-            label1.Text = "label5";
+            lblPrecioFinal.AutoSize = true;
+            lblPrecioFinal.Location = new Point(216, 349);
+            lblPrecioFinal.Name = "lblPrecioFinal";
+            lblPrecioFinal.Size = new Size(50, 20);
+            lblPrecioFinal.TabIndex = 55;
+            lblPrecioFinal.Text = "label5";
             // 
             // ucEstanciaActual
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
+            Controls.Add(lblPrecioFinal);
             Controls.Add(lblCargoAdicional);
             Controls.Add(lblEquipajeAdicional);
             Controls.Add(lblMascotas);
@@ -305,6 +305,6 @@
         private Label lblMascotas;
         private Label lblEquipajeAdicional;
         private Label lblCargoAdicional;
-        private Label label1;
+        private Label lblPrecioFinal;
     }
 }

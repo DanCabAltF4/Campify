@@ -44,7 +44,7 @@ namespace Controles
         }
 
         /// <summary>
-        /// Pone en blanco todos los campos del control de usuario cuando no hay parcela seleccionada.
+        /// Pone en blanco todos los campos del control de usuario.
         /// </summary>
         private void Limpiar()
         {
