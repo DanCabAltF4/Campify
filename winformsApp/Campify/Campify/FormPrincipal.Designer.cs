@@ -248,8 +248,8 @@
             // 
             // panelDatos
             // 
-            panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
+            panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucHistorial1);
             panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);

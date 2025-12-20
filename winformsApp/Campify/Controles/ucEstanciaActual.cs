@@ -28,7 +28,7 @@ namespace Controles
             }
             lblParcela.Text = estancia.Parcela.Id.ToString();
             lblCheckin.Text = estancia.CheckIn.ToShortDateString();
-            lblCheckout.Text = estancia.CheckOut.HasValue ? estancia.CheckOut.Value.ToShortDateString() : "-";
+            lblCheckout.Text = estancia.CheckOut.ToShortDateString();
             lblTemporada.Text = estancia.Temporada.ToString();
             lblPrecioNoche.Text = $"{estancia.Parcela.PrecioNoche} €";
             lblAdultos.Text = estancia.NumeroAdultos.ToString();

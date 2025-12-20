@@ -33,10 +33,11 @@ namespace Forms
             _estancia = new Estancia();
             _estancia.Parcela = parcela;
 
+
+            dtpCheckin.Value = DateTime.Today;
+            dtpCheckout.Value = DateTime.Today;
             cbTemporada.DataSource = Enum.GetValues(typeof(Model.EnumTemporadas));
             cbTemporada.SelectedItem = Model.EnumTemporadas.ALTA;
-            dtpCheckin.Value = DateTime.Today;
-            dtpCheckout.Checked = false;
 
             CargarDatosParcela();
         }
@@ -61,7 +62,7 @@ namespace Forms
         {
             // Asignar los valores del formulario a la estancia
             _estancia.CheckIn = dtpCheckin.Value.Date;
-            _estancia.CheckOut = dtpCheckout.Checked ? dtpCheckout.Value.Date : (DateTime?)null;
+            _estancia.CheckOut = dtpCheckout.Value.Date;
             _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
             _estancia.NumeroAdultos = lblAdultos.Text != "" ? int.Parse(lblAdultos.Text) : 0;
             _estancia.NumeroNinos = lblNinos.Text != "" ? int.Parse(lblNinos.Text) : 0;
