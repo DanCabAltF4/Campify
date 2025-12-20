@@ -28,6 +28,10 @@ namespace Model
         [JsonPropertyName("telefono")]
         public string Telefono { get; set; }
 
+        public Cliente()
+        {
+        }
+
         public Cliente(int id, string nombre, string apellidos, string dni, string direccion, string cPostal, DateTime fechaNacimiento, string email, string telefono)
         {
             Id = id;

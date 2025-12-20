@@ -23,6 +23,8 @@ namespace Forms
         public List<Cliente> ListaFinalClientes { get; private set; } = new();
 
 
+        // CONSTRUCTOR Y LOAD
+
         public FormEstanciaClientes(List<Cliente> clientesEstancia)
         {
             InitializeComponent();
@@ -76,9 +78,9 @@ namespace Forms
         /// </summary>
         private void dgvListaClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Cliente cliente = (Cliente)dgvListaClientes.Rows[e.RowIndex].DataBoundItem;
-            listaClientes.Remove(cliente);
-            listaClientesEstancia.Add(cliente);
+            Cliente clienteSeleccionado = (Cliente)dgvListaClientes.Rows[e.RowIndex].DataBoundItem;
+            listaClientes.Remove(clienteSeleccionado);
+            listaClientesEstancia.Add(clienteSeleccionado);
         }
 
         private void dgvClientesEstancia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

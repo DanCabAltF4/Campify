@@ -62,7 +62,12 @@ namespace Forms
 
         private void btnServicios_Click(object sender, EventArgs e)
         {
-            var form = new FormEstanciaServicios();
+            var form = new FormEstanciaServicios(_estancia.Servicios);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                _estancia.Servicios = form.ListaFinalServicios;
+                lblNinos.Text = _estancia.Servicios.Count.ToString();
+            }
             
         }
     }

@@ -53,6 +53,9 @@
             // 
             // dgvListaClientes
             // 
+            dgvListaClientes.AllowUserToAddRows = false;
+            dgvListaClientes.AllowUserToDeleteRows = false;
+            dgvListaClientes.AllowUserToResizeRows = false;
             dgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaClientes.Location = new Point(12, 12);
             dgvListaClientes.Name = "dgvListaClientes";
@@ -64,6 +67,9 @@
             // 
             // dgvClientesEstancia
             // 
+            dgvClientesEstancia.AllowUserToAddRows = false;
+            dgvClientesEstancia.AllowUserToDeleteRows = false;
+            dgvClientesEstancia.AllowUserToResizeRows = false;
             dgvClientesEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientesEstancia.Location = new Point(12, 237);
             dgvClientesEstancia.Name = "dgvClientesEstancia";
