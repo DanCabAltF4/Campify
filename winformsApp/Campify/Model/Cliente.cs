@@ -32,9 +32,8 @@ namespace Model
         {
         }
 
-        public Cliente(int id, string nombre, string apellidos, string dni, string direccion, string cPostal, DateTime fechaNacimiento, string email, string telefono)
+        public Cliente( string nombre, string apellidos, string dni, string direccion, string cPostal, DateTime fechaNacimiento, string email, string telefono)
         {
-            Id = id;
             Nombre = nombre;
             Apellidos = apellidos;
             Dni = dni;

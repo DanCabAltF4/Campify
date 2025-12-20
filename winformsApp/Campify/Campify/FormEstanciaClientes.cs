@@ -69,7 +69,11 @@ namespace Forms
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             var form = new FormNuevoCliente();
-            form.ShowDialog(this);
+            if(form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+            {
+                var nuevoCliente = form.ClienteNuevo;
+                listaClientesEstancia.Add(nuevoCliente);
+            }
         }
 
 
