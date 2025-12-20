@@ -7,6 +7,7 @@ import org.example.model.enums.EstadoParcela;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -39,9 +40,7 @@ public class ServiceEstancia implements IServiceEstancia {
             Parcela parcela = parcelaRepo.findById(estancia.getParcela().getId())
                     .orElseThrow(() -> new RuntimeException("Parcela no existe"));
             // Cambia el estado de la parcela a ocupada
-            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
-            parcelaRepo.save(parcela);
-            estancia.setParcela(parcela);
+            cambiarEstadoParcela(estancia, parcela);
 
         }
         if (estancia.getEmpleado() != null) {
@@ -141,5 +140,27 @@ public class ServiceEstancia implements IServiceEstancia {
 
     public List<Estancia> findAll() {
         return repo.findAll();
+    }
+
+    // --------------------
+    // METODOS PRIVADOS
+    // --------------------
+
+    // Comprueba si la fecha actual esta entre checkin y checkout para cambiar estado de parcela a RESERVADA
+    private void cambiarEstadoParcela(Estancia estancia, Parcela parcela){
+        LocalDate hoy = LocalDate.now();
+        LocalDate checkin = estancia.getCheckIn();
+        LocalDate checkout = estancia.getCheckOut();
+
+        boolean ocupada=false;
+        if(checkout==null){
+            ocupada = !hoy.isBefore(checkin);
+        }else{
+            ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
+        }
+        if(ocupada){
+            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
+            parcelaRepo.save(parcela);
+        }
     }
 }
