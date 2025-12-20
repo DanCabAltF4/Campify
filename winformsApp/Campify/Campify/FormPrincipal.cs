@@ -135,10 +135,18 @@ namespace Campify
 
         }
 
-        private void btnMantenimiento_Click(object sender, EventArgs e)
+        private async void btnMantenimiento_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;
-            parcela.Estado = EnumEstados.MANTENIMIENTO;
+            if (parcela.Estado == EnumEstados.MANTENIMIENTO)
+            {
+                parcela.Estado = EnumEstados.LIBRE;
+            }
+            else if( parcela.Estado == EnumEstados.LIBRE)
+            {
+                parcela.Estado = EnumEstados.MANTENIMIENTO;
+            }
+            await _api.Update("api/parcelas", parcela.Id, parcela);
             CargarParcelas();
         }
     }

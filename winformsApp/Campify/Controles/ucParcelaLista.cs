@@ -21,7 +21,7 @@ namespace Controles
         public void SetData(Parcela p)
         {
             Parcela = p;
-            lblId.Text = "Número: " + p.Id.ToString();
+            lblId.Text = "Nº: " + p.Id.ToString();
             lblTipo.Text = p.Tipo.ToString();
             lblEstado.Text = p.Estado.ToString();
             lblPrecioNoche.Text = p.PrecioNoche.ToString("C2");
@@ -30,7 +30,7 @@ namespace Controles
                 EnumEstados.LIBRE => Color.LightGreen,
                 EnumEstados.RESERVADA => Color.OrangeRed,
                 EnumEstados.INTERESADO => Color.YellowGreen,
-                EnumEstados.MANTENIMIENTO => Color.RebeccaPurple
+                EnumEstados.MANTENIMIENTO => Color.Plum
             };
         }
 
