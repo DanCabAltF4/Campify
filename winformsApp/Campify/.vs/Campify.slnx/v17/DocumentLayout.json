@@ -27,7 +27,7 @@
       "RelativeMoniker": "D:0:0:{5EEB6FCA-303C-4030-B383-C0633BC31050}|Controles\\Controles.csproj|solutionrelative:controles\\ucparceladatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -87,8 +87,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\ucEstanciaActual.cs [Dise\u00F1o]",
               "RelativeToolTip": "Controles\\ucEstanciaActual.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T14:16:24.826Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-20T14:16:24.826Z"
             },
             {
               "$type": "Document",
@@ -111,7 +110,7 @@
               "RelativeDocumentMoniker": "Campify\\FormNuevaEstancia.cs",
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs",
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAgwEoAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAgwEoAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-20T15:51:57.53Z",
               "EditorCaption": ""
@@ -125,8 +124,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\ucParcelaDatos.cs [Dise\u00F1o]",
               "RelativeToolTip": "Controles\\ucParcelaDatos.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T15:10:43.936Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-20T15:10:43.936Z"
             },
             {
               "$type": "Document",
@@ -137,8 +135,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs [Dise\u00F1o]",
               "RelativeToolTip": "Campify\\FormPrincipal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T02:23:15.209Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-20T02:23:15.209Z"
             }
           ]
         }
