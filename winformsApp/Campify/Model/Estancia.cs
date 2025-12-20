@@ -16,7 +16,7 @@ namespace Model
         public DateTime CheckIn { get; set; }
 
         [JsonPropertyName("checkOut")]
-        public DateTime CheckOut { get; set; }
+        public DateTime? CheckOut { get; set; }
 
         [JsonPropertyName("temporada")]
         public EnumTemporadas Temporada { get; set; }
