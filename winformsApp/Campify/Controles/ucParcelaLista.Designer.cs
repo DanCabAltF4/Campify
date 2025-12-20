@@ -84,7 +84,7 @@
             Controls.Add(lblId);
             Margin = new Padding(8, 5, 8, 5);
             Name = "ucParcela";
-            Size = new Size(474, 67);
+            Size = new Size(460, 67);
             Click += ucParcela_Click;
             ResumeLayout(false);
             PerformLayout();

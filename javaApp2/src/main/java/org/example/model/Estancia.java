@@ -180,7 +180,7 @@ public class Estancia {
     }
 
     public void removeCliente(Cliente cliente){
-        getServicios().remove(servicios);
+        getServicios().remove(cliente);
         cliente.getEstancia().remove(this);
     }
 

@@ -86,7 +86,10 @@ namespace Campify
                 return;
             }
             var form = new FormNuevaEstancia(p);
-            form.ShowDialog(this);
+            if(form.ShowDialog(this) == DialogResult.OK)
+            {
+                CargarParcelas();
+            }
         }
 
         private void btnServicios_Click(object sender, EventArgs e)

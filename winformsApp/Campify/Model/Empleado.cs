@@ -24,6 +24,9 @@ namespace Model
         [JsonPropertyName("activo")]
         public bool Activo { get; set; }
 
+        public Empleado()
+        {
+        }
 
         public Empleado(int id, string nombre, string apellidos, string dni, string telefono, EnumPuestos puesto, bool activo)
         {

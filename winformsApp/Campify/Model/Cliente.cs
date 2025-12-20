@@ -27,6 +27,15 @@ namespace Model
         public string Email { get; set; }
         [JsonPropertyName("telefono")]
         public string Telefono { get; set; }
+        public Boolean EsAdulto 
+        { 
+            get 
+            { 
+                var edad = DateTime.Now.Year - FechaNacimiento.Year;
+                return edad > 18; 
+            }
+        }
+
 
         public Cliente()
         {

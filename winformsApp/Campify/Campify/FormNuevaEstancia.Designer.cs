@@ -50,7 +50,7 @@
             txbCargoAdicional = new TextBox();
             dtpCheckin = new DateTimePicker();
             dtpCheckout = new DateTimePicker();
-            txt = new TextBox();
+            txbMascotas = new TextBox();
             lblPrecioNoche = new Label();
             lbltxtPrecioNoche = new Label();
             SuspendLayout();
@@ -228,9 +228,8 @@
             lblPrecioFinal.AutoSize = true;
             lblPrecioFinal.Location = new Point(134, 380);
             lblPrecioFinal.Name = "lblPrecioFinal";
-            lblPrecioFinal.Size = new Size(50, 20);
+            lblPrecioFinal.Size = new Size(0, 20);
             lblPrecioFinal.TabIndex = 27;
-            lblPrecioFinal.Text = "label5";
             // 
             // txbEquipajeAdicional
             // 
@@ -260,22 +259,21 @@
             dtpCheckout.Size = new Size(305, 27);
             dtpCheckout.TabIndex = 31;
             // 
-            // txt
+            // txbMascotas
             // 
-            txt.Location = new Point(553, 165);
-            txt.Margin = new Padding(3, 4, 3, 4);
-            txt.Name = "txt";
-            txt.Size = new Size(61, 27);
-            txt.TabIndex = 32;
+            txbMascotas.Location = new Point(553, 165);
+            txbMascotas.Margin = new Padding(3, 4, 3, 4);
+            txbMascotas.Name = "txbMascotas";
+            txbMascotas.Size = new Size(61, 27);
+            txbMascotas.TabIndex = 32;
             // 
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
             lblPrecioNoche.Location = new Point(145, 337);
             lblPrecioNoche.Name = "lblPrecioNoche";
-            lblPrecioNoche.Size = new Size(50, 20);
+            lblPrecioNoche.Size = new Size(0, 20);
             lblPrecioNoche.TabIndex = 34;
-            lblPrecioNoche.Text = "label5";
             // 
             // lbltxtPrecioNoche
             // 
@@ -294,7 +292,7 @@
             ClientSize = new Size(699, 559);
             Controls.Add(lblPrecioNoche);
             Controls.Add(lbltxtPrecioNoche);
-            Controls.Add(txt);
+            Controls.Add(txbMascotas);
             Controls.Add(dtpCheckout);
             Controls.Add(dtpCheckin);
             Controls.Add(txbCargoAdicional);
@@ -349,7 +347,7 @@
         private TextBox txbCargoAdicional;
         private DateTimePicker dtpCheckin;
         private DateTimePicker dtpCheckout;
-        private TextBox txt;
+        private TextBox txbMascotas;
         private Label lblPrecioNoche;
         private Label lbltxtPrecioNoche;
     }

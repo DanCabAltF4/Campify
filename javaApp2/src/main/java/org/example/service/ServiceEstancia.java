@@ -2,6 +2,8 @@ package org.example.service;
 
 import jakarta.transaction.Transactional;
 import org.example.model.Estancia;
+import org.example.model.Parcela;
+import org.example.model.enums.EstadoParcela;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ServiceEstancia implements IServiceEstancia{
+public class ServiceEstancia implements IServiceEstancia {
 
     private EstanciaRepository repo;
     private ClienteRepository clienteRepo;
@@ -33,22 +35,21 @@ public class ServiceEstancia implements IServiceEstancia{
 
     @Override
     public Estancia insert(Estancia estancia) {
-
-
         if (estancia.getParcela() != null) {
-            estancia.setParcela(
-                    parcelaRepo.findById(estancia.getParcela().getId())
-                            .orElseThrow(() -> new RuntimeException("Parcela no existe"))
-            );
-        }
+            Parcela parcela = parcelaRepo.findById(estancia.getParcela().getId())
+                    .orElseThrow(() -> new RuntimeException("Parcela no existe"));
+            // Cambia el estado de la parcela a ocupada
+            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
+            parcelaRepo.save(parcela);
+            estancia.setParcela(parcela);
 
+        }
         if (estancia.getEmpleado() != null) {
             estancia.setEmpleado(
                     empleadoRepo.findById(estancia.getEmpleado().getId())
                             .orElseThrow(() -> new RuntimeException("Empleado no existe"))
             );
         }
-
         if (estancia.getClientes() != null && !estancia.getClientes().isEmpty()) {
             var clientesManaged = clienteRepo.findAllById(
                     estancia.getClientes().stream().map(c -> c.getId()).toList()
@@ -69,8 +70,6 @@ public class ServiceEstancia implements IServiceEstancia{
         // Guardamos la estancia (Hibernate maneja cascadas si están configuradas)
         return repo.save(estancia);
     }
-
-
 
 
     @Override

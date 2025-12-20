@@ -1,4 +1,5 @@
 ﻿using Model;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,10 @@ namespace Forms
 {
     public partial class FormNuevaEstancia : Form
     {
+        // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
-        //private readonly Parcela _parcela;
+        // ----------------------------------
+        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
         private Estancia _estancia;
         public FormNuevaEstancia(Parcela parcela)
         {
@@ -22,11 +25,11 @@ namespace Forms
             _estancia = new Estancia();
             _estancia.Parcela = parcela;
 
-            //_parcela = parcela;
 
             dtpCheckin.Value = DateTime.Today;
             dtpCheckout.Value = DateTime.Today;
             cbTemporada.DataSource = Enum.GetValues(typeof(Model.EnumTemporadas));
+            cbTemporada.SelectedItem = Model.EnumTemporadas.ALTA;
 
             CargarDatosParcela();
         }
@@ -34,6 +37,7 @@ namespace Forms
 
         // ----------------------------------
         // METODOS PRINCIPALES
+        // ----------------------------------
 
         private void CargarDatosParcela()
         {
@@ -44,9 +48,25 @@ namespace Forms
 
         //----------------------------------
         // FUNCIONES DE LOS BOTONES
+        // ----------------------------------
 
-        private void btnGuardarReserva_Click(object sender, EventArgs e)
+        private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
+            // Asignar los valores del formulario a la estancia
+            _estancia.CheckIn = dtpCheckin.Value.Date;
+            _estancia.CheckOut = dtpCheckout.Value.Date;
+            _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
+            _estancia.NumeroAdultos = lblAdultos.Text != "" ? int.Parse(lblAdultos.Text) : 0;
+            _estancia.NumeroNinos = lblNinos.Text != "" ? int.Parse(lblNinos.Text) : 0;
+            _estancia.NumeroMascotas = int.Parse(txbMascotas.Text);
+            _estancia.CargoEquipajeExtra = double.Parse(txbEquipajeAdicional.Text);
+            _estancia.CargoAdicional = double.Parse(txbCargoAdicional.Text);
+            _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
+
+            // Guardar la estancia mediante la API
+            await _api.Create<Estancia>("api/estancias", _estancia);
+            MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
