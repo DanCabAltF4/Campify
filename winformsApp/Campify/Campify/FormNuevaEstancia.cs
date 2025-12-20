@@ -19,6 +19,14 @@ namespace Forms
         // ----------------------------------
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
         private Estancia _estancia;
+
+        public Estancia EstanciaCreada { get; set; }
+
+
+        // ----------------------------------
+        // CONSTRUCTOR Y LOAD
+        // ----------------------------------
+
         public FormNuevaEstancia(Parcela parcela)
         {
             InitializeComponent();
@@ -64,7 +72,7 @@ namespace Forms
             _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
             // Guardar la estancia mediante la API
-            await _api.Create<Estancia>("api/estancias", _estancia);
+            EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
             MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
             this.Close();

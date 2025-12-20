@@ -44,8 +44,8 @@
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
-            ucParcelaDatos = new Controles.ucParcelaDatos();
             ucEstanciaActual1 = new Controles.ucEstanciaActual();
+            ucParcelaDatos = new Controles.ucParcelaDatos();
             ucHistorial1 = new Controles.ucHistorial();
             btMapa = new Button();
             pnlParcelas = new Panel();
@@ -189,10 +189,10 @@
             btnHistorial.FlatStyle = FlatStyle.Flat;
             btnHistorial.Font = new Font("Segoe UI", 12F);
             btnHistorial.ForeColor = Color.FromArgb(95, 65, 0);
-            btnHistorial.Location = new Point(774, -3);
+            btnHistorial.Location = new Point(773, -3);
             btnHistorial.Margin = new Padding(0);
             btnHistorial.Name = "btnHistorial";
-            btnHistorial.Size = new Size(136, 48);
+            btnHistorial.Size = new Size(137, 48);
             btnHistorial.TabIndex = 6;
             btnHistorial.Text = "Historial";
             btnHistorial.UseVisualStyleBackColor = false;
@@ -248,14 +248,21 @@
             // 
             // panelDatos
             // 
-            panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
+            panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucHistorial1);
             panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
+            // 
+            // ucEstanciaActual1
+            // 
+            ucEstanciaActual1.Location = new Point(0, 0);
+            ucEstanciaActual1.Name = "ucEstanciaActual1";
+            ucEstanciaActual1.Size = new Size(422, 388);
+            ucEstanciaActual1.TabIndex = 21;
             // 
             // ucParcelaDatos
             // 
@@ -264,13 +271,6 @@
             ucParcelaDatos.Name = "ucParcelaDatos";
             ucParcelaDatos.Size = new Size(421, 388);
             ucParcelaDatos.TabIndex = 0;
-            // 
-            // ucEstanciaActual1
-            // 
-            ucEstanciaActual1.Location = new Point(0, 0);
-            ucEstanciaActual1.Name = "ucEstanciaActual1";
-            ucEstanciaActual1.Size = new Size(422, 388);
-            ucEstanciaActual1.TabIndex = 21;
             // 
             // ucHistorial1
             // 
