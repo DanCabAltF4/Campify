@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "yuHq3ffxPLQ=",
+=======
+  "dgSpecHash": "qpjQ3fedVPU=",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
   "expectedPackageFiles": [],
