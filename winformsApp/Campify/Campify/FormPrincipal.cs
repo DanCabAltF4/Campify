@@ -271,6 +271,7 @@ namespace Campify
                 await _api.Delete<Empleado>("api/empleados", ucEmpleadoDatos1.EmpleadoActual.Id);
                 MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarEmpleados();
+                ucEmpleadoDatos1.Limpiar();
             }
         }
     }
