@@ -2,6 +2,7 @@ using Controles;
 using Forms;
 using Model;
 using Repository;
+using System.Threading.Tasks;
 
 namespace Campify
 {
@@ -82,10 +83,20 @@ namespace Campify
 
         /// <summary>
         /// Muestra los datos de la parcela seleccionada en el user control de datos de parcela.
+        /// Si la parcela tiene una estancia hoy (estado RESERVADA), también muestra la estancia en el user control de estancia actual.
         /// </summary>
-        private void ParcelaDobleClick(object? sender, Parcela e)
+        private async void ParcelaDobleClick(object? sender, Parcela parcela)
         {
-            ucParcelaDatos.MostrarDatos(e);
+            ucParcelaDatos.MostrarDatos(parcela);
+
+            if (parcela.Estado != EnumEstados.RESERVADA)
+            {
+                ucEstanciaActual1.Limpiar();
+                return;
+            }
+            var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+            var estanciaActual = estancias.FirstOrDefault( es => es.Parcela != null && es.Parcela.Id == parcela.Id);
+            ucEstanciaActual1.SetData(estanciaActual);
         }
 
         /// <summary>
