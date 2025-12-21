@@ -218,6 +218,7 @@ namespace Campify
             }
             await _api.Update("api/parcelas", parcela.Id, parcela);
             CargarParcelas();
+            ucParcelaDatos.MostrarDatos(parcela);
         }
     }
 }
