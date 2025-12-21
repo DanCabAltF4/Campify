@@ -179,10 +179,10 @@
             btLista.FlatStyle = FlatStyle.Flat;
             btLista.Font = new Font("Segoe UI", 12F);
             btLista.ForeColor = Color.FromArgb(255, 222, 171);
-            btLista.Location = new Point(224, 0);
+            btLista.Location = new Point(241, 0);
             btLista.Margin = new Padding(0);
             btLista.Name = "btLista";
-            btLista.Size = new Size(127, 45);
+            btLista.Size = new Size(248, 45);
             btLista.TabIndex = 13;
             btLista.Text = "Lista";
             btLista.UseVisualStyleBackColor = false;
@@ -292,10 +292,10 @@
             btMapa.FlatStyle = FlatStyle.Flat;
             btMapa.Font = new Font("Segoe UI", 12F);
             btMapa.ForeColor = Color.FromArgb(255, 222, 171);
-            btMapa.Location = new Point(57, 0);
+            btMapa.Location = new Point(1, 0);
             btMapa.Margin = new Padding(0);
             btMapa.Name = "btMapa";
-            btMapa.Size = new Size(127, 45);
+            btMapa.Size = new Size(240, 45);
             btMapa.TabIndex = 12;
             btMapa.Text = "Mapa";
             btMapa.UseVisualStyleBackColor = false;
@@ -416,8 +416,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(915, 597);
-            Controls.Add(pnlEmpleados);
             Controls.Add(pnlParcelas);
+            Controls.Add(pnlEmpleados);
             Controls.Add(pnlServicios);
             Controls.Add(btnServicios);
             Controls.Add(pbAjustes);

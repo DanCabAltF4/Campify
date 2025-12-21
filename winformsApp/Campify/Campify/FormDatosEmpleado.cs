@@ -9,7 +9,7 @@ namespace Campify
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
-        private Empleado _empleadoSeleccionado;
+        private Empleado _empleado;
 
         public Empleado EmpleadoGuardado { get; set; }
 
@@ -22,7 +22,7 @@ namespace Campify
         public FormDatosEmpleado(Empleado empleadoSeleccionado)
         {
             InitializeComponent();
-            _empleadoSeleccionado = empleadoSeleccionado;
+            _empleado = empleadoSeleccionado;
 
             cbPuesto.DataSource = Enum.GetValues(typeof(EnumPuestos));
             cbPuesto.SelectedItem = EnumPuestos.CAMPO;
@@ -37,15 +37,15 @@ namespace Campify
 
         private void CargarDatosEmpleado()
         {
-            if (_empleadoSeleccionado != null)
+            if (_empleado != null)
             {
-                lblId.Text = _empleadoSeleccionado.Id.ToString();
-                txbNombre.Text = _empleadoSeleccionado.Nombre;
-                txbApellidos.Text = _empleadoSeleccionado.Apellidos;
-                txbDni.Text = _empleadoSeleccionado.Dni;
-                txbTelefono.Text = _empleadoSeleccionado.Telefono;
-                cbPuesto.SelectedItem = _empleadoSeleccionado.Puesto;
-                chbActivo.Checked = _empleadoSeleccionado.Activo;
+                lblId.Text = _empleado.Id.ToString();
+                txbNombre.Text = _empleado.Nombre;
+                txbApellidos.Text = _empleado.Apellidos;
+                txbDni.Text = _empleado.Dni;
+                txbTelefono.Text = _empleado.Telefono;
+                cbPuesto.SelectedItem = _empleado.Puesto;
+                chbActivo.Checked = _empleado.Activo;
             }
         }
 
@@ -55,14 +55,44 @@ namespace Campify
         // FUNCIONES DE LOS BOTONES
         // ----------------------------
 
+        /// <summary>
+        /// Cierra el formulario sin guardar cambios.
+        /// </summary>
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Si el empleado es nuevo (Id=0), lo crea mediante la API.
+        /// Si el empleado ya existe (Id!=0), actualiza sus datos mediante la API.
+        /// </summary>
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            // Asigna los valores de los controles al empleado
+            _empleado = new Empleado(); // Asegura que _empleado no sea null
+            _empleado.Nombre = txbNombre.Text;
+            _empleado.Apellidos = txbApellidos.Text;
+            _empleado.Dni = txbDni.Text;
+            _empleado.Telefono = txbTelefono.Text;
+            _empleado.Puesto = (EnumPuestos)cbPuesto.SelectedItem;
+            _empleado.Activo = chbActivo.Checked;
+
+            // Comprueba si es un empleado nuevo o existente y llama a la API correspondiente
+            if (_empleado.Id == 0)
+            {
+                EmpleadoGuardado = await _api.Create<Empleado>("api/empleados", _empleado);
+                MessageBox.Show("Empleado creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
+                MessageBox.Show("Empleado actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

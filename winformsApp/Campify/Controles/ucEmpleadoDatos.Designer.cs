@@ -48,7 +48,7 @@
             // 
             lbltxtId.AutoSize = true;
             lbltxtId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtId.Location = new Point(55, 24);
+            lbltxtId.Location = new Point(53, 10);
             lbltxtId.Name = "lbltxtId";
             lbltxtId.Size = new Size(32, 20);
             lbltxtId.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             lbltxtNombre.AutoSize = true;
             lbltxtNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtNombre.Location = new Point(57, 78);
+            lbltxtNombre.Location = new Point(55, 64);
             lbltxtNombre.Name = "lbltxtNombre";
             lbltxtNombre.Size = new Size(71, 20);
             lbltxtNombre.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             lbltxtApellidos.AutoSize = true;
             lbltxtApellidos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtApellidos.Location = new Point(57, 139);
+            lbltxtApellidos.Location = new Point(55, 125);
             lbltxtApellidos.Name = "lbltxtApellidos";
             lbltxtApellidos.Size = new Size(78, 20);
             lbltxtApellidos.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             lbltxtDni.AutoSize = true;
             lbltxtDni.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtDni.Location = new Point(57, 251);
+            lbltxtDni.Location = new Point(55, 237);
             lbltxtDni.Name = "lbltxtDni";
             lbltxtDni.Size = new Size(41, 20);
             lbltxtDni.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             lbltxtPuesto.AutoSize = true;
             lbltxtPuesto.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtPuesto.Location = new Point(57, 195);
+            lbltxtPuesto.Location = new Point(55, 181);
             lbltxtPuesto.Name = "lbltxtPuesto";
             lbltxtPuesto.Size = new Size(61, 20);
             lbltxtPuesto.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             lbltxtTelefono.AutoSize = true;
             lbltxtTelefono.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtTelefono.Location = new Point(57, 312);
+            lbltxtTelefono.Location = new Point(55, 298);
             lbltxtTelefono.Name = "lbltxtTelefono";
             lbltxtTelefono.Size = new Size(33, 20);
             lbltxtTelefono.TabIndex = 5;
@@ -108,7 +108,7 @@
             // 
             lbltxtActivo.AutoSize = true;
             lbltxtActivo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtActivo.Location = new Point(57, 368);
+            lbltxtActivo.Location = new Point(55, 354);
             lbltxtActivo.Name = "lbltxtActivo";
             lbltxtActivo.Size = new Size(58, 20);
             lbltxtActivo.TabIndex = 6;
@@ -117,7 +117,7 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(150, 78);
+            lblNombre.Location = new Point(148, 64);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(91, 20);
             lblNombre.TabIndex = 7;
@@ -126,7 +126,7 @@
             // lblApellidos
             // 
             lblApellidos.AutoSize = true;
-            lblApellidos.Location = new Point(158, 139);
+            lblApellidos.Location = new Point(156, 125);
             lblApellidos.Name = "lblApellidos";
             lblApellidos.Size = new Size(123, 20);
             lblApellidos.TabIndex = 8;
@@ -135,7 +135,7 @@
             // lblPuesto
             // 
             lblPuesto.AutoSize = true;
-            lblPuesto.Location = new Point(132, 195);
+            lblPuesto.Location = new Point(130, 181);
             lblPuesto.Name = "lblPuesto";
             lblPuesto.Size = new Size(128, 20);
             lblPuesto.TabIndex = 9;
@@ -144,7 +144,7 @@
             // lblDni
             // 
             lblDni.AutoSize = true;
-            lblDni.Location = new Point(121, 251);
+            lblDni.Location = new Point(119, 237);
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(78, 20);
             lblDni.TabIndex = 10;
@@ -153,7 +153,7 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(112, 312);
+            lblTelefono.Location = new Point(110, 298);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(81, 20);
             lblTelefono.TabIndex = 11;
@@ -162,7 +162,7 @@
             // lblActivo
             // 
             lblActivo.AutoSize = true;
-            lblActivo.Location = new Point(137, 368);
+            lblActivo.Location = new Point(135, 354);
             lblActivo.Name = "lblActivo";
             lblActivo.Size = new Size(31, 20);
             lblActivo.TabIndex = 12;
@@ -171,7 +171,7 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(90, 24);
+            lblId.Location = new Point(88, 10);
             lblId.Name = "lblId";
             lblId.Size = new Size(50, 20);
             lblId.TabIndex = 13;

@@ -280,8 +280,6 @@ namespace Campify
         /// <summary>
         /// Abre el formulario de datos de empleado para crear uno nuevo.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnNuevoEmpleado_Click(object sender, EventArgs e)
         {
             var form = new FormDatosEmpleado(null);
