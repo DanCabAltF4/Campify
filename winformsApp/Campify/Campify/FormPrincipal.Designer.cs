@@ -40,23 +40,25 @@
             btLista = new Button();
             btnHistorial = new Button();
             panelMapaLista = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpParcelas = new FlowLayoutPanel();
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
-            ucEstanciaActual1 = new Controles.ucEstanciaActual();
             ucParcelaDatos = new Controles.ucParcelaDatos();
+            ucEstanciaActual1 = new Controles.ucEstanciaActual();
             ucHistorial1 = new Controles.ucHistorial();
             btMapa = new Button();
             pnlParcelas = new Panel();
             btnMantenimiento = new Button();
             pnlEmpleados = new Panel();
+            flpEmpleados = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
             panelDatos.SuspendLayout();
             pnlParcelas.SuspendLayout();
+            pnlEmpleados.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
@@ -199,7 +201,7 @@
             // 
             // panelMapaLista
             // 
-            panelMapaLista.Controls.Add(flowLayoutPanel1);
+            panelMapaLista.Controls.Add(flpParcelas);
             panelMapaLista.Controls.Add(pbMapa);
             panelMapaLista.Location = new Point(1, 45);
             panelMapaLista.Margin = new Padding(0);
@@ -207,16 +209,16 @@
             panelMapaLista.Size = new Size(488, 433);
             panelMapaLista.TabIndex = 16;
             // 
-            // flowLayoutPanel1
+            // flpParcelas
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(488, 433);
-            flowLayoutPanel1.TabIndex = 15;
-            flowLayoutPanel1.Visible = false;
+            flpParcelas.AutoScroll = true;
+            flpParcelas.Dock = DockStyle.Fill;
+            flpParcelas.Location = new Point(0, 0);
+            flpParcelas.Margin = new Padding(0);
+            flpParcelas.Name = "flpParcelas";
+            flpParcelas.Size = new Size(488, 433);
+            flpParcelas.TabIndex = 15;
+            flpParcelas.Visible = false;
             // 
             // pbMapa
             // 
@@ -257,13 +259,6 @@
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
             // 
-            // ucEstanciaActual1
-            // 
-            ucEstanciaActual1.Location = new Point(0, 0);
-            ucEstanciaActual1.Name = "ucEstanciaActual1";
-            ucEstanciaActual1.Size = new Size(422, 388);
-            ucEstanciaActual1.TabIndex = 21;
-            // 
             // ucParcelaDatos
             // 
             ucParcelaDatos.Location = new Point(0, 0);
@@ -271,6 +266,13 @@
             ucParcelaDatos.Name = "ucParcelaDatos";
             ucParcelaDatos.Size = new Size(421, 388);
             ucParcelaDatos.TabIndex = 0;
+            // 
+            // ucEstanciaActual1
+            // 
+            ucEstanciaActual1.Location = new Point(0, 0);
+            ucEstanciaActual1.Name = "ucEstanciaActual1";
+            ucEstanciaActual1.Size = new Size(422, 388);
+            ucEstanciaActual1.TabIndex = 21;
             // 
             // ucHistorial1
             // 
@@ -329,11 +331,20 @@
             // 
             // pnlEmpleados
             // 
+            pnlEmpleados.Controls.Add(flpEmpleados);
             pnlEmpleados.Location = new Point(1, 115);
             pnlEmpleados.Name = "pnlEmpleados";
             pnlEmpleados.Size = new Size(913, 483);
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
+            // 
+            // flpEmpleados
+            // 
+            flpEmpleados.Location = new Point(0, 0);
+            flpEmpleados.Margin = new Padding(0);
+            flpEmpleados.Name = "flpEmpleados";
+            flpEmpleados.Size = new Size(488, 481);
+            flpEmpleados.TabIndex = 0;
             // 
             // FormPrincipal
             // 
@@ -341,9 +352,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(915, 597);
+            Controls.Add(pnlEmpleados);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
-            Controls.Add(pnlEmpleados);
             Controls.Add(btnServicios);
             Controls.Add(pbAjustes);
             Controls.Add(btnParcelas);
@@ -359,6 +370,7 @@
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
             panelDatos.ResumeLayout(false);
             pnlParcelas.ResumeLayout(false);
+            pnlEmpleados.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -375,7 +387,7 @@
         private Button btLista;
         private Button btnHistorial;
         private Panel panelMapaLista;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flpParcelas;
         private PictureBox pbMapa;
         private Button btnEstanciaActual;
         private Panel panelDatos;
@@ -386,5 +398,6 @@
         private Controles.ucEstanciaActual ucEstanciaActual1;
         private Controles.ucHistorial ucHistorial1;
         private Button btnMantenimiento;
+        private FlowLayoutPanel flpEmpleados;
     }
 }

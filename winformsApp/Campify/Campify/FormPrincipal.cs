@@ -22,6 +22,7 @@ namespace Campify
         private void Form1_Load(object sender, EventArgs e)
         {
             CargarParcelas();
+            CargarEmpleados();
         }
 
 
@@ -37,14 +38,38 @@ namespace Campify
         {
             try
             {
-                flowLayoutPanel1.Controls.Clear();
+                flpParcelas.Controls.Clear();
                 List<Parcela> parcelas = await _api.GetAllAsync<Parcela>("api/parcelas");
                 foreach (Parcela p in parcelas)
                 {
                     ucParcela uc = new ucParcela();
                     uc.SetData(p);
-                    uc.ParcelaDobleClick += ParcelaDobleClick;
-                    flowLayoutPanel1.Controls.Add(uc);
+                    uc.ParcelaClick += ParcelaClick;
+                    flpParcelas.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarErrorConectarApi();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void CargarEmpleados()
+        {
+            try
+            {
+                flpEmpleados.Controls.Clear();
+                List<Empleado> empleados = await _api.GetAllAsync<Empleado>("api/empleados");
+                foreach (Empleado emp in empleados)
+                {
+                    ucEmpleadosLista uc = new ucEmpleadosLista();
+                    uc.SetData(emp);
+                    //uc.EmpleadoClick += EmpleadoClick;
+                    flpEmpleados.Controls.Add(uc);
                 }
             }
             catch (HttpRequestException ex)
@@ -85,7 +110,7 @@ namespace Campify
         /// Muestra los datos de la parcela seleccionada en el user control de datos de parcela.
         /// Si la parcela tiene una estancia hoy (estado RESERVADA), también muestra la estancia en el user control de estancia actual.
         /// </summary>
-        private async void ParcelaDobleClick(object? sender, Parcela parcela)
+        private async void ParcelaClick(object? sender, Parcela parcela)
         {
             ucParcelaDatos.MostrarDatos(parcela);
 
@@ -104,7 +129,7 @@ namespace Campify
         /// </summary>
         private void btMapa_Click(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Visible = false;
+            flpParcelas.Visible = false;
             pbMapa.Visible = true;
         }
 
@@ -114,7 +139,7 @@ namespace Campify
         private void btLista_Click(object sender, EventArgs e)
         {
             pbMapa.Visible = false;
-            flowLayoutPanel1.Visible = true;
+            flpParcelas.Visible = true;
         }
 
         /// <summary>

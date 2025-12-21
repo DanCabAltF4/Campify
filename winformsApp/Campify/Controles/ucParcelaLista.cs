@@ -34,39 +34,39 @@ namespace Controles
             };
         }
 
+
+        /// <summary>
+        /// Evento que se dispara al hacer doble clic en el user control de la parcela.
+        /// </summary>
+        public event EventHandler<Parcela> ParcelaClick;
+
         /// <summary>
         /// Lanza el evento ParcelaDobleClick al hacer clic en el user control de la parcela o un elemento de texto.
         /// </summary>
         private void lblId_Click(object sender, EventArgs e)
         {
-            ParcelaDobleClick?.Invoke(this, Parcela);
+            ParcelaClick?.Invoke(this, Parcela);
         }
 
         private void lblTipo_Click(object sender, EventArgs e)
         {
-            ParcelaDobleClick?.Invoke(this, Parcela);
+            ParcelaClick?.Invoke(this, Parcela);
         }
 
         private void lblEstado_Click(object sender, EventArgs e)
         {
-            ParcelaDobleClick?.Invoke(this, Parcela);
+            ParcelaClick?.Invoke(this, Parcela);
         }
 
         private void lblPrecioNoche_Click(object sender, EventArgs e)
         {
-            ParcelaDobleClick?.Invoke(this, Parcela);
+            ParcelaClick?.Invoke(this, Parcela);
         }
 
         private void ucParcela_Click(object sender, EventArgs e)
         {
-            ParcelaDobleClick?.Invoke(this, Parcela);
+            ParcelaClick?.Invoke(this, Parcela);
         }
-
-        /// <summary>
-        /// Evento que se dispara al hacer doble clic en el user control de la parcela.
-        /// </summary>
-        public event EventHandler<Parcela> ParcelaDobleClick;
-
 
     }
 }
