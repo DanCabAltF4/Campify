@@ -416,8 +416,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(915, 597);
-            Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
+            Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
             Controls.Add(btnServicios);
             Controls.Add(pbAjustes);

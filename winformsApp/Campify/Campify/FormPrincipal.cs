@@ -58,6 +58,9 @@ namespace Campify
             }
         }
 
+        /// <summary>
+        /// Carga los empleados desde la API en los user controls y los añade al flow layout panel.
+        /// </summary>
         private async void CargarEmpleados()
         {
             try
@@ -71,10 +74,6 @@ namespace Campify
                     uc.EmpleadoClick += EmpleadoClick;
                     flpEmpleados.Controls.Add(uc);
                 }
-            }
-            catch (HttpRequestException ex)
-            {
-
             }
             catch (Exception ex)
             {
@@ -286,6 +285,7 @@ namespace Campify
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 CargarEmpleados();
+                ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
             }
         }
 
@@ -304,8 +304,8 @@ namespace Campify
             var form = new FormDatosEmpleado(empleadoSeleccionado);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                // Recargar la lista de empleados para reflejar los cambios
-                // y actualizar el user control de datos de empleado
+                CargarEmpleados();
+                ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
             }
         }
     }

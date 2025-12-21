@@ -73,7 +73,8 @@ namespace Campify
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             // Asigna los valores de los controles al empleado
-            _empleado = new Empleado(); // Asegura que _empleado no sea null
+            if(_empleado == null) _empleado = new Empleado(); // Asegura que _empleado no sea null
+            _empleado.Id = int.Parse(lblId.Text);
             _empleado.Nombre = txbNombre.Text;
             _empleado.Apellidos = txbApellidos.Text;
             _empleado.Dni = txbDni.Text;
@@ -89,8 +90,8 @@ namespace Campify
             }
             else
             {
+                MessageBox.Show("Se modificará al empleado.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
-                MessageBox.Show("Empleado actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             this.DialogResult = DialogResult.OK;
