@@ -31,7 +31,6 @@
             lbltxtId = new Label();
             lbltxtEstado = new Label();
             lbltxtTipo = new Label();
-            lbltxtCapacidad = new Label();
             lbltxtPrecio = new Label();
             lbltxtEntrada = new Label();
             lbltxtZonaTranquila = new Label();
@@ -44,7 +43,6 @@
             lblSombra = new Label();
             lblBanosCerca = new Label();
             lblPrecio = new Label();
-            lblCapacidad = new Label();
             lblTipo = new Label();
             lblEstado = new Label();
             lblId = new Label();
@@ -79,16 +77,6 @@
             lbltxtTipo.Size = new Size(44, 20);
             lbltxtTipo.TabIndex = 4;
             lbltxtTipo.Text = "Tipo:";
-            // 
-            // lbltxtCapacidad
-            // 
-            lbltxtCapacidad.AutoSize = true;
-            lbltxtCapacidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtCapacidad.Location = new Point(14, 309);
-            lbltxtCapacidad.Name = "lbltxtCapacidad";
-            lbltxtCapacidad.Size = new Size(84, 20);
-            lbltxtCapacidad.TabIndex = 7;
-            lbltxtCapacidad.Text = "Capacidad:";
             // 
             // lbltxtPrecio
             // 
@@ -198,25 +186,16 @@
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(73, 235);
+            lblPrecio.Location = new Point(76, 235);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(25, 20);
             lblPrecio.TabIndex = 19;
             lblPrecio.Text = "35";
             // 
-            // lblCapacidad
-            // 
-            lblCapacidad.AutoSize = true;
-            lblCapacidad.Location = new Point(103, 309);
-            lblCapacidad.Name = "lblCapacidad";
-            lblCapacidad.Size = new Size(17, 20);
-            lblCapacidad.TabIndex = 18;
-            lblCapacidad.Text = "4";
-            // 
             // lblTipo
             // 
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(62, 94);
+            lblTipo.Location = new Point(64, 94);
             lblTipo.Name = "lblTipo";
             lblTipo.Size = new Size(68, 20);
             lblTipo.TabIndex = 17;
@@ -225,7 +204,7 @@
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(77, 169);
+            lblEstado.Location = new Point(80, 169);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(128, 20);
             lblEstado.TabIndex = 16;
@@ -250,7 +229,6 @@
             Controls.Add(lblSombra);
             Controls.Add(lblBanosCerca);
             Controls.Add(lblPrecio);
-            Controls.Add(lblCapacidad);
             Controls.Add(lblTipo);
             Controls.Add(lblEstado);
             Controls.Add(lblId);
@@ -260,7 +238,6 @@
             Controls.Add(lbltxtSombra);
             Controls.Add(lbltxtBanosCerca);
             Controls.Add(lbltxtPrecio);
-            Controls.Add(lbltxtCapacidad);
             Controls.Add(lbltxtTipo);
             Controls.Add(lbltxtEstado);
             Controls.Add(lbltxtId);
@@ -275,7 +252,6 @@
         private Label lbltxtId;
         private Label lbltxtEstado;
         private Label lbltxtTipo;
-        private Label lbltxtCapacidad;
         private Label lbltxtPrecio;
         private Label lbltxtEntrada;
         private Label lbltxtZonaTranquila;
@@ -288,7 +264,6 @@
         private Label lblSombra;
         private Label lblBanosCerca;
         private Label lblPrecio;
-        private Label lblCapacidad;
         private Label lblTipo;
         private Label lblEstado;
         private Label lblId;

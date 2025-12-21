@@ -58,7 +58,6 @@ namespace Controles
             lblSombra.Text = "";
             lblEntrada.Text = "";
             lblZonaTranquila.Text = "";
-            lblCapacidad.Text = "";
         }
     }
 }

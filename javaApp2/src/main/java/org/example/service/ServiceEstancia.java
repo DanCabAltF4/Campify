@@ -186,6 +186,7 @@ public class ServiceEstancia implements IServiceEstancia {
         estancia.setNumeroAdultos(adultos);
         estancia.setNumeroNinos(ninos);
     }
+
 }
 
 

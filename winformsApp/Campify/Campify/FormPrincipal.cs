@@ -75,6 +75,10 @@ namespace Campify
                     flpEmpleados.Controls.Add(uc);
                 }
             }
+            catch (HttpRequestException ex)
+            {
+                
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -112,7 +116,7 @@ namespace Campify
         private async void ParcelaClick(object? sender, Parcela parcela)
         {
             ucParcelaDatos.MostrarDatos(parcela);
-
+            btnDatos.PerformClick();
             if (parcela.Estado != EnumEstados.RESERVADA)
             {
                 ucEstanciaActual1.Limpiar();
