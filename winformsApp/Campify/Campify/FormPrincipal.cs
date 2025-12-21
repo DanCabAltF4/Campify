@@ -28,7 +28,7 @@ namespace Campify
 
 
         // ----------------------------------
-        // METODOS DE LA CLASE
+        // METODOS DEL FORMULARIO
         // ----------------------------------
 
         /// <summary>
@@ -132,8 +132,6 @@ namespace Campify
             ucEmpleadoDatos1.MostrarDatos(empleado);
 
         }
-
-
 
         /// <summary>
         /// Cambia la vista de parcelas a modo mapa.
@@ -257,10 +255,14 @@ namespace Campify
             ucParcelaDatos.MostrarDatos(parcela);
         }
 
+        /// <summary>
+        /// Muestra mensaje de confirmación y elimina el empleado seleccionado mediante la API.
+        /// Comrpueba que hay un empleado seleccionado.
+        /// </summary>
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             Empleado empleado = ucEmpleadoDatos1.EmpleadoActual;
-            if(empleado == null)
+            if (empleado == null)
             {
                 MessageBox.Show("Debe seleccionar un empleado para eliminarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -272,6 +274,15 @@ namespace Campify
                 MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarEmpleados();
                 ucEmpleadoDatos1.Limpiar();
+            }
+        }
+
+        private void btnNuevoEmpleado_Click(object sender, EventArgs e)
+        {
+            var form = new FormNuevoEmpleado();
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                CargarEmpleados();
             }
         }
     }
