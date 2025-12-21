@@ -31,7 +31,7 @@
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formestanciaclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\campify\\formestanciaclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\campify\\formestanciaclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formestanciaclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -82,8 +82,7 @@
               "RelativeToolTip": "Repository\\DateOnlyJsonConverter .cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T00:06:21.067Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T00:06:21.067Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "Repository\\ApiCampify.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAACCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T21:57:57.93Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-20T21:57:57.93Z"
             },
             {
               "$type": "Document",
@@ -106,7 +104,7 @@
               "RelativeDocumentMoniker": "Campify\\FormNuevaEstancia.cs",
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs",
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAzwCYAAABgAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwCYAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-20T18:42:23.497Z",
               "EditorCaption": ""
@@ -121,8 +119,7 @@
               "RelativeToolTip": "Controles\\ucEstanciaActual.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAIA1wB4AAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T18:54:13.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-20T18:54:13.933Z"
             },
             {
               "$type": "Document",
@@ -147,8 +144,7 @@
               "RelativeToolTip": "Model\\Estancia.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAEwDwAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T18:53:14.11Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-20T18:53:14.11Z"
             },
             {
               "$type": "Document",
@@ -172,8 +168,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs [Dise\u00F1o]",
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T11:47:03.072Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-19T11:47:03.072Z"
             },
             {
               "$type": "Document",
@@ -184,8 +179,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormEstanciaClientes.cs [Dise\u00F1o]",
               "RelativeToolTip": "Campify\\FormEstanciaClientes.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T23:26:02.502Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-20T23:26:02.502Z"
             },
             {
               "$type": "Document",
@@ -196,8 +190,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs [Dise\u00F1o]",
               "RelativeToolTip": "Campify\\FormPrincipal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T11:46:17.962Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-19T11:46:17.962Z"
             },
             {
               "$type": "Document",
@@ -209,8 +202,7 @@
               "RelativeToolTip": "Model\\Cliente.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAYwCAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T21:54:16.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-20T21:54:16.528Z"
             },
             {
               "$type": "Document",
