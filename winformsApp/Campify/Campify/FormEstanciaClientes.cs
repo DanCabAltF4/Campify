@@ -58,6 +58,7 @@ namespace Forms
 
         //----------------------------------
         //FUNCIONES DE LOS BOTONES
+        // ----------------------------------
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {

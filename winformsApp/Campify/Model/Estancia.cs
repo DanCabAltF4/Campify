@@ -13,10 +13,10 @@ namespace Model
         public int Id { get; set; }
 
         [JsonPropertyName("checkIn")]
-        public DateTime CheckIn { get; set; }
+        public DateOnly CheckIn { get; set; }
 
         [JsonPropertyName("checkOut")]
-        public DateTime CheckOut { get; set; }
+        public DateOnly? CheckOut { get; set; }
 
         [JsonPropertyName("temporada")]
         public EnumTemporadas Temporada { get; set; }
@@ -49,7 +49,7 @@ namespace Model
         public List<Cliente> Clientes { get; set; }
 
         [JsonPropertyName("servicios")]
-        public List<Servicio> Servicios { get; set; }
+        public List<Servicio>? Servicios { get; set; }
 
 
         public Estancia()
@@ -58,7 +58,7 @@ namespace Model
             Servicios = new List<Servicio>();
         }
 
-        public Estancia(int id, DateTime checkIn, DateTime checkOut, EnumTemporadas temporada, int numeroAdultos, int numeroNinos, int numeroMascotas, double cargoEquipajeExtra, double cargoAdicional, double precioFinal, Parcela parcela, List<Cliente> clientes, List<Servicio> servicios)
+        public Estancia(int id, DateOnly checkIn, DateOnly? checkOut, EnumTemporadas temporada, int numeroAdultos, int numeroNinos, int numeroMascotas, double cargoEquipajeExtra, double cargoAdicional, double precioFinal, Parcela parcela, List<Cliente> clientes, List<Servicio> servicios)
         {
             Id = id;
             CheckIn = checkIn;

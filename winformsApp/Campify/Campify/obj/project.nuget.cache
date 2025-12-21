@@ -1,12 +1,18 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
   "dgSpecHash": "yuHq3ffxPLQ=",
-=======
-  "dgSpecHash": "qpjQ3fedVPU=",
->>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problema al leer el archivo de caché C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

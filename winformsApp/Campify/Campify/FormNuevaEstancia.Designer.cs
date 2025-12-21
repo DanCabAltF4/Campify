@@ -210,18 +210,18 @@
             lblAdultos.AutoSize = true;
             lblAdultos.Location = new Point(549, 43);
             lblAdultos.Name = "lblAdultos";
-            lblAdultos.Size = new Size(50, 20);
+            lblAdultos.Size = new Size(17, 20);
             lblAdultos.TabIndex = 24;
-            lblAdultos.Text = "label2";
+            lblAdultos.Text = "0";
             // 
             // lblNinos
             // 
             lblNinos.AutoSize = true;
             lblNinos.Location = new Point(535, 101);
             lblNinos.Name = "lblNinos";
-            lblNinos.Size = new Size(50, 20);
+            lblNinos.Size = new Size(17, 20);
             lblNinos.TabIndex = 25;
-            lblNinos.Text = "label3";
+            lblNinos.Text = "0";
             // 
             // lblPrecioFinal
             // 
@@ -237,6 +237,7 @@
             txbEquipajeAdicional.Name = "txbEquipajeAdicional";
             txbEquipajeAdicional.Size = new Size(73, 27);
             txbEquipajeAdicional.TabIndex = 28;
+            txbEquipajeAdicional.Text = "0";
             // 
             // txbCargoAdicional
             // 
@@ -244,6 +245,7 @@
             txbCargoAdicional.Name = "txbCargoAdicional";
             txbCargoAdicional.Size = new Size(73, 27);
             txbCargoAdicional.TabIndex = 29;
+            txbCargoAdicional.Text = "0";
             // 
             // dtpCheckin
             // 
@@ -266,6 +268,7 @@
             txbMascotas.Name = "txbMascotas";
             txbMascotas.Size = new Size(61, 27);
             txbMascotas.TabIndex = 32;
+            txbMascotas.Text = "0";
             // 
             // lblPrecioNoche
             // 

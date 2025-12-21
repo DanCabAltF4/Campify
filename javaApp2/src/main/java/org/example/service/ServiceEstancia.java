@@ -1,12 +1,15 @@
 package org.example.service;
 
 import jakarta.transaction.Transactional;
+import org.example.model.Cliente;
 import org.example.model.Estancia;
 import org.example.model.Parcela;
 import org.example.model.enums.EstadoParcela;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -39,8 +42,7 @@ public class ServiceEstancia implements IServiceEstancia {
             Parcela parcela = parcelaRepo.findById(estancia.getParcela().getId())
                     .orElseThrow(() -> new RuntimeException("Parcela no existe"));
             // Cambia el estado de la parcela a ocupada
-            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
-            parcelaRepo.save(parcela);
+            cambiarEstadoParcela(estancia, parcela);
             estancia.setParcela(parcela);
 
         }
@@ -57,6 +59,7 @@ public class ServiceEstancia implements IServiceEstancia {
             estancia.getClientes().clear();
             clientesManaged.forEach(estancia::addCliente);
         }
+        recalcularNumAdultosYNinos(estancia);
 
         // Servicios (gestión ManyToMany)
         if (estancia.getServicios() != null && !estancia.getServicios().isEmpty()) {
@@ -114,6 +117,7 @@ public class ServiceEstancia implements IServiceEstancia {
             );
             clientesManaged.forEach(buscada::addCliente);
         }
+        recalcularNumAdultosYNinos(buscada);
 
         // Servicios
         if (estancia.getServicios() != null) {
@@ -142,4 +146,57 @@ public class ServiceEstancia implements IServiceEstancia {
     public List<Estancia> findAll() {
         return repo.findAll();
     }
+
+    // -------------------
+    // METODOS PRIVADOS
+    // -------------------
+
+    // Cambia el estado de parcela a RESERVADO si hoy esta entre checkin y checkout
+    private void cambiarEstadoParcela(Estancia estancia, Parcela parcela) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate checkin = estancia.getCheckIn();
+        LocalDate checkout = estancia.getCheckOut();
+
+        boolean ocupada = false;
+        if(checkout !=null){
+            ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
+        }else{
+            ocupada = !hoy.isBefore(checkin);
+        }
+
+        if (ocupada) {
+            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
+            parcelaRepo.save(parcela);
+        }
+    }
+
+    //Calcula el numero de adultos y de niños en la fecha de checkin
+    private void recalcularNumAdultosYNinos(Estancia estancia) {
+        LocalDate checkin = estancia.getCheckIn();
+        int adultos=0;
+        int ninos=0;
+
+        if(estancia.getClientes()!=null){
+            for(Cliente c: estancia.getClientes()){
+                LocalDate fechaNac = c.getFechaNacimiento();
+                int edad= Period.between(fechaNac, checkin).getYears();
+                if (edad>=18) adultos++; else ninos++;
+            }
+        }
+        estancia.setNumeroAdultos(adultos);
+        estancia.setNumeroNinos(ninos);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

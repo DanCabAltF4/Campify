@@ -35,16 +35,22 @@ namespace Forms
 
 
             dtpCheckin.Value = DateTime.Today;
+            dtpCheckout.ShowCheckBox = true;        // Muestra el checkbox para activar/desactivar el checkout
+            dtpCheckout.Checked = false;            // Por defecto, el checkout no está activado
             dtpCheckout.Value = DateTime.Today;
+
             cbTemporada.DataSource = Enum.GetValues(typeof(Model.EnumTemporadas));
             cbTemporada.SelectedItem = Model.EnumTemporadas.ALTA;
+            txbMascotas.Text = "0";
+            txbEquipajeAdicional.Text = "0";
+            txbCargoAdicional.Text = "0";
 
             CargarDatosParcela();
         }
 
 
         // ----------------------------------
-        // METODOS PRINCIPALES
+        // METODOS DE LA CLASE
         // ----------------------------------
 
         private void CargarDatosParcela()
@@ -61,15 +67,16 @@ namespace Forms
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
             // Asignar los valores del formulario a la estancia
-            _estancia.CheckIn = dtpCheckin.Value.Date;
-            _estancia.CheckOut = dtpCheckout.Value.Date;
+            _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
+            _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
             _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
-            _estancia.NumeroAdultos = lblAdultos.Text != "" ? int.Parse(lblAdultos.Text) : 0;
-            _estancia.NumeroNinos = lblNinos.Text != "" ? int.Parse(lblNinos.Text) : 0;
+            _estancia.NumeroAdultos = 0;
+            _estancia.NumeroNinos = 0;
             _estancia.NumeroMascotas = int.Parse(txbMascotas.Text);
             _estancia.CargoEquipajeExtra = double.Parse(txbEquipajeAdicional.Text);
             _estancia.CargoAdicional = double.Parse(txbCargoAdicional.Text);
             _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
+
 
             // Guardar la estancia mediante la API
             EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
@@ -84,7 +91,7 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Clientes = form.ListaFinalClientes;
-                lblAdultos.Text = _estancia.Clientes.Count.ToString();
+                //lblAdultos.Text = _estancia.Clientes.Count.ToString();
             }
         }
 
@@ -94,7 +101,7 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;
-                lblNinos.Text = _estancia.Servicios.Count.ToString();
+                //lblNinos.Text = _estancia.Servicios.Count.ToString();
             }
             
         }

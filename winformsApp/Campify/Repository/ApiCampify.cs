@@ -13,7 +13,9 @@ namespace Repository
         public ApiCampify(string http)
         {
             _http = new HttpClient { BaseAddress = new Uri(http) };
-            _jsonOptions.Converters.Add(new JsonStringEnumConverter());     //Evita errores al serializar enums
+            _jsonOptions.Converters.Add(new JsonStringEnumConverter());         //Evita errores al serializar enums
+            _jsonOptions.Converters.Add(new DateOnlyJsonConverter());           //Evita errores al serializar DateOnly
+            _jsonOptions.Converters.Add(new NullableDateOnlyJsonConverter());   //Evita errores al serializar DateOnly? (checkout)
         }
 
         /// <summary>
@@ -33,19 +35,36 @@ namespace Repository
             var objeto = await _http.GetFromJsonAsync<T>($"{ruta}/{id}", _jsonOptions);
             return objeto;
         }
-
+        
         /// <summary>
         /// Metodo para crear un nuevo objeto y mandarle a la BD mediante la API de Spring Boot
         /// </summary>
         public async Task<T?> Create<T>(string ruta, T objeto)
         {
+            //var response = await _http.PostAsJsonAsync(ruta, objeto, _jsonOptions);
+            //response.EnsureSuccessStatusCode();
+
+            //var json = await response.Content.ReadAsStringAsync();
+            //System.Diagnostics.Debug.WriteLine(json);
+
+            //return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+
+            // 1) ver JSON que estás enviando
+            var jsonRequest = JsonSerializer.Serialize(objeto, _jsonOptions);
+            System.Diagnostics.Debug.WriteLine("REQUEST JSON: " + jsonRequest);
+
+            // 2) hacer POST
             var response = await _http.PostAsJsonAsync(ruta, objeto, _jsonOptions);
+
+            // 3) leer SIEMPRE el body (aunque sea 400)
+            var body = await response.Content.ReadAsStringAsync();
+            System.Diagnostics.Debug.WriteLine("STATUS: " + (int)response.StatusCode);
+            System.Diagnostics.Debug.WriteLine("RESPONSE BODY: " + body);
+
+            // 4) ahora sí, si falla que falle
             response.EnsureSuccessStatusCode();
 
-            var json = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.WriteLine(json);
-
-            return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+            return JsonSerializer.Deserialize<T>(body, _jsonOptions);
         }
 
         /// <summary>
