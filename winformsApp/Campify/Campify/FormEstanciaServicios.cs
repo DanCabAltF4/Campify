@@ -14,7 +14,9 @@ namespace Forms
 {
     public partial class FormEstanciaServicios : Form
     {
+        // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
+        // ----------------------------------
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
         private BindingList<Servicio> listaServicios = new();
         private BindingList<Servicio> listaServiciosEstancia = new();
@@ -22,7 +24,9 @@ namespace Forms
         public List<Servicio> ListaFinalServicios { get; private set; } = new();
 
 
+        // ----------------------------------
         // CONSTRUCTOR Y LOAD
+        // ----------------------------------
 
         public FormEstanciaServicios(List<Servicio> serviciosEstancia)
         {
@@ -54,9 +58,15 @@ namespace Forms
             dgvServiciosEstancia.DataSource = listaServiciosEstancia;
         }
 
+
+
         // ----------------------------------
         // FUNCIONES DE LOS BOTONES
+        // ----------------------------------
 
+        /// <summary>
+        /// Guarda la lista de servicios seleccionados y cierra el formulario
+        /// </summary>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             ListaFinalServicios = listaServiciosEstancia.ToList();

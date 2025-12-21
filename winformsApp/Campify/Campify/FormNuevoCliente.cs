@@ -31,11 +31,14 @@ namespace Forms
         // FUNCIONES DE LOS BOTONES
         // ----------------------------------
 
+        /// <summary>
+        /// Guardar el nuevo cliente creado y lo devuelve al formulario de origen
+        /// </summary>
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                //Validaciones para los campos obligatorios antes de guardar el nuevo cliente
+                //Validaciones evitar campos vacíos antes de enviar a la API
                 if (string.IsNullOrWhiteSpace(txbNombre.Text) ||
                     string.IsNullOrWhiteSpace(txbApellidos.Text) ||
                     string.IsNullOrWhiteSpace(txbDni.Text) ||
@@ -59,7 +62,7 @@ namespace Forms
                     Email = txbEmail.Text,
                     Telefono = txbTelefono.Text
                 };
-                // Guardar el nuevo cliente en la base de datos mediante la API y devolverlo al formulario principal
+                // Guardar el nuevo cliente en la base de datos mediante la API y lo devuevlve al formulario de origen
                 var resultado = await _api.Create<Cliente>("api/clientes", nuevo);
                 ClienteNuevo = resultado;
                 this.DialogResult = DialogResult.OK;
@@ -72,6 +75,9 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Cerrar el formulario sin guardar ningún cliente
+        /// </summary>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

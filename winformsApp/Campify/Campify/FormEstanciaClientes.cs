@@ -14,7 +14,10 @@ namespace Forms
 {
     public partial class FormEstanciaClientes : Form
     {
+        // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
+        // ----------------------------------
+
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
 
         private BindingList<Cliente> listaClientes = new();
@@ -23,7 +26,9 @@ namespace Forms
         public List<Cliente> ListaFinalClientes { get; private set; } = new();
 
 
+        // ----------------------------------
         // CONSTRUCTOR Y LOAD
+        // ----------------------------------
 
         public FormEstanciaClientes(List<Cliente> clientesEstancia)
         {
@@ -60,6 +65,9 @@ namespace Forms
         //FUNCIONES DE LOS BOTONES
         // ----------------------------------
 
+        /// <summary>
+        /// Guarda la lista de clientes asignados a la estancia y cierra el formulario
+        /// </summary>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             ListaFinalClientes = listaClientesEstancia.ToList();
@@ -67,6 +75,9 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Abre el formulario para crear un nuevo cliente
+        /// </summary>
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             var form = new FormNuevoCliente();
@@ -87,6 +98,10 @@ namespace Forms
             listaClientes.Remove(clienteSeleccionado);
             listaClientesEstancia.Add(clienteSeleccionado);
         }
+
+        /// <summary>
+        /// Mueve cliente de la lista de la estancia a la lista general con doble click
+        /// </summary>
 
         private void dgvClientesEstancia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

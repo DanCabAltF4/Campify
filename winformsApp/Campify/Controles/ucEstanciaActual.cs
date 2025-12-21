@@ -19,6 +19,9 @@ namespace Controles
         }
 
 
+        /// <summary>
+        /// Rellena el control con los datos de la estancia proporcionada.
+        /// </summary>
         public void SetData(Estancia estancia)
         {
             if (estancia == null)
@@ -39,6 +42,9 @@ namespace Controles
             lblPrecioFinal.Text = $"{estancia.PrecioFinal} €";
         }
 
+        /// <summary>
+        /// Limpia los campos en el control.
+        /// </summary>
         public void Limpiar()
         {
             lblParcela.Text = "";

@@ -8,6 +8,10 @@ namespace Campify
     public partial class FormPrincipal : Form
     {
 
+        // ----------------------------------
+        // DECLARACION DE VARIABLES Y OBJETOS
+        // ----------------------------------
+
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
         public FormPrincipal()
         {
@@ -22,9 +26,12 @@ namespace Campify
 
 
         // ----------------------------------
-        // METODOS PRINCIPALES
+        // METODOS DE LA CLASE
+        // ----------------------------------
 
-
+        /// <summary>
+        /// Carga las parcelas desde la API en los user controls y los añade al flow layout panel.
+        /// </summary>
         private async void CargarParcelas()
         {
             try
@@ -53,25 +60,37 @@ namespace Campify
 
         // ----------------------------------
         // FUNCIONES DE LOS BOTONES
+        // ----------------------------------
 
+        /// <summary>
+        /// Muestra los datos de la parcela seleccionada en el user control de datos de parcela.
+        /// </summary>
         private void ParcelaDobleClick(object? sender, Parcela e)
         {
             ucParcelaDatos.MostrarDatos(e);
         }
 
+        /// <summary>
+        /// Cambia la vista de parcelas a modo mapa.
+        /// </summary>
         private void btMapa_Click(object sender, EventArgs e)
         {
             flowLayoutPanel1.Visible = false;
             pbMapa.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia la vista de parcelas a modo lista.
+        /// </summary>
         private void btLista_Click(object sender, EventArgs e)
         {
             pbMapa.Visible = false;
             flowLayoutPanel1.Visible = true;
         }
 
-
+        /// <summary>
+        /// Abre el formulario para crear una nueva estancia (reserva) en la parcela seleccionada.
+        /// </summary>
         private void btnReservar_Click(object sender, EventArgs e)
         {
             Parcela parcelaSeleccionada = ucParcelaDatos.ParcelaActual;
@@ -93,6 +112,9 @@ namespace Campify
             }
         }
 
+        /// <summary>
+        /// Cambia el panel principal a la vista de servicios.
+        /// </summary>
         private void btnServicios_Click(object sender, EventArgs e)
         {
             pnlEmpleados.Visible = false;
@@ -100,6 +122,9 @@ namespace Campify
             pnlServicios.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia el panel principal a la vista de parcelas.
+        /// </summary>
         private void btnParcelas_Click(object sender, EventArgs e)
         {
             pnlEmpleados.Visible = false;
@@ -107,6 +132,9 @@ namespace Campify
             pnlParcelas.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia el panel principal a la vista de empleados.
+        /// </summary>
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
             pnlServicios.Visible = false;
@@ -114,6 +142,9 @@ namespace Campify
             pnlEmpleados.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia el user control visible a la vista de datos de parcela.
+        /// </summary>
         private void btnDatos_Click(object sender, EventArgs e)
         {
             ucEstanciaActual1.Visible = false;
@@ -121,6 +152,9 @@ namespace Campify
             ucParcelaDatos.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia el user control visible a la vista de estancia actual.
+        /// </summary>
         private void btnEstanciaActual_Click(object sender, EventArgs e)
         {
             ucParcelaDatos.Visible = false;
@@ -128,6 +162,9 @@ namespace Campify
             ucEstanciaActual1.Visible = true;
         }
 
+        /// <summary>
+        /// Cambia el user control visible a la vista de historial de estancias.
+        /// </summary>
         private void btnHistorial_Click(object sender, EventArgs e)
         {
             ucParcelaDatos.Visible = false;
@@ -136,6 +173,9 @@ namespace Campify
 
         }
 
+        /// <summary>
+        /// Altera el estado de la parcela seleccionada entre MANTENIMIENTO y LIBRE.
+        /// </summary>
         private async void btnMantenimiento_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;

@@ -35,7 +35,7 @@ namespace Forms
 
 
             dtpCheckin.Value = DateTime.Today;
-            dtpCheckout.ShowCheckBox = true;        // Muestra el checkbox para activar/desactivar el checkout
+            dtpCheckout.ShowCheckBox = true;        // Muestra el checkbox para activar/desactivar el dtpCheckout
             dtpCheckout.Checked = false;            // Por defecto, el checkout no está activado
             dtpCheckout.Value = DateTime.Today;
 
@@ -64,6 +64,9 @@ namespace Forms
         // FUNCIONES DE LOS BOTONES
         // ----------------------------------
 
+        /// <summary>
+        /// Guarda la nueva estancia creada mediante la API
+        /// </summary>
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
             // Asignar los valores del formulario a la estancia
@@ -77,7 +80,6 @@ namespace Forms
             _estancia.CargoAdicional = double.Parse(txbCargoAdicional.Text);
             _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
-
             // Guardar la estancia mediante la API
             EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
             MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,6 +87,9 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Abre el formulario para seleccionar los clientes de la estancia
+        /// </summary>
         private void btnClientes_Click(object sender, EventArgs e)
         {
             var form = new FormEstanciaClientes(_estancia.Clientes);
@@ -95,6 +100,9 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Abre el formulario para seleccionar los servicios de la estancia
+        /// </summary>
         private void btnServicios_Click(object sender, EventArgs e)
         {
             var form = new FormEstanciaServicios(_estancia.Servicios);
