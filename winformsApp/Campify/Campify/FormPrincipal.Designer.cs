@@ -51,6 +51,9 @@
             pnlParcelas = new Panel();
             btnMantenimiento = new Button();
             pnlEmpleados = new Panel();
+            btnEliminar = new Button();
+            btnEditar = new Button();
+            btnNuevo = new Button();
             ucEmpleadoDatos1 = new Controles.ucEmpleadoDatos();
             flpEmpleados = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
@@ -332,6 +335,9 @@
             // 
             // pnlEmpleados
             // 
+            pnlEmpleados.Controls.Add(btnEliminar);
+            pnlEmpleados.Controls.Add(btnEditar);
+            pnlEmpleados.Controls.Add(btnNuevo);
             pnlEmpleados.Controls.Add(ucEmpleadoDatos1);
             pnlEmpleados.Controls.Add(flpEmpleados);
             pnlEmpleados.Location = new Point(1, 115);
@@ -340,12 +346,58 @@
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
             // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.Peru;
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Segoe UI", 12F);
+            btnEliminar.ForeColor = Color.Moccasin;
+            btnEliminar.Location = new Point(773, 437);
+            btnEliminar.Margin = new Padding(0);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(140, 45);
+            btnEliminar.TabIndex = 4;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnEditar
+            // 
+            btnEditar.BackColor = Color.Peru;
+            btnEditar.FlatAppearance.BorderSize = 0;
+            btnEditar.FlatStyle = FlatStyle.Flat;
+            btnEditar.Font = new Font("Segoe UI", 12F);
+            btnEditar.ForeColor = Color.Moccasin;
+            btnEditar.Location = new Point(628, 437);
+            btnEditar.Margin = new Padding(0);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(145, 45);
+            btnEditar.TabIndex = 3;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = false;
+            // 
+            // btnNuevo
+            // 
+            btnNuevo.BackColor = Color.Peru;
+            btnNuevo.FlatAppearance.BorderSize = 0;
+            btnNuevo.FlatStyle = FlatStyle.Flat;
+            btnNuevo.Font = new Font("Segoe UI", 12F);
+            btnNuevo.ForeColor = Color.Moccasin;
+            btnNuevo.Location = new Point(488, 437);
+            btnNuevo.Margin = new Padding(0);
+            btnNuevo.Name = "btnNuevo";
+            btnNuevo.Size = new Size(140, 45);
+            btnNuevo.TabIndex = 2;
+            btnNuevo.Text = "Nuevo";
+            btnNuevo.UseVisualStyleBackColor = false;
+            // 
             // ucEmpleadoDatos1
             // 
             ucEmpleadoDatos1.Location = new Point(488, 0);
             ucEmpleadoDatos1.Margin = new Padding(0);
             ucEmpleadoDatos1.Name = "ucEmpleadoDatos1";
-            ucEmpleadoDatos1.Size = new Size(425, 483);
+            ucEmpleadoDatos1.Size = new Size(425, 437);
             ucEmpleadoDatos1.TabIndex = 1;
             // 
             // flpEmpleados
@@ -410,5 +462,8 @@
         private Button btnMantenimiento;
         private FlowLayoutPanel flpEmpleados;
         private Controles.ucEmpleadoDatos ucEmpleadoDatos1;
+        private Button btnEliminar;
+        private Button btnEditar;
+        private Button btnNuevo;
     }
 }

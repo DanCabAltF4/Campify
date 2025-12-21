@@ -74,7 +74,7 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -120,7 +120,7 @@ namespace Campify
                 return;
             }
             var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-            var estanciaActual = estancias.FirstOrDefault( es => es.Parcela != null && es.Parcela.Id == parcela.Id);
+            var estanciaActual = estancias.FirstOrDefault(es => es.Parcela != null && es.Parcela.Id == parcela.Id);
             ucEstanciaActual1.SetData(estanciaActual);
         }
 
@@ -170,7 +170,7 @@ namespace Campify
                 return;
             }
             var form = new FormNuevaEstancia(parcelaSeleccionada);
-            if(form.ShowDialog(this) == DialogResult.OK)
+            if (form.ShowDialog(this) == DialogResult.OK)
             {
                 ucEstanciaActual1.SetData(form.EstanciaCreada);
                 CargarParcelas();
@@ -248,13 +248,30 @@ namespace Campify
             {
                 parcela.Estado = EnumEstados.LIBRE;
             }
-            else if( parcela.Estado == EnumEstados.LIBRE)
+            else if (parcela.Estado == EnumEstados.LIBRE)
             {
                 parcela.Estado = EnumEstados.MANTENIMIENTO;
             }
             await _api.Update("api/parcelas", parcela.Id, parcela);
             CargarParcelas();
             ucParcelaDatos.MostrarDatos(parcela);
+        }
+
+        private async void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Empleado empleado = ucEmpleadoDatos1.EmpleadoActual;
+            if(empleado == null)
+            {
+                MessageBox.Show("Debe seleccionar un empleado para eliminarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var result = MessageBox.Show("Se eliminará al empleado.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                await _api.Delete<Empleado>("api/empleados", ucEmpleadoDatos1.EmpleadoActual.Id);
+                MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarEmpleados();
+            }
         }
     }
 }

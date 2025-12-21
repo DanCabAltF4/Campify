@@ -42,9 +42,6 @@
             lblTelefono = new Label();
             lblActivo = new Label();
             lblId = new Label();
-            btnNuevo = new Button();
-            btnEditar = new Button();
-            btnEliminar = new Button();
             SuspendLayout();
             // 
             // lbltxtId
@@ -180,58 +177,10 @@
             lblId.TabIndex = 13;
             lblId.Text = "label7";
             // 
-            // btnNuevo
-            // 
-            btnNuevo.BackColor = Color.Peru;
-            btnNuevo.FlatAppearance.BorderSize = 0;
-            btnNuevo.FlatStyle = FlatStyle.Flat;
-            btnNuevo.Font = new Font("Segoe UI", 12F);
-            btnNuevo.ForeColor = Color.Moccasin;
-            btnNuevo.Location = new Point(0, 438);
-            btnNuevo.Margin = new Padding(0);
-            btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(140, 45);
-            btnNuevo.TabIndex = 14;
-            btnNuevo.Text = "Nuevo";
-            btnNuevo.UseVisualStyleBackColor = false;
-            // 
-            // btnEditar
-            // 
-            btnEditar.BackColor = Color.Peru;
-            btnEditar.FlatAppearance.BorderSize = 0;
-            btnEditar.FlatStyle = FlatStyle.Flat;
-            btnEditar.Font = new Font("Segoe UI", 12F);
-            btnEditar.ForeColor = Color.Moccasin;
-            btnEditar.Location = new Point(140, 438);
-            btnEditar.Margin = new Padding(0);
-            btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(145, 45);
-            btnEditar.TabIndex = 15;
-            btnEditar.Text = "Editar";
-            btnEditar.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.BackColor = Color.Peru;
-            btnEliminar.FlatAppearance.BorderSize = 0;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Font = new Font("Segoe UI", 12F);
-            btnEliminar.ForeColor = Color.Moccasin;
-            btnEliminar.Location = new Point(285, 438);
-            btnEliminar.Margin = new Padding(0);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(140, 45);
-            btnEliminar.TabIndex = 16;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
-            // 
             // ucEmpleadoDatos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnEliminar);
-            Controls.Add(btnEditar);
-            Controls.Add(btnNuevo);
             Controls.Add(lblId);
             Controls.Add(lblActivo);
             Controls.Add(lblTelefono);
@@ -247,7 +196,7 @@
             Controls.Add(lbltxtNombre);
             Controls.Add(lbltxtId);
             Name = "ucEmpleadoDatos";
-            Size = new Size(425, 483);
+            Size = new Size(425, 438);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -268,8 +217,5 @@
         private Label lblTelefono;
         private Label lblActivo;
         private Label lblId;
-        private Button btnNuevo;
-        private Button btnEditar;
-        private Button btnEliminar;
     }
 }
