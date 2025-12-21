@@ -15,6 +15,7 @@ namespace Controles
     {
 
         public Parcela ParcelaActual { get; private set; }
+
         public ucParcelaDatos()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Controles
         }
 
         /// <summary>
-        /// Muestra los datos de la parcela en el control de usuario.
+        /// Muestra los datos de la parcela pasada como parametro en el control de usuario.
         /// </summary>
         public void MostrarDatos(Parcela p)
         {
@@ -57,6 +58,7 @@ namespace Controles
             lblSombra.Text = "";
             lblEntrada.Text = "";
             lblZonaTranquila.Text = "";
+            lblCapacidad.Text = "";
         }
     }
 }

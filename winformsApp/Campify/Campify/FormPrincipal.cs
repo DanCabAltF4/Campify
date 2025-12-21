@@ -68,13 +68,13 @@ namespace Campify
                 {
                     ucEmpleadosLista uc = new ucEmpleadosLista();
                     uc.SetData(emp);
-                    //uc.EmpleadoClick += EmpleadoClick;
+                    uc.EmpleadoClick += EmpleadoClick;
                     flpEmpleados.Controls.Add(uc);
                 }
             }
             catch (HttpRequestException ex)
             {
-                MostrarErrorConectarApi();
+                
             }
             catch (Exception ex)
             {
@@ -91,8 +91,8 @@ namespace Campify
             var result = MessageBox.Show("No se pudo conectar a la API.\n¿Desea reintentar?", "Error de conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             if (result == DialogResult.Retry)
             {
-                Application.Restart();
-                Environment.Exit(0);
+                CargarParcelas();
+                CargarEmpleados();
             }
             else
             {
@@ -123,6 +123,17 @@ namespace Campify
             var estanciaActual = estancias.FirstOrDefault( es => es.Parcela != null && es.Parcela.Id == parcela.Id);
             ucEstanciaActual1.SetData(estanciaActual);
         }
+
+        /// <summary>
+        /// Muestra los datos del empleado seleccionado de la lista en el user control de datos de empleado.
+        /// </summary>
+        private void EmpleadoClick(object? sender, Empleado empleado)
+        {
+            ucEmpleadoDatos1.MostrarDatos(empleado);
+
+        }
+
+
 
         /// <summary>
         /// Cambia la vista de parcelas a modo mapa.

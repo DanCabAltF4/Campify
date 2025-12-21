@@ -16,6 +16,7 @@ namespace Controles
         public ucEstanciaActual()
         {
             InitializeComponent();
+            Limpiar();
         }
 
 

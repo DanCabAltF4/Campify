@@ -55,99 +55,110 @@
             // lbltxtPrecioNoche
             // 
             lbltxtPrecioNoche.AutoSize = true;
+            lbltxtPrecioNoche.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtPrecioNoche.Location = new Point(21, 300);
             lbltxtPrecioNoche.Name = "lbltxtPrecioNoche";
-            lbltxtPrecioNoche.Size = new Size(97, 20);
+            lbltxtPrecioNoche.Size = new Size(102, 20);
             lbltxtPrecioNoche.TabIndex = 44;
             lbltxtPrecioNoche.Text = "Precio noche:";
             // 
             // lbltxtNinos
             // 
             lbltxtNinos.AutoSize = true;
+            lbltxtNinos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtNinos.Location = new Point(215, 88);
             lbltxtNinos.Name = "lbltxtNinos";
-            lbltxtNinos.Size = new Size(71, 20);
+            lbltxtNinos.Size = new Size(77, 20);
             lbltxtNinos.TabIndex = 43;
             lbltxtNinos.Text = "Nº Niños:";
             // 
             // lbltxtEquipajeAdicional
             // 
             lbltxtEquipajeAdicional.AutoSize = true;
+            lbltxtEquipajeAdicional.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtEquipajeAdicional.Location = new Point(217, 230);
             lbltxtEquipajeAdicional.Name = "lbltxtEquipajeAdicional";
-            lbltxtEquipajeAdicional.Size = new Size(135, 20);
+            lbltxtEquipajeAdicional.Size = new Size(138, 20);
             lbltxtEquipajeAdicional.TabIndex = 42;
             lbltxtEquipajeAdicional.Text = "Equipaje adicional:";
             // 
             // lbltxtCargoAdicional
             // 
             lbltxtCargoAdicional.AutoSize = true;
+            lbltxtCargoAdicional.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtCargoAdicional.Location = new Point(217, 300);
             lbltxtCargoAdicional.Name = "lbltxtCargoAdicional";
-            lbltxtCargoAdicional.Size = new Size(117, 20);
+            lbltxtCargoAdicional.Size = new Size(120, 20);
             lbltxtCargoAdicional.TabIndex = 41;
             lbltxtCargoAdicional.Text = "Cargo adicional:";
             // 
             // lbltxtAdultos
             // 
             lbltxtAdultos.AutoSize = true;
+            lbltxtAdultos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtAdultos.Location = new Point(217, 23);
             lbltxtAdultos.Name = "lbltxtAdultos";
-            lbltxtAdultos.Size = new Size(84, 20);
+            lbltxtAdultos.Size = new Size(91, 20);
             lbltxtAdultos.TabIndex = 40;
             lbltxtAdultos.Text = "Nº Adultos:";
             // 
             // lbltxtCheckin
             // 
             lbltxtCheckin.AutoSize = true;
+            lbltxtCheckin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtCheckin.Location = new Point(19, 88);
             lbltxtCheckin.Name = "lbltxtCheckin";
-            lbltxtCheckin.Size = new Size(60, 20);
+            lbltxtCheckin.Size = new Size(64, 20);
             lbltxtCheckin.TabIndex = 39;
             lbltxtCheckin.Text = "Chek in:";
             // 
             // lbltxtPrecioFinal
             // 
             lbltxtPrecioFinal.AutoSize = true;
+            lbltxtPrecioFinal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtPrecioFinal.Location = new Point(124, 349);
             lbltxtPrecioFinal.Name = "lbltxtPrecioFinal";
-            lbltxtPrecioFinal.Size = new Size(86, 20);
+            lbltxtPrecioFinal.Size = new Size(91, 20);
             lbltxtPrecioFinal.TabIndex = 38;
             lbltxtPrecioFinal.Text = "Precio final:";
             // 
             // lbltxtTemporada
             // 
             lbltxtTemporada.AutoSize = true;
+            lbltxtTemporada.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtTemporada.Location = new Point(21, 230);
             lbltxtTemporada.Name = "lbltxtTemporada";
-            lbltxtTemporada.Size = new Size(88, 20);
+            lbltxtTemporada.Size = new Size(92, 20);
             lbltxtTemporada.TabIndex = 37;
             lbltxtTemporada.Text = "Temporada:";
             // 
             // lbltxtMascotas
             // 
             lbltxtMascotas.AutoSize = true;
+            lbltxtMascotas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtMascotas.Location = new Point(217, 157);
             lbltxtMascotas.Name = "lbltxtMascotas";
-            lbltxtMascotas.Size = new Size(95, 20);
+            lbltxtMascotas.Size = new Size(102, 20);
             lbltxtMascotas.TabIndex = 36;
             lbltxtMascotas.Text = "Nº Mascotas:";
             // 
             // lbltxtCheckout
             // 
             lbltxtCheckout.AutoSize = true;
+            lbltxtCheckout.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtCheckout.Location = new Point(21, 157);
             lbltxtCheckout.Name = "lbltxtCheckout";
-            lbltxtCheckout.Size = new Size(77, 20);
+            lbltxtCheckout.Size = new Size(82, 20);
             lbltxtCheckout.TabIndex = 35;
             lbltxtCheckout.Text = "Check out:";
             // 
             // lbltxtParcela
             // 
             lbltxtParcela.AutoSize = true;
+            lbltxtParcela.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtParcela.Location = new Point(19, 23);
             lbltxtParcela.Name = "lbltxtParcela";
-            lbltxtParcela.Size = new Size(59, 20);
+            lbltxtParcela.Size = new Size(63, 20);
             lbltxtParcela.TabIndex = 34;
             lbltxtParcela.Text = "Parcela:";
             // 

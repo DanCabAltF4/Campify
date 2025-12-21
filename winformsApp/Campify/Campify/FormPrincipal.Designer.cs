@@ -51,6 +51,7 @@
             pnlParcelas = new Panel();
             btnMantenimiento = new Button();
             pnlEmpleados = new Panel();
+            ucEmpleadoDatos1 = new Controles.ucEmpleadoDatos();
             flpEmpleados = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
@@ -331,12 +332,21 @@
             // 
             // pnlEmpleados
             // 
+            pnlEmpleados.Controls.Add(ucEmpleadoDatos1);
             pnlEmpleados.Controls.Add(flpEmpleados);
             pnlEmpleados.Location = new Point(1, 115);
             pnlEmpleados.Name = "pnlEmpleados";
             pnlEmpleados.Size = new Size(913, 483);
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
+            // 
+            // ucEmpleadoDatos1
+            // 
+            ucEmpleadoDatos1.Location = new Point(488, 0);
+            ucEmpleadoDatos1.Margin = new Padding(0);
+            ucEmpleadoDatos1.Name = "ucEmpleadoDatos1";
+            ucEmpleadoDatos1.Size = new Size(425, 483);
+            ucEmpleadoDatos1.TabIndex = 1;
             // 
             // flpEmpleados
             // 
@@ -399,5 +409,6 @@
         private Controles.ucHistorial ucHistorial1;
         private Button btnMantenimiento;
         private FlowLayoutPanel flpEmpleados;
+        private Controles.ucEmpleadoDatos ucEmpleadoDatos1;
     }
 }
