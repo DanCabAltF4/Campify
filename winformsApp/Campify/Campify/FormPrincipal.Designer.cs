@@ -376,6 +376,7 @@
             btnEditarEmpleado.TabIndex = 3;
             btnEditarEmpleado.Text = "Editar";
             btnEditarEmpleado.UseVisualStyleBackColor = false;
+            btnEditarEmpleado.Click += btnEditarEmpleado_Click;
             // 
             // btnNuevoEmpleado
             // 

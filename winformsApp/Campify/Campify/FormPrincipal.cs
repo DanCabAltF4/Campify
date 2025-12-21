@@ -277,12 +277,37 @@ namespace Campify
             }
         }
 
+        /// <summary>
+        /// Abre el formulario de datos de empleado para crear uno nuevo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNuevoEmpleado_Click(object sender, EventArgs e)
         {
-            var form = new FormNuevoEmpleado();
+            var form = new FormDatosEmpleado(null);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 CargarEmpleados();
+            }
+        }
+
+        /// <summary>
+        /// Abre el formulario de datos de empleado para editar el empleado seleccionado.
+        /// Pasa el empleado seleccionado al formulario.
+        /// </summary>
+        private void btnEditarEmpleado_Click(object sender, EventArgs e)
+        {
+            var empleadoSeleccionado = ucEmpleadoDatos1.EmpleadoActual;
+            if(empleadoSeleccionado == null)
+            {
+                MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var form = new FormDatosEmpleado(empleadoSeleccionado);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                // Recargar la lista de empleados para reflejar los cambios
+                // y actualizar el user control de datos de empleado
             }
         }
     }

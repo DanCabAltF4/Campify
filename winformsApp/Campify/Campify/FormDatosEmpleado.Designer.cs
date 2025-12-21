@@ -1,6 +1,6 @@
 ﻿namespace Campify
 {
-    partial class FormNuevoEmpleado
+    partial class FormDatosEmpleado
     {
         /// <summary>
         ///  Required designer variable.

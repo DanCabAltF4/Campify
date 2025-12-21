@@ -50,7 +50,7 @@ namespace Forms
 
 
         // ----------------------------------
-        // METODOS DE LA CLASE
+        // METODOS DEL FORMULARIO
         // ----------------------------------
 
         private void CargarDatosParcela()
