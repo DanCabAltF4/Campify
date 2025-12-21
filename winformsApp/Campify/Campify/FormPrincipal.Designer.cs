@@ -56,6 +56,8 @@
             btnNuevoEmpleado = new Button();
             ucEmpleadoDatos1 = new Controles.ucEmpleadoDatos();
             flpEmpleados = new FlowLayoutPanel();
+            btnClientesEstancia = new Button();
+            btnServiciosEstancia = new Button();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
@@ -303,15 +305,17 @@
             // 
             // pnlParcelas
             // 
-            pnlParcelas.Controls.Add(btnMantenimiento);
             pnlParcelas.Controls.Add(btMapa);
             pnlParcelas.Controls.Add(btLista);
             pnlParcelas.Controls.Add(panelMapaLista);
             pnlParcelas.Controls.Add(btnDatos);
             pnlParcelas.Controls.Add(btnEstanciaActual);
             pnlParcelas.Controls.Add(btnHistorial);
-            pnlParcelas.Controls.Add(btnReservar);
             pnlParcelas.Controls.Add(panelDatos);
+            pnlParcelas.Controls.Add(btnReservar);
+            pnlParcelas.Controls.Add(btnMantenimiento);
+            pnlParcelas.Controls.Add(btnClientesEstancia);
+            pnlParcelas.Controls.Add(btnServiciosEstancia);
             pnlParcelas.Location = new Point(0, 117);
             pnlParcelas.Name = "pnlParcelas";
             pnlParcelas.Size = new Size(913, 480);
@@ -410,15 +414,45 @@
             flpEmpleados.Size = new Size(488, 481);
             flpEmpleados.TabIndex = 0;
             // 
+            // btnClientesEstancia
+            // 
+            btnClientesEstancia.BackColor = Color.Peru;
+            btnClientesEstancia.FlatAppearance.BorderSize = 0;
+            btnClientesEstancia.FlatStyle = FlatStyle.Flat;
+            btnClientesEstancia.Font = new Font("Segoe UI", 12F);
+            btnClientesEstancia.ForeColor = Color.FromArgb(255, 222, 171);
+            btnClientesEstancia.Location = new Point(489, 433);
+            btnClientesEstancia.Margin = new Padding(0);
+            btnClientesEstancia.Name = "btnClientesEstancia";
+            btnClientesEstancia.Size = new Size(226, 45);
+            btnClientesEstancia.TabIndex = 21;
+            btnClientesEstancia.Text = "Clientes";
+            btnClientesEstancia.UseVisualStyleBackColor = false;
+            // 
+            // btnServiciosEstancia
+            // 
+            btnServiciosEstancia.BackColor = Color.Peru;
+            btnServiciosEstancia.FlatAppearance.BorderSize = 0;
+            btnServiciosEstancia.FlatStyle = FlatStyle.Flat;
+            btnServiciosEstancia.Font = new Font("Segoe UI", 12F);
+            btnServiciosEstancia.ForeColor = Color.FromArgb(255, 222, 171);
+            btnServiciosEstancia.Location = new Point(715, 433);
+            btnServiciosEstancia.Margin = new Padding(0);
+            btnServiciosEstancia.Name = "btnServiciosEstancia";
+            btnServiciosEstancia.Size = new Size(195, 45);
+            btnServiciosEstancia.TabIndex = 21;
+            btnServiciosEstancia.Text = "Servicios";
+            btnServiciosEstancia.UseVisualStyleBackColor = false;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(915, 597);
-            Controls.Add(pnlEmpleados);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
+            Controls.Add(pnlEmpleados);
             Controls.Add(btnServicios);
             Controls.Add(pbAjustes);
             Controls.Add(btnParcelas);
@@ -467,5 +501,7 @@
         private Button btnEliminarEmpleado;
         private Button btnEditarEmpleado;
         private Button btnNuevoEmpleado;
+        private Button btnServiciosEstancia;
+        private Button btnClientesEstancia;
     }
 }

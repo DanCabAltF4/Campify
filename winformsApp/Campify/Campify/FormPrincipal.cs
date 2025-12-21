@@ -210,22 +210,36 @@ namespace Campify
 
         /// <summary>
         /// Cambia el user control visible a la vista de datos de parcela.
+        /// Cambia la visibilidad de los botones según la vista.
         /// </summary>
         private void btnDatos_Click(object sender, EventArgs e)
         {
             ucEstanciaActual1.Visible = false;
             ucHistorial1.Visible = false;
             ucParcelaDatos.Visible = true;
+
+            btnClientesEstancia.Visible = false;
+            btnServiciosEstancia.Visible = false;
+
+            btnReservar.Visible = true;
+            btnMantenimiento.Visible = true;
         }
 
         /// <summary>
         /// Cambia el user control visible a la vista de estancia actual.
+        /// Cambia la visibilidad de los botones según la vista.
         /// </summary>
         private void btnEstanciaActual_Click(object sender, EventArgs e)
         {
             ucParcelaDatos.Visible = false;
             ucHistorial1.Visible = false;
             ucEstanciaActual1.Visible = true;
+
+            btnReservar.Visible = false;
+            btnMantenimiento.Visible = false;
+
+            btnClientesEstancia.Visible = true;
+            btnServiciosEstancia.Visible = true;
         }
 
         /// <summary>

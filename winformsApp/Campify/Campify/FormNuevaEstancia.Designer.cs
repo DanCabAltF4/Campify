@@ -137,7 +137,7 @@
             // lbltxtPrecioFinal
             // 
             lbltxtPrecioFinal.AutoSize = true;
-            lbltxtPrecioFinal.Location = new Point(42, 380);
+            lbltxtPrecioFinal.Location = new Point(40, 389);
             lbltxtPrecioFinal.Name = "lbltxtPrecioFinal";
             lbltxtPrecioFinal.Size = new Size(86, 20);
             lbltxtPrecioFinal.TabIndex = 12;
@@ -226,7 +226,7 @@
             // lblPrecioFinal
             // 
             lblPrecioFinal.AutoSize = true;
-            lblPrecioFinal.Location = new Point(134, 380);
+            lblPrecioFinal.Location = new Point(132, 389);
             lblPrecioFinal.Name = "lblPrecioFinal";
             lblPrecioFinal.Size = new Size(0, 20);
             lblPrecioFinal.TabIndex = 27;
@@ -273,7 +273,7 @@
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(145, 337);
+            lblPrecioNoche.Location = new Point(143, 334);
             lblPrecioNoche.Name = "lblPrecioNoche";
             lblPrecioNoche.Size = new Size(0, 20);
             lblPrecioNoche.TabIndex = 34;
@@ -281,7 +281,7 @@
             // lbltxtPrecioNoche
             // 
             lbltxtPrecioNoche.AutoSize = true;
-            lbltxtPrecioNoche.Location = new Point(42, 337);
+            lbltxtPrecioNoche.Location = new Point(40, 334);
             lbltxtPrecioNoche.Name = "lbltxtPrecioNoche";
             lbltxtPrecioNoche.Size = new Size(97, 20);
             lbltxtPrecioNoche.TabIndex = 33;
