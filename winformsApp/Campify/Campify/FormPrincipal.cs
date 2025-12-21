@@ -48,11 +48,29 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-                MessageBox.Show("No se pudo conectar a la API- ¿Está corriendo Spring?", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MostrarErrorConectarApi();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        /// <summary>
+        /// Muestra un mensaje de error al no poder conectar con la API y ofrece reintentar o salir.
+        /// </summary>
+        private void MostrarErrorConectarApi()
+        {
+            var result = MessageBox.Show("No se pudo conectar a la API.\n¿Desea reintentar?", "Error de conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            if (result == DialogResult.Retry)
+            {
+                Application.Restart();
+                Environment.Exit(0);
+            }
+            else
+            {
+                Application.Exit();
             }
         }
 
