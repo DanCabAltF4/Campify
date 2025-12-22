@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,30 @@ namespace Forms
 {
     public partial class FormVerClientesEstancia : Form
     {
-        public FormVerClientesEstancia()
+
+        // ------------------------
+        // DECLARACION DE VARIABLES
+        // ------------------------
+        private Estancia _estanciaActual;
+
+
+
+        // ------------------------
+        // COSTRUCTOR Y LOAD
+        // ------------------------
+
+        public FormVerClientesEstancia(Estancia estanciaActual)
         {
             InitializeComponent();
+            _estanciaActual = estanciaActual;
+            dgvVerClientesEstancia.DataSource = estanciaActual.Clientes.ToList();
         }
 
+
+
+        // ------------------------
+        // FUNCIONES DE LOS BOTONES
+        // ------------------------
         private void Volver_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;

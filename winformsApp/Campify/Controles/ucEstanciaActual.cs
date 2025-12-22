@@ -13,6 +13,13 @@ namespace Controles
 {
     public partial class ucEstanciaActual : UserControl
     {
+        // ---------------------------
+        // DECLARACION DE VARIABLES
+        // ---------------------------
+    
+        public Estancia EstanciaActual { get; set; }
+
+
         public ucEstanciaActual()
         {
             InitializeComponent();
@@ -30,6 +37,7 @@ namespace Controles
                 Limpiar();
                 return;
             }
+            EstanciaActual = estancia;
             lblParcela.Text = estancia.Parcela.Id.ToString();
             lblCheckin.Text = estancia.CheckIn.ToString("dd/MM/yyyy");
             lblCheckout.Text = estancia.CheckOut.HasValue ? estancia.CheckOut.Value.ToString("dd/MM/yyyy") : "-";
@@ -38,7 +46,7 @@ namespace Controles
             lblAdultos.Text = estancia.NumeroAdultos.ToString();
             lblNinos.Text = estancia.NumeroNinos.ToString();
             lblMascotas.Text = estancia.NumeroMascotas.ToString();
-            lblEquipajeAdicional.Text = $"{estancia.CargoEquipajeExtra} €";
+            lblEquipajeAdicional.Text = $"{estancia.CantidadEquipajeExtra} €";
             lblCargoAdicional.Text = $"{estancia.CargoAdicional} €";
             lblPrecioFinal.Text = $"{estancia.PrecioFinal} €";
         }

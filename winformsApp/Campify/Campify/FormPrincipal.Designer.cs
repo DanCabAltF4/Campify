@@ -58,6 +58,8 @@
             btnNuevoEmpleado = new Button();
             ucEmpleadoDatos1 = new Controles.ucEmpleadoDatos();
             flpEmpleados = new FlowLayoutPanel();
+            btnEstancias = new Button();
+            pnlEstancias = new Panel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
@@ -70,7 +72,7 @@
             // pbLogo
             // 
             pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(0, -5);
+            pbLogo.Location = new Point(0, 0);
             pbLogo.Margin = new Padding(3, 4, 3, 4);
             pbLogo.Name = "pbLogo";
             pbLogo.Size = new Size(106, 116);
@@ -275,6 +277,7 @@
             // 
             // ucEstanciaActual1
             // 
+            ucEstanciaActual1.EstanciaActual = null;
             ucEstanciaActual1.Location = new Point(0, 0);
             ucEstanciaActual1.Name = "ucEstanciaActual1";
             ucEstanciaActual1.Size = new Size(422, 388);
@@ -445,6 +448,29 @@
             flpEmpleados.Size = new Size(488, 481);
             flpEmpleados.TabIndex = 0;
             // 
+            // btnEstancias
+            // 
+            btnEstancias.FlatAppearance.BorderSize = 0;
+            btnEstancias.FlatStyle = FlatStyle.Flat;
+            btnEstancias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnEstancias.ForeColor = Color.FromArgb(44, 79, 29);
+            btnEstancias.Location = new Point(602, 16);
+            btnEstancias.Margin = new Padding(3, 4, 3, 4);
+            btnEstancias.Name = "btnEstancias";
+            btnEstancias.Size = new Size(137, 59);
+            btnEstancias.TabIndex = 21;
+            btnEstancias.Text = "Estancias";
+            btnEstancias.UseVisualStyleBackColor = true;
+            btnEstancias.Click += btnEstancias_Click;
+            // 
+            // pnlEstancias
+            // 
+            pnlEstancias.Location = new Point(1, 111);
+            pnlEstancias.Name = "pnlEstancias";
+            pnlEstancias.Size = new Size(913, 487);
+            pnlEstancias.TabIndex = 22;
+            pnlEstancias.Visible = false;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -454,11 +480,13 @@
             Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
             Controls.Add(pnlEmpleados);
-            Controls.Add(btnServicios);
-            Controls.Add(pbAjustes);
+            Controls.Add(pnlEstancias);
             Controls.Add(btnParcelas);
-            Controls.Add(btnEmpleados);
             Controls.Add(pbLogo);
+            Controls.Add(btnServicios);
+            Controls.Add(btnEmpleados);
+            Controls.Add(btnEstancias);
+            Controls.Add(pbAjustes);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
             Text = "Daniel capullo";
@@ -504,5 +532,7 @@
         private Button btnNuevoEmpleado;
         private Button btnServiciosEstancia;
         private Button btnClientesEstancia;
+        private Button btnEstancias;
+        private Panel pnlEstancias;
     }
 }

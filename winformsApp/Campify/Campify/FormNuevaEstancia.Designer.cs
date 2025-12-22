@@ -195,6 +195,7 @@
             cbTemporada.Name = "cbTemporada";
             cbTemporada.Size = new Size(98, 28);
             cbTemporada.TabIndex = 22;
+            cbTemporada.SelectedIndexChanged += cbTemporada_SelectedIndexChanged;
             // 
             // lblParcela
             // 
@@ -238,6 +239,7 @@
             txbEquipajeAdicional.Size = new Size(73, 27);
             txbEquipajeAdicional.TabIndex = 28;
             txbEquipajeAdicional.Text = "0";
+            txbEquipajeAdicional.Leave += txbEquipajeAdicional_Leave;
             // 
             // txbCargoAdicional
             // 
@@ -246,6 +248,7 @@
             txbCargoAdicional.Size = new Size(73, 27);
             txbCargoAdicional.TabIndex = 29;
             txbCargoAdicional.Text = "0";
+            txbCargoAdicional.Leave += txbCargoAdicional_Leave;
             // 
             // dtpCheckin
             // 
@@ -269,6 +272,7 @@
             txbMascotas.Size = new Size(61, 27);
             txbMascotas.TabIndex = 32;
             txbMascotas.Text = "0";
+            txbMascotas.Leave += txbMascotas_Leave;
             // 
             // lblPrecioNoche
             // 

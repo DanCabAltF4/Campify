@@ -31,7 +31,7 @@ namespace Model
         public int NumeroMascotas { get; set; }
 
         [JsonPropertyName("cantidadEquipajeExtra")]
-        public double CargoEquipajeExtra { get; set; }
+        public double CantidadEquipajeExtra { get; set; }
 
         [JsonPropertyName("costeMiscelaneo")]
         public double CargoAdicional { get; set; }
@@ -67,7 +67,7 @@ namespace Model
             NumeroAdultos = numeroAdultos;
             NumeroNinos = numeroNinos;
             NumeroMascotas = numeroMascotas;
-            CargoEquipajeExtra = cargoEquipajeExtra;
+            CantidadEquipajeExtra = cargoEquipajeExtra;
             CargoAdicional = cargoAdicional;
             PrecioFinal = precioFinal;
             Parcela = parcela;
