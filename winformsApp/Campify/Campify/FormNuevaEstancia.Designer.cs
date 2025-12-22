@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            nudCargoAdicional = new NumericUpDown();
             btnGuardarReserva = new Button();
             btnClientes = new Button();
             btnServicios = new Button();
@@ -46,14 +47,28 @@
             lblAdultos = new Label();
             lblNinos = new Label();
             lblPrecioFinal = new Label();
-            txbEquipajeAdicional = new TextBox();
-            txbCargoAdicional = new TextBox();
             dtpCheckin = new DateTimePicker();
             dtpCheckout = new DateTimePicker();
-            txbMascotas = new TextBox();
             lblPrecioNoche = new Label();
             lbltxtPrecioNoche = new Label();
+            nudNumMascotas = new NumericUpDown();
+            nudEquipajeAdicional = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudNumMascotas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudEquipajeAdicional).BeginInit();
             SuspendLayout();
+            // 
+            // nudCargoAdicional
+            // 
+            nudCargoAdicional.DecimalPlaces = 2;
+            nudCargoAdicional.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            nudCargoAdicional.Location = new Point(581, 329);
+            nudCargoAdicional.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            nudCargoAdicional.Name = "nudCargoAdicional";
+            nudCargoAdicional.Size = new Size(88, 27);
+            nudCargoAdicional.TabIndex = 37;
+            nudCargoAdicional.ValueChanged += nudCargoAdicional_ValueChanged;
+            nudCargoAdicional.KeyPress += nudCargoAdicional_KeyPress;
             // 
             // btnGuardarReserva
             // 
@@ -232,30 +247,13 @@
             lblPrecioFinal.Size = new Size(0, 20);
             lblPrecioFinal.TabIndex = 27;
             // 
-            // txbEquipajeAdicional
-            // 
-            txbEquipajeAdicional.Location = new Point(599, 243);
-            txbEquipajeAdicional.Name = "txbEquipajeAdicional";
-            txbEquipajeAdicional.Size = new Size(73, 27);
-            txbEquipajeAdicional.TabIndex = 28;
-            txbEquipajeAdicional.Text = "0";
-            txbEquipajeAdicional.Leave += txbEquipajeAdicional_Leave;
-            // 
-            // txbCargoAdicional
-            // 
-            txbCargoAdicional.Location = new Point(581, 327);
-            txbCargoAdicional.Name = "txbCargoAdicional";
-            txbCargoAdicional.Size = new Size(73, 27);
-            txbCargoAdicional.TabIndex = 29;
-            txbCargoAdicional.Text = "0";
-            txbCargoAdicional.Leave += txbCargoAdicional_Leave;
-            // 
             // dtpCheckin
             // 
             dtpCheckin.Location = new Point(106, 96);
             dtpCheckin.Name = "dtpCheckin";
             dtpCheckin.Size = new Size(322, 27);
             dtpCheckin.TabIndex = 30;
+            dtpCheckin.Leave += dtpCheckin_Leave;
             // 
             // dtpCheckout
             // 
@@ -263,16 +261,7 @@
             dtpCheckout.Name = "dtpCheckout";
             dtpCheckout.Size = new Size(305, 27);
             dtpCheckout.TabIndex = 31;
-            // 
-            // txbMascotas
-            // 
-            txbMascotas.Location = new Point(553, 165);
-            txbMascotas.Margin = new Padding(3, 4, 3, 4);
-            txbMascotas.Name = "txbMascotas";
-            txbMascotas.Size = new Size(61, 27);
-            txbMascotas.TabIndex = 32;
-            txbMascotas.Text = "0";
-            txbMascotas.Leave += txbMascotas_Leave;
+            dtpCheckout.Leave += dtpCheckout_Leave;
             // 
             // lblPrecioNoche
             // 
@@ -291,19 +280,37 @@
             lbltxtPrecioNoche.TabIndex = 33;
             lbltxtPrecioNoche.Text = "Precio noche:";
             // 
+            // nudNumMascotas
+            // 
+            nudNumMascotas.Location = new Point(559, 167);
+            nudNumMascotas.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudNumMascotas.Name = "nudNumMascotas";
+            nudNumMascotas.Size = new Size(56, 27);
+            nudNumMascotas.TabIndex = 35;
+            nudNumMascotas.ValueChanged += nudNumMascotas_ValueChanged;
+            // 
+            // nudEquipajeAdicional
+            // 
+            nudEquipajeAdicional.Location = new Point(599, 243);
+            nudEquipajeAdicional.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudEquipajeAdicional.Name = "nudEquipajeAdicional";
+            nudEquipajeAdicional.Size = new Size(55, 27);
+            nudEquipajeAdicional.TabIndex = 36;
+            nudEquipajeAdicional.ValueChanged += nudEquipajeAdicional_ValueChanged;
+            // 
             // FormNuevaEstancia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(699, 559);
+            Controls.Add(nudCargoAdicional);
+            Controls.Add(nudEquipajeAdicional);
+            Controls.Add(nudNumMascotas);
             Controls.Add(lblPrecioNoche);
             Controls.Add(lbltxtPrecioNoche);
-            Controls.Add(txbMascotas);
             Controls.Add(dtpCheckout);
             Controls.Add(dtpCheckin);
-            Controls.Add(txbCargoAdicional);
-            Controls.Add(txbEquipajeAdicional);
             Controls.Add(lblPrecioFinal);
             Controls.Add(lblNinos);
             Controls.Add(lblAdultos);
@@ -324,6 +331,9 @@
             Controls.Add(btnGuardarReserva);
             Name = "FormNuevaEstancia";
             Text = "Registrar nueva estancia";
+            ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudNumMascotas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudEquipajeAdicional).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -350,12 +360,12 @@
         private Label lblAdultos;
         private Label lblNinos;
         private Label lblPrecioFinal;
-        private TextBox txbEquipajeAdicional;
-        private TextBox txbCargoAdicional;
         private DateTimePicker dtpCheckin;
         private DateTimePicker dtpCheckout;
-        private TextBox txbMascotas;
         private Label lblPrecioNoche;
         private Label lbltxtPrecioNoche;
+        private NumericUpDown nudNumMascotas;
+        private NumericUpDown nudEquipajeAdicional;
+        private NumericUpDown nudCargoAdicional;
     }
 }

@@ -49,9 +49,10 @@ namespace Forms
 
             cbTemporada.DataSource = Enum.GetValues(typeof(Model.EnumTemporadas));
             cbTemporada.SelectedItem = Model.EnumTemporadas.BAJA;
-            txbMascotas.Text = "0";
-            txbEquipajeAdicional.Text = "0";
-            txbCargoAdicional.Text = "0";
+            nudNumMascotas.Value = 0;
+            nudEquipajeAdicional.Value = 0;
+            nudCargoAdicional.Value = 0;
+            nudCargoAdicional.Controls[0].Visible = false;
 
             CargarDatosParcela();
         }
@@ -87,9 +88,9 @@ namespace Forms
             }
             // Cálculo de los cargos adicionales
             double precioBase = numeroNoches * _estancia.Parcela.PrecioNoche;
-            double cargoMascotas = (int.TryParse(txbMascotas.Text, out int mascotas) ? mascotas : 0) * PRECIO_MASCOTA;
-            double cargoEquipaje = (double.TryParse(txbEquipajeAdicional.Text, out double cargoEq) ? cargoEq : 0) * PRECIO_EQUIPAJE_EXTRA;
-            double cargoAdicional = double.TryParse(txbCargoAdicional.Text, out double cargoAd) ? cargoAd : 0;
+            double cargoMascotas = ((int)nudNumMascotas.Value) * PRECIO_MASCOTA;
+            double cargoEquipaje = ((double)nudEquipajeAdicional.Value) * PRECIO_EQUIPAJE_EXTRA;
+            double cargoAdicional = (double)nudCargoAdicional.Value;
             double cargoTemporada = 0;
             switch ((EnumTemporadas)cbTemporada.SelectedItem)
             {
@@ -145,9 +146,11 @@ namespace Forms
             _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
             _estancia.NumeroAdultos = 0;
             _estancia.NumeroNinos = 0;
-            _estancia.NumeroMascotas = int.Parse(txbMascotas.Text);
-            _estancia.CantidadEquipajeExtra = double.Parse(txbEquipajeAdicional.Text);
-            _estancia.CargoAdicional = double.Parse(txbCargoAdicional.Text);
+            _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
+            _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
+            _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
+            string valor = lblPrecioFinal.Text.Split(' ')[0];
+            _estancia.PrecioFinal = double.Parse(valor);
             _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
             // Guardar la estancia mediante la API
@@ -182,46 +185,45 @@ namespace Forms
 
         }
 
-        private void txbMascotas_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txbMascotas.Text))
-            {
-                _estancia.NumeroMascotas = 0;
-            }
-            else
-            {
-                _estancia.NumeroMascotas = int.Parse(txbMascotas.Text);
-            }
-            CalcularPrecioTotal();
-        }
-
-        private void txbEquipajeAdicional_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txbEquipajeAdicional.Text))
-            {
-                _estancia.CantidadEquipajeExtra = 0;
-            }
-            else
-            {
-                _estancia.CantidadEquipajeExtra = int.Parse(txbEquipajeAdicional.Text);
-            }
-            CalcularPrecioTotal();
-        }
-
-        private void txbCargoAdicional_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txbCargoAdicional.Text))
-            {
-                _estancia.CargoAdicional = 0;
-            }
-            else
-            {
-                _estancia.CargoAdicional = double.Parse(txbCargoAdicional.Text);
-            }
-            CalcularPrecioTotal();
-        }
-
         private void cbTemporada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
+
+        private void nudNumMascotas_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
+
+        private void nudEquipajeAdicional_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
+
+        private void nudCargoAdicional_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
+
+
+        /// <summary>
+        /// Cambia el caracter . por , para los decimales en el numericUpDown de cargo adicional
+        /// </summary>
+        private void nudCargoAdicional_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.')
+            {
+                e.Handled = true;
+                SendKeys.Send(",");
+            }
+        }
+
+        private void dtpCheckin_Leave(object sender, EventArgs e)
+        {
+            CalcularPrecioTotal();
+        }
+
+        private void dtpCheckout_Leave(object sender, EventArgs e)
         {
             CalcularPrecioTotal();
         }
