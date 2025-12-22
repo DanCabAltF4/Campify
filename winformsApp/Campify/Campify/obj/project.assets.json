@@ -27,6 +27,19 @@
         "runtime": {
           "bin/placeholder/Model.dll": {}
         }
+      },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
       }
     }
   },
@@ -40,12 +53,18 @@
       "type": "project",
       "path": "../Model/Model.csproj",
       "msbuildProject": "../Model/Model.csproj"
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "Controles >= 1.0.0",
-      "Model >= 1.0.0"
+      "Model >= 1.0.0",
+      "Repository >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -55,11 +74,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
+      "projectUniqueName": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
       "projectName": "Forms",
-      "projectPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
+      "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Forms.csproj",
       "packagesPath": "C:\\Users\\doowy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\",
+      "outputPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -80,11 +99,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\Controles.csproj": {
-              "projectPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\Controles.csproj"
+            "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\Controles.csproj": {
+              "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Controles\\Controles.csproj"
             },
-            "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\doowy\\Desktop\\GitHub\\Campify\\winformsApp\\Campify\\Model\\Model.csproj"
+            "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Model\\Model.csproj"
+            },
+            "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\Repository.csproj"
             }
           }
         }
@@ -99,7 +121,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -123,7 +145,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

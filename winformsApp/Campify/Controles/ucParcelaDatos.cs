@@ -15,6 +15,7 @@ namespace Controles
     {
 
         public Parcela ParcelaActual { get; private set; }
+
         public ucParcelaDatos()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Controles
         }
 
         /// <summary>
-        /// Muestra los datos de la parcela en el control de usuario.
+        /// Muestra los datos de la parcela pasada como parametro en el control de usuario.
         /// </summary>
         public void MostrarDatos(Parcela p)
         {
@@ -36,7 +37,6 @@ namespace Controles
             lblTipo.Text = p.Tipo.ToString();
             lblEstado.Text = p.Estado.ToString();
             lblPrecio.Text = $"{p.PrecioNoche} €";
-            lblCapacidad.Text = p.CapacidadMaxima.ToString();
             lblBanosCerca.Text = p.CercaBanos ? "Sí" : "No";
             lblVistas.Text = p.TieneVistas ? "Sí" : "No";
             lblSombra.Text = p.ZonaSombra ? "Sí" : "No";
@@ -45,7 +45,7 @@ namespace Controles
         }
 
         /// <summary>
-        /// Pone en blanco todos los campos del control de usuario cuando no hay parcela seleccionada.
+        /// Pone en blanco todos los campos del control de usuario.
         /// </summary>
         private void Limpiar()
         {
@@ -53,7 +53,6 @@ namespace Controles
             lblTipo.Text = "";
             lblEstado.Text = "";
             lblPrecio.Text = "";
-            lblCapacidad.Text = "";
             lblBanosCerca.Text = "";
             lblVistas.Text = "";
             lblSombra.Text = "";

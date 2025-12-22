@@ -1,0 +1,11 @@
+{
+  "apellidos": "Inglés",
+  "cPostal": "36987",
+  "direccion": "Barrio bajo",
+  "dni": "11111111A",
+  "email": "miguel@test.com",
+  "fechaNacimiento": "1998-03-12",
+  "id": 1,
+  "nombre": "Miguel",
+  "telefono": "622222222"
+}

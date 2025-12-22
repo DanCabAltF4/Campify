@@ -9,7 +9,8 @@
       "Forms/1.0.0": {
         "dependencies": {
           "Controles": "1.0.0",
-          "Model": "1.0.0"
+          "Model": "1.0.0",
+          "Repository": "1.0.0"
         },
         "runtime": {
           "Forms.dll": {}
@@ -33,6 +34,17 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Repository/1.0.0": {
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "runtime": {
+          "Repository.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -48,6 +60,11 @@
       "sha512": ""
     },
     "Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

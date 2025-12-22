@@ -42,7 +42,7 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardar.Location = new Point(355, 472);
+            btnGuardar.Location = new Point(346, 474);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(98, 48);
             btnGuardar.TabIndex = 0;
@@ -52,21 +52,33 @@
             // 
             // dvgListaServicios
             // 
+            dvgListaServicios.AllowUserToAddRows = false;
+            dvgListaServicios.AllowUserToDeleteRows = false;
+            dvgListaServicios.AllowUserToResizeRows = false;
+            dvgListaServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgListaServicios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dvgListaServicios.Location = new Point(12, 12);
             dvgListaServicios.Name = "dvgListaServicios";
+            dvgListaServicios.ReadOnly = true;
             dvgListaServicios.RowHeadersWidth = 51;
             dvgListaServicios.Size = new Size(776, 219);
             dvgListaServicios.TabIndex = 1;
+            dvgListaServicios.CellDoubleClick += dvgListaServicios_CellDoubleClick;
             // 
             // dgvServiciosEstancia
             // 
+            dgvServiciosEstancia.AllowUserToAddRows = false;
+            dgvServiciosEstancia.AllowUserToDeleteRows = false;
+            dgvServiciosEstancia.AllowUserToResizeRows = false;
+            dgvServiciosEstancia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServiciosEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvServiciosEstancia.Location = new Point(12, 255);
             dgvServiciosEstancia.Name = "dgvServiciosEstancia";
+            dgvServiciosEstancia.ReadOnly = true;
             dgvServiciosEstancia.RowHeadersWidth = 51;
             dgvServiciosEstancia.Size = new Size(776, 188);
             dgvServiciosEstancia.TabIndex = 2;
+            dgvServiciosEstancia.CellDoubleClick += dgvServiciosEstancia_CellDoubleClick;
             // 
             // FormEstanciaServicios
             // 
@@ -79,6 +91,7 @@
             Controls.Add(btnGuardar);
             Name = "FormEstanciaServicios";
             Text = "FormEstanciaServicios";
+            Load += FormEstanciaServicios_Load;
             ((System.ComponentModel.ISupportInitialize)dvgListaServicios).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiciosEstancia).EndInit();
             ResumeLayout(false);

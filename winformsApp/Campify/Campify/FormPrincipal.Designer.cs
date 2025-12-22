@@ -40,7 +40,7 @@
             btLista = new Button();
             btnHistorial = new Button();
             panelMapaLista = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpParcelas = new FlowLayoutPanel();
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
@@ -49,22 +49,31 @@
             ucHistorial1 = new Controles.ucHistorial();
             btMapa = new Button();
             pnlParcelas = new Panel();
-            pnlEmpleados = new Panel();
             btnMantenimiento = new Button();
+            btnClientesEstancia = new Button();
+            btnServiciosEstancia = new Button();
+            pnlEmpleados = new Panel();
+            btnEliminarEmpleado = new Button();
+            btnEditarEmpleado = new Button();
+            btnNuevoEmpleado = new Button();
+            ucEmpleadoDatos1 = new Controles.ucEmpleadoDatos();
+            flpEmpleados = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             panelMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
             panelDatos.SuspendLayout();
             pnlParcelas.SuspendLayout();
+            pnlEmpleados.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
             // 
             pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(0, -4);
+            pbLogo.Location = new Point(0, -5);
+            pbLogo.Margin = new Padding(3, 4, 3, 4);
             pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(93, 87);
+            pbLogo.Size = new Size(106, 116);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 0;
             pbLogo.TabStop = false;
@@ -75,9 +84,10 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEmpleados.Location = new Point(374, 12);
+            btnEmpleados.Location = new Point(427, 16);
+            btnEmpleados.Margin = new Padding(3, 4, 3, 4);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(120, 44);
+            btnEmpleados.Size = new Size(137, 59);
             btnEmpleados.TabIndex = 1;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.UseVisualStyleBackColor = true;
@@ -89,9 +99,10 @@
             btnParcelas.FlatStyle = FlatStyle.Flat;
             btnParcelas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnParcelas.ForeColor = Color.FromArgb(44, 79, 29);
-            btnParcelas.Location = new Point(106, 12);
+            btnParcelas.Location = new Point(121, 16);
+            btnParcelas.Margin = new Padding(3, 4, 3, 4);
             btnParcelas.Name = "btnParcelas";
-            btnParcelas.Size = new Size(120, 44);
+            btnParcelas.Size = new Size(137, 59);
             btnParcelas.TabIndex = 2;
             btnParcelas.Text = "Parcelas";
             btnParcelas.UseVisualStyleBackColor = true;
@@ -100,9 +111,10 @@
             // pbAjustes
             // 
             pbAjustes.Image = (Image)resources.GetObject("pbAjustes.Image");
-            pbAjustes.Location = new Point(740, 12);
+            pbAjustes.Location = new Point(846, 16);
+            pbAjustes.Margin = new Padding(3, 4, 3, 4);
             pbAjustes.Name = "pbAjustes";
-            pbAjustes.Size = new Size(44, 42);
+            pbAjustes.Size = new Size(50, 56);
             pbAjustes.SizeMode = PictureBoxSizeMode.Zoom;
             pbAjustes.TabIndex = 3;
             pbAjustes.TabStop = false;
@@ -113,9 +125,10 @@
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnServicios.ForeColor = Color.FromArgb(44, 79, 29);
-            btnServicios.Location = new Point(232, 12);
+            btnServicios.Location = new Point(265, 16);
+            btnServicios.Margin = new Padding(3, 4, 3, 4);
             btnServicios.Name = "btnServicios";
-            btnServicios.Size = new Size(120, 44);
+            btnServicios.Size = new Size(137, 59);
             btnServicios.TabIndex = 10;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = true;
@@ -123,10 +136,9 @@
             // 
             // pnlServicios
             // 
-            pnlServicios.Location = new Point(0, 86);
-            pnlServicios.Margin = new Padding(3, 2, 3, 2);
+            pnlServicios.Location = new Point(0, 115);
             pnlServicios.Name = "pnlServicios";
-            pnlServicios.Size = new Size(799, 362);
+            pnlServicios.Size = new Size(913, 483);
             pnlServicios.TabIndex = 19;
             pnlServicios.Visible = false;
             // 
@@ -137,10 +149,10 @@
             btnDatos.FlatStyle = FlatStyle.Flat;
             btnDatos.Font = new Font("Segoe UI", 12F);
             btnDatos.ForeColor = Color.FromArgb(95, 65, 0);
-            btnDatos.Location = new Point(428, -2);
+            btnDatos.Location = new Point(489, -3);
             btnDatos.Margin = new Padding(0);
             btnDatos.Name = "btnDatos";
-            btnDatos.Size = new Size(115, 36);
+            btnDatos.Size = new Size(131, 48);
             btnDatos.TabIndex = 11;
             btnDatos.Text = "Datos";
             btnDatos.UseVisualStyleBackColor = false;
@@ -153,10 +165,10 @@
             btnReservar.FlatStyle = FlatStyle.Flat;
             btnReservar.Font = new Font("Segoe UI", 12F);
             btnReservar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnReservar.Location = new Point(428, 325);
+            btnReservar.Location = new Point(489, 433);
             btnReservar.Margin = new Padding(0);
             btnReservar.Name = "btnReservar";
-            btnReservar.Size = new Size(198, 34);
+            btnReservar.Size = new Size(226, 45);
             btnReservar.TabIndex = 9;
             btnReservar.Text = "Reservar";
             btnReservar.UseVisualStyleBackColor = false;
@@ -169,10 +181,10 @@
             btLista.FlatStyle = FlatStyle.Flat;
             btLista.Font = new Font("Segoe UI", 12F);
             btLista.ForeColor = Color.FromArgb(255, 222, 171);
-            btLista.Location = new Point(196, 0);
+            btLista.Location = new Point(241, 0);
             btLista.Margin = new Padding(0);
             btLista.Name = "btLista";
-            btLista.Size = new Size(111, 34);
+            btLista.Size = new Size(248, 45);
             btLista.TabIndex = 13;
             btLista.Text = "Lista";
             btLista.UseVisualStyleBackColor = false;
@@ -185,34 +197,34 @@
             btnHistorial.FlatStyle = FlatStyle.Flat;
             btnHistorial.Font = new Font("Segoe UI", 12F);
             btnHistorial.ForeColor = Color.FromArgb(95, 65, 0);
-            btnHistorial.Location = new Point(677, -2);
+            btnHistorial.Location = new Point(773, -3);
             btnHistorial.Margin = new Padding(0);
             btnHistorial.Name = "btnHistorial";
-            btnHistorial.Size = new Size(119, 36);
+            btnHistorial.Size = new Size(137, 48);
             btnHistorial.TabIndex = 6;
             btnHistorial.Text = "Historial";
             btnHistorial.UseVisualStyleBackColor = false;
             // 
             // panelMapaLista
             // 
-            panelMapaLista.Controls.Add(flowLayoutPanel1);
+            panelMapaLista.Controls.Add(flpParcelas);
             panelMapaLista.Controls.Add(pbMapa);
-            panelMapaLista.Location = new Point(1, 34);
+            panelMapaLista.Location = new Point(1, 45);
             panelMapaLista.Margin = new Padding(0);
             panelMapaLista.Name = "panelMapaLista";
-            panelMapaLista.Size = new Size(427, 325);
+            panelMapaLista.Size = new Size(488, 433);
             panelMapaLista.TabIndex = 16;
             // 
-            // flowLayoutPanel1
+            // flpParcelas
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(427, 325);
-            flowLayoutPanel1.TabIndex = 15;
-            flowLayoutPanel1.Visible = false;
+            flpParcelas.AutoScroll = true;
+            flpParcelas.Dock = DockStyle.Fill;
+            flpParcelas.Location = new Point(0, 0);
+            flpParcelas.Margin = new Padding(0);
+            flpParcelas.Name = "flpParcelas";
+            flpParcelas.Size = new Size(488, 433);
+            flpParcelas.TabIndex = 15;
+            flpParcelas.Visible = false;
             // 
             // pbMapa
             // 
@@ -221,7 +233,7 @@
             pbMapa.Location = new Point(0, 0);
             pbMapa.Margin = new Padding(0);
             pbMapa.Name = "pbMapa";
-            pbMapa.Size = new Size(427, 325);
+            pbMapa.Size = new Size(488, 433);
             pbMapa.SizeMode = PictureBoxSizeMode.StretchImage;
             pbMapa.TabIndex = 15;
             pbMapa.TabStop = false;
@@ -233,10 +245,10 @@
             btnEstanciaActual.FlatStyle = FlatStyle.Flat;
             btnEstanciaActual.Font = new Font("Segoe UI", 12F);
             btnEstanciaActual.ForeColor = Color.FromArgb(95, 65, 0);
-            btnEstanciaActual.Location = new Point(542, -2);
+            btnEstanciaActual.Location = new Point(619, -3);
             btnEstanciaActual.Margin = new Padding(0);
             btnEstanciaActual.Name = "btnEstanciaActual";
-            btnEstanciaActual.Size = new Size(135, 36);
+            btnEstanciaActual.Size = new Size(154, 48);
             btnEstanciaActual.TabIndex = 5;
             btnEstanciaActual.Text = "Estancia actual";
             btnEstanciaActual.UseVisualStyleBackColor = false;
@@ -247,10 +259,10 @@
             panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
             panelDatos.Controls.Add(ucHistorial1);
-            panelDatos.Location = new Point(428, 34);
+            panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
-            panelDatos.Size = new Size(368, 291);
+            panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
             // 
             // ucParcelaDatos
@@ -258,23 +270,21 @@
             ucParcelaDatos.Location = new Point(0, 0);
             ucParcelaDatos.Margin = new Padding(0);
             ucParcelaDatos.Name = "ucParcelaDatos";
-            ucParcelaDatos.Size = new Size(368, 291);
+            ucParcelaDatos.Size = new Size(421, 388);
             ucParcelaDatos.TabIndex = 0;
             // 
             // ucEstanciaActual1
             // 
             ucEstanciaActual1.Location = new Point(0, 0);
-            ucEstanciaActual1.Margin = new Padding(3, 2, 3, 2);
             ucEstanciaActual1.Name = "ucEstanciaActual1";
-            ucEstanciaActual1.Size = new Size(369, 291);
+            ucEstanciaActual1.Size = new Size(422, 388);
             ucEstanciaActual1.TabIndex = 21;
             // 
             // ucHistorial1
             // 
             ucHistorial1.Location = new Point(0, 0);
-            ucHistorial1.Margin = new Padding(3, 2, 3, 2);
             ucHistorial1.Name = "ucHistorial1";
-            ucHistorial1.Size = new Size(369, 291);
+            ucHistorial1.Size = new Size(422, 388);
             ucHistorial1.TabIndex = 21;
             // 
             // btMapa
@@ -284,10 +294,10 @@
             btMapa.FlatStyle = FlatStyle.Flat;
             btMapa.Font = new Font("Segoe UI", 12F);
             btMapa.ForeColor = Color.FromArgb(255, 222, 171);
-            btMapa.Location = new Point(50, 0);
+            btMapa.Location = new Point(1, 0);
             btMapa.Margin = new Padding(0);
             btMapa.Name = "btMapa";
-            btMapa.Size = new Size(111, 34);
+            btMapa.Size = new Size(240, 45);
             btMapa.TabIndex = 12;
             btMapa.Text = "Mapa";
             btMapa.UseVisualStyleBackColor = false;
@@ -295,29 +305,21 @@
             // 
             // pnlParcelas
             // 
-            pnlParcelas.Controls.Add(btnMantenimiento);
             pnlParcelas.Controls.Add(btMapa);
             pnlParcelas.Controls.Add(btLista);
             pnlParcelas.Controls.Add(panelMapaLista);
             pnlParcelas.Controls.Add(btnDatos);
             pnlParcelas.Controls.Add(btnEstanciaActual);
             pnlParcelas.Controls.Add(btnHistorial);
-            pnlParcelas.Controls.Add(btnReservar);
             pnlParcelas.Controls.Add(panelDatos);
-            pnlParcelas.Location = new Point(0, 88);
-            pnlParcelas.Margin = new Padding(3, 2, 3, 2);
+            pnlParcelas.Controls.Add(btnReservar);
+            pnlParcelas.Controls.Add(btnMantenimiento);
+            pnlParcelas.Controls.Add(btnClientesEstancia);
+            pnlParcelas.Controls.Add(btnServiciosEstancia);
+            pnlParcelas.Location = new Point(0, 117);
             pnlParcelas.Name = "pnlParcelas";
-            pnlParcelas.Size = new Size(799, 360);
+            pnlParcelas.Size = new Size(913, 480);
             pnlParcelas.TabIndex = 18;
-            // 
-            // pnlEmpleados
-            // 
-            pnlEmpleados.Location = new Point(1, 86);
-            pnlEmpleados.Margin = new Padding(3, 2, 3, 2);
-            pnlEmpleados.Name = "pnlEmpleados";
-            pnlEmpleados.Size = new Size(799, 362);
-            pnlEmpleados.TabIndex = 20;
-            pnlEmpleados.Visible = false;
             // 
             // btnMantenimiento
             // 
@@ -326,21 +328,129 @@
             btnMantenimiento.FlatStyle = FlatStyle.Flat;
             btnMantenimiento.Font = new Font("Segoe UI", 12F);
             btnMantenimiento.ForeColor = Color.FromArgb(255, 222, 171);
-            btnMantenimiento.Location = new Point(626, 325);
+            btnMantenimiento.Location = new Point(715, 433);
             btnMantenimiento.Margin = new Padding(0);
             btnMantenimiento.Name = "btnMantenimiento";
-            btnMantenimiento.Size = new Size(171, 34);
+            btnMantenimiento.Size = new Size(195, 45);
             btnMantenimiento.TabIndex = 18;
             btnMantenimiento.Text = "Mantenimiento";
             btnMantenimiento.UseVisualStyleBackColor = false;
             btnMantenimiento.Click += btnMantenimiento_Click;
             // 
+            // btnClientesEstancia
+            // 
+            btnClientesEstancia.BackColor = Color.Peru;
+            btnClientesEstancia.FlatAppearance.BorderSize = 0;
+            btnClientesEstancia.FlatStyle = FlatStyle.Flat;
+            btnClientesEstancia.Font = new Font("Segoe UI", 12F);
+            btnClientesEstancia.ForeColor = Color.FromArgb(255, 222, 171);
+            btnClientesEstancia.Location = new Point(489, 433);
+            btnClientesEstancia.Margin = new Padding(0);
+            btnClientesEstancia.Name = "btnClientesEstancia";
+            btnClientesEstancia.Size = new Size(226, 45);
+            btnClientesEstancia.TabIndex = 21;
+            btnClientesEstancia.Text = "Clientes";
+            btnClientesEstancia.UseVisualStyleBackColor = false;
+            btnClientesEstancia.Click += btnClientesEstancia_Click;
+            // 
+            // btnServiciosEstancia
+            // 
+            btnServiciosEstancia.BackColor = Color.Peru;
+            btnServiciosEstancia.FlatAppearance.BorderSize = 0;
+            btnServiciosEstancia.FlatStyle = FlatStyle.Flat;
+            btnServiciosEstancia.Font = new Font("Segoe UI", 12F);
+            btnServiciosEstancia.ForeColor = Color.FromArgb(255, 222, 171);
+            btnServiciosEstancia.Location = new Point(715, 433);
+            btnServiciosEstancia.Margin = new Padding(0);
+            btnServiciosEstancia.Name = "btnServiciosEstancia";
+            btnServiciosEstancia.Size = new Size(195, 45);
+            btnServiciosEstancia.TabIndex = 21;
+            btnServiciosEstancia.Text = "Servicios";
+            btnServiciosEstancia.UseVisualStyleBackColor = false;
+            // 
+            // pnlEmpleados
+            // 
+            pnlEmpleados.Controls.Add(btnEliminarEmpleado);
+            pnlEmpleados.Controls.Add(btnEditarEmpleado);
+            pnlEmpleados.Controls.Add(btnNuevoEmpleado);
+            pnlEmpleados.Controls.Add(ucEmpleadoDatos1);
+            pnlEmpleados.Controls.Add(flpEmpleados);
+            pnlEmpleados.Location = new Point(1, 115);
+            pnlEmpleados.Name = "pnlEmpleados";
+            pnlEmpleados.Size = new Size(913, 483);
+            pnlEmpleados.TabIndex = 20;
+            pnlEmpleados.Visible = false;
+            // 
+            // btnEliminarEmpleado
+            // 
+            btnEliminarEmpleado.BackColor = Color.Peru;
+            btnEliminarEmpleado.FlatAppearance.BorderSize = 0;
+            btnEliminarEmpleado.FlatStyle = FlatStyle.Flat;
+            btnEliminarEmpleado.Font = new Font("Segoe UI", 12F);
+            btnEliminarEmpleado.ForeColor = Color.Moccasin;
+            btnEliminarEmpleado.Location = new Point(773, 437);
+            btnEliminarEmpleado.Margin = new Padding(0);
+            btnEliminarEmpleado.Name = "btnEliminarEmpleado";
+            btnEliminarEmpleado.Size = new Size(140, 45);
+            btnEliminarEmpleado.TabIndex = 4;
+            btnEliminarEmpleado.Text = "Eliminar";
+            btnEliminarEmpleado.UseVisualStyleBackColor = false;
+            btnEliminarEmpleado.Click += btnEliminar_Click;
+            // 
+            // btnEditarEmpleado
+            // 
+            btnEditarEmpleado.BackColor = Color.Peru;
+            btnEditarEmpleado.FlatAppearance.BorderSize = 0;
+            btnEditarEmpleado.FlatStyle = FlatStyle.Flat;
+            btnEditarEmpleado.Font = new Font("Segoe UI", 12F);
+            btnEditarEmpleado.ForeColor = Color.Moccasin;
+            btnEditarEmpleado.Location = new Point(628, 437);
+            btnEditarEmpleado.Margin = new Padding(0);
+            btnEditarEmpleado.Name = "btnEditarEmpleado";
+            btnEditarEmpleado.Size = new Size(145, 45);
+            btnEditarEmpleado.TabIndex = 3;
+            btnEditarEmpleado.Text = "Editar";
+            btnEditarEmpleado.UseVisualStyleBackColor = false;
+            btnEditarEmpleado.Click += btnEditarEmpleado_Click;
+            // 
+            // btnNuevoEmpleado
+            // 
+            btnNuevoEmpleado.BackColor = Color.Peru;
+            btnNuevoEmpleado.FlatAppearance.BorderSize = 0;
+            btnNuevoEmpleado.FlatStyle = FlatStyle.Flat;
+            btnNuevoEmpleado.Font = new Font("Segoe UI", 12F);
+            btnNuevoEmpleado.ForeColor = Color.Moccasin;
+            btnNuevoEmpleado.Location = new Point(488, 437);
+            btnNuevoEmpleado.Margin = new Padding(0);
+            btnNuevoEmpleado.Name = "btnNuevoEmpleado";
+            btnNuevoEmpleado.Size = new Size(140, 45);
+            btnNuevoEmpleado.TabIndex = 2;
+            btnNuevoEmpleado.Text = "Nuevo";
+            btnNuevoEmpleado.UseVisualStyleBackColor = false;
+            btnNuevoEmpleado.Click += btnNuevoEmpleado_Click;
+            // 
+            // ucEmpleadoDatos1
+            // 
+            ucEmpleadoDatos1.Location = new Point(488, 0);
+            ucEmpleadoDatos1.Margin = new Padding(0);
+            ucEmpleadoDatos1.Name = "ucEmpleadoDatos1";
+            ucEmpleadoDatos1.Size = new Size(425, 437);
+            ucEmpleadoDatos1.TabIndex = 1;
+            // 
+            // flpEmpleados
+            // 
+            flpEmpleados.Location = new Point(0, 0);
+            flpEmpleados.Margin = new Padding(0);
+            flpEmpleados.Name = "flpEmpleados";
+            flpEmpleados.Size = new Size(488, 481);
+            flpEmpleados.TabIndex = 0;
+            // 
             // FormPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(801, 448);
+            ClientSize = new Size(915, 597);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
             Controls.Add(pnlEmpleados);
@@ -349,6 +459,7 @@
             Controls.Add(btnParcelas);
             Controls.Add(btnEmpleados);
             Controls.Add(pbLogo);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
             Text = "Daniel capullo";
             Load += Form1_Load;
@@ -358,6 +469,7 @@
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
             panelDatos.ResumeLayout(false);
             pnlParcelas.ResumeLayout(false);
+            pnlEmpleados.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -374,7 +486,7 @@
         private Button btLista;
         private Button btnHistorial;
         private Panel panelMapaLista;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flpParcelas;
         private PictureBox pbMapa;
         private Button btnEstanciaActual;
         private Panel panelDatos;
@@ -385,5 +497,12 @@
         private Controles.ucEstanciaActual ucEstanciaActual1;
         private Controles.ucHistorial ucHistorial1;
         private Button btnMantenimiento;
+        private FlowLayoutPanel flpEmpleados;
+        private Controles.ucEmpleadoDatos ucEmpleadoDatos1;
+        private Button btnEliminarEmpleado;
+        private Button btnEditarEmpleado;
+        private Button btnNuevoEmpleado;
+        private Button btnServiciosEstancia;
+        private Button btnClientesEstancia;
     }
 }

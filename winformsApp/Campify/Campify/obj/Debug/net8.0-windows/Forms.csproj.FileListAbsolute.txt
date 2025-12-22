@@ -54,3 +54,10 @@ C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.pdb
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.genruntimeconfig.cache
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\ref\Forms.dll
+C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Repository.dll
+C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Repository.pdb
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Repository.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Repository.pdb
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.FormDatosEmpleado.resources
+C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.FormDatosEmpleado.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerClientesEstancia.resources

@@ -31,7 +31,6 @@
             lbltxtId = new Label();
             lbltxtEstado = new Label();
             lbltxtTipo = new Label();
-            lbltxtCapacidad = new Label();
             lbltxtPrecio = new Label();
             lbltxtEntrada = new Label();
             lbltxtZonaTranquila = new Label();
@@ -44,7 +43,6 @@
             lblSombra = new Label();
             lblBanosCerca = new Label();
             lblPrecio = new Label();
-            lblCapacidad = new Label();
             lblTipo = new Label();
             lblEstado = new Label();
             lblId = new Label();
@@ -53,90 +51,90 @@
             // lbltxtId
             // 
             lbltxtId.AutoSize = true;
+            lbltxtId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtId.Location = new Point(14, 32);
             lbltxtId.Name = "lbltxtId";
-            lbltxtId.Size = new Size(66, 20);
+            lbltxtId.Size = new Size(71, 20);
             lbltxtId.TabIndex = 0;
             lbltxtId.Text = "Número:";
             // 
             // lbltxtEstado
             // 
             lbltxtEstado.AutoSize = true;
+            lbltxtEstado.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtEstado.Location = new Point(14, 169);
             lbltxtEstado.Name = "lbltxtEstado";
-            lbltxtEstado.Size = new Size(57, 20);
+            lbltxtEstado.Size = new Size(60, 20);
             lbltxtEstado.TabIndex = 2;
             lbltxtEstado.Text = "Estado:";
             // 
             // lbltxtTipo
             // 
             lbltxtTipo.AutoSize = true;
+            lbltxtTipo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtTipo.Location = new Point(14, 94);
             lbltxtTipo.Name = "lbltxtTipo";
-            lbltxtTipo.Size = new Size(42, 20);
+            lbltxtTipo.Size = new Size(44, 20);
             lbltxtTipo.TabIndex = 4;
             lbltxtTipo.Text = "Tipo:";
-            // 
-            // lbltxtCapacidad
-            // 
-            lbltxtCapacidad.AutoSize = true;
-            lbltxtCapacidad.Location = new Point(14, 309);
-            lbltxtCapacidad.Name = "lbltxtCapacidad";
-            lbltxtCapacidad.Size = new Size(83, 20);
-            lbltxtCapacidad.TabIndex = 7;
-            lbltxtCapacidad.Text = "Capacidad:";
             // 
             // lbltxtPrecio
             // 
             lbltxtPrecio.AutoSize = true;
+            lbltxtPrecio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtPrecio.Location = new Point(14, 235);
             lbltxtPrecio.Name = "lbltxtPrecio";
-            lbltxtPrecio.Size = new Size(53, 20);
+            lbltxtPrecio.Size = new Size(56, 20);
             lbltxtPrecio.TabIndex = 9;
             lbltxtPrecio.Text = "Precio:";
             // 
             // lbltxtEntrada
             // 
             lbltxtEntrada.AutoSize = true;
+            lbltxtEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtEntrada.Location = new Point(235, 235);
             lbltxtEntrada.Name = "lbltxtEntrada";
-            lbltxtEntrada.Size = new Size(102, 20);
+            lbltxtEntrada.Size = new Size(107, 20);
             lbltxtEntrada.TabIndex = 14;
             lbltxtEntrada.Text = "Entrada cerca:";
             // 
             // lbltxtZonaTranquila
             // 
             lbltxtZonaTranquila.AutoSize = true;
+            lbltxtZonaTranquila.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtZonaTranquila.Location = new Point(235, 309);
             lbltxtZonaTranquila.Name = "lbltxtZonaTranquila";
-            lbltxtZonaTranquila.Size = new Size(109, 20);
+            lbltxtZonaTranquila.Size = new Size(115, 20);
             lbltxtZonaTranquila.TabIndex = 13;
             lbltxtZonaTranquila.Text = "Zona tranquila:";
             // 
             // lbltxtVistas
             // 
             lbltxtVistas.AutoSize = true;
+            lbltxtVistas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtVistas.Location = new Point(235, 94);
             lbltxtVistas.Name = "lbltxtVistas";
-            lbltxtVistas.Size = new Size(50, 20);
+            lbltxtVistas.Size = new Size(55, 20);
             lbltxtVistas.TabIndex = 12;
             lbltxtVistas.Text = "Vistas:";
             // 
             // lbltxtSombra
             // 
             lbltxtSombra.AutoSize = true;
+            lbltxtSombra.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtSombra.Location = new Point(235, 169);
             lbltxtSombra.Name = "lbltxtSombra";
-            lbltxtSombra.Size = new Size(64, 20);
+            lbltxtSombra.Size = new Size(67, 20);
             lbltxtSombra.TabIndex = 11;
             lbltxtSombra.Text = "Sombra:";
             // 
             // lbltxtBanosCerca
             // 
             lbltxtBanosCerca.AutoSize = true;
+            lbltxtBanosCerca.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbltxtBanosCerca.Location = new Point(235, 32);
             lbltxtBanosCerca.Name = "lbltxtBanosCerca";
-            lbltxtBanosCerca.Size = new Size(91, 20);
+            lbltxtBanosCerca.Size = new Size(96, 20);
             lbltxtBanosCerca.TabIndex = 10;
             lbltxtBanosCerca.Text = "Baños cerca:";
             // 
@@ -188,25 +186,16 @@
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(73, 235);
+            lblPrecio.Location = new Point(76, 235);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(25, 20);
             lblPrecio.TabIndex = 19;
             lblPrecio.Text = "35";
             // 
-            // lblCapacidad
-            // 
-            lblCapacidad.AutoSize = true;
-            lblCapacidad.Location = new Point(103, 309);
-            lblCapacidad.Name = "lblCapacidad";
-            lblCapacidad.Size = new Size(17, 20);
-            lblCapacidad.TabIndex = 18;
-            lblCapacidad.Text = "4";
-            // 
             // lblTipo
             // 
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(62, 94);
+            lblTipo.Location = new Point(64, 94);
             lblTipo.Name = "lblTipo";
             lblTipo.Size = new Size(68, 20);
             lblTipo.TabIndex = 17;
@@ -215,7 +204,7 @@
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(77, 169);
+            lblEstado.Location = new Point(80, 169);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(128, 20);
             lblEstado.TabIndex = 16;
@@ -230,7 +219,7 @@
             lblId.TabIndex = 15;
             lblId.Text = "1";
             // 
-            // ucVistaDatos
+            // ucParcelaDatos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -240,7 +229,6 @@
             Controls.Add(lblSombra);
             Controls.Add(lblBanosCerca);
             Controls.Add(lblPrecio);
-            Controls.Add(lblCapacidad);
             Controls.Add(lblTipo);
             Controls.Add(lblEstado);
             Controls.Add(lblId);
@@ -250,11 +238,10 @@
             Controls.Add(lbltxtSombra);
             Controls.Add(lbltxtBanosCerca);
             Controls.Add(lbltxtPrecio);
-            Controls.Add(lbltxtCapacidad);
             Controls.Add(lbltxtTipo);
             Controls.Add(lbltxtEstado);
             Controls.Add(lbltxtId);
-            Name = "ucVistaDatos";
+            Name = "ucParcelaDatos";
             Size = new Size(400, 366);
             ResumeLayout(false);
             PerformLayout();
@@ -265,7 +252,6 @@
         private Label lbltxtId;
         private Label lbltxtEstado;
         private Label lbltxtTipo;
-        private Label lbltxtCapacidad;
         private Label lbltxtPrecio;
         private Label lbltxtEntrada;
         private Label lbltxtZonaTranquila;
@@ -278,7 +264,6 @@
         private Label lblSombra;
         private Label lblBanosCerca;
         private Label lblPrecio;
-        private Label lblCapacidad;
         private Label lblTipo;
         private Label lblEstado;
         private Label lblId;

@@ -1,0 +1,41 @@
+{
+  "cantidadEquipajeExtra": 2.0,
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cliente": [],
+  "costeMiscelaneo": 50.0,
+  "empleados": {
+    "activo": true,
+    "apellidos": "Cabeza Berrazueta",
+    "dni": "7195495s",
+    "id": 1,
+    "nombre": "Daniel",
+    "puesto": "CAMPO",
+    "telefono": "633533344"
+  },
+  "id": 1,
+  "numeroAdultos": 2,
+  "numeroMascotas": 0,
+  "numeroNinos": 1,
+  "parcelas": {
+    "cerca_baño": true,
+    "cerca_entrada": false,
+    "estado_parcela": "MANTENIMIENTO",
+    "id": 1,
+    "precio_noche": 23.0,
+    "tiene_vistas": true,
+    "tipo_parcela": "SEMIPARCELA",
+    "zona_sombra": true,
+    "zona_tranquila": false
+  },
+  "precioFinal": 500.0,
+  "servicio": [
+    {
+      "descripcion": "tarde de spa y masajes",
+      "id": 1,
+      "nombre": "relax",
+      "precio": 80.0
+    }
+  ],
+  "temporada": "ALTA"
+}

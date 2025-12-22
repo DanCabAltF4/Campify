@@ -40,3 +40,7 @@ C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\ne
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\refint\Controles.dll
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.pdb
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\ref\Controles.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadosLista.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadoDatos.resources
+C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadoDatos.resources
+C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadosLista.resources

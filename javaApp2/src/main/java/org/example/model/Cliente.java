@@ -1,11 +1,9 @@
 package org.example.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import javax.annotation.processing.Generated;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,7 @@ public class Cliente {
     private String email;
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
-    @ManyToMany(mappedBy = "cliente")
+    @ManyToMany(mappedBy = "clientes")
     @JsonIgnore
     private List<Estancia> estancia = new ArrayList<>();
 

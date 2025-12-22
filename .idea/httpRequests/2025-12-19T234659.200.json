@@ -1,0 +1,53 @@
+{
+  "cantidadEquipajeExtra": 2.0,
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "cliente": [
+    {
+      "apellidos": "Inglés",
+      "cPostal": "36987",
+      "direccion": "Barrio bajo",
+      "dni": "11111111A",
+      "email": "miguel@test.com",
+      "fechaNacimiento": "1998-03-12",
+      "id": 1,
+      "nombre": "Miguel",
+      "telefono": "622222222"
+    }
+  ],
+  "costeMiscelaneo": 50.0,
+  "empleados": {
+    "activo": true,
+    "apellidos": "Cabeza Berrazueta",
+    "dni": "7195495s",
+    "id": 1,
+    "nombre": "Daniel",
+    "puesto": "CAMPO",
+    "telefono": "633533344"
+  },
+  "id": 2,
+  "numeroAdultos": 2,
+  "numeroMascotas": 0,
+  "numeroNinos": 1,
+  "parcelas": {
+    "cerca_baño": true,
+    "cerca_entrada": false,
+    "estado_parcela": "LIBRE",
+    "id": 1,
+    "precio_noche": 35.5,
+    "tiene_vistas": false,
+    "tipo_parcela": "NORMAL",
+    "zona_sombra": true,
+    "zona_tranquila": false
+  },
+  "precioFinal": 500.0,
+  "servicio": [
+    {
+      "descripcion": "ruta por el monte",
+      "id": 1,
+      "nombre": "excursion",
+      "precio": 50.0
+    }
+  ],
+  "temporada": "ALTA"
+}

@@ -15,10 +15,10 @@ Content-Type: application/json
   "numeroMascotas": 0,
   "precioFinal": 500.0,
   "temporada": "ALTA",
-  "parcelas": {"id": 1},
-  "empleados": {"id": 1},
-  "cliente": [{"id": 1}, {"id": 2}],
-  "servicio": [{"id": 1}]
+  "parcela": {"id": 1},
+  "empleado": {"id": 1},
+  "clientes": [{"id": 1}, {"id": 2}],
+  "servicios": [{"id": 1}]
 }
 
 ### eliminar empleado -> recibe id por ruta
