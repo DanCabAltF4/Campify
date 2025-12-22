@@ -2,10 +2,7 @@ package com.campify.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,13 +14,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.model.EstadoParcela
 import com.example.campify.model.Parcela
-import com.example.campify.views.ListaView
+import com.example.campify.views.NavView
 
 
 // Datos de ejemplo
@@ -36,7 +37,7 @@ val parcelasSample = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeViewCampify() {
+fun HomeView(navController: NavHostController) {
     val context = LocalContext.current
 
     Scaffold(
@@ -85,14 +86,14 @@ fun HomeViewCampify() {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = { /* futuro: navegar a Mapa */ },
+                    onClick = {  navController.navigate("${NavView.Home.name}") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
-                    onClick = { /* futuro: navegar a ListaView */ },
+                    onClick = { navController.navigate("${NavView.Lista.name}") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Lista", color = Color.Black)
@@ -126,3 +127,4 @@ fun MapaImagen(
         contentScale = ContentScale.Fit
     )
 }
+

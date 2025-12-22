@@ -17,14 +17,30 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.model.EstadoParcela
 import com.example.campify.model.Parcela
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListaView(parcelas: List<Parcela>) {
+fun ListaView(navController: NavHostController, parcelas: List<Parcela>) {
     val context = LocalContext.current
+    var searchText by remember { mutableStateOf("") }
+
+    // Filtrar parcelas según búsqueda parcial
+    val parcelasFiltradas = if (searchText.isEmpty()) {
+        parcelas
+    } else {
+        parcelas.filter {
+            it.estado.name.contains(searchText, ignoreCase = true) ||
+                    it.nombre.contains(searchText, ignoreCase = true)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -71,14 +87,14 @@ fun ListaView(parcelas: List<Parcela>) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = {/* futuro: navegar a Mapa */},
+                    onClick = { navController.navigate("${NavView.Home.name}") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
-                    onClick = { /* futuro: navegar a ListaView */ },
+                    onClick = { navController.navigate("${NavView.Lista.name}") },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Lista", color = Color.Black)
@@ -87,18 +103,31 @@ fun ListaView(parcelas: List<Parcela>) {
 
             Spacer(modifier = Modifier.height(8.dp))
 
+            // Campo de búsqueda
+            OutlinedTextField(
+                value = searchText,
+                onValueChange = { searchText = it },
+                label = { Text("Buscar parcela (nombre o estado)") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(parcelas) { parcela ->
+                items(parcelasFiltradas) { parcela ->
                     ParcelaItem(parcela)
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun ParcelaItem(parcela: Parcela) {
@@ -116,7 +145,7 @@ fun ParcelaItem(parcela: Parcela) {
             .padding(16.dp)
     ) {
         Text(
-            text = "Parcela ${parcela.numero} - ${parcela.estado.name}",
+            text = "Parcela ${parcela.nombre} - ${parcela.estado.name}",
             color = Color.Black,
             fontSize = 16.sp
         )
