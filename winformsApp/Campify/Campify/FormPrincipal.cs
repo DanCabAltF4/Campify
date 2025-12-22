@@ -77,7 +77,7 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -264,7 +264,7 @@ namespace Campify
                 MessageBox.Show("Debe seleccionar una parcela.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-                if (parcela.Estado == EnumEstados.MANTENIMIENTO)
+            if (parcela.Estado == EnumEstados.MANTENIMIENTO)
             {
                 parcela.Estado = EnumEstados.LIBRE;
             }
@@ -319,7 +319,7 @@ namespace Campify
         private void btnEditarEmpleado_Click(object sender, EventArgs e)
         {
             var empleadoSeleccionado = ucEmpleadoDatos1.EmpleadoActual;
-            if(empleadoSeleccionado == null)
+            if (empleadoSeleccionado == null)
             {
                 MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -329,6 +329,15 @@ namespace Campify
             {
                 CargarEmpleados();
                 ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
+            }
+        }
+
+        private void btnClientesEstancia_Click(object sender, EventArgs e)
+        {
+            var form = new FormVerClientesEstancia();
+            if(DialogResult.OK == form.ShowDialog(this))
+            {
+                // Acción tras cerrar el formulario si es necesario
             }
         }
     }
