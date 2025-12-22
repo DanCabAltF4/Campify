@@ -1,14 +1,11 @@
 package org.example.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.model.enums.Temporada;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "estancias")
@@ -43,7 +40,7 @@ public class Estancia {
             joinColumns = @JoinColumn(name = "id_estancia"),
             inverseJoinColumns = @JoinColumn(name = "id_cliente")
     )
-    private List<Cliente> cliente = new ArrayList<>();
+    private List<Cliente> clientes = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -51,15 +48,15 @@ public class Estancia {
             joinColumns = @JoinColumn(name = "id_estancia"),
             inverseJoinColumns = @JoinColumn(name = "id_servicio")
     )
-    private List<Servicio> servicio = new ArrayList<>();
+    private List<Servicio> servicios = new ArrayList<>();
 
 
     @ManyToOne
     @JoinColumn(name = "id_parcela")
-    private Parcela parcelas;
+    private Parcela parcela;
     @ManyToOne
     @JoinColumn(name = "id_empleado")
-    private Empleado empleados;
+    private Empleado empleado;
 
 
     public Estancia() {
@@ -145,55 +142,55 @@ public class Estancia {
         this.temporada = temporada;
     }
 
-    public List<Servicio> getServicio() {
-        return servicio;
+    public List<Servicio> getServicios() {
+        return servicios;
     }
 
-    public void setServicio(List<Servicio> servicio) {
-        this.servicio = servicio;
+    public void setServicios(List<Servicio> servicio) {
+        this.servicios = servicio;
     }
 
-    public List<Cliente> getCliente() {
-        return cliente;
+    public List<Cliente> getClientes() {
+        return clientes;
     }
 
-    public void setCliente(List<Cliente> cliente) {
-        this.cliente = cliente;
+    public void setClientes(List<Cliente> cliente) {
+        this.clientes = cliente;
     }
 
-    public Parcela getParcelas() {
-        return parcelas;
+    public Parcela getParcela() {
+        return parcela;
     }
 
-    public void setParcelas(Parcela parcelas) {
-        this.parcelas = parcelas;
+    public void setParcela(Parcela parcelas) {
+        this.parcela = parcelas;
     }
 
-    public Empleado getEmpleados() {
-        return empleados;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setEmpleados(Empleado empleados) {
-        this.empleados = empleados;
+    public void setEmpleado(Empleado empleados) {
+        this.empleado = empleados;
     }
 
     public void addCliente(Cliente cliente){
-        getCliente().add(cliente);
+        getClientes().add(cliente);
         cliente.getEstancia().add(this);
     }
 
     public void removeCliente(Cliente cliente){
-        getServicio().remove(servicio);
+        getServicios().remove(cliente);
         cliente.getEstancia().remove(this);
     }
 
     public void addServicio(Servicio servicio){
-        getServicio().add(servicio);
+        getServicios().add(servicio);
         servicio.getEstancia().add(this);
     }
 
     public void removeServicio(Servicio servicio){
-        getServicio().remove(servicio);
+        getServicios().remove(servicio);
         servicio.getEstancia().remove(this);
     }
 

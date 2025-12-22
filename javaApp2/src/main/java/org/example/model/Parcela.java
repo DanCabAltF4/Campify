@@ -9,7 +9,6 @@ public class Parcela {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Enumerated(EnumType.STRING)
     private TipoParcela tipo_parcela;
     @Column
@@ -20,6 +19,8 @@ public class Parcela {
     private boolean tiene_vistas;
     @Column
     private boolean zona_sombra;
+    private boolean cerca_entrada;
+    private boolean zona_tranquila;
     @Enumerated(EnumType.STRING)
     private EstadoParcela estado_parcela;
 
@@ -55,6 +56,14 @@ public class Parcela {
         return tiene_vistas;
     }
 
+    public boolean isCerca_entrada() {
+        return cerca_entrada;
+    }
+
+    public boolean isZona_tranquila() {
+        return zona_tranquila;
+    }
+
     public void setTiene_vistas(boolean tiene_vistas) {
         this.tiene_vistas = tiene_vistas;
     }
@@ -81,6 +90,14 @@ public class Parcela {
 
     public void setEstado_parcela(EstadoParcela estado_parcela) {
         this.estado_parcela = estado_parcela;
+    }
+
+    public void setCerca_entrada(boolean cerca_entrada) {
+        this.cerca_entrada = cerca_entrada;
+    }
+
+    public void setZona_tranquila(boolean zona_tranquila) {
+        this.zona_tranquila = zona_tranquila;
     }
 
     @Override

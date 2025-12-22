@@ -9,7 +9,7 @@ public class ConexionDB {
 
     //Atributos de clase
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASS = "mysql";
+    private static final String JDBC_PASS = "1234";
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/";
     private static final String NOMBRE_DB = "campifyDB";
 

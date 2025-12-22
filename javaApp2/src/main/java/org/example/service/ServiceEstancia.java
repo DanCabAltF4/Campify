@@ -1,16 +1,20 @@
 package org.example.service;
 
 import jakarta.transaction.Transactional;
-import org.example.model.Empleado;
+import org.example.model.Cliente;
 import org.example.model.Estancia;
+import org.example.model.Parcela;
+import org.example.model.enums.EstadoParcela;
 import org.example.persistence.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
 @Transactional
-public class ServiceEstancia implements IServiceEstancia{
+public class ServiceEstancia implements IServiceEstancia {
 
     private EstanciaRepository repo;
     private ClienteRepository clienteRepo;
@@ -34,44 +38,41 @@ public class ServiceEstancia implements IServiceEstancia{
 
     @Override
     public Estancia insert(Estancia estancia) {
+        if (estancia.getParcela() != null) {
+            Parcela parcela = parcelaRepo.findById(estancia.getParcela().getId())
+                    .orElseThrow(() -> new RuntimeException("Parcela no existe"));
+            // Cambia el estado de la parcela a ocupada
+            cambiarEstadoParcela(estancia, parcela);
+            estancia.setParcela(parcela);
 
-
-        if (estancia.getParcelas() != null) {
-            estancia.setParcelas(
-                    parcelaRepo.findById(estancia.getParcelas().getId())
-                            .orElseThrow(() -> new RuntimeException("Parcela no existe"))
-            );
         }
-
-        if (estancia.getEmpleados() != null) {
-            estancia.setEmpleados(
-                    empleadoRepo.findById(estancia.getEmpleados().getId())
+        if (estancia.getEmpleado() != null) {
+            estancia.setEmpleado(
+                    empleadoRepo.findById(estancia.getEmpleado().getId())
                             .orElseThrow(() -> new RuntimeException("Empleado no existe"))
             );
         }
-
-        if (estancia.getCliente() != null && !estancia.getCliente().isEmpty()) {
+        if (estancia.getClientes() != null && !estancia.getClientes().isEmpty()) {
             var clientesManaged = clienteRepo.findAllById(
-                    estancia.getCliente().stream().map(c -> c.getId()).toList()
+                    estancia.getClientes().stream().map(c -> c.getId()).toList()
             );
-            estancia.getCliente().clear();
+            estancia.getClientes().clear();
             clientesManaged.forEach(estancia::addCliente);
         }
+        recalcularNumAdultosYNinos(estancia);
 
         // Servicios (gestión ManyToMany)
-        if (estancia.getServicio() != null && !estancia.getServicio().isEmpty()) {
+        if (estancia.getServicios() != null && !estancia.getServicios().isEmpty()) {
             var serviciosManaged = servicioRepo.findAllById(
-                    estancia.getServicio().stream().map(s -> s.getId()).toList()
+                    estancia.getServicios().stream().map(s -> s.getId()).toList()
             );
-            estancia.getServicio().clear();         // Limpiamos la lista original
+            estancia.getServicios().clear();         // Limpiamos la lista original
             serviciosManaged.forEach(estancia::addServicio);
         }
 
         // Guardamos la estancia (Hibernate maneja cascadas si están configuradas)
         return repo.save(estancia);
     }
-
-
 
 
     @Override
@@ -93,35 +94,36 @@ public class ServiceEstancia implements IServiceEstancia{
         buscada.setTemporada(estancia.getTemporada());
 
         // Parcela
-        if (estancia.getParcelas() != null) {
-            buscada.setParcelas(
-                    parcelaRepo.findById(estancia.getParcelas().getId())
+        if (estancia.getParcela() != null) {
+            buscada.setParcela(
+                    parcelaRepo.findById(estancia.getParcela().getId())
                             .orElseThrow(() -> new RuntimeException("Parcela no existe"))
             );
         }
 
         // Empleado
-        if (estancia.getEmpleados() != null) {
-            buscada.setEmpleados(
-                    empleadoRepo.findById(estancia.getEmpleados().getId())
+        if (estancia.getEmpleado() != null) {
+            buscada.setEmpleado(
+                    empleadoRepo.findById(estancia.getEmpleado().getId())
                             .orElseThrow(() -> new RuntimeException("Empleado no existe"))
             );
         }
 
         // Clientes
-        if (estancia.getCliente() != null) {
-            buscada.getCliente().clear();
+        if (estancia.getClientes() != null) {
+            buscada.getClientes().clear();
             var clientesManaged = clienteRepo.findAllById(
-                    estancia.getCliente().stream().map(c -> c.getId()).toList()
+                    estancia.getClientes().stream().map(c -> c.getId()).toList()
             );
             clientesManaged.forEach(buscada::addCliente);
         }
+        recalcularNumAdultosYNinos(buscada);
 
         // Servicios
-        if (estancia.getServicio() != null) {
-            buscada.getServicio().clear();
+        if (estancia.getServicios() != null) {
+            buscada.getServicios().clear();
             var serviciosManaged = servicioRepo.findAllById(
-                    estancia.getServicio().stream().map(s -> s.getId()).toList()
+                    estancia.getServicios().stream().map(s -> s.getId()).toList()
             );
             serviciosManaged.forEach(buscada::addServicio);
         }
@@ -144,4 +146,58 @@ public class ServiceEstancia implements IServiceEstancia{
     public List<Estancia> findAll() {
         return repo.findAll();
     }
+
+    // -------------------
+    // METODOS PRIVADOS
+    // -------------------
+
+    // Cambia el estado de parcela a RESERVADO si hoy esta entre checkin y checkout
+    private void cambiarEstadoParcela(Estancia estancia, Parcela parcela) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate checkin = estancia.getCheckIn();
+        LocalDate checkout = estancia.getCheckOut();
+
+        boolean ocupada = false;
+        if(checkout !=null){
+            ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
+        }else{
+            ocupada = !hoy.isBefore(checkin);
+        }
+
+        if (ocupada) {
+            parcela.setEstado_parcela(EstadoParcela.RESERVADA);
+            parcelaRepo.save(parcela);
+        }
+    }
+
+    //Calcula el numero de adultos y de niños en la fecha de checkin
+    private void recalcularNumAdultosYNinos(Estancia estancia) {
+        LocalDate checkin = estancia.getCheckIn();
+        int adultos=0;
+        int ninos=0;
+
+        if(estancia.getClientes()!=null){
+            for(Cliente c: estancia.getClientes()){
+                LocalDate fechaNac = c.getFechaNacimiento();
+                int edad= Period.between(fechaNac, checkin).getYears();
+                if (edad>=18) adultos++; else ninos++;
+            }
+        }
+        estancia.setNumeroAdultos(adultos);
+        estancia.setNumeroNinos(ninos);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

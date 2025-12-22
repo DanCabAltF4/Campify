@@ -1,0 +1,16 @@
+{
+  "cantidadEquipajeExtra": 2.0,
+  "checkIn": "2025-12-20",
+  "checkOut": "2025-12-25",
+  "clientes": [],
+  "costeMiscelaneo": 50.0,
+  "empleado": null,
+  "id": 1,
+  "numeroAdultos": 2,
+  "numeroMascotas": 0,
+  "numeroNinos": 1,
+  "parcela": null,
+  "precioFinal": 500.0,
+  "servicios": [],
+  "temporada": "ALTA"
+}

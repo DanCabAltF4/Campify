@@ -31,7 +31,7 @@ public class ParcelaController {
     }
 
     @GetMapping("/{id}")
-    public Parcela findById(@RequestParam int id){
+    public Parcela findById(@PathVariable int id){
         return service.findById(id);
     }
 
