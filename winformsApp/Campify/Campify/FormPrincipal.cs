@@ -259,7 +259,12 @@ namespace Campify
         private async void btnMantenimiento_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;
-            if (parcela.Estado == EnumEstados.MANTENIMIENTO)
+            if (parcela == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                if (parcela.Estado == EnumEstados.MANTENIMIENTO)
             {
                 parcela.Estado = EnumEstados.LIBRE;
             }

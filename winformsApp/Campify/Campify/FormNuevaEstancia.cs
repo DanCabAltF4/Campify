@@ -96,7 +96,6 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Clientes = form.ListaFinalClientes;
-                //lblAdultos.Text = _estancia.Clientes.Count.ToString();
             }
         }
 
@@ -109,7 +108,6 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;
-                //lblNinos.Text = _estancia.Servicios.Count.ToString();
             }
             
         }

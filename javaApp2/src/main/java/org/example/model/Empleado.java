@@ -6,7 +6,7 @@ import org.example.model.enums.PuestoTrabajo;
 @Entity
 public class Empleado {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(length = 50,nullable = false)
     private String nombre;

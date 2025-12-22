@@ -74,7 +74,7 @@ namespace Campify
         {
             // Asigna los valores de los controles al empleado
             if(_empleado == null) _empleado = new Empleado(); // Asegura que _empleado no sea null
-            _empleado.Id = int.Parse(lblId.Text);
+            //_empleado.Id = int.Parse(lblId.Text);
             _empleado.Nombre = txbNombre.Text;
             _empleado.Apellidos = txbApellidos.Text;
             _empleado.Dni = txbDni.Text;
