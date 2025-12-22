@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //HomeViewCampify()
-            ListaView(generarParcelas())
+            HomeViewCampify()
+            //ListaView(generarParcelas())
         }
     }
 }

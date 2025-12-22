@@ -1,10 +1,13 @@
 package com.example.campify.views
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +31,7 @@ fun ListaView(parcelas: List<Parcela>) {
             TopAppBar(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
+                        Image(
                             painter = painterResource(R.drawable.campify_logo),
                             contentDescription = "Logo",
                             modifier = Modifier.size(32.dp)
@@ -42,7 +45,7 @@ fun ListaView(parcelas: List<Parcela>) {
                         Toast.makeText(context, "Configuración", Toast.LENGTH_SHORT).show()
                     }) {
                         Icon(
-                            painter = painterResource(R.drawable.campify_logo),
+                            imageVector = Icons.Filled.Settings,
                             contentDescription = "Configuración"
                         )
                     }

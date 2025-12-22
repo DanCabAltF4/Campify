@@ -16,6 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.layout.ContentScale
 import com.example.campify.R
 import com.example.campify.model.EstadoParcela
 import com.example.campify.model.Parcela
@@ -54,7 +58,7 @@ fun HomeViewCampify() {
                         Toast.makeText(context, "Configuración", Toast.LENGTH_SHORT).show()
                     }) {
                         Icon(
-                            painter = painterResource(R.drawable.campify_logo),
+                            imageVector = Icons.Filled.Settings,
                             contentDescription = "Configuración"
                         )
                     }
@@ -105,7 +109,20 @@ fun HomeViewCampify() {
                 contentAlignment = Alignment.Center
             ) {
                 Text("Mapa de parcelas", fontSize = 20.sp, color = Color.DarkGray)
+                MapaImagen(mapaResId = R.drawable.mapa)
             }
         }
     }
+}
+
+@Composable
+fun MapaImagen(
+    @DrawableRes mapaResId: Int
+) {
+    Image(
+        painter = painterResource(id = mapaResId),
+        contentDescription = "Mapa de la zona",
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Fit
+    )
 }
