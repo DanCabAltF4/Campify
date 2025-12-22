@@ -14,16 +14,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavHostController
 import com.example.campify.R
-import com.example.campify.model.EstadoParcela
-import com.example.campify.model.Parcela
+import com.example.campify.data.model.enums.EstadoParcela
+import com.example.campify.data.model.Parcela
 import com.example.campify.views.NavView
 
 
