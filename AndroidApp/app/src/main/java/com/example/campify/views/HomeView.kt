@@ -21,6 +21,9 @@ import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.data.model.Parcela
+import com.example.campify.ui.theme.botonActivo
+import com.example.campify.ui.theme.botonInactivo
+import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.views.NavView
 
 
@@ -55,7 +58,7 @@ fun HomeView(navController: NavHostController) {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFFD7EAC1),
+                    containerColor = fondoPrincipal,
                     titleContentColor = Color.Black
                 )
             )
@@ -72,19 +75,19 @@ fun HomeView(navController: NavHostController) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFD7EAC1)),
+                    .background(fondoPrincipal),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
                     onClick = {  navController.navigate(NavView.Home.name) },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
+                    colors = ButtonDefaults.buttonColors(containerColor = botonActivo)
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
                     onClick = { navController.navigate(NavView.Lista.name) },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
+                    colors = ButtonDefaults.buttonColors(containerColor = botonInactivo)
                 ) {
                     Text("Lista", color = Color.Black)
                 }

@@ -26,7 +26,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.example.campify.ui.theme.botonActivo
+import com.example.campify.ui.theme.botonInactivo
+import com.example.campify.ui.theme.colorBloqueada
+import com.example.campify.ui.theme.colorInteresado
+import com.example.campify.ui.theme.colorLibre
+import com.example.campify.ui.theme.colorReservada
+import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.viewmodels.ApiModel
+import kotlin.toString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +44,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     val parcelas by api.parcelas
     api.cargarParcelas()
     // Filtrar parcelas según búsqueda
-    val parcelasFiltradas = if (searchText.isEmpty()) {
+    val parcelasFiltradas = if (!searchText.isEmpty()) {
         try {
             parcelas.filter {
                 it.estado_parcela.name.contains(searchText, ignoreCase = true) ||
@@ -48,6 +56,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     } else{
         parcelas
     }
+
 
     Scaffold(
         topBar = {
@@ -74,7 +83,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFFD7EAC1),
+                    containerColor = fondoPrincipal,
                     titleContentColor = Color.Black
                 )
             )
@@ -90,19 +99,19 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFD7EAC1)),
+                    .background(fondoPrincipal),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
                     onClick = { navController.navigate(NavView.Home.name) },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
+                    colors = ButtonDefaults.buttonColors(containerColor = botonInactivo)
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
                     onClick = { navController.navigate(NavView.Lista.name) },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
+                    colors = ButtonDefaults.buttonColors(containerColor = botonActivo)
                 ) {
                     Text("Lista", color = Color.Black)
                 }
@@ -114,7 +123,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
             OutlinedTextField(
                 value = searchText,
                 onValueChange = { searchText = it },
-                label = { Text("Buscar parcela (nombre o estado)") },
+                label = { Text("Buscar parcela (id o estado)") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp)
@@ -139,10 +148,10 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
 @Composable
 fun ParcelaItem(parcela: Parcela) {
     val color = when (parcela.estado_parcela) {
-        EstadoParcela.LIBRE -> Color(0xFFB28C5D)       // marrón claro
-        EstadoParcela.RESERVADA -> Color(0xFFF0D9A6)  // beige
-        EstadoParcela.INTERESADO -> Color(0xFFC5E1A5) // verde claro
-        EstadoParcela.BLOQUEADA -> Color(0xFFB0BEC5)  // gris azulado
+        EstadoParcela.LIBRE -> colorLibre
+        EstadoParcela.RESERVADA -> colorReservada
+        EstadoParcela.INTERESADO -> colorInteresado
+        EstadoParcela.BLOQUEADA -> colorBloqueada
     }
 
     Box(
