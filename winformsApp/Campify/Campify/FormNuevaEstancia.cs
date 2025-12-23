@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -130,6 +131,91 @@ namespace Forms
             lblPrecioFinal.Text = $"{precioTotal} €";
         }
 
+        /// <summary>
+        /// Ordena estancias de la parcela por fecha y comprueba en estancia actual si hay disponibilidad
+        /// Comprueba que check y checkout esta entre espacios de otras estancias
+        /// </summary>
+        private async void ComprobarDisponibilidad()
+        {
+            var disponible = false;
+            DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
+            DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
+            var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+            estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
+            estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
+
+            switch (estancias.Count)
+            {
+                // 0 estancias
+                case 0:
+                    disponible = true;
+                    break;
+                // 1 estancia
+                case 1:
+                    disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
+
+                    break;
+
+                // 2 o mas estancias
+                default:
+                    MessageBox.Show("2 o mas estancias");
+                    break;
+            }
+
+
+            //for (int i = 0; i < estancias.Count; i++)
+            //{
+            //    if (estancias[i].Parcela.Id == _parcela.Id && estancias[i].CheckOut != null)
+            //    {
+            //        if (estancias[i].CheckOut <= checkinNuevo && checkoutNuevo <= estancias[i + 1].CheckIn)
+            //        {
+            //            MessageBox.Show("Fecha correcta");
+            //            disponible = true;
+            //        }
+            //    }
+            //}
+            //return disponible;
+        }
+
+        /// <summary>
+        /// Comprueba si la estancia actual se solapa con la estancia ya guardada
+        /// </summary>
+        /// <returns></returns>
+        private bool Disponibilidad1Estancia(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
+        {
+            bool disponible = false;
+
+            // Sin fecha de checkout en estancia guardada
+            if (estancias.First().CheckOut == null)
+            {
+                // ckInNueva < ckOutNueva < ckInGuardada
+                if (dtpCheckout.Checked && checkoutNuevo <= estancias.First().CheckIn && checkinNuevo < checkoutNuevo)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+            }
+            // Con fecha de checkout en estancia guardada
+            else
+            {
+                // POSTERIOR - fecha actual sin checkout   ->   ckoutGuardada < ckinNueva
+                if (!dtpCheckout.Checked && estancias.First().CheckOut.Value < checkinNuevo)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+                // POSTERIOR - fecha actual con checkout    ->   ckoutGuardada < ckinNueva < ckoutNueva
+                else if(dtpCheckout.Checked && estancias.First().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+                // ANTERIOR - fecha actual con checkout    ->   ckinNueva < ckNueva < ckinGuardada
+                if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+            }
+            return disponible;
+        }
+
 
         //----------------------------------
         // FUNCIONES DE LOS BOTONES Y EVENTOS
@@ -140,6 +226,7 @@ namespace Forms
         /// </summary>
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
+            //bool disponible=  await ComprobarDisponibilidad();
             // Asignar los valores del formulario a la estancia
             _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
             _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
@@ -226,6 +313,11 @@ namespace Forms
         private void dtpCheckout_Leave(object sender, EventArgs e)
         {
             CalcularPrecioTotal();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            ComprobarDisponibilidad();
         }
     }
 }

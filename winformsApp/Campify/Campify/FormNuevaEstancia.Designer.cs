@@ -53,6 +53,7 @@
             lbltxtPrecioNoche = new Label();
             nudNumMascotas = new NumericUpDown();
             nudEquipajeAdicional = new NumericUpDown();
+            btnTest = new Button();
             ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumMascotas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudEquipajeAdicional).BeginInit();
@@ -298,12 +299,23 @@
             nudEquipajeAdicional.TabIndex = 36;
             nudEquipajeAdicional.ValueChanged += nudEquipajeAdicional_ValueChanged;
             // 
+            // btnTest
+            // 
+            btnTest.Location = new Point(286, 327);
+            btnTest.Name = "btnTest";
+            btnTest.Size = new Size(94, 29);
+            btnTest.TabIndex = 38;
+            btnTest.Text = "button1";
+            btnTest.UseVisualStyleBackColor = true;
+            btnTest.Click += btnTest_Click;
+            // 
             // FormNuevaEstancia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(699, 559);
+            Controls.Add(btnTest);
             Controls.Add(nudCargoAdicional);
             Controls.Add(nudEquipajeAdicional);
             Controls.Add(nudNumMascotas);
@@ -367,5 +379,6 @@
         private NumericUpDown nudNumMascotas;
         private NumericUpDown nudEquipajeAdicional;
         private NumericUpDown nudCargoAdicional;
+        private Button btnTest;
     }
 }
