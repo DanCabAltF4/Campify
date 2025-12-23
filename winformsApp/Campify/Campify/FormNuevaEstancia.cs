@@ -135,7 +135,7 @@ namespace Forms
         /// Ordena estancias de la parcela por fecha y comprueba en estancia actual si hay disponibilidad
         /// Comprueba que check y checkout esta entre espacios de otras estancias
         /// </summary>
-        private async void ComprobarDisponibilidad()
+        private async Task<bool> ComprobarDisponibilidad()
         {
             var disponible = false;
             DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
@@ -158,23 +158,10 @@ namespace Forms
 
                 // 2 o mas estancias
                 default:
-                    MessageBox.Show("2 o mas estancias");
+                    disponible = Disponibilidad2Estancias(estancias, checkinNuevo, checkoutNuevo);
                     break;
             }
-
-
-            //for (int i = 0; i < estancias.Count; i++)
-            //{
-            //    if (estancias[i].Parcela.Id == _parcela.Id && estancias[i].CheckOut != null)
-            //    {
-            //        if (estancias[i].CheckOut <= checkinNuevo && checkoutNuevo <= estancias[i + 1].CheckIn)
-            //        {
-            //            MessageBox.Show("Fecha correcta");
-            //            disponible = true;
-            //        }
-            //    }
-            //}
-            //return disponible;
+            return disponible;
         }
 
         /// <summary>
@@ -191,27 +178,56 @@ namespace Forms
                 // ckInNueva < ckOutNueva < ckInGuardada
                 if (dtpCheckout.Checked && checkoutNuevo <= estancias.First().CheckIn && checkinNuevo < checkoutNuevo)
                 {
-                    MessageBox.Show("Fecha disponible");
+                    disponible = true;
                 }
             }
             // Con fecha de checkout en estancia guardada
             else
             {
-                // POSTERIOR - fecha actual sin checkout   ->   ckoutGuardada < ckinNueva
-                if (!dtpCheckout.Checked && estancias.First().CheckOut.Value < checkinNuevo)
+                // POSTERIOR - ckoutNueva == null   ->   ckoutGuardada < ckinNueva
+                if (!dtpCheckout.Checked && estancias.First().CheckOut.Value <= checkinNuevo)
                 {
-                    MessageBox.Show("Fecha disponible");
+                    disponible = true;
                 }
-                // POSTERIOR - fecha actual con checkout    ->   ckoutGuardada < ckinNueva < ckoutNueva
+                // POSTERIOR - ckoutNueva != null    ->   ckoutGuardada < ckinNueva < ckoutNueva
                 else if(dtpCheckout.Checked && estancias.First().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
-                    MessageBox.Show("Fecha disponible");
+                    disponible = true;
                 }
-                // ANTERIOR - fecha actual con checkout    ->   ckinNueva < ckNueva < ckinGuardada
+                // ANTERIOR - ckoutNueva != null    ->   ckinNueva < ckoutNueva < ckinGuardada
+                if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
+                {
+                    disponible = true;
+                }
+
+                
+            }
+            return disponible;
+        }
+
+
+        private bool Disponibilidad2Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
+        {
+            bool disponible=false;
+            for (int i = 0; i < estancias.Count; i++)
+            {
+                // ANTERIOR A TODAS -> ckoutNueva != null     ->   ckinNueva < ckoutNueva < ckinGuardada
                 if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
                 {
                     MessageBox.Show("Fecha disponible");
                 }
+                // POSTERIOR A TODAS -> ckoutNueva == null     -> ckoutGuardada < ckinNueva
+                if(!dtpCheckout.Checked && estancias.Last().CheckOut <= checkinNuevo)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+                // POSTERIOR A TODAS -> ckoutNueva != null     -> ckoutGuardada < ckinNueva < ckoutNueva
+                if(dtpCheckout.Checked && estancias.Last().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                {
+                    MessageBox.Show("Fecha disponible");
+                }
+                // INTERIOR ENTRE 2 -> ckoutNueva !=null     -> ckoutGuardada < ckinNueva < ckoutNueva < ckinGuardada[i+1]     
+
             }
             return disponible;
         }

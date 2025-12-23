@@ -21,8 +21,8 @@ namespace Campify
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CargarParcelas();
-            CargarEmpleados();
+            RecargaAutomatica();
+            
         }
 
 
@@ -30,6 +30,16 @@ namespace Campify
         // ----------------------------------
         // METODOS DEL FORMULARIO
         // ----------------------------------
+
+        private async void RecargaAutomatica()
+        {
+            while (true)
+            {
+                CargarParcelas();
+                CargarEmpleados();
+                Thread.Sleep(5000);
+            }
+        }
 
         /// <summary>
         /// Carga las parcelas desde la API en los user controls y los añade al flow layout panel.
