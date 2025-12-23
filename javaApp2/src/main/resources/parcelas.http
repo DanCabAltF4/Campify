@@ -11,10 +11,10 @@ Content-Type: application/json
 {
   "tipo_parcela": "NORMAL",
   "precio_noche": 35.50,
-  "cerca_baño": true,
-  "tiene_vistas": false,
+  "cerca_baño": false,
+  "tiene_vistas": true,
   "zona_sombra": true,
-  "estado_parcela": "LIBRE",
+  "estado_parcela": "",
   "capacidad_maxima": 4
 }
 

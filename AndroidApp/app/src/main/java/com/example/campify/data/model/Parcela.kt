@@ -10,5 +10,8 @@ data class Parcela(
     var cerca_baño: Boolean,
     var tiene_vistas: Boolean,
     var zona_sombra: Boolean,
+    val cerca_entrada: Boolean,
+    val zona_tranquila: Boolean,
+    val capacidad_maxima: Int,
     var estado_parcela: EstadoParcela
 )
