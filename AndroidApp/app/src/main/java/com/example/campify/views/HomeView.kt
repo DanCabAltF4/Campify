@@ -24,13 +24,6 @@ import com.example.campify.data.model.Parcela
 import com.example.campify.views.NavView
 
 
-// Datos de ejemplo
-val parcelasSample = listOf(
-    Parcela("245", EstadoParcela.RESERVADA),
-    Parcela("246", EstadoParcela.LIBRE),
-    Parcela("247", EstadoParcela.INTERESADO),
-    Parcela("248", EstadoParcela.LIBRE),
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,14 +76,14 @@ fun HomeView(navController: NavHostController) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = {  navController.navigate("${NavView.Home.name}") },
+                    onClick = {  navController.navigate(NavView.Home.name) },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
-                    onClick = { navController.navigate("${NavView.Lista.name}") },
+                    onClick = { navController.navigate(NavView.Lista.name) },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Lista", color = Color.Black)

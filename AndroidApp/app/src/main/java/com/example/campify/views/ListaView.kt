@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -25,21 +26,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.example.campify.viewmodels.ApiModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListaView(navController: NavHostController, parcelas: List<Parcela>) {
+fun ListaView(navController: NavHostController, api: ApiModel) {
     val context = LocalContext.current
     var searchText by remember { mutableStateOf("") }
-
-    // Filtrar parcelas según búsqueda parcial
+    val parcelas by api.parcelas
+    api.cargarParcelas()
+    // Filtrar parcelas según búsqueda
     val parcelasFiltradas = if (searchText.isEmpty()) {
-        parcelas
-    } else {
-        parcelas.filter {
-            it.estado.name.contains(searchText, ignoreCase = true) ||
-                    it.nombre.contains(searchText, ignoreCase = true)
+        try {
+            parcelas.filter {
+                it.estado_parcela.name.contains(searchText, ignoreCase = true) ||
+                        it.id.toString().contains(searchText)
+            }
+        } catch (e: NumberFormatException) {
+            TODO("Not yet implemented")
         }
+    } else{
+        parcelas
     }
 
     Scaffold(
@@ -58,11 +65,11 @@ fun ListaView(navController: NavHostController, parcelas: List<Parcela>) {
                 },
                 actions = {
                     IconButton(onClick = {
-                        Toast.makeText(context, "Configuración", Toast.LENGTH_SHORT).show()
+                        api.cargarParcelas()
                     }) {
                         Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = "Configuración"
+                            imageVector = Icons.Filled.Refresh,
+                            contentDescription = "Recargar Parcelas"
                         )
                     }
                 },
@@ -131,7 +138,7 @@ fun ListaView(navController: NavHostController, parcelas: List<Parcela>) {
 
 @Composable
 fun ParcelaItem(parcela: Parcela) {
-    val color = when (parcela.estado) {
+    val color = when (parcela.estado_parcela) {
         EstadoParcela.LIBRE -> Color(0xFFB28C5D)       // marrón claro
         EstadoParcela.RESERVADA -> Color(0xFFF0D9A6)  // beige
         EstadoParcela.INTERESADO -> Color(0xFFC5E1A5) // verde claro
@@ -145,7 +152,7 @@ fun ParcelaItem(parcela: Parcela) {
             .padding(16.dp)
     ) {
         Text(
-            text = "Parcela ${parcela.nombre} - ${parcela.estado.name}",
+            text = "Parcela ${parcela.id} - ${parcela.estado_parcela.name}",
             color = Color.Black,
             fontSize = 16.sp
         )
