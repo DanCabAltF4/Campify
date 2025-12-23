@@ -14,26 +14,16 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
 import android.widget.Toast
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavHostController
 import com.example.campify.R
-import com.example.campify.model.EstadoParcela
-import com.example.campify.model.Parcela
+import com.example.campify.data.model.enums.EstadoParcela
+import com.example.campify.data.model.Parcela
 import com.example.campify.views.NavView
 
 
-// Datos de ejemplo
-val parcelasSample = listOf(
-    Parcela("245", EstadoParcela.RESERVADA),
-    Parcela("246", EstadoParcela.LIBRE),
-    Parcela("247", EstadoParcela.INTERESADO),
-    Parcela("248", EstadoParcela.LIBRE),
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -86,14 +76,14 @@ fun HomeView(navController: NavHostController) {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = {  navController.navigate("${NavView.Home.name}") },
+                    onClick = {  navController.navigate(NavView.Home.name) },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Mapa", color = Color.Black)
                 }
 
                 Button(
-                    onClick = { navController.navigate("${NavView.Lista.name}") },
+                    onClick = { navController.navigate(NavView.Lista.name) },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD7EAC1))
                 ) {
                     Text("Lista", color = Color.Black)
