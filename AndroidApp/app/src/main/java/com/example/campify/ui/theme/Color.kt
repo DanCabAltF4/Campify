@@ -27,7 +27,7 @@ val botonInactivoTexto = Color.Black
 val colorLibre = Color(0xFFB28C5D)          // Verde suave
 val colorReservada = Color(0xFFF0D9A6)      // Beige cálido
 val colorInteresado = Color(0xFFC5E1A5)     // Verde muy claro
-val colorBloqueada = Color(0xFFB0BEC5)      // Gris claro
+val colorMantenimiento = Color(0xFFB0BEC5)      // Gris claro
 
 val textoPrincipal = Color.Black
 val textoSecundario = Color(0xFF555555)
