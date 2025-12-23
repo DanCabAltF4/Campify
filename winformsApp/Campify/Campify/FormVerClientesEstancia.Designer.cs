@@ -31,6 +31,7 @@
             dgvVerClientesEstancia = new DataGridView();
             Volver = new Button();
             lblClientes = new Label();
+            lblParcelaFecha = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvVerClientesEstancia).BeginInit();
             SuspendLayout();
             // 
@@ -64,9 +65,19 @@
             lblClientes.Font = new Font("Segoe UI", 12F);
             lblClientes.Location = new Point(12, 19);
             lblClientes.Name = "lblClientes";
-            lblClientes.Size = new Size(205, 28);
+            lblClientes.Size = new Size(174, 28);
             lblClientes.TabIndex = 2;
-            lblClientes.Text = "Clientes en la estancia:";
+            lblClientes.Text = "Clientes en parcela";
+            // 
+            // lblParcelaFecha
+            // 
+            lblParcelaFecha.AutoSize = true;
+            lblParcelaFecha.Font = new Font("Segoe UI", 12F);
+            lblParcelaFecha.Location = new Point(192, 19);
+            lblParcelaFecha.Name = "lblParcelaFecha";
+            lblParcelaFecha.Size = new Size(65, 28);
+            lblParcelaFecha.TabIndex = 3;
+            lblParcelaFecha.Text = "label1";
             // 
             // FormVerClientesEstancia
             // 
@@ -74,6 +85,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(800, 450);
+            Controls.Add(lblParcelaFecha);
             Controls.Add(lblClientes);
             Controls.Add(Volver);
             Controls.Add(dgvVerClientesEstancia);
@@ -89,5 +101,6 @@
         private DataGridView dgvVerClientesEstancia;
         private Button Volver;
         private Label lblClientes;
+        private Label lblParcelaFecha;
     }
 }

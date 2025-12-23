@@ -21,8 +21,8 @@ namespace Campify
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CargarParcelas();
-            CargarEmpleados();
+            RecargaAutomatica();
+            
         }
 
 
@@ -30,6 +30,16 @@ namespace Campify
         // ----------------------------------
         // METODOS DEL FORMULARIO
         // ----------------------------------
+
+        private async void RecargaAutomatica()
+        {
+            while (true)
+            {
+                CargarParcelas();
+                CargarEmpleados();
+                Thread.Sleep(5000);
+            }
+        }
 
         /// <summary>
         /// Carga las parcelas desde la API en los user controls y los añade al flow layout panel.
@@ -178,6 +188,8 @@ namespace Campify
             }
         }
 
+
+
         /// <summary>
         /// Cambia el panel principal a la vista de servicios.
         /// </summary>
@@ -185,6 +197,7 @@ namespace Campify
         {
             pnlEmpleados.Visible = false;
             pnlParcelas.Visible = false;
+            pnlEstancias.Visible = false;
             pnlServicios.Visible = true;
         }
 
@@ -195,6 +208,7 @@ namespace Campify
         {
             pnlEmpleados.Visible = false;
             pnlServicios.Visible = false;
+            pnlEstancias.Visible = false;
             pnlParcelas.Visible = true;
         }
 
@@ -205,8 +219,23 @@ namespace Campify
         {
             pnlServicios.Visible = false;
             pnlParcelas.Visible = false;
+            pnlEstancias.Visible = false;
             pnlEmpleados.Visible = true;
         }
+
+        /// <summary>
+        /// Cambia el panel principal a la vista de estancias.
+        /// </summary>
+        private void btnEstancias_Click(object sender, EventArgs e)
+        {
+            pnlParcelas.Visible = false;
+            pnlEmpleados.Visible = false;
+            pnlServicios.Visible = false;
+            pnlEstancias.Visible = true;
+        }
+
+
+
 
         /// <summary>
         /// Cambia el user control visible a la vista de datos de parcela.
@@ -334,11 +363,20 @@ namespace Campify
 
         private void btnClientesEstancia_Click(object sender, EventArgs e)
         {
-            var form = new FormVerClientesEstancia();
-            if(DialogResult.OK == form.ShowDialog(this))
+            Parcela parcela = ucParcelaDatos.ParcelaActual;
+            if (parcela.Estado != EnumEstados.RESERVADA)
+            {
+                MessageBox.Show("La parcela no tiene una estancia hoy.", "Estancia no activa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var estanciaActual = ucEstanciaActual1.EstanciaActual;
+            var form = new FormVerClientesEstancia(estanciaActual);
+            if (DialogResult.OK == form.ShowDialog(this))
             {
                 // Acción tras cerrar el formulario si es necesario
             }
         }
+
+
     }
 }
