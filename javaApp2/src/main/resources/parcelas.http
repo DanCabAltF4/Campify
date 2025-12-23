@@ -1,5 +1,5 @@
 ### buscar parcela -> se pasa id por ruta
-GET http://localhost:8080/api/parcelas/1
+GET http://localhost:8080/api/parcelas
 
 ### eliminar parcela -> se pasa id por ruta
 DELETE http://localhost:8080/api/parcelas/1
@@ -14,7 +14,7 @@ Content-Type: application/json
   "cerca_baño": false,
   "tiene_vistas": true,
   "zona_sombra": true,
-  "estado_parcela": "",
+  "estado_parcela": "MANTENIMIENTO",
   "capacidad_maxima": 4
 }
 

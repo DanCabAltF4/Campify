@@ -40,7 +40,7 @@ fun DetailView(
         // TopBar con logo, título y botones
         topBar = {
             TopAppBar(
-                title = { TopBarTitle() },
+                title = { DetailTopBarTitle() },
                 navigationIcon = { BackButton(navController) },
                 actions = { ConfigButton(context) },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -61,7 +61,7 @@ fun DetailView(
 
 // TopBar title con logo
 @Composable
-fun TopBarTitle() {
+fun DetailTopBarTitle() {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = painterResource(R.drawable.campify_logo),
@@ -139,9 +139,6 @@ fun ContentDetailView(
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
-
-        // Descripción de la parcela
-        descripcion("Descripción", parcela)
     }
 }
 
@@ -161,17 +158,3 @@ fun BooleanRow(label: String, value: Boolean) {
     }
 }
 
-// Descripción de la parcela
-@Composable
-private fun ColumnScope.descripcion(titulo: String, parcela: Parcela) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .weight(0.6f)
-    ) {
-        Text(
-            text = titulo,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
