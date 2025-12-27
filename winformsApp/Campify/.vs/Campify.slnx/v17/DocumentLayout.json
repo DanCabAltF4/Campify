@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,10 +43,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
@@ -68,7 +64,7 @@
               "RelativeDocumentMoniker": "Campify\\FormNuevaEstancia.cs",
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs",
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAD4v68AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAPgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-22T18:48:27.999Z",
               "EditorCaption": ""
@@ -83,8 +79,7 @@
               "RelativeToolTip": "Campify\\FormPrincipal.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAswCgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T22:36:02.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:36:02.789Z"
             },
             {
               "$type": "Document",
@@ -99,6 +94,10 @@
               "WhenOpened": "2025-12-22T16:23:55.151Z"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FormNuevaEstancia.cs [Dise\u00F1o]",
@@ -107,8 +106,7 @@
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs [Dise\u00F1o]",
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-22T19:33:41.643Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-22T19:33:41.643Z"
             }
           ]
         }

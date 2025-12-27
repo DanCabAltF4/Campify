@@ -189,11 +189,13 @@ namespace Forms
         /// <returns></returns>
         private bool Disponibilidad1Estancia(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
+            var primera = estancias.First();
+            bool nuevaTieneCheckout = dtpCheckout.Checked;
             // Sin fecha de checkout en estancia guardada
-            if (estancias.First().CheckOut == null)
+            if (primera.CheckOut == null)
             {
                 // ckInNueva < ckOutNueva < ckInGuardada
-                if (dtpCheckout.Checked && checkoutNuevo <= estancias.First().CheckIn && checkinNuevo < checkoutNuevo)
+                if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
                     return true;
                 }
@@ -201,18 +203,18 @@ namespace Forms
             // Con fecha de checkout en estancia guardada
             else
             {
-                // POSTERIOR - ckoutNueva == null   ->   ckoutGuardada < ckinNueva
-                if (!dtpCheckout.Checked && estancias.First().CheckOut.Value <= checkinNuevo)
+                // POSTERIOR - ckoutNueva = false   ->   ckoutGuardada < ckinNueva
+                if (!nuevaTieneCheckout && primera.CheckOut.Value <= checkinNuevo)
                 {
                     return true;
                 }
-                // POSTERIOR - ckoutNueva != null    ->   ckoutGuardada < ckinNueva < ckoutNueva
-                else if(dtpCheckout.Checked && estancias.First().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                // POSTERIOR - ckoutNueva = true    ->   ckoutGuardada < ckinNueva < ckoutNueva
+                else if(nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
                     return true;
                 }
-                // ANTERIOR - ckoutNueva != null    ->   ckinNueva < ckoutNueva < ckinGuardada
-                else if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
+                // ANTERIOR - ckoutNueva = true    ->   ckinNueva < ckoutNueva < ckinGuardada
+                else if(nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
                     return true;
                 }
@@ -223,21 +225,24 @@ namespace Forms
 
         private bool Disponibilidad2Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
+            var primera = estancias.First();
+            var ultima = estancias.Last();
+            bool nuevaTieneCheckout = dtpCheckout.Checked;
             // ANTERIOR A TODAS -> ckoutNueva != null     ->   ckinNueva < ckoutNueva < ckinGuardada
-            if (dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
+            if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
             {
                 return true;
             }
             // POSTERIOR A TODAS -> ckoutGuardada != null
-            if (estancias.Last().CheckOut != null)
+            if (ultima.CheckOut != null)
             {
                 // ckoutNueva == null     -> ckoutGuardada < ckinNueva
-                if (!dtpCheckout.Checked && estancias.Last().CheckOut.Value <= checkinNuevo)
+                if (!nuevaTieneCheckout && ultima.CheckOut.Value <= checkinNuevo)
                 {
                     return true;
                 }
                 // ckoutNueva != null     -> ckoutGuardada < ckinNueva < ckoutNueva
-                if (dtpCheckout.Checked && estancias.Last().CheckOut.Value <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                if (nuevaTieneCheckout && ultima.CheckOut.Value <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
                     return true;
                 }
@@ -246,7 +251,7 @@ namespace Forms
             for (int i = 0; i < estancias.Count - 1; i++)
             {
                 // ckoutGuardada[i] != null  &&  ckoutNueva !=null
-                if (estancias[i].CheckOut != null && dtpCheckout.Checked)
+                if (estancias[i].CheckOut != null && nuevaTieneCheckout)
                 {
                     // ckoutGuardada < ckinNueva < ckoutNueva < ckinGuardada[i+1]     
                     if (estancias[i].CheckOut.Value <= checkinNuevo && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias[i + 1].CheckIn)
