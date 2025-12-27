@@ -3,6 +3,7 @@ using Forms;
 using Model;
 using Repository;
 using System.Threading.Tasks;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Campify
 {
@@ -14,14 +15,29 @@ namespace Campify
         // ----------------------------------
 
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+
+        private Timer refreshTimer;
+
+
+        // ----------------------------------
+        // CONSTRUCTOR Y LOAD
+        // ----------------------------------
+
         public FormPrincipal()
         {
             InitializeComponent();
+
+            //Usado para refrescar los datos cada 5 segundos
+            refreshTimer = new Timer();
+            refreshTimer.Interval = 5000;
+            refreshTimer.Tick += RefreshTimer_Tick;
+            refreshTimer.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            RecargaAutomatica();
+            CargarParcelas();
+            CargarEmpleados();
             
         }
 
@@ -31,15 +47,16 @@ namespace Campify
         // METODOS DEL FORMULARIO
         // ----------------------------------
 
-        private async void RecargaAutomatica()
+
+        /// <summary>
+        /// Refresca los datos de los flowlayout cada 5 segundos mediante el Timer definido en el constructor
+        /// </summary>
+        private void RefreshTimer_Tick(object? sender, EventArgs e)
         {
-            while (true)
-            {
-                CargarParcelas();
-                CargarEmpleados();
-                Thread.Sleep(5000);
-            }
+            CargarParcelas();
+            CargarEmpleados();
         }
+
 
         /// <summary>
         /// Carga las parcelas desde la API en los user controls y los añade al flow layout panel.
@@ -67,6 +84,7 @@ namespace Campify
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         /// <summary>
         /// Carga los empleados desde la API en los user controls y los añade al flow layout panel.
@@ -119,6 +137,7 @@ namespace Campify
         // FUNCIONES DE LOS BOTONES
         // ----------------------------------
 
+
         /// <summary>
         /// Muestra los datos de la parcela seleccionada en el user control de datos de parcela.
         /// Si la parcela tiene una estancia hoy (estado RESERVADA), también muestra la estancia en el user control de estancia actual.
@@ -137,6 +156,7 @@ namespace Campify
             ucEstanciaActual1.SetData(estanciaActual);
         }
 
+
         /// <summary>
         /// Muestra los datos del empleado seleccionado de la lista en el user control de datos de empleado.
         /// </summary>
@@ -145,6 +165,7 @@ namespace Campify
             ucEmpleadoDatos1.MostrarDatos(empleado);
 
         }
+
 
         /// <summary>
         /// Cambia la vista de parcelas a modo mapa.
@@ -155,6 +176,7 @@ namespace Campify
             pbMapa.Visible = true;
         }
 
+
         /// <summary>
         /// Cambia la vista de parcelas a modo lista.
         /// </summary>
@@ -163,6 +185,7 @@ namespace Campify
             pbMapa.Visible = false;
             flpParcelas.Visible = true;
         }
+
 
         /// <summary>
         /// Abre el formulario para crear una nueva estancia (reserva) en la parcela seleccionada.
@@ -189,7 +212,6 @@ namespace Campify
         }
 
 
-
         /// <summary>
         /// Cambia el panel principal a la vista de servicios.
         /// </summary>
@@ -200,6 +222,7 @@ namespace Campify
             pnlEstancias.Visible = false;
             pnlServicios.Visible = true;
         }
+
 
         /// <summary>
         /// Cambia el panel principal a la vista de parcelas.
@@ -212,6 +235,7 @@ namespace Campify
             pnlParcelas.Visible = true;
         }
 
+
         /// <summary>
         /// Cambia el panel principal a la vista de empleados.
         /// </summary>
@@ -223,6 +247,7 @@ namespace Campify
             pnlEmpleados.Visible = true;
         }
 
+
         /// <summary>
         /// Cambia el panel principal a la vista de estancias.
         /// </summary>
@@ -233,8 +258,6 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlEstancias.Visible = true;
         }
-
-
 
 
         /// <summary>
@@ -254,6 +277,7 @@ namespace Campify
             btnMantenimiento.Visible = true;
         }
 
+
         /// <summary>
         /// Cambia el user control visible a la vista de estancia actual.
         /// Cambia la visibilidad de los botones según la vista.
@@ -271,6 +295,7 @@ namespace Campify
             btnServiciosEstancia.Visible = true;
         }
 
+
         /// <summary>
         /// Cambia el user control visible a la vista de historial de estancias.
         /// </summary>
@@ -281,6 +306,7 @@ namespace Campify
             ucHistorial1.Visible = true;
 
         }
+
 
         /// <summary>
         /// Altera el estado de la parcela seleccionada entre MANTENIMIENTO y LIBRE.
@@ -306,6 +332,7 @@ namespace Campify
             ucParcelaDatos.MostrarDatos(parcela);
         }
 
+
         /// <summary>
         /// Muestra mensaje de confirmación y elimina el empleado seleccionado mediante la API.
         /// Comrpueba que hay un empleado seleccionado.
@@ -328,6 +355,7 @@ namespace Campify
             }
         }
 
+
         /// <summary>
         /// Abre el formulario de datos de empleado para crear uno nuevo.
         /// </summary>
@@ -340,6 +368,7 @@ namespace Campify
                 ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
             }
         }
+
 
         /// <summary>
         /// Abre el formulario de datos de empleado para editar el empleado seleccionado.
@@ -373,7 +402,7 @@ namespace Campify
             var form = new FormVerClientesEstancia(estanciaActual);
             if (DialogResult.OK == form.ShowDialog(this))
             {
-                // Acción tras cerrar el formulario si es necesario
+                // Acción tras cerrar el formulario 
             }
         }
 
