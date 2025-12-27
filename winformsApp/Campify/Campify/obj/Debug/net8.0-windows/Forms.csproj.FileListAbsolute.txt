@@ -62,3 +62,4 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\n
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Campify.FormDatosEmpleado.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerClientesEstancia.resources
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerClientesEstancia.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerServiciosEstancia.resources

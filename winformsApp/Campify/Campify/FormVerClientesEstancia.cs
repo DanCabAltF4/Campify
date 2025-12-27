@@ -30,6 +30,7 @@ namespace Forms
             InitializeComponent();
             _estanciaActual = estanciaActual;
             dgvVerClientesEstancia.DataSource = estanciaActual.Clientes.ToList();
+            lblParcelaFecha.Text = "Clientes en parcela nº " + estanciaActual.Parcela.Id + "  del  " + estanciaActual.CheckIn + "  al  " + (estanciaActual.CheckOut!=null ? estanciaActual.CheckOut : "-");
         }
 
 
@@ -39,7 +40,6 @@ namespace Forms
         // ------------------------
         private void Volver_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

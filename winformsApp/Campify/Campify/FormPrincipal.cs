@@ -38,7 +38,7 @@ namespace Campify
         {
             CargarParcelas();
             CargarEmpleados();
-            
+
         }
 
 
@@ -390,6 +390,12 @@ namespace Campify
             }
         }
 
+
+        /// <summary>
+        /// Abre el formulario que muestra los clientes de la estancia actual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClientesEstancia_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;
@@ -400,12 +406,20 @@ namespace Campify
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
             var form = new FormVerClientesEstancia(estanciaActual);
-            if (DialogResult.OK == form.ShowDialog(this))
-            {
-                // Acción tras cerrar el formulario 
-            }
+            form.ShowDialog(this);
         }
 
-
+        private void btnServiciosEstancia_Click(object sender, EventArgs e)
+        {
+            Parcela parcela = ucParcelaDatos.ParcelaActual;
+            if (parcela.Estado != EnumEstados.RESERVADA)
+            {
+                MessageBox.Show("La parcela no tiene una estancia hoy.", "Estancia no activa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var estanciaActual = ucEstanciaActual1.EstanciaActual;
+            var form = new FormVerServiciosEstancia(estanciaActual);
+            form.ShowDialog(this);
+        }
     }
 }

@@ -22,5 +22,8 @@
     <Compile Update="FormVerClientesEstancia.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormVerServiciosEstancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -370,6 +370,7 @@
             btnServiciosEstancia.TabIndex = 21;
             btnServiciosEstancia.Text = "Servicios";
             btnServiciosEstancia.UseVisualStyleBackColor = false;
+            btnServiciosEstancia.Click += btnServiciosEstancia_Click;
             // 
             // pnlEmpleados
             // 
