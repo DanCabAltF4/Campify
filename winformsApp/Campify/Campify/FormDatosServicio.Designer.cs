@@ -36,7 +36,7 @@
             lbltxtNombre = new Label();
             lbltxtPrecio = new Label();
             nupPrecio = new NumericUpDown();
-            txbApellidos = new TextBox();
+            txbDescripcion = new TextBox();
             lbltxtDescripcion = new Label();
             ((System.ComponentModel.ISupportInitialize)nupPrecio).BeginInit();
             SuspendLayout();
@@ -54,6 +54,7 @@
             btnVolver.TabIndex = 1;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
             // 
             // btnGuardar
             // 
@@ -68,6 +69,7 @@
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // lblId
             // 
@@ -124,13 +126,13 @@
             nupPrecio.Size = new Size(89, 27);
             nupPrecio.TabIndex = 33;
             // 
-            // txbApellidos
+            // txbDescripcion
             // 
-            txbApellidos.Location = new Point(72, 212);
-            txbApellidos.Multiline = true;
-            txbApellidos.Name = "txbApellidos";
-            txbApellidos.Size = new Size(552, 115);
-            txbApellidos.TabIndex = 35;
+            txbDescripcion.Location = new Point(72, 212);
+            txbDescripcion.Multiline = true;
+            txbDescripcion.Name = "txbDescripcion";
+            txbDescripcion.Size = new Size(552, 115);
+            txbDescripcion.TabIndex = 35;
             // 
             // lbltxtDescripcion
             // 
@@ -148,7 +150,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(720, 440);
-            Controls.Add(txbApellidos);
+            Controls.Add(txbDescripcion);
             Controls.Add(lbltxtDescripcion);
             Controls.Add(nupPrecio);
             Controls.Add(lbltxtPrecio);
@@ -175,7 +177,7 @@
         private Label lbltxtNombre;
         private Label lbltxtPrecio;
         private NumericUpDown nupPrecio;
-        private TextBox txbApellidos;
+        private TextBox txbDescripcion;
         private Label lbltxtDescripcion;
     }
 }

@@ -117,7 +117,7 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-
+                // Vacio para evitar error duplicado
             }
             catch (Exception ex)
             {
@@ -145,7 +145,7 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-
+                // Vacio para evitar error duplicado
             }
             catch (Exception ex)
             {
@@ -407,12 +407,12 @@ namespace Campify
         /// <summary>
         /// Abre el formulario de datos de empleado para crear uno nuevo.
         /// </summary>
-        private void btnNuevoEmpleado_Click(object sender, EventArgs e)
+        private async void btnNuevoEmpleado_Click(object sender, EventArgs e)
         {
             var form = new FormDatosEmpleado(null);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                CargarEmpleados();
+                await CargarEmpleados();
                 ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
             }
         }
@@ -422,7 +422,7 @@ namespace Campify
         /// Abre el formulario de datos de empleado para editar el empleado seleccionado.
         /// Pasa el empleado seleccionado al formulario.
         /// </summary>
-        private void btnEditarEmpleado_Click(object sender, EventArgs e)
+        private async void btnEditarEmpleado_Click(object sender, EventArgs e)
         {
             var empleadoSeleccionado = ucEmpleadoDatos1.EmpleadoActual;
             if (empleadoSeleccionado == null)
@@ -433,7 +433,7 @@ namespace Campify
             var form = new FormDatosEmpleado(empleadoSeleccionado);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                CargarEmpleados();
+                await CargarEmpleados();
                 ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
             }
         }
@@ -456,7 +456,7 @@ namespace Campify
             {
                 await _api.Delete<Empleado>("api/empleados", ucEmpleadoDatos1.EmpleadoActual.Id);
                 MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarEmpleados();
+                await CargarEmpleados();
                 ucEmpleadoDatos1.Limpiar();
             }
         }
@@ -487,29 +487,60 @@ namespace Campify
 
 
         /// <summary>
-        /// 
+        /// Abre formulario para crear nuevo servicio.
         /// </summary>
-        private void btnNuevoServicio_Click(object sender, EventArgs e)
+        private async void btnNuevoServicio_Click(object sender, EventArgs e)
         {
-
+            var form = new FormDatosServicio(null);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                await CargarServicios();
+                ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+            }
         }
 
 
         /// <summary>
-        /// 
+        /// Abre formulario para editar datos del servicio
+        /// Pasa servicio seleccionado como parametro
         /// </summary>
-        private void btnEditarServicio_Click(object sender, EventArgs e)
+        private async void btnEditarServicio_Click(object sender, EventArgs e)
         {
-
+            var servicioSeleccionado = ucServicioDatos1.ServicioActual;
+            if (servicioSeleccionado == null)
+            {
+                MessageBox.Show("Debe seleccionar un servicio para editarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var form = new FormDatosServicio(servicioSeleccionado);
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                await CargarServicios();
+                ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+            }
         }
 
 
         /// <summary>
-        /// 
+        /// Muestra mensaje de confirmación y elimina el servicio seleccionado mediante la API.
+        /// Comprueba que hay un servicio seleccionado.
         /// </summary>
-        private void btnEliminarServicio_Click(object sender, EventArgs e)
+        private async void btnEliminarServicio_Click(object sender, EventArgs e)
         {
-
+            Servicio servicio = ucServicioDatos1.ServicioActual;
+            if (servicio == null)
+            {
+                MessageBox.Show("Debe seleccionar un servicio para eliminarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var result = MessageBox.Show("Se eliminará el servicio.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                await _api.Delete<Servicio>("api/servicios", ucServicioDatos1.ServicioActual.Id);
+                MessageBox.Show("Servicio eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CargarServicios();
+                ucServicioDatos1.Limpiar();
+            }
         }
 
 
@@ -527,5 +558,9 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlEstancias.Visible = true;
         }
+
+
+
+
     }
 }
