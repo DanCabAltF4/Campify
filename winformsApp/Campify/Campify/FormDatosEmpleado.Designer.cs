@@ -53,7 +53,7 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.Moccasin;
-            btnVolver.Location = new Point(213, 367);
+            btnVolver.Location = new Point(213, 360);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(102, 38);
             btnVolver.TabIndex = 0;
@@ -68,7 +68,7 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.Moccasin;
-            btnGuardar.Location = new Point(412, 367);
+            btnGuardar.Location = new Point(412, 360);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(102, 38);
             btnGuardar.TabIndex = 1;
@@ -206,7 +206,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(731, 443);
             Controls.Add(chbActivo);
             Controls.Add(cbPuesto);
             Controls.Add(txbTelefono);
@@ -224,7 +224,7 @@
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
             Name = "FormDatosEmpleado";
-            Text = "Form1";
+            Text = "FormDatosEmpleado";
             ResumeLayout(false);
             PerformLayout();
         }

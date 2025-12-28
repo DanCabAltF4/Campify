@@ -35,6 +35,9 @@
             pbAjustes = new PictureBox();
             btnServicios = new Button();
             pnlServicios = new Panel();
+            btnEliminarServicio = new Button();
+            btnEditarServicio = new Button();
+            btnNuevoServicio = new Button();
             ucServicioDatos1 = new Controles.ucServicioDatos();
             flpServicios = new FlowLayoutPanel();
             btnDatos = new Button();
@@ -62,9 +65,6 @@
             flpEmpleados = new FlowLayoutPanel();
             btnEstancias = new Button();
             pnlEstancias = new Panel();
-            btnNuevoServicio = new Button();
-            btnEditarServicio = new Button();
-            btnEliminarServicio = new Button();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             pnlServicios.SuspendLayout();
@@ -154,6 +154,54 @@
             pnlServicios.Size = new Size(913, 483);
             pnlServicios.TabIndex = 19;
             pnlServicios.Visible = false;
+            // 
+            // btnEliminarServicio
+            // 
+            btnEliminarServicio.BackColor = Color.Peru;
+            btnEliminarServicio.FlatAppearance.BorderSize = 0;
+            btnEliminarServicio.FlatStyle = FlatStyle.Flat;
+            btnEliminarServicio.Font = new Font("Segoe UI", 12F);
+            btnEliminarServicio.ForeColor = Color.Moccasin;
+            btnEliminarServicio.Location = new Point(774, 435);
+            btnEliminarServicio.Margin = new Padding(0);
+            btnEliminarServicio.Name = "btnEliminarServicio";
+            btnEliminarServicio.Size = new Size(140, 45);
+            btnEliminarServicio.TabIndex = 5;
+            btnEliminarServicio.Text = "Eliminar";
+            btnEliminarServicio.UseVisualStyleBackColor = false;
+            btnEliminarServicio.Click += btnEliminarServicio_Click;
+            // 
+            // btnEditarServicio
+            // 
+            btnEditarServicio.BackColor = Color.Peru;
+            btnEditarServicio.FlatAppearance.BorderSize = 0;
+            btnEditarServicio.FlatStyle = FlatStyle.Flat;
+            btnEditarServicio.Font = new Font("Segoe UI", 12F);
+            btnEditarServicio.ForeColor = Color.Moccasin;
+            btnEditarServicio.Location = new Point(629, 435);
+            btnEditarServicio.Margin = new Padding(0);
+            btnEditarServicio.Name = "btnEditarServicio";
+            btnEditarServicio.Size = new Size(145, 45);
+            btnEditarServicio.TabIndex = 4;
+            btnEditarServicio.Text = "Editar";
+            btnEditarServicio.UseVisualStyleBackColor = false;
+            btnEditarServicio.Click += btnEditarServicio_Click;
+            // 
+            // btnNuevoServicio
+            // 
+            btnNuevoServicio.BackColor = Color.Peru;
+            btnNuevoServicio.FlatAppearance.BorderSize = 0;
+            btnNuevoServicio.FlatStyle = FlatStyle.Flat;
+            btnNuevoServicio.Font = new Font("Segoe UI", 12F);
+            btnNuevoServicio.ForeColor = Color.Moccasin;
+            btnNuevoServicio.Location = new Point(489, 435);
+            btnNuevoServicio.Margin = new Padding(0);
+            btnNuevoServicio.Name = "btnNuevoServicio";
+            btnNuevoServicio.Size = new Size(140, 45);
+            btnNuevoServicio.TabIndex = 3;
+            btnNuevoServicio.Text = "Nuevo";
+            btnNuevoServicio.UseVisualStyleBackColor = false;
+            btnNuevoServicio.Click += btnNuevoServicio_Click;
             // 
             // ucServicioDatos1
             // 
@@ -426,7 +474,7 @@
             btnEliminarEmpleado.TabIndex = 4;
             btnEliminarEmpleado.Text = "Eliminar";
             btnEliminarEmpleado.UseVisualStyleBackColor = false;
-            btnEliminarEmpleado.Click += btnEliminar_Click;
+            btnEliminarEmpleado.Click += btnEliminarEmpleado_Click;
             // 
             // btnEditarEmpleado
             // 
@@ -498,51 +546,6 @@
             pnlEstancias.Size = new Size(913, 487);
             pnlEstancias.TabIndex = 22;
             pnlEstancias.Visible = false;
-            // 
-            // btnNuevoServicio
-            // 
-            btnNuevoServicio.BackColor = Color.Peru;
-            btnNuevoServicio.FlatAppearance.BorderSize = 0;
-            btnNuevoServicio.FlatStyle = FlatStyle.Flat;
-            btnNuevoServicio.Font = new Font("Segoe UI", 12F);
-            btnNuevoServicio.ForeColor = Color.Moccasin;
-            btnNuevoServicio.Location = new Point(489, 435);
-            btnNuevoServicio.Margin = new Padding(0);
-            btnNuevoServicio.Name = "btnNuevoServicio";
-            btnNuevoServicio.Size = new Size(140, 45);
-            btnNuevoServicio.TabIndex = 3;
-            btnNuevoServicio.Text = "Nuevo";
-            btnNuevoServicio.UseVisualStyleBackColor = false;
-            // 
-            // btnEditarServicio
-            // 
-            btnEditarServicio.BackColor = Color.Peru;
-            btnEditarServicio.FlatAppearance.BorderSize = 0;
-            btnEditarServicio.FlatStyle = FlatStyle.Flat;
-            btnEditarServicio.Font = new Font("Segoe UI", 12F);
-            btnEditarServicio.ForeColor = Color.Moccasin;
-            btnEditarServicio.Location = new Point(629, 435);
-            btnEditarServicio.Margin = new Padding(0);
-            btnEditarServicio.Name = "btnEditarServicio";
-            btnEditarServicio.Size = new Size(145, 45);
-            btnEditarServicio.TabIndex = 4;
-            btnEditarServicio.Text = "Editar";
-            btnEditarServicio.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminarServicio
-            // 
-            btnEliminarServicio.BackColor = Color.Peru;
-            btnEliminarServicio.FlatAppearance.BorderSize = 0;
-            btnEliminarServicio.FlatStyle = FlatStyle.Flat;
-            btnEliminarServicio.Font = new Font("Segoe UI", 12F);
-            btnEliminarServicio.ForeColor = Color.Moccasin;
-            btnEliminarServicio.Location = new Point(774, 435);
-            btnEliminarServicio.Margin = new Padding(0);
-            btnEliminarServicio.Name = "btnEliminarServicio";
-            btnEliminarServicio.Size = new Size(140, 45);
-            btnEliminarServicio.TabIndex = 5;
-            btnEliminarServicio.Text = "Eliminar";
-            btnEliminarServicio.UseVisualStyleBackColor = false;
             // 
             // FormPrincipal
             // 
