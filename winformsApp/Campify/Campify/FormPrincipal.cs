@@ -29,16 +29,18 @@ namespace Campify
 
             //Usado para refrescar los datos cada 5 segundos
             refreshTimer = new Timer();
-            refreshTimer.Interval = 5000;
-            refreshTimer.Tick += RefreshTimer_Tick;
-            refreshTimer.Start();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             CargarParcelas();
             CargarEmpleados();
+            CargarServicios();
 
+            refreshTimer.Interval = 5000;
+            refreshTimer.Tick += RefreshTimer_Tick;
+            refreshTimer.Start();
         }
 
 
@@ -55,6 +57,7 @@ namespace Campify
         {
             CargarParcelas();
             CargarEmpleados();
+            CargarServicios();
         }
 
 
@@ -101,6 +104,34 @@ namespace Campify
                     uc.SetData(emp);
                     uc.EmpleadoClick += EmpleadoClick;
                     flpEmpleados.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        /// <summary>
+        /// Carga los servicios desde la API en los user control y los inserta en el flowlayoutpanel.
+        /// </summary>
+        private async void CargarServicios()
+        {
+            try
+            {
+                flpServicios.Controls.Clear();
+                List<Servicio> servicios = await _api.GetAllAsync<Servicio>("api/servicios");
+                foreach (Servicio ser in servicios)
+                {
+                    ucServiciosLista uc = new ucServiciosLista();
+                    uc.SetData(ser);
+                    uc.ServicioClick += ServicioClick;
+                    flpServicios.Controls.Add(uc);
                 }
             }
             catch (HttpRequestException ex)
@@ -164,6 +195,15 @@ namespace Campify
         {
             ucEmpleadoDatos1.MostrarDatos(empleado);
 
+        }
+
+
+        /// <summary>
+        /// Muestra los datos del servicio seleccionado de la lista en el user control de datos del servicio.
+        /// </summary>
+        private void ServicioClick(object? sender, Servicio servicio)
+        {
+            ucServicioDatos1.MostrarDatos(servicio);
         }
 
 

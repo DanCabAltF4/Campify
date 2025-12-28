@@ -19,5 +19,11 @@
     <Compile Update="ucParcelaDatos.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ucServicioDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucServiciosLista.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

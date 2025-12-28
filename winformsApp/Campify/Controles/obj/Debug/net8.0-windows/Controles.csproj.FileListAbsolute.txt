@@ -44,3 +44,5 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadoDatos.resources
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadoDatos.resources
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEmpleadosLista.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucServiciosLista.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucServicioDatos.resources
