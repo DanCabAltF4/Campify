@@ -28,7 +28,6 @@ namespace Controles
         /// <summary>
         /// Muestra en el control de usuario los datos del empleado dado como parámetro.
         /// </summary>
-        /// <param name="empleado"></param>
         public void SetData(Empleado empleado)
         {
             Empleado = empleado;

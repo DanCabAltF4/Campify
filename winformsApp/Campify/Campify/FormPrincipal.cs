@@ -37,10 +37,11 @@ namespace Campify
             await CargarParcelas();
             await CargarEmpleados();
             await CargarServicios();
+            await CargarEstancias();
 
-            refreshTimer.Interval = 5000;
-            refreshTimer.Tick += RefreshTimer_Tick;
-            refreshTimer.Start();
+            //refreshTimer.Interval = 5000;
+            //refreshTimer.Tick += RefreshTimer_Tick;
+            //refreshTimer.Start();
         }
 
 
@@ -62,6 +63,7 @@ namespace Campify
                 await CargarParcelas();
                 await CargarEmpleados();
                 await CargarServicios();
+                await CargarEstancias();
             }
             finally
             {
@@ -155,15 +157,46 @@ namespace Campify
 
 
         /// <summary>
+        /// Carga las estancias desde la APi en los user control y los inserta en el flowlayoutpanel.
+        /// </summary>
+        /// <returns></returns>
+        public async Task CargarEstancias()
+        {
+            try
+            {
+                flpEstancias.Controls.Clear();
+                List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                foreach (Estancia est in estancias)
+                {
+                    ucEstanciasLista uc = new ucEstanciasLista();
+                    uc.SetData(est);
+                    uc.EstanciaClick += EstanciaClick;
+                    flpEstancias.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex) {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
+        /// <summary>
         /// Muestra un mensaje de error al no poder conectar con la API y ofrece reintentar o salir.
         /// </summary>
-        private void MostrarErrorConectarApi()
+        private async void MostrarErrorConectarApi()
         {
             var result = MessageBox.Show("No se pudo conectar a la API.\n¿Desea reintentar?", "Error de conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             if (result == DialogResult.Retry)
             {
-                CargarParcelas();
-                CargarEmpleados();
+                await CargarParcelas();
+                await CargarEmpleados();
+                await CargarEstancias();
+                await CargarServicios();
             }
             else
             {
@@ -560,7 +593,13 @@ namespace Campify
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        private void EstanciaClick(object? sender, Estancia estancia)
+        {
+            ucEstanciaActual2.SetData(estancia);
+        }
 
     }
 }
