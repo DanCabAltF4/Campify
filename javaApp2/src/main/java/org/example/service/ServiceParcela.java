@@ -85,7 +85,7 @@ public class ServiceParcela implements  IServiceParcela{
                 }
             }
             EstadoParcela nuevoEstado = ocupadaHoy ? EstadoParcela.RESERVADA : EstadoParcela.LIBRE;
-            if(parcela.getEstado_parcela() != nuevoEstado){
+            if(parcela.getEstado_parcela() != EstadoParcela.MANTENIMIENTO && parcela.getEstado_parcela() != nuevoEstado){
                 parcela.setEstado_parcela(nuevoEstado);
                 repoParcela.save(parcela);
             }

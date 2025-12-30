@@ -308,7 +308,7 @@ namespace Campify
                 parcela.Estado = EnumEstados.MANTENIMIENTO;
             }
             await _api.Update("api/parcelas", parcela.Id, parcela);
-            CargarParcelas();
+            await CargarParcelas();
             ucParcelaDatos.MostrarDatos(parcela);
         }
 
