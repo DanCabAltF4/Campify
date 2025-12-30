@@ -16,8 +16,6 @@ namespace Campify
 
         private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
 
-        private Timer refreshTimer;
-
 
         // ----------------------------------
         // CONSTRUCTOR Y LOAD
@@ -26,10 +24,6 @@ namespace Campify
         public FormPrincipal()
         {
             InitializeComponent();
-
-            //Usado para refrescar los datos cada 5 segundos
-            refreshTimer = new Timer();
-
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -38,10 +32,6 @@ namespace Campify
             await CargarEmpleados();
             await CargarServicios();
             await CargarEstancias();
-
-            //refreshTimer.Interval = 5000;
-            //refreshTimer.Tick += RefreshTimer_Tick;
-            //refreshTimer.Start();
         }
 
 
@@ -49,27 +39,6 @@ namespace Campify
         // ----------------------------------
         // METODOS DEL FORMULARIO
         // ----------------------------------
-
-
-        /// <summary>
-        /// Refresca los datos de los flowlayout cada 5 segundos mediante el Timer definido en el constructor
-        /// Se pausa al principio para evitar ventanas dobles de error de API.
-        /// </summary>
-        private async void RefreshTimer_Tick(object? sender, EventArgs e)
-        {
-            refreshTimer.Stop();
-            try
-            {
-                await CargarParcelas();
-                await CargarEmpleados();
-                await CargarServicios();
-                await CargarEstancias();
-            }
-            finally
-            {
-                refreshTimer.Start();
-            }
-        }
 
 
         /// <summary>
@@ -174,8 +143,9 @@ namespace Campify
                     flpEstancias.Controls.Add(uc);
                 }
             }
-            catch (HttpRequestException ex) {
-                
+            catch (HttpRequestException ex)
+            {
+
             }
             catch (Exception ex)
             {
@@ -283,11 +253,11 @@ namespace Campify
             // Datos de estancia actual
             var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
             DateOnly hoy = DateOnly.FromDateTime(DateTime.Today);
-            var estanciaActual = estancias.FirstOrDefault(es => 
-                es.Parcela != null && 
+            var estanciaActual = estancias.FirstOrDefault(es =>
+                es.Parcela != null &&
                 es.Parcela.Id == parcela.Id &&
-                ( (es.CheckOut == null && es.CheckIn <= hoy) ||
-                ( es.CheckOut != null && es.CheckIn <= hoy && hoy < es.CheckOut.Value) )
+                ((es.CheckOut == null && es.CheckIn <= hoy) ||
+                (es.CheckOut != null && es.CheckIn <= hoy && hoy < es.CheckOut.Value))
                 );
             ucEstanciaActual1.SetData(estanciaActual);
         }
@@ -411,6 +381,15 @@ namespace Campify
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private async void btnRefrescarParcelas_Click(object sender, EventArgs e)
+        {
+            await CargarParcelas();
+        }
+
+
 
         //------------------- PARTE DEL PANEL DE EMPLEADOS -----------------------
 
@@ -495,6 +474,16 @@ namespace Campify
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private async void btnRefrescarEmpleados_Click(object sender, EventArgs e)
+        {
+            await CargarEmpleados();
+        }
+
+
+
         //------------------- PARTE DEL PANEL DE SERVICIOS -----------------------
 
 
@@ -577,6 +566,15 @@ namespace Campify
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private async void btnRefrescarServicios_Click(object sender, EventArgs e)
+        {
+            await CargarServicios();
+        }
+
+
 
         //------------------- PARTE DEL PANEL DE ESTANCIAS -----------------------
 
@@ -601,5 +599,13 @@ namespace Campify
             ucEstanciaActual2.SetData(estancia);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private async void btnRefrescarEstancias_Click(object sender, EventArgs e)
+        {
+            await CargarEstancias();
+        }
     }
 }

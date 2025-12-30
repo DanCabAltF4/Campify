@@ -27,18 +27,5 @@ namespace Model
         {
 
         }
-
-        //public Parcela(int id, EnumTipos tipo, double precioPorNoche, bool cerca_banos, bool tiene_vistas, bool zona_sombra, bool cerca_entrada, bool zona_tranquila, EnumEstados estado)
-        //{
-        //    Id = id;
-        //    this.Tipo = tipo;
-        //    PrecioNoche = precioPorNoche;
-        //    this.CercaBanos = cerca_banos;
-        //    this.TieneVistas = tiene_vistas;
-        //    this.ZonaSombra = zona_sombra;
-        //    this.CercaEntrada = cerca_entrada;
-        //    this.ZonaTranquila = zona_tranquila;
-        //    this.Estado = estado;
-        //}
     }
 }
