@@ -80,16 +80,22 @@ namespace Forms
         /// </summary>
         private void dvgListaServicios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Servicio servicioSeleccionado = (Servicio)dvgListaServicios.Rows[e.RowIndex].DataBoundItem;
-            listaServiciosEstancia.Add(servicioSeleccionado);
-            listaServicios.Remove(servicioSeleccionado);
+            if (e.RowIndex >= 0)
+            {
+                Servicio servicioSeleccionado = (Servicio)dvgListaServicios.Rows[e.RowIndex].DataBoundItem;
+                listaServiciosEstancia.Add(servicioSeleccionado);
+                listaServicios.Remove(servicioSeleccionado);
+            }
         }
 
         private void dgvServiciosEstancia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Servicio servicioSeleccionado = (Servicio)dgvServiciosEstancia.Rows[e.RowIndex].DataBoundItem;
-            listaServicios.Add(servicioSeleccionado);
-            listaServiciosEstancia.Remove(servicioSeleccionado);
+            if (e.RowIndex >= 0)
+            {
+                Servicio servicioSeleccionado = (Servicio)dgvServiciosEstancia.Rows[e.RowIndex].DataBoundItem;
+                listaServicios.Add(servicioSeleccionado);
+                listaServiciosEstancia.Remove(servicioSeleccionado);
+            }
         }
     }
 }

@@ -1,13 +1,4 @@
 ﻿using Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Controles
 {
@@ -17,6 +8,10 @@ namespace Controles
         // DECLARACION DE VARIABLES
         // ---------------------------
     
+
+        /// <summary>
+        /// Representa la estancia asociada al usercontrol
+        /// </summary>
         public Estancia EstanciaActual { get; set; }
 
 

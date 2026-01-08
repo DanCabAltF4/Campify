@@ -10,6 +10,9 @@
     <Compile Update="ucEstanciaActual.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ucEstanciasLista.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ucHistorial.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -17,6 +20,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ucParcelaDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucServicioDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucServiciosLista.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

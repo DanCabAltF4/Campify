@@ -148,12 +148,12 @@ namespace Forms
             {
                 // 0 estancias
                 case 0:
-                    disponible = true;
+                    disponible = Disponibilidad0Estancias(estancias, checkinNuevo, checkoutNuevo);
                     break;
+
                 // 1 estancia
                 case 1:
                     disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
-
                     break;
 
                 // 2 o mas estancias
@@ -165,71 +165,102 @@ namespace Forms
         }
 
         /// <summary>
+        /// Comprueba si la fecha de checkin es anterioir a la de checkot en caso de haber checkout.
+        /// </summary>
+
+        private bool Disponibilidad0Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
+        {
+            // Con fecha de checkout
+            if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo)
+            {
+                return true;
+            }
+            // Sin fecha de checkout
+            else if (!dtpCheckout.Checked)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Comprueba si la estancia actual se solapa con la estancia ya guardada
         /// </summary>
         /// <returns></returns>
         private bool Disponibilidad1Estancia(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
-            bool disponible = false;
-
+            var primera = estancias.First();
+            bool nuevaTieneCheckout = dtpCheckout.Checked;
             // Sin fecha de checkout en estancia guardada
-            if (estancias.First().CheckOut == null)
+            if (primera.CheckOut == null)
             {
                 // ckInNueva < ckOutNueva < ckInGuardada
-                if (dtpCheckout.Checked && checkoutNuevo <= estancias.First().CheckIn && checkinNuevo < checkoutNuevo)
+                if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
-                    disponible = true;
+                    return true;
                 }
             }
             // Con fecha de checkout en estancia guardada
             else
             {
-                // POSTERIOR - ckoutNueva == null   ->   ckoutGuardada < ckinNueva
-                if (!dtpCheckout.Checked && estancias.First().CheckOut.Value <= checkinNuevo)
+                // POSTERIOR - ckoutNueva = false   ->   ckoutGuardada < ckinNueva
+                if (!nuevaTieneCheckout && primera.CheckOut.Value <= checkinNuevo)
                 {
-                    disponible = true;
+                    return true;
                 }
-                // POSTERIOR - ckoutNueva != null    ->   ckoutGuardada < ckinNueva < ckoutNueva
-                else if(dtpCheckout.Checked && estancias.First().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                // POSTERIOR - ckoutNueva = true    ->   ckoutGuardada < ckinNueva < ckoutNueva
+                else if(nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
-                    disponible = true;
+                    return true;
                 }
-                // ANTERIOR - ckoutNueva != null    ->   ckinNueva < ckoutNueva < ckinGuardada
-                if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
+                // ANTERIOR - ckoutNueva = true    ->   ckinNueva < ckoutNueva < ckinGuardada
+                else if(nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
-                    disponible = true;
+                    return true;
                 }
-
-                
             }
-            return disponible;
+            return false;
         }
 
 
         private bool Disponibilidad2Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
-            bool disponible=false;
-            for (int i = 0; i < estancias.Count; i++)
+            var primera = estancias.First();
+            var ultima = estancias.Last();
+            bool nuevaTieneCheckout = dtpCheckout.Checked;
+            // ANTERIOR A TODAS -> ckoutNueva != null     ->   ckinNueva < ckoutNueva < ckinGuardada
+            if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
             {
-                // ANTERIOR A TODAS -> ckoutNueva != null     ->   ckinNueva < ckoutNueva < ckinGuardada
-                if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias.First().CheckIn)
-                {
-                    MessageBox.Show("Fecha disponible");
-                }
-                // POSTERIOR A TODAS -> ckoutNueva == null     -> ckoutGuardada < ckinNueva
-                if(!dtpCheckout.Checked && estancias.Last().CheckOut <= checkinNuevo)
-                {
-                    MessageBox.Show("Fecha disponible");
-                }
-                // POSTERIOR A TODAS -> ckoutNueva != null     -> ckoutGuardada < ckinNueva < ckoutNueva
-                if(dtpCheckout.Checked && estancias.Last().CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
-                {
-                    MessageBox.Show("Fecha disponible");
-                }
-                // INTERIOR ENTRE 2 -> ckoutNueva !=null     -> ckoutGuardada < ckinNueva < ckoutNueva < ckinGuardada[i+1]     
-
+                return true;
             }
-            return disponible;
+            // POSTERIOR A TODAS -> ckoutGuardada != null
+            if (ultima.CheckOut != null)
+            {
+                // ckoutNueva == null     -> ckoutGuardada < ckinNueva
+                if (!nuevaTieneCheckout && ultima.CheckOut.Value <= checkinNuevo)
+                {
+                    return true;
+                }
+                // ckoutNueva != null     -> ckoutGuardada < ckinNueva < ckoutNueva
+                if (nuevaTieneCheckout && ultima.CheckOut.Value <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                {
+                    return true;
+                }
+            }
+            // INTERIOIR ENTRE 2 
+            for (int i = 0; i < estancias.Count - 1; i++)
+            {
+                // ckoutGuardada[i] != null  &&  ckoutNueva !=null
+                if (estancias[i].CheckOut != null && nuevaTieneCheckout)
+                {
+                    // ckoutGuardada < ckinNueva < ckoutNueva < ckinGuardada[i+1]     
+                    if (estancias[i].CheckOut.Value <= checkinNuevo && checkinNuevo < checkoutNuevo && checkoutNuevo <= estancias[i + 1].CheckIn)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
 
@@ -242,25 +273,32 @@ namespace Forms
         /// </summary>
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
-            //bool disponible=  await ComprobarDisponibilidad();
-            // Asignar los valores del formulario a la estancia
-            _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
-            _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
-            _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
-            _estancia.NumeroAdultos = 0;
-            _estancia.NumeroNinos = 0;
-            _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
-            _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
-            _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
-            string valor = lblPrecioFinal.Text.Split(' ')[0];
-            _estancia.PrecioFinal = double.Parse(valor);
-            _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
+            bool disponible=  await ComprobarDisponibilidad();
+            if (disponible)
+            {
+                // Asignar los valores del formulario a la estancia
+                _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
+                _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
+                _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
+                _estancia.NumeroAdultos = 0;
+                _estancia.NumeroNinos = 0;
+                _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
+                _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
+                _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
+                string valor = lblPrecioFinal.Text.Split(' ')[0];
+                _estancia.PrecioFinal = double.Parse(valor);
+                _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
-            // Guardar la estancia mediante la API
-            EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
-            MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                // Guardar la estancia mediante la API
+                EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
+                MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Parcela no disponible en esas fechas");
+            }
         }
 
         /// <summary>

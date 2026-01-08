@@ -94,9 +94,12 @@ namespace Forms
         /// </summary>
         private void dgvListaClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Cliente clienteSeleccionado = (Cliente)dgvListaClientes.Rows[e.RowIndex].DataBoundItem;
-            listaClientes.Remove(clienteSeleccionado);
-            listaClientesEstancia.Add(clienteSeleccionado);
+            if (e.RowIndex >= 0)
+            {
+                Cliente clienteSeleccionado = (Cliente)dgvListaClientes.Rows[e.RowIndex].DataBoundItem;
+                listaClientes.Remove(clienteSeleccionado);
+                listaClientesEstancia.Add(clienteSeleccionado);
+            }
         }
 
         /// <summary>
@@ -105,9 +108,12 @@ namespace Forms
 
         private void dgvClientesEstancia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Cliente cliente = (Cliente)dgvClientesEstancia.Rows[e.RowIndex].DataBoundItem;
-            listaClientesEstancia.Remove(cliente);
-            listaClientes.Add(cliente);
+            if (e.RowIndex >= 0)
+            {
+                Cliente cliente = (Cliente)dgvClientesEstancia.Rows[e.RowIndex].DataBoundItem;
+                listaClientesEstancia.Remove(cliente);
+                listaClientes.Add(cliente);
+            }
         }
     }
 }

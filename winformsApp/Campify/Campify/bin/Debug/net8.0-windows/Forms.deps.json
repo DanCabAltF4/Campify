@@ -18,7 +18,8 @@
       },
       "Controles/1.0.0": {
         "dependencies": {
-          "Model": "1.0.0"
+          "Model": "1.0.0",
+          "Repository": "1.0.0"
         },
         "runtime": {
           "Controles.dll": {
