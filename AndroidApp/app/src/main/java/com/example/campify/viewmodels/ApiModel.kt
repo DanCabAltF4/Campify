@@ -8,7 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.remote.RetrofitClient
 import com.example.campify.repository.ParcelaRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ApiModel : ViewModel() {
 
@@ -16,11 +18,14 @@ class ApiModel : ViewModel() {
     val parcelas = mutableStateOf<List<Parcela>>(emptyList())
 
     fun cargarParcelas() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) { // Ejecuta en hilo de IO
             try {
-                parcelas.value = repo.listar()
+                val lista = repo.listar()
+                // Para actualizar la UI, cambiamos al hilo principal
+                withContext(Dispatchers.Main) {
+                    parcelas.value = lista
+                }
             } catch (e: Exception) {
-                // Manejo de error simple
                 Log.e("API", "Error cargando parcelas", e)
             }
         }
