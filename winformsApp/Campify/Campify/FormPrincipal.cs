@@ -14,7 +14,7 @@ namespace Campify
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
 
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api = new ApiCampify("https://api.raspiremote.org/");
 
 
         // ----------------------------------
@@ -266,7 +266,7 @@ namespace Campify
         /// <summary>
         /// Abre el formulario para crear una nueva estancia (reserva) en la parcela seleccionada.
         /// </summary>
-        private void btnReservar_Click(object sender, EventArgs e)
+        private async void btnReservar_Click(object sender, EventArgs e)
         {
             Parcela parcelaSeleccionada = ucParcelaDatos.ParcelaActual;
             if (parcelaSeleccionada == null)
@@ -279,11 +279,11 @@ namespace Campify
                 MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var form = new FormNuevaEstancia(parcelaSeleccionada);
+            var form = new FormNuevaEstancia(parcelaSeleccionada, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 ucEstanciaActual1.SetData(form.EstanciaCreada);
-                CargarParcelas();
+                await CargarParcelas();
             }
         }
 
@@ -421,7 +421,7 @@ namespace Campify
         /// </summary>
         private async void btnNuevoEmpleado_Click(object sender, EventArgs e)
         {
-            var form = new FormDatosEmpleado(null);
+            var form = new FormDatosEmpleado(null, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 await CargarEmpleados();
@@ -442,7 +442,7 @@ namespace Campify
                 MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var form = new FormDatosEmpleado(empleadoSeleccionado);
+            var form = new FormDatosEmpleado(empleadoSeleccionado, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 await CargarEmpleados();
@@ -513,7 +513,7 @@ namespace Campify
         /// </summary>
         private async void btnNuevoServicio_Click(object sender, EventArgs e)
         {
-            var form = new FormDatosServicio(null);
+            var form = new FormDatosServicio(null, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 await CargarServicios();
@@ -534,7 +534,7 @@ namespace Campify
                 MessageBox.Show("Debe seleccionar un servicio para editarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var form = new FormDatosServicio(servicioSeleccionado);
+            var form = new FormDatosServicio(servicioSeleccionado, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 await CargarServicios();

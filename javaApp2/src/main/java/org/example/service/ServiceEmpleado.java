@@ -28,7 +28,6 @@ public class ServiceEmpleado implements IServiceEmpleado{
             buscado.setApellidos(empleado.getApellidos());
             buscado.setDni(empleado.getDni());
             buscado.setTelefono(empleado.getTelefono());
-            buscado.setId(empleado.getId());
             buscado.setActivo(empleado.isActivo());
             buscado.setPuesto(empleado.getPuesto());
             buscado = repo.save(buscado);

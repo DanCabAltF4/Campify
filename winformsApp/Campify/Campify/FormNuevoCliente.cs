@@ -17,12 +17,13 @@ namespace Forms
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
 
         public Cliente? ClienteNuevo { get; set; }
-        public FormNuevoCliente()
+        public FormNuevoCliente(ApiCampify api)
         {
             InitializeComponent();
+            _api = api;
         }
 
 

@@ -24,7 +24,7 @@ namespace Forms
         private const double PRECIO_POR_TEMP_ALTA = 10.0;
         private const double PRECIO_POR_TEMP_MEDIA = 5.0;
 
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
         private Estancia _estancia;
         private Parcela _parcela;
 
@@ -35,12 +35,13 @@ namespace Forms
         // CONSTRUCTOR Y LOAD
         // ----------------------------------
 
-        public FormNuevaEstancia(Parcela parcela)
+        public FormNuevaEstancia(Parcela parcela, ApiCampify api)
         {
             InitializeComponent();
             _estancia = new Estancia();
             _parcela = parcela;
             _estancia.Parcela = parcela;
+            _api = api;
 
 
             dtpCheckin.Value = DateTime.Today;
@@ -306,7 +307,7 @@ namespace Forms
         /// </summary>
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            var form = new FormEstanciaClientes(_estancia.Clientes);
+            var form = new FormEstanciaClientes(_estancia.Clientes, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Clientes = form.ListaFinalClientes;
@@ -318,7 +319,7 @@ namespace Forms
         /// </summary>
         private void btnServicios_Click(object sender, EventArgs e)
         {
-            var form = new FormEstanciaServicios(_estancia.Servicios);
+            var form = new FormEstanciaServicios(_estancia.Servicios, _api);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;

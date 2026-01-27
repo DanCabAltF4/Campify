@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private ServiceCliente service;
+    private final ServiceCliente service;
 
     public ClienteController(ServiceCliente service){
         this.service=service;

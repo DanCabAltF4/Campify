@@ -17,7 +17,7 @@ namespace Forms
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
         private Servicio _servicio;
 
         public Servicio ServicioGuardado { get; set; }
@@ -28,10 +28,11 @@ namespace Forms
         // CONSTRUCTOR Y LOAD
         // -----------------------------
 
-        public FormDatosServicio(Servicio servicioSeleccionado)
+        public FormDatosServicio(Servicio servicioSeleccionado, ApiCampify api)
         {
             InitializeComponent();
             _servicio = servicioSeleccionado;
+            _api = api;
 
             CargarDatosServicio();
         }
