@@ -288,7 +288,7 @@ namespace Forms
                 _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
                 string valor = lblPrecioFinal.Text.Split(' ')[0];
                 _estancia.PrecioFinal = double.Parse(valor);
-                _estancia.Empleado = new Empleado { Id = 1 };           // Empleado por defecto, luego se cambiará al empleado logueado
+                _estancia.Empleado = new Empleado { Id = 2 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
                 // Guardar la estancia mediante la API
                 EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
