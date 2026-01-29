@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     //https
     implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 }
