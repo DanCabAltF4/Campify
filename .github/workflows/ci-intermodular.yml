@@ -42,7 +42,7 @@ jobs:
 
       - name: Compilación Java/Kotlin
         run: |
-          cd android
+          cd AndroidApp
           ./gradlew build
 
       - name: Tests de C#
