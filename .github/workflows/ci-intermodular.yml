@@ -40,6 +40,9 @@ jobs:
           path: ~/.gradle
           key: gradle-${{ hashFiles('**/*.gradle*') }}
 
+      - name: Dar permisos a gradlew 
+        run: chmod +x AndroidApp/gradlew
+      
       - name: Compilación Java/Kotlin
         run: |
           cd AndroidApp
