@@ -50,6 +50,7 @@ jobs:
 
       - name: Tests de C#
         run: |
+          cd winformsApp/Campify
           dotnet test
 
       - name: Resultado final
