@@ -1,0 +1,52 @@
+name: CI Intermodular
+
+on:
+  push:
+    branches: 
+      - 39-diseño-forms-miguel
+      - 93-añadir-soporte-para-tareas-en-background-hilos-en-la-app-móvil
+      - 91-crear-campos-de-usuario-y-contraseña-para-empleados
+      - 74-app-vistas
+      - 84-volver-on-cascade-las-fk-en-tablas-intermedias
+      - 71-app-comunicacion-api
+      - 67-app-navegación
+      - forms
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java (para Java/Kotlin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ secrets.JAVA_VERSION }}
+
+      - name: Configurar .NET (para C#)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ secrets.DOTNET_VERSION }}
+
+      - name: Cache de Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: gradle-${{ hashFiles('**/*.gradle*') }}
+
+      - name: Compilación Java/Kotlin
+        run: |
+          ./gradlew build
+
+      - name: Tests de C#
+        run: |
+          dotnet test
+
+      - name: Resultado final
+        run: echo "Build y tests ejecutados para la rama ${{ github.ref }}"
