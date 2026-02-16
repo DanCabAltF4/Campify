@@ -192,6 +192,7 @@ namespace Campify
                 {
                     ucClientesLista uc = new ucClientesLista();
                     uc.SetData(cliente);
+                    uc.ClienteClick += ClienteClick;
                     flpClientes.Controls.Add(uc);
                 }
             }
@@ -204,6 +205,7 @@ namespace Campify
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         /// <summary>
@@ -721,6 +723,11 @@ namespace Campify
         private void button1_Click(object sender, EventArgs e)
         {
             CargarClientes();
+        }
+
+        private void ClienteClick(object? sender, Cliente e)
+        {
+            ucClienteDatos1.MostrarDatos(e);
         }
 
 

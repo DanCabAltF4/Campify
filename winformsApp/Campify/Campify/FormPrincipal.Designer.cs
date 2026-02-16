@@ -80,6 +80,8 @@
             btnEditarCliente = new Button();
             btnNuevoCliente = new Button();
             flpClientes = new FlowLayoutPanel();
+            ucClientesLista1 = new Controles.ucClientesLista();
+            ucClienteDatos1 = new Controles.ucClienteDatos();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
@@ -90,6 +92,7 @@
             pnlEmpleados.SuspendLayout();
             pnlEstancias.SuspendLayout();
             pnlClientes.SuspendLayout();
+            flpClientes.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
@@ -695,6 +698,7 @@
             // 
             // pnlClientes
             // 
+            pnlClientes.Controls.Add(ucClienteDatos1);
             pnlClientes.Controls.Add(btnRefrescarClientes);
             pnlClientes.Controls.Add(btnEliminarCliente);
             pnlClientes.Controls.Add(btnEditarCliente);
@@ -768,11 +772,27 @@
             // flpClientes
             // 
             flpClientes.AutoScroll = true;
+            flpClientes.Controls.Add(ucClientesLista1);
             flpClientes.Location = new Point(0, 43);
             flpClientes.Margin = new Padding(0);
             flpClientes.Name = "flpClientes";
             flpClientes.Size = new Size(488, 438);
             flpClientes.TabIndex = 0;
+            // 
+            // ucClientesLista1
+            // 
+            ucClientesLista1.Cliente = null;
+            ucClientesLista1.Location = new Point(3, 3);
+            ucClientesLista1.Name = "ucClientesLista1";
+            ucClientesLista1.Size = new Size(462, 81);
+            ucClientesLista1.TabIndex = 0;
+            // 
+            // ucClienteDatos1
+            // 
+            ucClienteDatos1.Location = new Point(491, 3);
+            ucClienteDatos1.Name = "ucClienteDatos1";
+            ucClienteDatos1.Size = new Size(419, 431);
+            ucClienteDatos1.TabIndex = 24;
             // 
             // FormPrincipal
             // 
@@ -805,6 +825,7 @@
             pnlEmpleados.ResumeLayout(false);
             pnlEstancias.ResumeLayout(false);
             pnlClientes.ResumeLayout(false);
+            flpClientes.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -861,5 +882,7 @@
         private Button btnEditarCliente;
         private Button btnNuevoCliente;
         private FlowLayoutPanel flpClientes;
+        private Controles.ucClientesLista ucClientesLista1;
+        private Controles.ucClienteDatos ucClienteDatos1;
     }
 }

@@ -28,6 +28,7 @@ namespace Controles
             Cliente = cliente;
             lblNombre.Text = cliente.Nombre;
             lblApellidos.Text = cliente.Apellidos;
+            lblFechaNac.Text = "Nacimiento: "+cliente.FechaNacimiento.ToShortDateString();
             BackColor = cliente.EsAdulto ? Color.LightGreen : Color.LightSlateGray;
         }
 

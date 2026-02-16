@@ -56,7 +56,7 @@
             // lblFechaNac
             // 
             lblFechaNac.AutoSize = true;
-            lblFechaNac.Location = new Point(330, 22);
+            lblFechaNac.Location = new Point(288, 22);
             lblFechaNac.Name = "lblFechaNac";
             lblFechaNac.Size = new Size(47, 20);
             lblFechaNac.TabIndex = 7;
