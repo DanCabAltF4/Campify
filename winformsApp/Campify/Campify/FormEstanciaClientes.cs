@@ -39,26 +39,34 @@ namespace Forms
 
         private async void FormEstanciaClientes_Load(object sender, EventArgs e)
         {
-            listaClientes = new BindingList<Cliente>(await _api.GetAllAsync<Cliente>("api/clientes"));
-            // Elimina de la lista general los clientes que ya están en la estancia
-            foreach (var cliente in listaClientesEstancia)
+            try
             {
-                Cliente? clienteEstancia = null;
-                foreach (var c in listaClientes)
+                listaClientes = new BindingList<Cliente>(await _api.GetAllAsync<Cliente>("api/clientes"));
+                // Elimina de la lista general los clientes que ya están en la estancia
+                foreach (var cliente in listaClientesEstancia)
                 {
-                    if (c.Id == cliente.Id)
+                    Cliente? clienteEstancia = null;
+                    foreach (var c in listaClientes)
                     {
-                        clienteEstancia = c;
-                        break;
+                        if (c.Id == cliente.Id)
+                        {
+                            clienteEstancia = c;
+                            break;
+                        }
+                    }
+                    if (clienteEstancia != null)
+                    {
+                        listaClientes.Remove(clienteEstancia);
                     }
                 }
-                if (clienteEstancia != null)
-                {
-                    listaClientes.Remove(clienteEstancia);
-                }
+                dgvListaClientes.DataSource = listaClientes;
+                dgvClientesEstancia.DataSource = listaClientesEstancia;
             }
-            dgvListaClientes.DataSource = listaClientes;
-            dgvClientesEstancia.DataSource = listaClientesEstancia;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+            }
         }
 
 

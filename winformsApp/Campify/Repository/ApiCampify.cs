@@ -101,5 +101,45 @@ namespace Repository
             var response = await _http.DeleteAsync($"{ruta}/{id}");
             response.EnsureSuccessStatusCode();
         }
+
+
+        public static string MensajeErrorHttp(HttpRequestException ex)
+        {
+
+            int codigo = (int?)ex.StatusCode ?? -1;
+            string titulo = ex.StatusCode?.ToString() ?? "ERROR";
+            string mensaje = $"ERROR_CODE {codigo}: ";
+
+
+            if (ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                mensaje += "Se requieren credenciales de acceso (token inválido, expirado o inexistente).";
+            }
+            else if (ex.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                mensaje += "No tienes permiso para realizar esta acción.";
+            }
+            else if (ex.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                mensaje += "Petición mal formada.";
+            }
+            else if (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                mensaje += "Recurso inexistente.";
+            }
+            else if (ex.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                mensaje += "Error interno en el servidor.";
+            }
+            else if (ex.StatusCode == System.Net.HttpStatusCode.BadGateway)
+            {
+                mensaje += "Error en la conexión al servidor.";
+            }
+            else
+            {
+                mensaje += $"{ex.Message}";
+            }
+            return mensaje;
+        }
     }
 }

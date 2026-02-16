@@ -82,6 +82,7 @@
             btnNuevoCliente = new Button();
             btnEditarCliente = new Button();
             btnEliminarCliente = new Button();
+            btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
@@ -112,10 +113,10 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEmpleados.Location = new Point(427, 16);
+            btnEmpleados.Location = new Point(404, 13);
             btnEmpleados.Margin = new Padding(3, 4, 3, 4);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(137, 59);
+            btnEmpleados.Size = new Size(135, 59);
             btnEmpleados.TabIndex = 1;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.UseVisualStyleBackColor = true;
@@ -127,10 +128,10 @@
             btnParcelas.FlatStyle = FlatStyle.Flat;
             btnParcelas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnParcelas.ForeColor = Color.FromArgb(44, 79, 29);
-            btnParcelas.Location = new Point(121, 16);
+            btnParcelas.Location = new Point(122, 13);
             btnParcelas.Margin = new Padding(3, 4, 3, 4);
             btnParcelas.Name = "btnParcelas";
-            btnParcelas.Size = new Size(137, 59);
+            btnParcelas.Size = new Size(135, 59);
             btnParcelas.TabIndex = 2;
             btnParcelas.Text = "Parcelas";
             btnParcelas.UseVisualStyleBackColor = true;
@@ -142,10 +143,10 @@
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnServicios.ForeColor = Color.FromArgb(44, 79, 29);
-            btnServicios.Location = new Point(265, 16);
+            btnServicios.Location = new Point(263, 13);
             btnServicios.Margin = new Padding(3, 4, 3, 4);
             btnServicios.Name = "btnServicios";
-            btnServicios.Size = new Size(137, 59);
+            btnServicios.Size = new Size(135, 59);
             btnServicios.TabIndex = 10;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = true;
@@ -596,10 +597,10 @@
             btnEstancias.FlatStyle = FlatStyle.Flat;
             btnEstancias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEstancias.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEstancias.Location = new Point(602, 16);
+            btnEstancias.Location = new Point(545, 13);
             btnEstancias.Margin = new Padding(3, 4, 3, 4);
             btnEstancias.Name = "btnEstancias";
-            btnEstancias.Size = new Size(137, 59);
+            btnEstancias.Size = new Size(135, 59);
             btnEstancias.TabIndex = 21;
             btnEstancias.Text = "Estancias";
             btnEstancias.UseVisualStyleBackColor = true;
@@ -687,10 +688,10 @@
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClientes.ForeColor = Color.FromArgb(44, 79, 29);
-            btnClientes.Location = new Point(759, 16);
+            btnClientes.Location = new Point(686, 13);
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(137, 59);
+            btnClientes.Size = new Size(135, 59);
             btnClientes.TabIndex = 23;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = true;
@@ -797,6 +798,21 @@
             btnEliminarCliente.UseVisualStyleBackColor = false;
             btnEliminarCliente.Click += btnEliminarCliente_Click;
             // 
+            // btnLogOut
+            // 
+            btnLogOut.FlatAppearance.BorderSize = 0;
+            btnLogOut.FlatStyle = FlatStyle.Flat;
+            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnLogOut.ForeColor = Color.FromArgb(44, 79, 29);
+            btnLogOut.Image = Forms.Properties.Resources.logout;
+            btnLogOut.Location = new Point(844, 13);
+            btnLogOut.Margin = new Padding(3, 4, 3, 4);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(59, 59);
+            btnLogOut.TabIndex = 25;
+            btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.Click += btnLogOut_Click;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -814,6 +830,7 @@
             Controls.Add(btnEmpleados);
             Controls.Add(btnEstancias);
             Controls.Add(btnClientes);
+            Controls.Add(btnLogOut);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
             Text = "Daniel capullo";
@@ -887,5 +904,6 @@
         private FlowLayoutPanel flpClientes;
         private Controles.ucClientesLista ucClientesLista1;
         private Controles.ucClienteDatos ucClienteDatos1;
+        private Button btnLogOut;
     }
 }

@@ -77,26 +77,33 @@ namespace Forms
         /// </summary>
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Asigna los valores de los controles al servicio
-            if (_servicio == null) _servicio = new Servicio(); // Asegura que _servicio no sea null
-            _servicio.Nombre = txbNombre.Text;
-            _servicio.Precio = (double)nupPrecio.Value;
-            _servicio.Descripcion = txbDescripcion.Text;
-
-            // Comprueba si es un servicio nuevo o existente y llama a la API correspondiente
-            if (_servicio.Id == 0)
+            try
             {
-                ServicioGuardado = await _api.Create<Servicio>("api/servicios", _servicio);
-                MessageBox.Show("Servicio creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Se modificará el servicio.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                ServicioGuardado = await _api.Update<Servicio>("api/servicios", _servicio.Id, _servicio);
-            }
+                // Asigna los valores de los controles al servicio
+                if (_servicio == null) _servicio = new Servicio(); // Asegura que _servicio no sea null
+                _servicio.Nombre = txbNombre.Text;
+                _servicio.Precio = (double)nupPrecio.Value;
+                _servicio.Descripcion = txbDescripcion.Text;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                // Comprueba si es un servicio nuevo o existente y llama a la API correspondiente
+                if (_servicio.Id == 0)
+                {
+                    ServicioGuardado = await _api.Create<Servicio>("api/servicios", _servicio);
+                    MessageBox.Show("Servicio creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Se modificará el servicio.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    ServicioGuardado = await _api.Update<Servicio>("api/servicios", _servicio.Id, _servicio);
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
     }

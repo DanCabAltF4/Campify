@@ -2,8 +2,6 @@ using Controles;
 using Forms;
 using Model;
 using Repository;
-using System.Threading.Tasks;
-using Timer = System.Windows.Forms.Timer;
 
 namespace Campify
 {
@@ -29,11 +27,22 @@ namespace Campify
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            await CargarParcelas();
-            await CargarEmpleados();
-            await CargarServicios();
-            await CargarEstancias();
-            await CargarClientes();
+            try
+            {
+                await CargarParcelas();
+                await CargarEmpleados();
+                await CargarServicios();
+                await CargarEstancias();
+                await CargarClientes();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -48,25 +57,14 @@ namespace Campify
         /// </summary>
         private async Task CargarParcelas()
         {
-            try
+            flpParcelas.Controls.Clear();
+            List<Parcela> parcelas = await _api.GetAllAsync<Parcela>("api/parcelas");
+            foreach (Parcela p in parcelas)
             {
-                flpParcelas.Controls.Clear();
-                List<Parcela> parcelas = await _api.GetAllAsync<Parcela>("api/parcelas");
-                foreach (Parcela p in parcelas)
-                {
-                    ucParcela uc = new ucParcela();
-                    uc.SetData(p);
-                    uc.ParcelaClick += ParcelaClick;
-                    flpParcelas.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                MostrarErrorConectarApi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ucParcela uc = new ucParcela();
+                uc.SetData(p);
+                uc.ParcelaClick += ParcelaClick;
+                flpParcelas.Controls.Add(uc);
             }
         }
 
@@ -76,25 +74,14 @@ namespace Campify
         /// </summary>
         private async Task CargarEmpleados()
         {
-            try
+            flpEmpleados.Controls.Clear();
+            List<Empleado> empleados = await _api.GetAllAsync<Empleado>("api/empleados");
+            foreach (Empleado emp in empleados)
             {
-                flpEmpleados.Controls.Clear();
-                List<Empleado> empleados = await _api.GetAllAsync<Empleado>("api/empleados");
-                foreach (Empleado emp in empleados)
-                {
-                    ucEmpleadosLista uc = new ucEmpleadosLista();
-                    uc.SetData(emp);
-                    uc.EmpleadoClick += EmpleadoClick;
-                    flpEmpleados.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                // Vacio para evitar error duplicado
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ucEmpleadosLista uc = new ucEmpleadosLista();
+                uc.SetData(emp);
+                uc.EmpleadoClick += EmpleadoClick;
+                flpEmpleados.Controls.Add(uc);
             }
         }
 
@@ -104,25 +91,14 @@ namespace Campify
         /// </summary>
         private async Task CargarServicios()
         {
-            try
+            flpServicios.Controls.Clear();
+            List<Servicio> servicios = await _api.GetAllAsync<Servicio>("api/servicios");
+            foreach (Servicio ser in servicios)
             {
-                flpServicios.Controls.Clear();
-                List<Servicio> servicios = await _api.GetAllAsync<Servicio>("api/servicios");
-                foreach (Servicio ser in servicios)
-                {
-                    ucServiciosLista uc = new ucServiciosLista();
-                    uc.SetData(ser);
-                    uc.ServicioClick += ServicioClick;
-                    flpServicios.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                // Vacio para evitar error duplicado
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ucServiciosLista uc = new ucServiciosLista();
+                uc.SetData(ser);
+                uc.ServicioClick += ServicioClick;
+                flpServicios.Controls.Add(uc);
             }
         }
 
@@ -133,26 +109,15 @@ namespace Campify
         /// <returns></returns>
         public async Task CargarEstancias()
         {
-            try
+            flpEstancias.Controls.Clear();
+            List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+            estancias = estancias.OrderBy(est => est.CheckIn).ToList();
+            foreach (Estancia est in estancias)
             {
-                flpEstancias.Controls.Clear();
-                List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-                estancias = estancias.OrderBy(est => est.CheckIn).ToList();
-                foreach (Estancia est in estancias)
-                {
-                    ucEstanciasLista uc = new ucEstanciasLista();
-                    uc.SetData(est);
-                    uc.EstanciaClick += EstanciaClick;
-                    flpEstancias.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ucEstanciasLista uc = new ucEstanciasLista();
+                uc.SetData(est);
+                uc.EstanciaClick += EstanciaClick;
+                flpEstancias.Controls.Add(uc);
             }
 
         }
@@ -160,6 +125,11 @@ namespace Campify
 
         private async Task CargarHistorial()
         {
+            if (ucParcelaDatos.ParcelaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para ver su historial.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 flpHistorial.Controls.Clear();
@@ -175,7 +145,8 @@ namespace Campify
             }
             catch (HttpRequestException ex)
             {
-                MostrarErrorConectarApi();
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
             catch (Exception ex)
             {
@@ -185,56 +156,32 @@ namespace Campify
 
         private async Task CargarClientes()
         {
-            try
+            flpClientes.Controls.Clear();
+            List<Cliente> clientes = await _api.GetAllAsync<Cliente>("api/clientes");
+            foreach (Cliente cliente in clientes)
             {
-                flpClientes.Controls.Clear();
-                List<Cliente> clientes = await _api.GetAllAsync<Cliente>("api/clientes");
-                foreach (Cliente cliente in clientes)
-                {
-                    ucClientesLista uc = new ucClientesLista();
-                    uc.SetData(cliente);
-                    uc.ClienteClick += ClienteClick;
-                    flpClientes.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                MostrarErrorConectarApi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ucClientesLista uc = new ucClientesLista();
+                uc.SetData(cliente);
+                uc.ClienteClick += ClienteClick;
+                flpClientes.Controls.Add(uc);
             }
         }
 
-
-
-        /// <summary>
-        /// Muestra un mensaje de error al no poder conectar con la API y ofrece reintentar o salir.
-        /// </summary>
-        private async void MostrarErrorConectarApi()
-        {
-            var result = MessageBox.Show("No se pudo conectar a la API.\n¿Desea reintentar?", "Error de conexión", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-            if (result == DialogResult.Retry)
-            {
-                await CargarParcelas();
-                await CargarEmpleados();
-                await CargarEstancias();
-                await CargarServicios();
-                await CargarHistorial();
-                await CargarClientes();
-            }
-            else
-            {
-                Application.Exit();
-            }
-        }
 
 
 
         // ----------------------------------
         // FUNCIONES DE LOS BOTONES
         // ----------------------------------
+
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Session.Logout();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
 
 
         //------------------- PARTE DEL PANEL DE PARCELAS -----------------------
@@ -299,24 +246,31 @@ namespace Campify
         /// </summary>
         private async void ParcelaClick(object? sender, Parcela parcela)
         {
-            // Datos de parcela
-            ucParcelaDatos.MostrarDatos(parcela);
-            btnDatos.PerformClick();
-            if (parcela.Estado != EnumEstados.RESERVADA)
+            try
             {
-                ucEstanciaActual1.Limpiar();
-                return;
+                // Datos de parcela
+                ucParcelaDatos.MostrarDatos(parcela);
+                btnDatos.PerformClick();
+                if (parcela.Estado != EnumEstados.RESERVADA)
+                {
+                    ucEstanciaActual1.Limpiar();
+                    return;
+                }
+                // Datos de estancia actual
+                var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                DateOnly hoy = DateOnly.FromDateTime(DateTime.Today);
+                var estanciaActual = estancias.FirstOrDefault(es =>
+                    es.Parcela != null &&
+                    es.Parcela.Id == parcela.Id &&
+                    ((es.CheckOut == null && es.CheckIn <= hoy) ||
+                    (es.CheckOut != null && es.CheckIn <= hoy && hoy < es.CheckOut.Value))
+                    );
+                ucEstanciaActual1.SetData(estanciaActual);
             }
-            // Datos de estancia actual
-            var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-            DateOnly hoy = DateOnly.FromDateTime(DateTime.Today);
-            var estanciaActual = estancias.FirstOrDefault(es =>
-                es.Parcela != null &&
-                es.Parcela.Id == parcela.Id &&
-                ((es.CheckOut == null && es.CheckIn <= hoy) ||
-                (es.CheckOut != null && es.CheckIn <= hoy && hoy < es.CheckOut.Value))
-                );
-            ucEstanciaActual1.SetData(estanciaActual);
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -325,22 +279,29 @@ namespace Campify
         /// </summary>
         private async void btnReservar_Click(object sender, EventArgs e)
         {
-            Parcela parcelaSeleccionada = ucParcelaDatos.ParcelaActual;
-            if (parcelaSeleccionada == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Parcela parcelaSeleccionada = ucParcelaDatos.ParcelaActual;
+                if (parcelaSeleccionada == null)
+                {
+                    MessageBox.Show("Debe seleccionar una parcela para reservarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (parcelaSeleccionada.Estado != EnumEstados.LIBRE)
+                {
+                    MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    ucEstanciaActual1.SetData(form.EstanciaCreada);
+                    await CargarParcelas();
+                }
             }
-            if (parcelaSeleccionada.Estado != EnumEstados.LIBRE)
+            catch (HttpRequestException ex)
             {
-                MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
-            if (form.ShowDialog(this) == DialogResult.OK)
-            {
-                ucEstanciaActual1.SetData(form.EstanciaCreada);
-                await CargarParcelas();
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -350,23 +311,30 @@ namespace Campify
         /// </summary>
         private async void btnMantenimiento_Click(object sender, EventArgs e)
         {
-            Parcela parcela = ucParcelaDatos.ParcelaActual;
-            if (parcela == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar una parcela.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Parcela parcela = ucParcelaDatos.ParcelaActual;
+                if (parcela == null)
+                {
+                    MessageBox.Show("Debe seleccionar una parcela.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (parcela.Estado == EnumEstados.MANTENIMIENTO)
+                {
+                    parcela.Estado = EnumEstados.LIBRE;
+                }
+                else if (parcela.Estado == EnumEstados.LIBRE)
+                {
+                    parcela.Estado = EnumEstados.MANTENIMIENTO;
+                }
+                await _api.Update("api/parcelas", parcela.Id, parcela);
+                await CargarParcelas();
+                ucParcelaDatos.MostrarDatos(parcela);
             }
-            if (parcela.Estado == EnumEstados.MANTENIMIENTO)
+            catch (HttpRequestException ex)
             {
-                parcela.Estado = EnumEstados.LIBRE;
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (parcela.Estado == EnumEstados.LIBRE)
-            {
-                parcela.Estado = EnumEstados.MANTENIMIENTO;
-            }
-            await _api.Update("api/parcelas", parcela.Id, parcela);
-            await CargarParcelas();
-            ucParcelaDatos.MostrarDatos(parcela);
         }
 
 
@@ -431,10 +399,17 @@ namespace Campify
         /// </summary>
         private async void btnHistorial_Click(object sender, EventArgs e)
         {
-            ucParcelaDatos.Visible = false;
-            ucEstanciaActual1.Visible = false;
-            flpHistorial.Visible = true;
-            await CargarHistorial();
+            try
+            {
+                ucParcelaDatos.Visible = false;
+                ucEstanciaActual1.Visible = false;
+                flpHistorial.Visible = true;
+                await CargarHistorial();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -443,7 +418,14 @@ namespace Campify
         /// </summary>
         private async void btnRefrescarParcelas_Click(object sender, EventArgs e)
         {
-            await CargarParcelas();
+            try
+            {
+                await CargarParcelas();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -515,19 +497,26 @@ namespace Campify
         /// </summary>
         private async void btnEliminarEmpleado_Click(object sender, EventArgs e)
         {
-            Empleado empleado = ucEmpleadoDatos1.EmpleadoActual;
-            if (empleado == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un empleado para eliminarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Empleado empleado = ucEmpleadoDatos1.EmpleadoActual;
+                if (empleado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un empleado para eliminarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var result = MessageBox.Show("Se eliminará al empleado.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    await _api.Delete<Empleado>("api/empleados", ucEmpleadoDatos1.EmpleadoActual.Id);
+                    MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await CargarEmpleados();
+                    ucEmpleadoDatos1.Limpiar();
+                }
             }
-            var result = MessageBox.Show("Se eliminará al empleado.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            catch (HttpRequestException ex)
             {
-                await _api.Delete<Empleado>("api/empleados", ucEmpleadoDatos1.EmpleadoActual.Id);
-                MessageBox.Show("Empleado eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await CargarEmpleados();
-                ucEmpleadoDatos1.Limpiar();
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -537,9 +526,15 @@ namespace Campify
         /// </summary>
         private async void btnRefrescarEmpleados_Click(object sender, EventArgs e)
         {
-            await CargarEmpleados();
+            try
+            {
+                await CargarEmpleados();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
-
 
 
         //------------------- PARTE DEL PANEL DE SERVICIOS -----------------------
@@ -608,19 +603,26 @@ namespace Campify
         /// </summary>
         private async void btnEliminarServicio_Click(object sender, EventArgs e)
         {
-            Servicio servicio = ucServicioDatos1.ServicioActual;
-            if (servicio == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un servicio para eliminarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Servicio servicio = ucServicioDatos1.ServicioActual;
+                if (servicio == null)
+                {
+                    MessageBox.Show("Debe seleccionar un servicio para eliminarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var result = MessageBox.Show("Se eliminará el servicio.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    await _api.Delete<Servicio>("api/servicios", ucServicioDatos1.ServicioActual.Id);
+                    MessageBox.Show("Servicio eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await CargarServicios();
+                    ucServicioDatos1.Limpiar();
+                }
             }
-            var result = MessageBox.Show("Se eliminará el servicio.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            catch (HttpRequestException ex)
             {
-                await _api.Delete<Servicio>("api/servicios", ucServicioDatos1.ServicioActual.Id);
-                MessageBox.Show("Servicio eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await CargarServicios();
-                ucServicioDatos1.Limpiar();
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -630,7 +632,14 @@ namespace Campify
         /// </summary>
         private async void btnRefrescarServicios_Click(object sender, EventArgs e)
         {
-            await CargarServicios();
+            try
+            {
+                await CargarServicios();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -665,7 +674,14 @@ namespace Campify
         /// </summary>
         private async void btnRefrescarEstancias_Click(object sender, EventArgs e)
         {
-            await CargarEstancias();
+            try
+            {
+                await CargarEstancias();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -692,19 +708,26 @@ namespace Campify
 
         private async void btnEliminarEstancia_Click(object sender, EventArgs e)
         {
-            Estancia estancia = ucEstanciaActual2.EstanciaActual;
-            if (estancia == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar una estancia para eliminarla.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Estancia estancia = ucEstanciaActual2.EstanciaActual;
+                if (estancia == null)
+                {
+                    MessageBox.Show("Debe seleccionar una estancia para eliminarla.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var result = MessageBox.Show("Se eliminará la estancia.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    await _api.Delete<Estancia>("api/estancias", ucEstanciaActual2.EstanciaActual.Id);
+                    MessageBox.Show("Estancia eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await CargarEstancias();
+                    ucEstanciaActual2.Limpiar();
+                }
             }
-            var result = MessageBox.Show("Se eliminará la estancia.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            catch (HttpRequestException ex)
             {
-                await _api.Delete<Estancia>("api/estancias", ucEstanciaActual2.EstanciaActual.Id);
-                MessageBox.Show("Estancia eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await CargarEstancias();
-                ucEstanciaActual2.Limpiar();
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -724,7 +747,14 @@ namespace Campify
 
         private async void RefrescarClientes(object sender, EventArgs e)
         {
-            await CargarClientes();
+            try
+            {
+                await CargarClientes();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -738,20 +768,27 @@ namespace Campify
 
         private async void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-            Cliente cliente = ucClienteDatos1.ClienteActual;
-            if (cliente == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un cliente para eliminarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            var result = MessageBox.Show("Se eliminará el cliente.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                await _api.Delete<Cliente>("api/clientes", cliente.Id);
-                MessageBox.Show("Cliente eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await CargarClientes();
-                ucClienteDatos1.Limpiar();
+                Cliente cliente = ucClienteDatos1.ClienteActual;
+                if (cliente == null)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente para eliminarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var result = MessageBox.Show("Se eliminará el cliente.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    await _api.Delete<Cliente>("api/clientes", cliente.Id);
+                    MessageBox.Show("Cliente eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await CargarClientes();
+                    ucClienteDatos1.Limpiar();
 
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -785,7 +822,9 @@ namespace Campify
                 await CargarClientes();
                 ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
             }
-            
+
         }
+
+
     }
 }

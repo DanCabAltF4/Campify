@@ -162,33 +162,41 @@ namespace Forms
         /// </summary>
         private async Task<bool> ComprobarDisponibilidad()
         {
-            var disponible = false;
-            DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
-            DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
-
-            var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-            if (_estancia != null && _estancia.Id != 0)  estancias = estancias.Where(e => e.Id != _estancia.Id).ToList(); //si editamos excluimos la actual
-            estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
-            estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
-
-            switch (estancias.Count)
+            try
             {
-                // 0 estancias
-                case 0:
-                    disponible = Disponibilidad0Estancias(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                var disponible = false;
+                DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
+                DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
 
-                // 1 estancia
-                case 1:
-                    disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                if (_estancia != null && _estancia.Id != 0) estancias = estancias.Where(e => e.Id != _estancia.Id).ToList(); //si editamos excluimos la actual
+                estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
+                estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
 
-                // 2 o mas estancias
-                default:
-                    disponible = Disponibilidad2Estancias(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                switch (estancias.Count)
+                {
+                    // 0 estancias
+                    case 0:
+                        disponible = Disponibilidad0Estancias(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+
+                    // 1 estancia
+                    case 1:
+                        disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+
+                    // 2 o mas estancias
+                    default:
+                        disponible = Disponibilidad2Estancias(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+                }
+                return disponible;
             }
-            return disponible;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
         }
 
         /// <summary>
@@ -300,43 +308,50 @@ namespace Forms
         /// </summary>
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
-            bool disponible=  await ComprobarDisponibilidad();
-            if (disponible)
+            try
             {
-                // Asignar los valores del formulario a la estancia
-                _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
-                _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
-                _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
-
-                _estancia.NumeroAdultos = _estancia.Clientes.Count(c=> c.EsAdulto);
-                _estancia.NumeroNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
-                _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
-
-                _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
-                _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
-                string valor = lblPrecioFinal.Text.Split(' ')[0];
-                _estancia.PrecioFinal = double.Parse(valor);
-
-                Empleado empleado = await _api.GetByIdAsync<Empleado>("api/empleados", Session.UserId);
-                _estancia.Empleado = empleado;
-
-                if (_estancia.Id == 0) 
+                bool disponible = await ComprobarDisponibilidad();
+                if (disponible)
                 {
-                    EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
-                    MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Asignar los valores del formulario a la estancia
+                    _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
+                    _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
+                    _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
+
+                    _estancia.NumeroAdultos = _estancia.Clientes.Count(c => c.EsAdulto);
+                    _estancia.NumeroNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
+                    _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
+
+                    _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
+                    _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
+                    string valor = lblPrecioFinal.Text.Split(' ')[0];
+                    _estancia.PrecioFinal = double.Parse(valor);
+
+                    Empleado empleado = await _api.GetByIdAsync<Empleado>("api/empleados", Session.UserId);
+                    _estancia.Empleado = empleado;
+
+                    if (_estancia.Id == 0)
+                    {
+                        EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
+                        MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        EstanciaCreada = await _api.Update<Estancia>("api/estancias", _estancia.Id, _estancia);
+                        MessageBox.Show("Estancia actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
-                    EstanciaCreada = await _api.Update<Estancia>("api/estancias", _estancia.Id, _estancia);
-                    MessageBox.Show("Estancia actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Parcela no disponible en esas fechas");
                 }
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
-            else
+            catch (HttpRequestException ex)
             {
-                MessageBox.Show("Parcela no disponible en esas fechas");
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

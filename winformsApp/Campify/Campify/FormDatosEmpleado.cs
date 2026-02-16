@@ -73,29 +73,36 @@ namespace Campify
         /// </summary>
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Asigna los valores de los controles al empleado
-            if(_empleado == null) _empleado = new Empleado(); // Asegura que _empleado no sea null
-            _empleado.Nombre = txbNombre.Text;
-            _empleado.Apellidos = txbApellidos.Text;
-            _empleado.Dni = txbDni.Text;
-            _empleado.Telefono = txbTelefono.Text;
-            _empleado.Puesto = (EnumPuestos)cbPuesto.SelectedItem;
-            _empleado.Activo = chbActivo.Checked;
-
-            // Comprueba si es un empleado nuevo o existente y llama a la API correspondiente
-            if (_empleado.Id == 0)
+            try
             {
-                EmpleadoGuardado = await _api.Create<Empleado>("api/empleados", _empleado);
-                MessageBox.Show("Empleado creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Se modificará al empleado.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
-            }
+                // Asigna los valores de los controles al empleado
+                if (_empleado == null) _empleado = new Empleado(); // Asegura que _empleado no sea null
+                _empleado.Nombre = txbNombre.Text;
+                _empleado.Apellidos = txbApellidos.Text;
+                _empleado.Dni = txbDni.Text;
+                _empleado.Telefono = txbTelefono.Text;
+                _empleado.Puesto = (EnumPuestos)cbPuesto.SelectedItem;
+                _empleado.Activo = chbActivo.Checked;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                // Comprueba si es un empleado nuevo o existente y llama a la API correspondiente
+                if (_empleado.Id == 0)
+                {
+                    EmpleadoGuardado = await _api.Create<Empleado>("api/empleados", _empleado);
+                    MessageBox.Show("Empleado creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Se modificará al empleado.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch(HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

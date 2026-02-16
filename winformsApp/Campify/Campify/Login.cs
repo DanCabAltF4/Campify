@@ -33,7 +33,7 @@ namespace Forms
             };
 
             var res = await _api.LoginAsync(req);
-            if(res == null)
+            if (res == null)
             {
                 MessageBox.Show("El usuario o la contraseña introducidos no son válidos.", "Credenciales inválidas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -44,12 +44,13 @@ namespace Forms
             using (var form = new FormPrincipal(_api))
             {
                 var result = form.ShowDialog(this);
-                if(result == DialogResult.Cancel)
+                if (result == DialogResult.Cancel)
                 {
                     Session.Logout();
 
                 }
             }
         }
+
     }
 }

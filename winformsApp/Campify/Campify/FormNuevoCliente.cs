@@ -98,7 +98,7 @@ namespace Forms
             }
             catch (HttpRequestException ex)
             {
-                MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }

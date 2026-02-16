@@ -37,26 +37,34 @@ namespace Forms
 
         private async void FormEstanciaServicios_Load(object sender, EventArgs e)
         {
-            listaServicios = new BindingList<Servicio>(await _api.GetAllAsync<Servicio>("api/servicios"));
-            // Elimina de la lista general los servicios que ya están en la estancia
-            foreach (var servicio in listaServiciosEstancia)
+            try
             {
-                Servicio? servicioEstancia = null;
-                foreach (var s in listaServicios)
+                listaServicios = new BindingList<Servicio>(await _api.GetAllAsync<Servicio>("api/servicios"));
+                // Elimina de la lista general los servicios que ya están en la estancia
+                foreach (var servicio in listaServiciosEstancia)
                 {
-                    if (s.Id == servicio.Id)
+                    Servicio? servicioEstancia = null;
+                    foreach (var s in listaServicios)
                     {
-                        servicioEstancia = s;
-                        break;
+                        if (s.Id == servicio.Id)
+                        {
+                            servicioEstancia = s;
+                            break;
+                        }
+                    }
+                    if (servicioEstancia != null)
+                    {
+                        listaServicios.Remove(servicioEstancia);
                     }
                 }
-                if (servicioEstancia != null)
-                {
-                    listaServicios.Remove(servicioEstancia);
-                }
+                dvgListaServicios.DataSource = listaServicios;
+                dgvServiciosEstancia.DataSource = listaServiciosEstancia;
             }
-            dvgListaServicios.DataSource = listaServicios;
-            dgvServiciosEstancia.DataSource = listaServiciosEstancia;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+            }
         }
 
 
