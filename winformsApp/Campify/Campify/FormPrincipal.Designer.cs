@@ -32,7 +32,6 @@
             pbLogo = new PictureBox();
             btnEmpleados = new Button();
             btnParcelas = new Button();
-            pbAjustes = new PictureBox();
             btnServicios = new Button();
             pnlServicios = new Panel();
             btnRefrescarServicios = new Button();
@@ -50,9 +49,10 @@
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
-            flpHistorial = new FlowLayoutPanel();
             ucParcelaDatos = new Controles.ucParcelaDatos();
             ucEstanciaActual1 = new Controles.ucEstanciaActual();
+            flpHistorial = new FlowLayoutPanel();
+            ucHistorial1 = new Controles.ucHistorial();
             btMapa = new Button();
             pnlParcelas = new Panel();
             btnRefrescarParcelas = new Button();
@@ -73,9 +73,14 @@
             btnRefrescarEstancias = new Button();
             ucEstanciaActual2 = new Controles.ucEstanciaActual();
             flpEstancias = new FlowLayoutPanel();
-            ucHistorial1 = new Controles.ucHistorial();
+            btnClientes = new Button();
+            pnlClientes = new Panel();
+            btnRefrescarClientes = new Button();
+            btnEliminarCliente = new Button();
+            btnEditarCliente = new Button();
+            btnNuevoCliente = new Button();
+            flpClientes = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
@@ -84,6 +89,7 @@
             pnlParcelas.SuspendLayout();
             pnlEmpleados.SuspendLayout();
             pnlEstancias.SuspendLayout();
+            pnlClientes.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
@@ -126,17 +132,6 @@
             btnParcelas.Text = "Parcelas";
             btnParcelas.UseVisualStyleBackColor = true;
             btnParcelas.Click += btnParcelas_Click;
-            // 
-            // pbAjustes
-            // 
-            pbAjustes.Image = (Image)resources.GetObject("pbAjustes.Image");
-            pbAjustes.Location = new Point(846, 16);
-            pbAjustes.Margin = new Padding(3, 4, 3, 4);
-            pbAjustes.Name = "pbAjustes";
-            pbAjustes.Size = new Size(50, 56);
-            pbAjustes.SizeMode = PictureBoxSizeMode.Zoom;
-            pbAjustes.TabIndex = 3;
-            pbAjustes.TabStop = false;
             // 
             // btnServicios
             // 
@@ -361,22 +356,14 @@
             // 
             // panelDatos
             // 
-            panelDatos.Controls.Add(flpHistorial);
             panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
+            panelDatos.Controls.Add(flpHistorial);
             panelDatos.Location = new Point(489, 45);
             panelDatos.Margin = new Padding(0);
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
-            // 
-            // flpHistorial
-            // 
-            flpHistorial.Controls.Add(ucHistorial1);
-            flpHistorial.Location = new Point(3, 3);
-            flpHistorial.Name = "flpHistorial";
-            flpHistorial.Size = new Size(418, 382);
-            flpHistorial.TabIndex = 22;
             // 
             // ucParcelaDatos
             // 
@@ -393,6 +380,22 @@
             ucEstanciaActual1.Name = "ucEstanciaActual1";
             ucEstanciaActual1.Size = new Size(422, 388);
             ucEstanciaActual1.TabIndex = 21;
+            // 
+            // flpHistorial
+            // 
+            flpHistorial.Controls.Add(ucHistorial1);
+            flpHistorial.Location = new Point(3, 3);
+            flpHistorial.Name = "flpHistorial";
+            flpHistorial.Size = new Size(418, 382);
+            flpHistorial.TabIndex = 22;
+            // 
+            // ucHistorial1
+            // 
+            ucHistorial1.Estancia = null;
+            ucHistorial1.Location = new Point(3, 3);
+            ucHistorial1.Name = "ucHistorial1";
+            ucHistorial1.Size = new Size(401, 72);
+            ucHistorial1.TabIndex = 0;
             // 
             // btMapa
             // 
@@ -649,7 +652,7 @@
             btnRefrescarEstancias.FlatAppearance.BorderSize = 0;
             btnRefrescarEstancias.FlatStyle = FlatStyle.Flat;
             btnRefrescarEstancias.Font = new Font("Segoe UI", 20F);
-            btnRefrescarEstancias.Location = new Point(441, 1);
+            btnRefrescarEstancias.Location = new Point(441, -3);
             btnRefrescarEstancias.Margin = new Padding(0);
             btnRefrescarEstancias.Name = "btnRefrescarEstancias";
             btnRefrescarEstancias.Size = new Size(47, 50);
@@ -675,13 +678,101 @@
             flpEstancias.Size = new Size(488, 435);
             flpEstancias.TabIndex = 0;
             // 
-            // ucHistorial1
+            // btnClientes
             // 
-            ucHistorial1.Estancia = null;
-            ucHistorial1.Location = new Point(3, 3);
-            ucHistorial1.Name = "ucHistorial1";
-            ucHistorial1.Size = new Size(401, 72);
-            ucHistorial1.TabIndex = 0;
+            btnClientes.FlatAppearance.BorderSize = 0;
+            btnClientes.FlatStyle = FlatStyle.Flat;
+            btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClientes.ForeColor = Color.FromArgb(44, 79, 29);
+            btnClientes.Location = new Point(759, 16);
+            btnClientes.Margin = new Padding(3, 4, 3, 4);
+            btnClientes.Name = "btnClientes";
+            btnClientes.Size = new Size(137, 59);
+            btnClientes.TabIndex = 23;
+            btnClientes.Text = "Clientes";
+            btnClientes.UseVisualStyleBackColor = true;
+            btnClientes.Click += btnClientes_Click;
+            // 
+            // pnlClientes
+            // 
+            pnlClientes.Controls.Add(btnRefrescarClientes);
+            pnlClientes.Controls.Add(btnEliminarCliente);
+            pnlClientes.Controls.Add(btnEditarCliente);
+            pnlClientes.Controls.Add(btnNuevoCliente);
+            pnlClientes.Controls.Add(flpClientes);
+            pnlClientes.Location = new Point(1, 115);
+            pnlClientes.Name = "pnlClientes";
+            pnlClientes.Size = new Size(913, 483);
+            pnlClientes.TabIndex = 24;
+            pnlClientes.Visible = false;
+            // 
+            // btnRefrescarClientes
+            // 
+            btnRefrescarClientes.FlatAppearance.BorderSize = 0;
+            btnRefrescarClientes.FlatStyle = FlatStyle.Flat;
+            btnRefrescarClientes.Font = new Font("Segoe UI", 20F);
+            btnRefrescarClientes.Location = new Point(438, -8);
+            btnRefrescarClientes.Margin = new Padding(0);
+            btnRefrescarClientes.Name = "btnRefrescarClientes";
+            btnRefrescarClientes.Size = new Size(50, 53);
+            btnRefrescarClientes.TabIndex = 23;
+            btnRefrescarClientes.Text = "🔄";
+            btnRefrescarClientes.UseVisualStyleBackColor = true;
+            btnRefrescarClientes.Click += button1_Click;
+            // 
+            // btnEliminarCliente
+            // 
+            btnEliminarCliente.BackColor = Color.Peru;
+            btnEliminarCliente.FlatAppearance.BorderSize = 0;
+            btnEliminarCliente.FlatStyle = FlatStyle.Flat;
+            btnEliminarCliente.Font = new Font("Segoe UI", 12F);
+            btnEliminarCliente.ForeColor = Color.Moccasin;
+            btnEliminarCliente.Location = new Point(773, 437);
+            btnEliminarCliente.Margin = new Padding(0);
+            btnEliminarCliente.Name = "btnEliminarCliente";
+            btnEliminarCliente.Size = new Size(140, 45);
+            btnEliminarCliente.TabIndex = 4;
+            btnEliminarCliente.Text = "Eliminar";
+            btnEliminarCliente.UseVisualStyleBackColor = false;
+            // 
+            // btnEditarCliente
+            // 
+            btnEditarCliente.BackColor = Color.Peru;
+            btnEditarCliente.FlatAppearance.BorderSize = 0;
+            btnEditarCliente.FlatStyle = FlatStyle.Flat;
+            btnEditarCliente.Font = new Font("Segoe UI", 12F);
+            btnEditarCliente.ForeColor = Color.Moccasin;
+            btnEditarCliente.Location = new Point(628, 437);
+            btnEditarCliente.Margin = new Padding(0);
+            btnEditarCliente.Name = "btnEditarCliente";
+            btnEditarCliente.Size = new Size(145, 45);
+            btnEditarCliente.TabIndex = 3;
+            btnEditarCliente.Text = "Editar";
+            btnEditarCliente.UseVisualStyleBackColor = false;
+            // 
+            // btnNuevoCliente
+            // 
+            btnNuevoCliente.BackColor = Color.Peru;
+            btnNuevoCliente.FlatAppearance.BorderSize = 0;
+            btnNuevoCliente.FlatStyle = FlatStyle.Flat;
+            btnNuevoCliente.Font = new Font("Segoe UI", 12F);
+            btnNuevoCliente.ForeColor = Color.Moccasin;
+            btnNuevoCliente.Location = new Point(488, 437);
+            btnNuevoCliente.Margin = new Padding(0);
+            btnNuevoCliente.Name = "btnNuevoCliente";
+            btnNuevoCliente.Size = new Size(140, 45);
+            btnNuevoCliente.TabIndex = 2;
+            btnNuevoCliente.Text = "Nuevo";
+            btnNuevoCliente.UseVisualStyleBackColor = false;
+            // 
+            // flpClientes
+            // 
+            flpClientes.AutoScroll = true;
+            flpClientes.Location = new Point(0, 43);
+            flpClientes.Margin = new Padding(0);
+            flpClientes.Name = "flpClientes";
+            flpClientes.Size = new Size(488, 438);
+            flpClientes.TabIndex = 0;
             // 
             // FormPrincipal
             // 
@@ -689,22 +780,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(915, 597);
+            Controls.Add(pnlClientes);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlServicios);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlEstancias);
-            Controls.Add(btnParcelas);
             Controls.Add(pbLogo);
+            Controls.Add(btnParcelas);
             Controls.Add(btnServicios);
             Controls.Add(btnEmpleados);
             Controls.Add(btnEstancias);
-            Controls.Add(pbAjustes);
+            Controls.Add(btnClientes);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
             Text = "Daniel capullo";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbAjustes).EndInit();
             pnlServicios.ResumeLayout(false);
             panelMapaLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
@@ -713,6 +804,7 @@
             pnlParcelas.ResumeLayout(false);
             pnlEmpleados.ResumeLayout(false);
             pnlEstancias.ResumeLayout(false);
+            pnlClientes.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -721,7 +813,6 @@
         private PictureBox pbLogo;
         private Button btnEmpleados;
         private Button btnParcelas;
-        private PictureBox pbAjustes;
         private Button btnServicios;
         private Panel pnlServicios;
         private Button btnDatos;
@@ -763,5 +854,12 @@
         private Button btnEditarEstancia;
         private FlowLayoutPanel flpHistorial;
         private Controles.ucHistorial ucHistorial1;
+        private Button btnClientes;
+        private Panel pnlClientes;
+        private Button btnRefrescarClientes;
+        private Button btnEliminarCliente;
+        private Button btnEditarCliente;
+        private Button btnNuevoCliente;
+        private FlowLayoutPanel flpClientes;
     }
 }

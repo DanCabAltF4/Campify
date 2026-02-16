@@ -33,6 +33,7 @@ namespace Campify
             await CargarEmpleados();
             await CargarServicios();
             await CargarEstancias();
+            await CargarClientes();
         }
 
 
@@ -136,6 +137,7 @@ namespace Campify
             {
                 flpEstancias.Controls.Clear();
                 List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                estancias = estancias.OrderBy(est => est.CheckIn).ToList();
                 foreach (Estancia est in estancias)
                 {
                     ucEstanciasLista uc = new ucEstanciasLista();
@@ -156,6 +158,54 @@ namespace Campify
         }
 
 
+        private async Task CargarHistorial() {
+            try
+            {
+                flpHistorial.Controls.Clear();
+                List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                estancias = estancias.Where(est => est.Parcela != null && est.Parcela.Id == ucParcelaDatos.ParcelaActual.Id).ToList();
+                estancias = estancias.OrderBy(est => est.CheckIn).ToList();
+                foreach (Estancia est in estancias)
+                {
+                    ucHistorial uc = new ucHistorial();
+                    uc.SetData(est);
+                    flpHistorial.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarErrorConectarApi();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task CargarClientes()
+        {
+            try
+            {
+                flpClientes.Controls.Clear();
+                List<Cliente> clientes = await _api.GetAllAsync<Cliente>("api/clientes");
+                foreach (Cliente cliente in clientes)
+                {
+                    ucClientesLista uc = new ucClientesLista();
+                    uc.SetData(cliente);
+                    flpClientes.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarErrorConectarApi();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         /// <summary>
         /// Muestra un mensaje de error al no poder conectar con la API y ofrece reintentar o salir.
         /// </summary>
@@ -168,6 +218,8 @@ namespace Campify
                 await CargarEmpleados();
                 await CargarEstancias();
                 await CargarServicios();
+                await CargarHistorial();
+                await CargarClientes();
             }
             else
             {
@@ -193,6 +245,7 @@ namespace Campify
             pnlEmpleados.Visible = false;
             pnlServicios.Visible = false;
             pnlEstancias.Visible = false;
+            pnlClientes.Visible = false;
             pnlParcelas.Visible = true;
         }
 
@@ -378,26 +431,7 @@ namespace Campify
             ucParcelaDatos.Visible = false;
             ucEstanciaActual1.Visible = false;
             flpHistorial.Visible = true;
-            try
-            {
-                flpHistorial.Controls.Clear();
-                List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-                estancias = estancias.Where(est => est.Parcela != null && est.Parcela.Id == ucParcelaDatos.ParcelaActual.Id).ToList();
-                foreach (Estancia est in estancias)
-                {
-                    ucHistorial uc = new ucHistorial();
-                    uc.SetData(est);
-                    flpHistorial.Controls.Add(uc);
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                MostrarErrorConectarApi();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            await CargarHistorial();
         }
 
 
@@ -422,6 +456,7 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlParcelas.Visible = false;
             pnlEstancias.Visible = false;
+            pnlClientes.Visible = false;
             pnlEmpleados.Visible = true;
         }
 
@@ -515,6 +550,7 @@ namespace Campify
             pnlEmpleados.Visible = false;
             pnlParcelas.Visible = false;
             pnlEstancias.Visible = false;
+            pnlClientes.Visible = false;
             pnlServicios.Visible = true;
         }
 
@@ -607,6 +643,7 @@ namespace Campify
             pnlParcelas.Visible = false;
             pnlEmpleados.Visible = false;
             pnlServicios.Visible = false;
+            pnlClientes.Visible = false;
             pnlEstancias.Visible = true;
         }
 
@@ -640,7 +677,7 @@ namespace Campify
                 return;
             }
 
-            var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia); 
+            var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 await CargarEstancias();
@@ -667,5 +704,25 @@ namespace Campify
                 ucEstanciaActual2.Limpiar();
             }
         }
+
+
+
+        //------------------- PARTE DEL PANEL DE SERVICIOS -----------------------
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            pnlParcelas.Visible = false;
+            pnlEmpleados.Visible = false;
+            pnlServicios.Visible = false;
+            pnlEstancias.Visible = false;
+            pnlClientes.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CargarClientes();
+        }
+
+
     }
 }
