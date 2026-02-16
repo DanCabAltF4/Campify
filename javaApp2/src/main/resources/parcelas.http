@@ -15,7 +15,7 @@ Content-Type: application/json
   "cerca_baño": true,
   "tiene_vistas": false,
   "zona_sombra": true,
-  "estado_parcela": "LIBRE",
+  "estado_parcela": "MANTENIMIENTO",
   "capacidad_maxima": 4
 }
 

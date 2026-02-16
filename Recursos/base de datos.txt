@@ -1,0 +1,51 @@
+CLIENTES
+	id
+	nombre
+	apellidos
+	dni
+	dirección
+	cp	
+	fechaNacimiento
+	email (nullable)
+	teléfono (nullable)
+
+	claves ajenas: 
+
+PARCELAS
+	id
+	tipoParcela (enum tipo de parcela que contiene precio*noche)
+	booleanos varios para localización (baño cerca, vistas, etc)
+	enum estado (libre, reservada, alguienestainteresado, bloqueada)
+
+EMPLEADOS
+	id
+	nombre
+	apellidos	
+	teléfono
+	dni
+	puesto (enum para privilegios)
+
+
+ESTANCIAS (PUEDE SER INTERMEDIA)
+	id PK
+	fk_cliente
+	fk_parcela
+	fk_empleado
+	checkIn
+	checkOut
+	temporada (enum baja, media, alta)
+	-- VARIABLES QUE AFECTAN AL PRECIO --
+	numeroAdultos
+	numeroNiños
+	numeroMascotas
+	cantidadCargaExtra
+	costeMiscelaneo
+	precioFinal
+
+
+
+
+
+
+	
+
