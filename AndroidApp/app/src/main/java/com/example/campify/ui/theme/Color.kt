@@ -24,10 +24,11 @@ val botonActivoTexto = Color.White
 val botonInactivo = Color(0xFFD7EAC1)       // Verde muy suave
 val botonInactivoTexto = Color.Black
 
-val colorLibre = Color(0xFFB28C5D)          // Verde suave
-val colorReservada = Color(0xFFF0D9A6)      // Beige cálido
-val colorInteresado = Color(0xFFC5E1A5)     // Verde muy claro
-val colorMantenimiento = Color(0xFFB0BEC5)      // Gris claro
+val colorLibre = Color(0xFF81C784)          // Verde pastel
+val colorReservada = Color(0xFFFFE082)      // Amarillo pastel
+val colorInteresado = Color(0xFF64B5F6)     // Azul pastel
+val colorMantenimiento = Color(0xFFE57373)  // Rojo pastel
+
 
 val textoPrincipal = Color.Black
 val textoSecundario = Color(0xFF555555)

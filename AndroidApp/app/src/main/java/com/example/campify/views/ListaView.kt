@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -33,10 +34,8 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     var searchText by remember { mutableStateOf("") }
     val parcelas by api.parcelas
 
-    // Cargar las parcelas al iniciar la vista
     LaunchedEffect(Unit) { api.cargarParcelas() }
 
-    // Filtrar parcelas según texto de búsqueda
     val parcelasFiltradas = remember(parcelas, searchText) {
         if (searchText.isNotEmpty()) {
             parcelas.filter {
@@ -56,7 +55,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            NavigationButtons(navController)
+            NavigationSegment(navController)
             Spacer(modifier = Modifier.height(8.dp))
             SearchBar(searchText) { searchText = it }
             Spacer(modifier = Modifier.height(8.dp))
@@ -65,7 +64,6 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     }
 }
 
-// TopBar de la lista con logo y botón de recarga
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListaTopBar(context: android.content.Context, api: ApiModel) {
@@ -76,53 +74,16 @@ fun ListaTopBar(context: android.content.Context, api: ApiModel) {
                 Icon(Icons.Filled.Refresh, contentDescription = "Recargar Parcelas")
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = fondoPrincipal,
             titleContentColor = Color.Black
-        )
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(64.dp)
     )
 }
 
-// Composable de título del TopBar (logo + texto)
-@Composable
-fun ListaTopBarTitle() {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(R.drawable.campify_logo),
-            contentDescription = "Logo",
-            modifier = Modifier.size(32.dp)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text("Campify")
-    }
-}
-
-// Botones de navegación Mapa / Lista
-@Composable
-fun NavigationButtons(navController: NavHostController) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(fondoPrincipal),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Button(
-            onClick = { navController.navigate("Home") },
-            colors = ButtonDefaults.buttonColors(containerColor = botonInactivo)
-        ) {
-            Text("Mapa", color = Color.Black)
-        }
-
-        Button(
-            onClick = { navController.navigate("Lista") },
-            colors = ButtonDefaults.buttonColors(containerColor = botonActivo)
-        ) {
-            Text("Lista", color = Color.Black)
-        }
-    }
-}
-
-// Campo de búsqueda de parcelas
 @Composable
 fun SearchBar(value: String, onValueChange: (String) -> Unit) {
     OutlinedTextField(
@@ -135,43 +96,113 @@ fun SearchBar(value: String, onValueChange: (String) -> Unit) {
     )
 }
 
-// Lista de parcelas en LazyColumn
 @Composable
-fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+fun ListaTopBarTitle() {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Image(
+            painter = painterResource(R.drawable.campify_logo),
+            contentDescription = "Logo",
+            modifier = Modifier.size(36.dp)
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(
+            "Campify",
+            fontSize = 22.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+// Reemplazo de botones por SegmentedButton-like
+@Composable
+fun NavigationSegment(navController: NavHostController) {
+    val opciones = listOf("Mapa", "Lista")
+    var seleccionada by remember { mutableStateOf("Lista") }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .background(Color(0xFFE0E0E0), shape = MaterialTheme.shapes.small),
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        items(parcelas) { parcela ->
-            ParcelaItem(parcela) {
-                navController.navigate("detail/${parcela.id}")
+        opciones.forEach { opcion ->
+            // Cada "botón" ahora es un Box que ocupa más área
+            Box(
+                modifier = Modifier
+                    .weight(1f) // ocupa el mismo espacio horizontal
+                    .padding(4.dp) // espacio interno entre botones
+                    .background(
+                        color = if (opcion == seleccionada) Color(0xFF90CAF9) else Color.Transparent,
+                        shape = MaterialTheme.shapes.small
+                    )
+                    .clickable {
+                        seleccionada = opcion
+                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
+                    }
+                    .padding(vertical = 12.dp), // padding interno para clic más cómodo
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = opcion,
+                    color = if (opcion == seleccionada) Color.Black else Color.Gray,
+                    fontWeight = FontWeight.Medium
+                )
             }
         }
     }
 }
 
-// Composable individual de cada parcela
+
+@Composable
+fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        items(parcelas) { parcela ->
+            ParcelaItem(parcela) { navController.navigate("detail/${parcela.id}") }
+        }
+    }
+}
+
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
-    val color = when (parcela.estado_parcela) {
+    val colorFondo = when (parcela.estado_parcela) {
         EstadoParcela.LIBRE -> colorLibre
         EstadoParcela.RESERVADA -> colorReservada
         EstadoParcela.INTERESADO -> colorInteresado
         EstadoParcela.MANTENIMIENTO -> colorMantenimiento
     }
 
-    Box(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color)
-            .padding(16.dp)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(containerColor = colorFondo),
+        shape = MaterialTheme.shapes.medium,
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Text(
-            text = "Parcela ${parcela.id} - ${parcela.estado_parcela.name}",
-            color = Color.Black,
-            fontSize = 16.sp
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Parcela ${parcela.id}",
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = parcela.estado_parcela.name.lowercase()
+                    .replaceFirstChar { it.uppercase() },
+                color = Color.Black
+            )
+        }
     }
 }

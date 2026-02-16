@@ -4,23 +4,27 @@ import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.campify.R
-import com.example.campify.ui.theme.botonActivo
-import com.example.campify.ui.theme.botonInactivo
 import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.views.NavView
 
@@ -30,114 +34,127 @@ fun HomeView(navController: NavHostController) {
     val context = LocalContext.current
 
     Scaffold(
-        // TopBar con logo y botón de configuración
         topBar = { HomeTopBar(context) }
     ) { innerPadding ->
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            // Botones de navegación (Mapa / Lista)
-            NavigationButtons(navController)
-
+            NavigationSegment(navController, seleccionInicial = "Mapa")
             Spacer(modifier = Modifier.height(8.dp))
-
-            // Contenido principal de la Home (mapa)
             HomeContent()
         }
     }
 }
 
-// Composable del TopBar con logo y botón de configuración
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeTopBar(context: android.content.Context) {
     TopAppBar(
         title = { HomeTopBarTitle() },
-        actions = { ConfigButton(context) },
-        colors = TopAppBarDefaults.topAppBarColors(
+        actions = { LoginButton(context) },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = fondoPrincipal,
             titleContentColor = Color.Black
-        )
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(64.dp)
     )
 }
 
-// Composable del título del TopBar (logo + texto)
 @Composable
 fun HomeTopBarTitle() {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = painterResource(R.drawable.campify_logo),
             contentDescription = "Logo Campify",
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(36.dp)
         )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text("Campify")
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(
+            "Campify",
+            fontSize = 22.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
-// Composable del botón de configuración
 @Composable
-fun ConfigButton(context: android.content.Context) {
+fun LoginButton(context: android.content.Context) {
     IconButton(onClick = {
-        Toast.makeText(context, "Configuración", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Volver a iniciar sesion", Toast.LENGTH_SHORT).show()
     }) {
-        Icon(
-            imageVector = Icons.Filled.Settings,
-            contentDescription = "Configuración"
-        )
+        Icon(Icons.Filled.AccountCircle, contentDescription = "Configuración")
     }
 }
 
-// Composable para los botones de navegación "Mapa" y "Lista"
+// Botones de navegación estilo “SegmentedButton”
 @Composable
-fun NavigationButtons(navController: NavHostController) {
+fun NavigationSegment(navController: NavHostController, seleccionInicial: String) {
+    val opciones = listOf("Mapa", "Lista")
+    var seleccionada by remember { mutableStateOf(seleccionInicial) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(fondoPrincipal),
+            .padding(horizontal = 16.dp)
+            .background(Color(0xFFE0E0E0), shape = MaterialTheme.shapes.small),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Button(
-            onClick = { navController.navigate(NavView.Home.name) },
-            colors = ButtonDefaults.buttonColors(containerColor = botonActivo)
-        ) {
-            Text("Mapa", color = Color.Black)
-        }
-
-        Button(
-            onClick = { navController.navigate(NavView.Lista.name) },
-            colors = ButtonDefaults.buttonColors(containerColor = botonInactivo)
-        ) {
-            Text("Lista", color = Color.Black)
+        opciones.forEach { opcion ->
+            // Cada "botón" ahora es un Box que ocupa más área
+            Box(
+                modifier = Modifier
+                    .weight(1f) // ocupa el mismo espacio horizontal
+                    .padding(4.dp) // espacio interno entre botones
+                    .background(
+                        color = if (opcion == seleccionada) Color(0xFF90CAF9) else Color.Transparent,
+                        shape = MaterialTheme.shapes.small
+                    )
+                    .clickable {
+                        seleccionada = opcion
+                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
+                    }
+                    .padding(vertical = 12.dp), // padding interno para clic más cómodo
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = opcion,
+                    color = if (opcion == seleccionada) Color.Black else Color.Gray,
+                    fontWeight = FontWeight.Medium
+                )
+            }
         }
     }
 }
 
-// Composable para el contenido principal de la Home (mapa)
 @Composable
 fun HomeContent() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.LightGray),
+            .background(Color(0xFFEFEFEF))
+            .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
-        // Texto descriptivo
-        Text("Mapa de parcelas", fontSize = 20.sp, color = Color.DarkGray)
-
         // Imagen del mapa
         MapaImagen(mapaResId = R.drawable.mapa)
+
+        // Texto superpuesto (opcional)
+        Text(
+            "Mapa de parcelas",
+            fontSize = 20.sp,
+            color = Color.DarkGray,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
     }
 }
 
-// Composable para mostrar la imagen del mapa
 @Composable
-fun MapaImagen(
-    @DrawableRes mapaResId: Int
-) {
+fun MapaImagen(@DrawableRes mapaResId: Int) {
     Image(
         painter = painterResource(id = mapaResId),
         contentDescription = "Mapa de la zona",
