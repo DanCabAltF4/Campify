@@ -75,13 +75,13 @@
             flpEstancias = new FlowLayoutPanel();
             btnClientes = new Button();
             pnlClientes = new Panel();
+            ucClienteDatos1 = new Controles.ucClienteDatos();
             btnRefrescarClientes = new Button();
             btnEliminarCliente = new Button();
             btnEditarCliente = new Button();
             btnNuevoCliente = new Button();
             flpClientes = new FlowLayoutPanel();
             ucClientesLista1 = new Controles.ucClientesLista();
-            ucClienteDatos1 = new Controles.ucClienteDatos();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
@@ -698,17 +698,24 @@
             // 
             // pnlClientes
             // 
-            pnlClientes.Controls.Add(ucClienteDatos1);
-            pnlClientes.Controls.Add(btnRefrescarClientes);
-            pnlClientes.Controls.Add(btnEliminarCliente);
-            pnlClientes.Controls.Add(btnEditarCliente);
-            pnlClientes.Controls.Add(btnNuevoCliente);
             pnlClientes.Controls.Add(flpClientes);
+            pnlClientes.Controls.Add(btnRefrescarClientes);
+            pnlClientes.Controls.Add(ucClienteDatos1);
+            pnlClientes.Controls.Add(btnNuevoCliente);
+            pnlClientes.Controls.Add(btnEditarCliente);
+            pnlClientes.Controls.Add(btnEliminarCliente);
             pnlClientes.Location = new Point(1, 115);
             pnlClientes.Name = "pnlClientes";
             pnlClientes.Size = new Size(913, 483);
             pnlClientes.TabIndex = 24;
             pnlClientes.Visible = false;
+            // 
+            // ucClienteDatos1
+            // 
+            ucClienteDatos1.Location = new Point(491, 3);
+            ucClienteDatos1.Name = "ucClienteDatos1";
+            ucClienteDatos1.Size = new Size(419, 431);
+            ucClienteDatos1.TabIndex = 24;
             // 
             // btnRefrescarClientes
             // 
@@ -738,6 +745,7 @@
             btnEliminarCliente.TabIndex = 4;
             btnEliminarCliente.Text = "Eliminar";
             btnEliminarCliente.UseVisualStyleBackColor = false;
+            btnEliminarCliente.Click += btnEliminarCliente_Click;
             // 
             // btnEditarCliente
             // 
@@ -786,13 +794,6 @@
             ucClientesLista1.Name = "ucClientesLista1";
             ucClientesLista1.Size = new Size(462, 81);
             ucClientesLista1.TabIndex = 0;
-            // 
-            // ucClienteDatos1
-            // 
-            ucClienteDatos1.Location = new Point(491, 3);
-            ucClienteDatos1.Name = "ucClienteDatos1";
-            ucClienteDatos1.Size = new Size(419, 431);
-            ucClienteDatos1.TabIndex = 24;
             // 
             // FormPrincipal
             // 

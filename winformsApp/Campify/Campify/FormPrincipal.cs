@@ -158,7 +158,8 @@ namespace Campify
         }
 
 
-        private async Task CargarHistorial() {
+        private async Task CargarHistorial()
+        {
             try
             {
                 flpHistorial.Controls.Clear();
@@ -730,6 +731,22 @@ namespace Campify
             ucClienteDatos1.MostrarDatos(e);
         }
 
-
+        private async void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = ucClienteDatos1.ClienteActual;
+            if (cliente == null)
+            {
+                MessageBox.Show("Debe seleccionar un cliente para eliminarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var result = MessageBox.Show("Se eliminará el cliente.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                await _api.Delete<Cliente>("api/clientes", cliente.Id);
+                MessageBox.Show("Cliente eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CargarClientes();
+                ucClienteDatos1.Limpiar();
+            }
+        }
     }
 }
