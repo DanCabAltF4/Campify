@@ -280,7 +280,7 @@ namespace Campify
                 MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var form = new FormNuevaEstancia(parcelaSeleccionada, _api);
+            var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 ucEstanciaActual1.SetData(form.EstanciaCreada);
@@ -609,10 +609,27 @@ namespace Campify
             await CargarEstancias();
         }
 
-        private void btnEditarEstancia_Click(object sender, EventArgs e)
-        {
 
+
+        private async void btnEditarEstancia_Click(object sender, EventArgs e)
+        {
+            var estancia = ucEstanciaActual2.EstanciaActual;
+            if (estancia == null)
+            {
+                MessageBox.Show("Debe seleccionar una estancia para editarla.", "Estancia no seleccionada",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia); 
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                await CargarEstancias();
+                ucEstanciaActual2.SetData(form.EstanciaCreada);
+            }
         }
+
+
 
         private async void btnEliminarEstancia_Click(object sender, EventArgs e)
         {

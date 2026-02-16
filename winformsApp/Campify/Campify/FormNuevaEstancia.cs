@@ -27,6 +27,8 @@ namespace Forms
         private readonly ApiCampify _api;
         private Estancia _estancia;
         private Parcela _parcela;
+        private double _precioBase;
+
 
         public Estancia EstanciaCreada { get; set; }
 
@@ -35,10 +37,10 @@ namespace Forms
         // CONSTRUCTOR Y LOAD
         // ----------------------------------
 
-        public FormNuevaEstancia(Parcela parcela, ApiCampify api)
+        public FormNuevaEstancia(Parcela parcela, ApiCampify api, Estancia? estancia = null)
         {
             InitializeComponent();
-            _estancia = new Estancia();
+            _estancia = estancia ?? new Estancia();
             _parcela = parcela;
             _estancia.Parcela = parcela;
             _api = api;
@@ -56,9 +58,16 @@ namespace Forms
             nudCargoAdicional.Value = 0;
             nudCargoAdicional.Controls[0].Visible = false;
 
+            if(estancia != null)
+            {
+                CargarDatosEstancia(estancia);
+            }
+
             CargarDatosParcela();
             ActualizarLabelsClientes();
         }
+
+
 
 
         // ----------------------------------
@@ -70,10 +79,38 @@ namespace Forms
         /// </summary>
         private void CargarDatosParcela()
         {
-            lblParcela.Text = _estancia.Parcela.Id.ToString();
-            lblPrecioNoche.Text = $"{_estancia.Parcela.PrecioNoche} €";
+            lblParcela.Text = _parcela.Id.ToString();
+            lblPrecioNoche.Text = $"{_parcela.PrecioNoche} €";
             CalcularPrecioTotal();
         }
+
+
+        private void CargarDatosEstancia(Estancia estancia)
+        {
+            dtpCheckin.Value = estancia.CheckIn.ToDateTime(TimeOnly.MinValue);
+
+            if (estancia.CheckOut != null)
+            {
+                dtpCheckout.Checked = true;
+                dtpCheckout.Value = estancia.CheckOut.Value.ToDateTime(TimeOnly.MinValue);
+            }
+            else
+            {
+                dtpCheckout.Checked = false;
+                dtpCheckout.Value = DateTime.Today;
+            }
+
+            cbTemporada.SelectedItem = estancia.Temporada;
+
+            nudNumMascotas.Value = estancia.NumeroMascotas;
+            nudEquipajeAdicional.Value = (decimal)estancia.CantidadEquipajeExtra;
+            nudCargoAdicional.Value = (decimal)estancia.CargoAdicional;
+
+            _estancia.Clientes ??= new List<Cliente>();
+            _estancia.Servicios ??= new List<Servicio>();
+        }
+
+
 
         /// <summary>
         /// Calcula el precio total de la estancia en función de los datos introducidos
@@ -108,29 +145,15 @@ namespace Forms
                     break;
             }
             // Cargos por características de la parcela marcadas en los CheckBox
-            if (_parcela.CercaBanos == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.TieneVistas == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.ZonaSombra == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.CercaEntrada == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.ZonaTranquila == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
+            if (_parcela.CercaBanos == true)  precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.TieneVistas == true)  precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.ZonaSombra == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.CercaEntrada == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.ZonaTranquila == true) precioBase += PRECIO_POR_CHECKBOX;
+
             // Cálculo del precio final
-            double precioTotal = precioBase + cargoMascotas + cargoEquipaje + cargoAdicional + cargoTemporada;
-            lblPrecioFinal.Text = $"{precioTotal} €";
+            _precioBase = precioBase + cargoMascotas + cargoEquipaje + cargoAdicional + cargoTemporada;
+            RecalcularPrecioFinal();
         }
 
         /// <summary>
@@ -142,7 +165,9 @@ namespace Forms
             var disponible = false;
             DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
             DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
+
             var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+            if (_estancia != null && _estancia.Id != 0)  estancias = estancias.Where(e => e.Id != _estancia.Id).ToList(); //si editamos excluimos la actual
             estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
             estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
 
@@ -282,18 +307,30 @@ namespace Forms
                 _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
                 _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
                 _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
-                _estancia.NumeroAdultos = 0;
-                _estancia.NumeroNinos = 0;
+
+                _estancia.NumeroAdultos = _estancia.Clientes.Count(c=> c.EsAdulto);
+                _estancia.NumeroNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
                 _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
+
                 _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
                 _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
                 string valor = lblPrecioFinal.Text.Split(' ')[0];
                 _estancia.PrecioFinal = double.Parse(valor);
-                _estancia.Empleado = new Empleado { Id = 2 };           // Empleado por defecto, luego se cambiará al empleado logueado
 
-                // Guardar la estancia mediante la API
-                EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
-                MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Empleado empleado = await _api.GetByIdAsync<Empleado>("api/empleados", Session.UserId);
+                _estancia.Empleado = empleado;
+
+                if (_estancia.Id == 0) 
+                {
+                    EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
+                    MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    EstanciaCreada = await _api.Update<Estancia>("api/estancias", _estancia.Id, _estancia);
+                    MessageBox.Show("Estancia actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -338,19 +375,17 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;
-                CalcularPrecioServicios();
+                RecalcularPrecioFinal();
             }
 
         }
 
         // Modifica label de precio final añadiendo el precio de los servicios seleccionados
-        public void CalcularPrecioServicios()
+        private void RecalcularPrecioFinal()
         {
-            double precioServicios = _estancia.Servicios.Sum(s => s.Precio);
-            string valor = lblPrecioFinal.Text.Split(' ')[0];
-            double precioBase = double.Parse(valor);
-            double precioTotal = precioBase + precioServicios;
-            lblPrecioFinal.Text = $"{precioTotal} €";
+            double precioServicios = _estancia.Servicios?.Sum(s => s.Precio) ?? 0;
+            double total = _precioBase + precioServicios;
+            lblPrecioFinal.Text = $"{total} €";
         }
 
 
