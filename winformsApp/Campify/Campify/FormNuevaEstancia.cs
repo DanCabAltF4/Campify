@@ -57,6 +57,7 @@ namespace Forms
             nudCargoAdicional.Controls[0].Visible = false;
 
             CargarDatosParcela();
+            ActualizarLabelsClientes();
         }
 
 
@@ -302,6 +303,7 @@ namespace Forms
             }
         }
 
+
         /// <summary>
         /// Abre el formulario para seleccionar los clientes de la estancia
         /// </summary>
@@ -311,8 +313,21 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Clientes = form.ListaFinalClientes;
+                ActualizarLabelsClientes();
             }
         }
+
+        
+        //Modifica labels de numero de adultos y niños en funcion de la lista de clientes
+        public void ActualizarLabelsClientes()
+        {
+            int numAdultos = _estancia.Clientes.Count(c => c.EsAdulto);
+            int numNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
+            lblAdultos.Text = numAdultos.ToString();
+            lblNinos.Text = numNinos.ToString();
+        }
+
+
 
         /// <summary>
         /// Abre el formulario para seleccionar los servicios de la estancia
@@ -323,9 +338,22 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;
+                CalcularPrecioServicios();
             }
 
         }
+
+        // Modifica label de precio final añadiendo el precio de los servicios seleccionados
+        public void CalcularPrecioServicios()
+        {
+            double precioServicios = _estancia.Servicios.Sum(s => s.Precio);
+            string valor = lblPrecioFinal.Text.Split(' ')[0];
+            double precioBase = double.Parse(valor);
+            double precioTotal = precioBase + precioServicios;
+            lblPrecioFinal.Text = $"{precioTotal} €";
+        }
+
+
 
         private void cbTemporada_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -370,9 +398,5 @@ namespace Forms
             CalcularPrecioTotal();
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            ComprobarDisponibilidad();
-        }
     }
 }

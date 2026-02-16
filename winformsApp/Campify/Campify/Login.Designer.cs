@@ -79,6 +79,7 @@
             tbUsuario.Name = "tbUsuario";
             tbUsuario.Size = new Size(163, 27);
             tbUsuario.TabIndex = 4;
+            tbUsuario.Text = "ana@campify.com";
             // 
             // lblUsuario
             // 
@@ -96,6 +97,7 @@
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(163, 27);
             tbPassword.TabIndex = 6;
+            tbPassword.Text = "1234";
             // 
             // Login
             // 
