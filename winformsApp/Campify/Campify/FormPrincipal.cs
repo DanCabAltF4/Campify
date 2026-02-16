@@ -14,7 +14,7 @@ namespace Campify
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
 
-        private readonly ApiCampify _api = new ApiCampify("https://api.raspiremote.org/");
+        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
 
 
         // ----------------------------------
