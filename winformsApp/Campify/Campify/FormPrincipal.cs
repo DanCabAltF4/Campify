@@ -608,5 +608,28 @@ namespace Campify
         {
             await CargarEstancias();
         }
+
+        private void btnEditarEstancia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btnEliminarEstancia_Click(object sender, EventArgs e)
+        {
+            Estancia estancia = ucEstanciaActual2.EstanciaActual;
+            if (estancia == null)
+            {
+                MessageBox.Show("Debe seleccionar una estancia para eliminarla.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var result = MessageBox.Show("Se eliminará la estancia.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                await _api.Delete<Estancia>("api/estancias", ucEstanciaActual2.EstanciaActual.Id);
+                MessageBox.Show("Estancia eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CargarEstancias();
+                ucEstanciaActual2.Limpiar();
+            }
+        }
     }
 }

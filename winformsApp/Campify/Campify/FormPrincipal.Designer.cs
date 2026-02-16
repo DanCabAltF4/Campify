@@ -68,12 +68,11 @@
             flpEmpleados = new FlowLayoutPanel();
             btnEstancias = new Button();
             pnlEstancias = new Panel();
+            btnEliminarEstancia = new Button();
+            btnEditarEstancia = new Button();
             btnRefrescarEstancias = new Button();
             ucEstanciaActual2 = new Controles.ucEstanciaActual();
             flpEstancias = new FlowLayoutPanel();
-            btnEliminarEstancia = new Button();
-            btnEditarEstancia = new Button();
-            btnNuevaEstancia = new Button();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAjustes).BeginInit();
             pnlServicios.SuspendLayout();
@@ -600,7 +599,6 @@
             // 
             pnlEstancias.Controls.Add(btnEliminarEstancia);
             pnlEstancias.Controls.Add(btnEditarEstancia);
-            pnlEstancias.Controls.Add(btnNuevaEstancia);
             pnlEstancias.Controls.Add(btnRefrescarEstancias);
             pnlEstancias.Controls.Add(ucEstanciaActual2);
             pnlEstancias.Controls.Add(flpEstancias);
@@ -609,6 +607,38 @@
             pnlEstancias.Size = new Size(913, 487);
             pnlEstancias.TabIndex = 22;
             pnlEstancias.Visible = false;
+            // 
+            // btnEliminarEstancia
+            // 
+            btnEliminarEstancia.BackColor = Color.Peru;
+            btnEliminarEstancia.FlatAppearance.BorderSize = 0;
+            btnEliminarEstancia.FlatStyle = FlatStyle.Flat;
+            btnEliminarEstancia.Font = new Font("Segoe UI", 12F);
+            btnEliminarEstancia.ForeColor = Color.Moccasin;
+            btnEliminarEstancia.Location = new Point(691, 439);
+            btnEliminarEstancia.Margin = new Padding(0);
+            btnEliminarEstancia.Name = "btnEliminarEstancia";
+            btnEliminarEstancia.Size = new Size(221, 45);
+            btnEliminarEstancia.TabIndex = 7;
+            btnEliminarEstancia.Text = "Eliminar";
+            btnEliminarEstancia.UseVisualStyleBackColor = false;
+            btnEliminarEstancia.Click += btnEliminarEstancia_Click;
+            // 
+            // btnEditarEstancia
+            // 
+            btnEditarEstancia.BackColor = Color.Peru;
+            btnEditarEstancia.FlatAppearance.BorderSize = 0;
+            btnEditarEstancia.FlatStyle = FlatStyle.Flat;
+            btnEditarEstancia.Font = new Font("Segoe UI", 12F);
+            btnEditarEstancia.ForeColor = Color.Moccasin;
+            btnEditarEstancia.Location = new Point(487, 439);
+            btnEditarEstancia.Margin = new Padding(0);
+            btnEditarEstancia.Name = "btnEditarEstancia";
+            btnEditarEstancia.Size = new Size(204, 45);
+            btnEditarEstancia.TabIndex = 6;
+            btnEditarEstancia.Text = "Editar";
+            btnEditarEstancia.UseVisualStyleBackColor = false;
+            btnEditarEstancia.Click += btnEditarEstancia_Click;
             // 
             // btnRefrescarEstancias
             // 
@@ -640,51 +670,6 @@
             flpEstancias.Name = "flpEstancias";
             flpEstancias.Size = new Size(488, 435);
             flpEstancias.TabIndex = 0;
-            // 
-            // btnEliminarEstancia
-            // 
-            btnEliminarEstancia.BackColor = Color.Peru;
-            btnEliminarEstancia.FlatAppearance.BorderSize = 0;
-            btnEliminarEstancia.FlatStyle = FlatStyle.Flat;
-            btnEliminarEstancia.Font = new Font("Segoe UI", 12F);
-            btnEliminarEstancia.ForeColor = Color.Moccasin;
-            btnEliminarEstancia.Location = new Point(773, 441);
-            btnEliminarEstancia.Margin = new Padding(0);
-            btnEliminarEstancia.Name = "btnEliminarEstancia";
-            btnEliminarEstancia.Size = new Size(140, 45);
-            btnEliminarEstancia.TabIndex = 7;
-            btnEliminarEstancia.Text = "Eliminar";
-            btnEliminarEstancia.UseVisualStyleBackColor = false;
-            // 
-            // btnEditarEstancia
-            // 
-            btnEditarEstancia.BackColor = Color.Peru;
-            btnEditarEstancia.FlatAppearance.BorderSize = 0;
-            btnEditarEstancia.FlatStyle = FlatStyle.Flat;
-            btnEditarEstancia.Font = new Font("Segoe UI", 12F);
-            btnEditarEstancia.ForeColor = Color.Moccasin;
-            btnEditarEstancia.Location = new Point(628, 441);
-            btnEditarEstancia.Margin = new Padding(0);
-            btnEditarEstancia.Name = "btnEditarEstancia";
-            btnEditarEstancia.Size = new Size(145, 45);
-            btnEditarEstancia.TabIndex = 6;
-            btnEditarEstancia.Text = "Editar";
-            btnEditarEstancia.UseVisualStyleBackColor = false;
-            // 
-            // btnNuevaEstancia
-            // 
-            btnNuevaEstancia.BackColor = Color.Peru;
-            btnNuevaEstancia.FlatAppearance.BorderSize = 0;
-            btnNuevaEstancia.FlatStyle = FlatStyle.Flat;
-            btnNuevaEstancia.Font = new Font("Segoe UI", 12F);
-            btnNuevaEstancia.ForeColor = Color.Moccasin;
-            btnNuevaEstancia.Location = new Point(488, 441);
-            btnNuevaEstancia.Margin = new Padding(0);
-            btnNuevaEstancia.Name = "btnNuevaEstancia";
-            btnNuevaEstancia.Size = new Size(140, 45);
-            btnNuevaEstancia.TabIndex = 5;
-            btnNuevaEstancia.Text = "Nuevo";
-            btnNuevaEstancia.UseVisualStyleBackColor = false;
             // 
             // FormPrincipal
             // 
@@ -764,6 +749,5 @@
         private Button btnRefrescarEmpleados;
         private Button btnEliminarEstancia;
         private Button btnEditarEstancia;
-        private Button btnNuevaEstancia;
     }
 }
