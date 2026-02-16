@@ -28,10 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            lblCheckout = new Label();
+            lblCheckin = new Label();
+            lblId = new Label();
+            SuspendLayout();
+            // 
+            // lblCheckout
+            // 
+            lblCheckout.AutoSize = true;
+            lblCheckout.Location = new Point(236, 22);
+            lblCheckout.Name = "lblCheckout";
+            lblCheckout.Size = new Size(70, 20);
+            lblCheckout.TabIndex = 7;
+            lblCheckout.Text = "Checkout";
+            // 
+            // lblCheckin
+            // 
+            lblCheckin.AutoSize = true;
+            lblCheckin.Location = new Point(110, 22);
+            lblCheckin.Name = "lblCheckin";
+            lblCheckin.Size = new Size(64, 20);
+            lblCheckin.TabIndex = 6;
+            lblCheckin.Text = "Checkin ";
+            // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Location = new Point(18, 22);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(22, 20);
+            lblId.TabIndex = 4;
+            lblId.Text = "Id";
+            // 
+            // ucHistorial
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblCheckout);
+            Controls.Add(lblCheckin);
+            Controls.Add(lblId);
+            Name = "ucHistorial";
+            Size = new Size(410, 65);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblCheckout;
+        private Label lblCheckin;
+        private Label lblId;
     }
 }

@@ -226,7 +226,7 @@ namespace Campify
         private void btnDatos_Click(object sender, EventArgs e)
         {
             ucEstanciaActual1.Visible = false;
-            ucHistorial1.Visible = false;
+            flpHistorial.Visible = false;
             ucParcelaDatos.Visible = true;
 
             btnClientesEstancia.Visible = false;
@@ -323,7 +323,7 @@ namespace Campify
         private void btnEstanciaActual_Click(object sender, EventArgs e)
         {
             ucParcelaDatos.Visible = false;
-            ucHistorial1.Visible = false;
+            flpHistorial.Visible = false;
             ucEstanciaActual1.Visible = true;
 
             btnReservar.Visible = false;
@@ -373,12 +373,31 @@ namespace Campify
         /// <summary>
         /// Cambia el user control visible a la vista de historial de estancias.
         /// </summary>
-        private void btnHistorial_Click(object sender, EventArgs e)
+        private async void btnHistorial_Click(object sender, EventArgs e)
         {
             ucParcelaDatos.Visible = false;
             ucEstanciaActual1.Visible = false;
-            ucHistorial1.Visible = true;
-
+            flpHistorial.Visible = true;
+            try
+            {
+                flpHistorial.Controls.Clear();
+                List<Estancia> estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                estancias = estancias.Where(est => est.Parcela != null && est.Parcela.Id == ucParcelaDatos.ParcelaActual.Id).ToList();
+                foreach (Estancia est in estancias)
+                {
+                    ucHistorial uc = new ucHistorial();
+                    uc.SetData(est);
+                    flpHistorial.Controls.Add(uc);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MostrarErrorConectarApi();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
