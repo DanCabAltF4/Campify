@@ -30,8 +30,6 @@ public class Cliente {
     private LocalDate fechaNacimiento;
     @Column(length = 100)
     private String email;
-    @Column(length = 60)
-    private String password;
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
 
@@ -127,13 +125,6 @@ public class Cliente {
         this.estancia = estancia;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public String toString() {

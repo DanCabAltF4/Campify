@@ -10,5 +10,6 @@ public record DtoEmpleado(
         @JsonProperty("dni") String dni,
         @JsonProperty("telefono") String telefono,
         @JsonProperty("puesto") PuestoTrabajo puesto,
-        @JsonProperty("activo") Boolean activo
+        @JsonProperty("activo") Boolean activo,
+        @JsonProperty("email") String email
 ) {}

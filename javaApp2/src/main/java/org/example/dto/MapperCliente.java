@@ -19,8 +19,7 @@ public final class MapperCliente {
                 c.getcPostal(),
                 c.getFechaNacimiento(),
                 c.getEmail(),
-                c.getTelefono(),
-                c.getPassword()
+                c.getTelefono()
         );
     }
 
@@ -38,7 +37,6 @@ public final class MapperCliente {
         c.setFechaNacimiento(dto.fechaNacimiento());
         c.setEmail(dto.email());
         c.setTelefono(dto.telefono());
-        c.setPassword(dto.password());
 
         return c;
     }

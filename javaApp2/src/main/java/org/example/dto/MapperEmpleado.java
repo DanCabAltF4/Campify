@@ -16,7 +16,8 @@ public final class MapperEmpleado {
                 e.getDni(),
                 e.getTelefono(),
                 e.getPuesto(),
-                e.isActivo()
+                e.isActivo(),
+                e.getEmail()
         );
     }
 
@@ -32,6 +33,7 @@ public final class MapperEmpleado {
         e.setTelefono(dto.telefono());
         e.setPuesto(dto.puesto());
         if (dto.activo() != null) e.setActivo(dto.activo());
+        e.setEmail(dto.email());
 
         return e;
     }
