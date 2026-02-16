@@ -13,7 +13,7 @@ namespace Controles
 {
     public partial class ucClienteDatos : UserControl
     {
-        public Cliente ClienteActual { get; private set; }
+        public Cliente? ClienteActual { get; private set; }
 
 
         public ucClienteDatos()
@@ -43,6 +43,7 @@ namespace Controles
 
         public void Limpiar()
         {
+            ClienteActual=null;
             lblNombre.Text = "";
             lblApellidos.Text = "";
             lblDni.Text = "";

@@ -710,7 +710,7 @@ namespace Campify
 
 
 
-        //------------------- PARTE DEL PANEL DE SERVICIOS -----------------------
+        //------------------- PARTE DEL PANEL DE CLIENTES -----------------------
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
@@ -721,15 +721,20 @@ namespace Campify
             pnlClientes.Visible = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private async void RefrescarClientes(object sender, EventArgs e)
         {
-            CargarClientes();
+            await CargarClientes();
         }
+
+
 
         private void ClienteClick(object? sender, Cliente e)
         {
             ucClienteDatos1.MostrarDatos(e);
         }
+
+
 
         private async void btnEliminarCliente_Click(object sender, EventArgs e)
         {
@@ -746,7 +751,41 @@ namespace Campify
                 MessageBox.Show("Cliente eliminado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 await CargarClientes();
                 ucClienteDatos1.Limpiar();
+
             }
+        }
+
+
+
+        private async void btnNuevoCliente_Click(object sender, EventArgs e)
+        {
+            var form = new FormNuevoCliente(_api, null);
+            if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+            {
+                var nuevoCliente = form.ClienteNuevo;
+                await CargarClientes();
+            }
+        }
+
+
+
+        private async void btnEditarCliente_Click(object sender, EventArgs e)
+        {
+            var cliente = ucClienteDatos1.ClienteActual;
+            if (cliente == null)
+            {
+                MessageBox.Show("Debe seleccionar un cliente para editarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var form = new FormNuevoCliente(_api, cliente);
+            if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+            {
+                var nuevoCliente = form.ClienteNuevo;
+                await CargarClientes();
+                ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
+            }
+            
         }
     }
 }

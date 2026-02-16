@@ -126,10 +126,10 @@
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
-            btnGuardar.Location = new Point(481, 391);
+            btnGuardar.Location = new Point(497, 391);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(94, 38);
-            btnGuardar.TabIndex = 9;
+            btnGuardar.Size = new Size(139, 38);
+            btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
@@ -140,10 +140,10 @@
             btnVolver.FlatAppearance.BorderSize = 0;
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
-            btnVolver.Location = new Point(253, 391);
+            btnVolver.Location = new Point(222, 391);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(94, 38);
-            btnVolver.TabIndex = 10;
+            btnVolver.Size = new Size(139, 38);
+            btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
@@ -153,56 +153,56 @@
             txbNombre.Location = new Point(120, 48);
             txbNombre.Name = "txbNombre";
             txbNombre.Size = new Size(227, 27);
-            txbNombre.TabIndex = 11;
+            txbNombre.TabIndex = 1;
             // 
             // txbApellidos
             // 
             txbApellidos.Location = new Point(125, 112);
             txbApellidos.Name = "txbApellidos";
             txbApellidos.Size = new Size(222, 27);
-            txbApellidos.TabIndex = 12;
+            txbApellidos.TabIndex = 2;
             // 
             // txbDni
             // 
             txbDni.Location = new Point(91, 182);
             txbDni.Name = "txbDni";
             txbDni.Size = new Size(144, 27);
-            txbDni.TabIndex = 13;
+            txbDni.TabIndex = 3;
             // 
             // txbDireccion
             // 
             txbDireccion.Location = new Point(497, 48);
             txbDireccion.Name = "txbDireccion";
             txbDireccion.Size = new Size(345, 27);
-            txbDireccion.TabIndex = 14;
+            txbDireccion.TabIndex = 4;
             // 
             // txbCodigoPostal
             // 
             txbCodigoPostal.Location = new Point(531, 178);
             txbCodigoPostal.Name = "txbCodigoPostal";
             txbCodigoPostal.Size = new Size(120, 27);
-            txbCodigoPostal.TabIndex = 15;
+            txbCodigoPostal.TabIndex = 6;
             // 
             // txbTelefono
             // 
             txbTelefono.Location = new Point(492, 251);
             txbTelefono.Name = "txbTelefono";
             txbTelefono.Size = new Size(159, 27);
-            txbTelefono.TabIndex = 16;
+            txbTelefono.TabIndex = 7;
             // 
             // txbEmail
             // 
             txbEmail.Location = new Point(474, 112);
             txbEmail.Name = "txbEmail";
             txbEmail.Size = new Size(368, 27);
-            txbEmail.TabIndex = 17;
+            txbEmail.TabIndex = 5;
             // 
             // dtpFechaNacimiento
             // 
             dtpFechaNacimiento.Location = new Point(47, 264);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             dtpFechaNacimiento.Size = new Size(300, 27);
-            dtpFechaNacimiento.TabIndex = 18;
+            dtpFechaNacimiento.TabIndex = 8;
             // 
             // FormNuevoCliente
             // 
