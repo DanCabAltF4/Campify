@@ -49,3 +49,5 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\bin\Debug\net8.0-windows\Repository.dll
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\bin\Debug\net8.0-windows\Repository.pdb
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\obj\Debug\net8.0-windows\Controles.ucEstanciasLista.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\bin\Debug\net8.0-windows\Dto.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Controles\bin\Debug\net8.0-windows\Dto.pdb

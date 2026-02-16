@@ -14,16 +14,17 @@ namespace Campify
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
 
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
 
 
         // ----------------------------------
         // CONSTRUCTOR Y LOAD
         // ----------------------------------
 
-        public FormPrincipal()
+        public FormPrincipal(ApiCampify api)
         {
             InitializeComponent();
+            _api = api;
         }
 
         private async void Form1_Load(object sender, EventArgs e)

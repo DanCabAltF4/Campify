@@ -64,3 +64,6 @@ C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\n
 C:\Users\doowy\Desktop\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerClientesEstancia.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormVerServiciosEstancia.resources
 C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.FormDatosServicio.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\obj\Debug\net8.0-windows\Forms.Login.resources
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Dto.dll
+C:\Users\doowy\Escritorio\GitHub\Campify\winformsApp\Campify\Campify\bin\Debug\net8.0-windows\Dto.pdb

@@ -28,6 +28,14 @@
           }
         }
       },
+      "Dto/1.0.0": {
+        "runtime": {
+          "Dto.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Model/1.0.0": {
         "runtime": {
           "Model.dll": {
@@ -38,6 +46,7 @@
       },
       "Repository/1.0.0": {
         "dependencies": {
+          "Dto": "1.0.0",
           "Model": "1.0.0"
         },
         "runtime": {
@@ -56,6 +65,11 @@
       "sha512": ""
     },
     "Controles/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dto/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

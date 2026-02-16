@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v8.0": {
       "Repository/1.0.0": {
         "dependencies": {
+          "Dto": "1.0.0",
           "Model": "1.0.0"
         },
         "runtime": {
           "Repository.dll": {}
+        }
+      },
+      "Dto/1.0.0": {
+        "runtime": {
+          "Dto.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Model/1.0.0": {
@@ -26,6 +35,11 @@
   },
   "libraries": {
     "Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dto/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
