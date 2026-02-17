@@ -28,11 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEstanciaServicios));
             btnGuardar = new Button();
             dvgListaServicios = new DataGridView();
             dgvServiciosEstancia = new DataGridView();
+            lblDisponibles = new Label();
+            lblActuales = new Label();
+            btnVolver = new Button();
+            pnlTop = new Panel();
+            btnMinimizar = new Button();
+            lblTitulo = new Label();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)dvgListaServicios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiciosEstancia).BeginInit();
+            pnlTop.SuspendLayout();
             SuspendLayout();
             // 
             // btnGuardar
@@ -42,9 +51,9 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardar.Location = new Point(346, 474);
+            btnGuardar.Location = new Point(461, 607);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(98, 48);
+            btnGuardar.Size = new Size(98, 36);
             btnGuardar.TabIndex = 0;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -57,7 +66,7 @@
             dvgListaServicios.AllowUserToResizeRows = false;
             dvgListaServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgListaServicios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgListaServicios.Location = new Point(12, 12);
+            dvgListaServicios.Location = new Point(10, 94);
             dvgListaServicios.Name = "dvgListaServicios";
             dvgListaServicios.ReadOnly = true;
             dvgListaServicios.RowHeadersWidth = 51;
@@ -72,7 +81,7 @@
             dgvServiciosEstancia.AllowUserToResizeRows = false;
             dgvServiciosEstancia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServiciosEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServiciosEstancia.Location = new Point(12, 255);
+            dgvServiciosEstancia.Location = new Point(10, 390);
             dgvServiciosEstancia.Name = "dgvServiciosEstancia";
             dgvServiciosEstancia.ReadOnly = true;
             dgvServiciosEstancia.RowHeadersWidth = 51;
@@ -80,12 +89,98 @@
             dgvServiciosEstancia.TabIndex = 2;
             dgvServiciosEstancia.CellDoubleClick += dgvServiciosEstancia_CellDoubleClick;
             // 
+            // lblDisponibles
+            // 
+            lblDisponibles.AutoSize = true;
+            lblDisponibles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDisponibles.Location = new Point(10, 58);
+            lblDisponibles.Name = "lblDisponibles";
+            lblDisponibles.Size = new Size(182, 23);
+            lblDisponibles.TabIndex = 3;
+            lblDisponibles.Text = "Servicios disponibles:";
+            // 
+            // lblActuales
+            // 
+            lblActuales.AutoSize = true;
+            lblActuales.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblActuales.Location = new Point(10, 350);
+            lblActuales.Name = "lblActuales";
+            lblActuales.Size = new Size(155, 23);
+            lblActuales.TabIndex = 4;
+            lblActuales.Text = "Servicios actuales:";
+            // 
+            // btnVolver
+            // 
+            btnVolver.BackColor = Color.Peru;
+            btnVolver.FlatAppearance.BorderSize = 0;
+            btnVolver.FlatStyle = FlatStyle.Flat;
+            btnVolver.Font = new Font("Segoe UI", 12F);
+            btnVolver.ForeColor = Color.FromArgb(255, 222, 171);
+            btnVolver.Location = new Point(216, 607);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(98, 36);
+            btnVolver.TabIndex = 5;
+            btnVolver.Text = "Volver";
+            btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
+            // 
+            // pnlTop
+            // 
+            pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(btnMinimizar);
+            pnlTop.Controls.Add(lblTitulo);
+            pnlTop.Controls.Add(btnSalir);
+            pnlTop.Dock = DockStyle.Top;
+            pnlTop.Location = new Point(0, 0);
+            pnlTop.Name = "pnlTop";
+            pnlTop.Size = new Size(800, 36);
+            pnlTop.TabIndex = 9;
+            pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnMinimizar
+            // 
+            btnMinimizar.FlatAppearance.BorderSize = 0;
+            btnMinimizar.FlatStyle = FlatStyle.Flat;
+            btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
+            btnMinimizar.Location = new Point(719, 3);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.TabIndex = 9;
+            btnMinimizar.UseVisualStyleBackColor = true;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(231, 20);
+            lblTitulo.TabIndex = 8;
+            lblTitulo.Text = "Campify - Servicios de la estancia";
+            lblTitulo.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnSalir
+            // 
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
+            btnSalir.Location = new Point(757, 3);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(44, 32);
+            btnSalir.TabIndex = 7;
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormEstanciaServicios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 554);
+            ClientSize = new Size(800, 667);
+            Controls.Add(pnlTop);
+            Controls.Add(btnVolver);
+            Controls.Add(lblActuales);
+            Controls.Add(lblDisponibles);
             Controls.Add(dgvServiciosEstancia);
             Controls.Add(dvgListaServicios);
             Controls.Add(btnGuardar);
@@ -96,7 +191,10 @@
             Load += FormEstanciaServicios_Load;
             ((System.ComponentModel.ISupportInitialize)dvgListaServicios).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiciosEstancia).EndInit();
+            pnlTop.ResumeLayout(false);
+            pnlTop.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -104,5 +202,12 @@
         private Button btnGuardar;
         private DataGridView dvgListaServicios;
         private DataGridView dgvServiciosEstancia;
+        private Label lblDisponibles;
+        private Label lblActuales;
+        private Button btnVolver;
+        private Panel pnlTop;
+        private Button btnMinimizar;
+        private Label lblTitulo;
+        private Button btnSalir;
     }
 }

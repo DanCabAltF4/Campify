@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevoCliente));
             lbltxtNombre = new Label();
             lbltxtApellidos = new Label();
             lbltxtFechaNacimiento = new Label();
@@ -46,12 +47,17 @@
             txbTelefono = new TextBox();
             txbEmail = new TextBox();
             dtpFechaNacimiento = new DateTimePicker();
+            pnlTop = new Panel();
+            btnMinimizar = new Button();
+            lblTitulo = new Label();
+            btnSalir = new Button();
+            pnlTop.SuspendLayout();
             SuspendLayout();
             // 
             // lbltxtNombre
             // 
             lbltxtNombre.AutoSize = true;
-            lbltxtNombre.Location = new Point(47, 51);
+            lbltxtNombre.Location = new Point(45, 79);
             lbltxtNombre.Name = "lbltxtNombre";
             lbltxtNombre.Size = new Size(67, 20);
             lbltxtNombre.TabIndex = 0;
@@ -60,7 +66,7 @@
             // lbltxtApellidos
             // 
             lbltxtApellidos.AutoSize = true;
-            lbltxtApellidos.Location = new Point(47, 115);
+            lbltxtApellidos.Location = new Point(45, 143);
             lbltxtApellidos.Name = "lbltxtApellidos";
             lbltxtApellidos.Size = new Size(72, 20);
             lbltxtApellidos.TabIndex = 2;
@@ -69,7 +75,7 @@
             // lbltxtFechaNacimiento
             // 
             lbltxtFechaNacimiento.AutoSize = true;
-            lbltxtFechaNacimiento.Location = new Point(47, 241);
+            lbltxtFechaNacimiento.Location = new Point(45, 269);
             lbltxtFechaNacimiento.Name = "lbltxtFechaNacimiento";
             lbltxtFechaNacimiento.Size = new Size(149, 20);
             lbltxtFechaNacimiento.TabIndex = 3;
@@ -78,7 +84,7 @@
             // lbltxtTelefono
             // 
             lbltxtTelefono.AutoSize = true;
-            lbltxtTelefono.Location = new Point(416, 251);
+            lbltxtTelefono.Location = new Point(414, 279);
             lbltxtTelefono.Name = "lbltxtTelefono";
             lbltxtTelefono.Size = new Size(70, 20);
             lbltxtTelefono.TabIndex = 4;
@@ -87,7 +93,7 @@
             // lbltxtDireccion
             // 
             lbltxtDireccion.AutoSize = true;
-            lbltxtDireccion.Location = new Point(419, 51);
+            lbltxtDireccion.Location = new Point(417, 79);
             lbltxtDireccion.Name = "lbltxtDireccion";
             lbltxtDireccion.Size = new Size(72, 20);
             lbltxtDireccion.TabIndex = 5;
@@ -96,7 +102,7 @@
             // lbltxtCodigoPostal
             // 
             lbltxtCodigoPostal.AutoSize = true;
-            lbltxtCodigoPostal.Location = new Point(419, 181);
+            lbltxtCodigoPostal.Location = new Point(417, 209);
             lbltxtCodigoPostal.Name = "lbltxtCodigoPostal";
             lbltxtCodigoPostal.Size = new Size(106, 20);
             lbltxtCodigoPostal.TabIndex = 6;
@@ -105,7 +111,7 @@
             // lbltxtEmail
             // 
             lbltxtEmail.AutoSize = true;
-            lbltxtEmail.Location = new Point(419, 112);
+            lbltxtEmail.Location = new Point(417, 140);
             lbltxtEmail.Name = "lbltxtEmail";
             lbltxtEmail.Size = new Size(49, 20);
             lbltxtEmail.TabIndex = 7;
@@ -114,7 +120,7 @@
             // lbltxtDni
             // 
             lbltxtDni.AutoSize = true;
-            lbltxtDni.Location = new Point(47, 185);
+            lbltxtDni.Location = new Point(45, 213);
             lbltxtDni.Name = "lbltxtDni";
             lbltxtDni.Size = new Size(38, 20);
             lbltxtDni.TabIndex = 8;
@@ -126,7 +132,7 @@
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
-            btnGuardar.Location = new Point(497, 391);
+            btnGuardar.Location = new Point(495, 419);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(139, 38);
             btnGuardar.TabIndex = 10;
@@ -140,7 +146,7 @@
             btnVolver.FlatAppearance.BorderSize = 0;
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
-            btnVolver.Location = new Point(222, 391);
+            btnVolver.Location = new Point(220, 419);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(139, 38);
             btnVolver.TabIndex = 9;
@@ -150,66 +156,114 @@
             // 
             // txbNombre
             // 
-            txbNombre.Location = new Point(120, 48);
+            txbNombre.Location = new Point(118, 76);
             txbNombre.Name = "txbNombre";
             txbNombre.Size = new Size(227, 27);
             txbNombre.TabIndex = 1;
             // 
             // txbApellidos
             // 
-            txbApellidos.Location = new Point(125, 112);
+            txbApellidos.Location = new Point(123, 140);
             txbApellidos.Name = "txbApellidos";
             txbApellidos.Size = new Size(222, 27);
             txbApellidos.TabIndex = 2;
             // 
             // txbDni
             // 
-            txbDni.Location = new Point(91, 182);
+            txbDni.Location = new Point(89, 210);
             txbDni.Name = "txbDni";
             txbDni.Size = new Size(144, 27);
             txbDni.TabIndex = 3;
             // 
             // txbDireccion
             // 
-            txbDireccion.Location = new Point(497, 48);
+            txbDireccion.Location = new Point(495, 76);
             txbDireccion.Name = "txbDireccion";
             txbDireccion.Size = new Size(345, 27);
             txbDireccion.TabIndex = 4;
             // 
             // txbCodigoPostal
             // 
-            txbCodigoPostal.Location = new Point(531, 178);
+            txbCodigoPostal.Location = new Point(529, 206);
             txbCodigoPostal.Name = "txbCodigoPostal";
             txbCodigoPostal.Size = new Size(120, 27);
             txbCodigoPostal.TabIndex = 6;
             // 
             // txbTelefono
             // 
-            txbTelefono.Location = new Point(492, 251);
+            txbTelefono.Location = new Point(490, 279);
             txbTelefono.Name = "txbTelefono";
             txbTelefono.Size = new Size(159, 27);
             txbTelefono.TabIndex = 7;
             // 
             // txbEmail
             // 
-            txbEmail.Location = new Point(474, 112);
+            txbEmail.Location = new Point(472, 140);
             txbEmail.Name = "txbEmail";
             txbEmail.Size = new Size(368, 27);
             txbEmail.TabIndex = 5;
             // 
             // dtpFechaNacimiento
             // 
-            dtpFechaNacimiento.Location = new Point(47, 264);
+            dtpFechaNacimiento.Location = new Point(45, 292);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             dtpFechaNacimiento.Size = new Size(300, 27);
             dtpFechaNacimiento.TabIndex = 8;
+            // 
+            // pnlTop
+            // 
+            pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(btnMinimizar);
+            pnlTop.Controls.Add(lblTitulo);
+            pnlTop.Controls.Add(btnSalir);
+            pnlTop.Dock = DockStyle.Top;
+            pnlTop.Location = new Point(0, 0);
+            pnlTop.Name = "pnlTop";
+            pnlTop.Size = new Size(896, 36);
+            pnlTop.TabIndex = 11;
+            pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnMinimizar
+            // 
+            btnMinimizar.FlatAppearance.BorderSize = 0;
+            btnMinimizar.FlatStyle = FlatStyle.Flat;
+            btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
+            btnMinimizar.Location = new Point(808, 1);
+            btnMinimizar.Name = "btnMinimizar";
+            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.TabIndex = 9;
+            btnMinimizar.UseVisualStyleBackColor = true;
+            btnMinimizar.Click += btnMinimizar_Click;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(169, 20);
+            lblTitulo.TabIndex = 8;
+            lblTitulo.Text = "Campify - Nuevo cliente";
+            lblTitulo.MouseDown += pnlTop_MouseDown;
+            // 
+            // btnSalir
+            // 
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
+            btnSalir.Location = new Point(846, 1);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(44, 32);
+            btnSalir.TabIndex = 7;
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // FormNuevoCliente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(896, 450);
+            ClientSize = new Size(896, 486);
+            Controls.Add(pnlTop);
             Controls.Add(txbNombre);
             Controls.Add(txbApellidos);
             Controls.Add(txbDni);
@@ -232,6 +286,8 @@
             Name = "FormNuevoCliente";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormNuevoCliente";
+            pnlTop.ResumeLayout(false);
+            pnlTop.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,5 +312,9 @@
         private TextBox txbTelefono;
         private TextBox txbEmail;
         private DateTimePicker dtpFechaNacimiento;
+        private Panel pnlTop;
+        private Button btnMinimizar;
+        private Label lblTitulo;
+        private Button btnSalir;
     }
 }

@@ -2,11 +2,23 @@ using Controles;
 using Forms;
 using Model;
 using Repository;
+using System.Runtime.InteropServices;
 
 namespace Campify
 {
     public partial class FormPrincipal : Form
     {
+
+        //Atributos para menu superior
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTCAPTION = 0x2;
+
 
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
@@ -51,6 +63,31 @@ namespace Campify
         // METODOS DEL FORMULARIO
         // ----------------------------------
 
+
+        // BARRA SUPERIOR 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Logout();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+
+
+        // CARGA DE DATOS
 
         /// <summary>
         /// Carga las parcelas desde la API en los user controls y los añade al flow layout panel.
@@ -874,6 +911,6 @@ namespace Campify
             }
         }
 
-
+        
     }
 }
