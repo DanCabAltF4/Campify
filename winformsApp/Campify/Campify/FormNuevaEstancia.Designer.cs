@@ -53,6 +53,7 @@
             lbltxtPrecioNoche = new Label();
             nudNumMascotas = new NumericUpDown();
             nudEquipajeAdicional = new NumericUpDown();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumMascotas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudEquipajeAdicional).BeginInit();
@@ -62,10 +63,10 @@
             // 
             nudCargoAdicional.DecimalPlaces = 2;
             nudCargoAdicional.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudCargoAdicional.Location = new Point(581, 329);
+            nudCargoAdicional.Location = new Point(581, 341);
             nudCargoAdicional.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             nudCargoAdicional.Name = "nudCargoAdicional";
-            nudCargoAdicional.Size = new Size(88, 27);
+            nudCargoAdicional.Size = new Size(73, 27);
             nudCargoAdicional.TabIndex = 37;
             nudCargoAdicional.ValueChanged += nudCargoAdicional_ValueChanged;
             nudCargoAdicional.KeyPress += nudCargoAdicional_KeyPress;
@@ -77,11 +78,12 @@
             btnGuardarReserva.FlatStyle = FlatStyle.Flat;
             btnGuardarReserva.Font = new Font("Segoe UI", 12F);
             btnGuardarReserva.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardarReserva.Location = new Point(434, 467);
+            btnGuardarReserva.Location = new Point(535, 479);
+            btnGuardarReserva.Margin = new Padding(0);
             btnGuardarReserva.Name = "btnGuardarReserva";
-            btnGuardarReserva.Size = new Size(107, 67);
+            btnGuardarReserva.Size = new Size(107, 42);
             btnGuardarReserva.TabIndex = 0;
-            btnGuardarReserva.Text = "Guardar reserva";
+            btnGuardarReserva.Text = "Guardar";
             btnGuardarReserva.UseVisualStyleBackColor = false;
             btnGuardarReserva.Click += btnGuardarReserva_Click;
             // 
@@ -91,9 +93,9 @@
             btnClientes.FlatAppearance.BorderSize = 0;
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 10F);
-            btnClientes.Location = new Point(81, 488);
+            btnClientes.Location = new Point(40, 335);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(94, 33);
+            btnClientes.Size = new Size(173, 33);
             btnClientes.TabIndex = 1;
             btnClientes.Text = "Clientes";
             btnClientes.UseVisualStyleBackColor = false;
@@ -105,9 +107,9 @@
             btnServicios.FlatAppearance.BorderSize = 0;
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 10F);
-            btnServicios.Location = new Point(243, 488);
+            btnServicios.Location = new Point(255, 336);
             btnServicios.Name = "btnServicios";
-            btnServicios.Size = new Size(94, 33);
+            btnServicios.Size = new Size(173, 33);
             btnServicios.TabIndex = 2;
             btnServicios.Text = "Servicios";
             btnServicios.UseVisualStyleBackColor = false;
@@ -125,7 +127,7 @@
             // lbltxtCheckout
             // 
             lbltxtCheckout.AutoSize = true;
-            lbltxtCheckout.Location = new Point(40, 169);
+            lbltxtCheckout.Location = new Point(40, 181);
             lbltxtCheckout.Name = "lbltxtCheckout";
             lbltxtCheckout.Size = new Size(77, 20);
             lbltxtCheckout.TabIndex = 7;
@@ -134,7 +136,7 @@
             // lbltxtMascotas
             // 
             lbltxtMascotas.AutoSize = true;
-            lbltxtMascotas.Location = new Point(458, 169);
+            lbltxtMascotas.Location = new Point(458, 181);
             lbltxtMascotas.Name = "lbltxtMascotas";
             lbltxtMascotas.Size = new Size(95, 20);
             lbltxtMascotas.TabIndex = 10;
@@ -143,7 +145,7 @@
             // lbltxtTemporada
             // 
             lbltxtTemporada.AutoSize = true;
-            lbltxtTemporada.Location = new Point(40, 245);
+            lbltxtTemporada.Location = new Point(40, 257);
             lbltxtTemporada.Name = "lbltxtTemporada";
             lbltxtTemporada.Size = new Size(88, 20);
             lbltxtTemporada.TabIndex = 11;
@@ -152,7 +154,7 @@
             // lbltxtPrecioFinal
             // 
             lbltxtPrecioFinal.AutoSize = true;
-            lbltxtPrecioFinal.Location = new Point(40, 389);
+            lbltxtPrecioFinal.Location = new Point(40, 479);
             lbltxtPrecioFinal.Name = "lbltxtPrecioFinal";
             lbltxtPrecioFinal.Size = new Size(86, 20);
             lbltxtPrecioFinal.TabIndex = 12;
@@ -161,7 +163,7 @@
             // lbltxtCheckin
             // 
             lbltxtCheckin.AutoSize = true;
-            lbltxtCheckin.Location = new Point(40, 101);
+            lbltxtCheckin.Location = new Point(40, 113);
             lbltxtCheckin.Name = "lbltxtCheckin";
             lbltxtCheckin.Size = new Size(60, 20);
             lbltxtCheckin.TabIndex = 13;
@@ -170,7 +172,7 @@
             // lbltxtNinos
             // 
             lbltxtNinos.AutoSize = true;
-            lbltxtNinos.Location = new Point(458, 101);
+            lbltxtNinos.Location = new Point(458, 113);
             lbltxtNinos.Name = "lbltxtNinos";
             lbltxtNinos.Size = new Size(71, 20);
             lbltxtNinos.TabIndex = 18;
@@ -179,7 +181,7 @@
             // lbltxtEquipajeAdicional
             // 
             lbltxtEquipajeAdicional.AutoSize = true;
-            lbltxtEquipajeAdicional.Location = new Point(458, 245);
+            lbltxtEquipajeAdicional.Location = new Point(458, 257);
             lbltxtEquipajeAdicional.Name = "lbltxtEquipajeAdicional";
             lbltxtEquipajeAdicional.Size = new Size(135, 20);
             lbltxtEquipajeAdicional.TabIndex = 17;
@@ -188,7 +190,7 @@
             // lbltxtCargoAdicional
             // 
             lbltxtCargoAdicional.AutoSize = true;
-            lbltxtCargoAdicional.Location = new Point(458, 331);
+            lbltxtCargoAdicional.Location = new Point(458, 343);
             lbltxtCargoAdicional.Name = "lbltxtCargoAdicional";
             lbltxtCargoAdicional.Size = new Size(117, 20);
             lbltxtCargoAdicional.TabIndex = 15;
@@ -206,7 +208,7 @@
             // cbTemporada
             // 
             cbTemporada.FormattingEnabled = true;
-            cbTemporada.Location = new Point(134, 243);
+            cbTemporada.Location = new Point(134, 255);
             cbTemporada.Name = "cbTemporada";
             cbTemporada.Size = new Size(98, 28);
             cbTemporada.TabIndex = 22;
@@ -233,7 +235,7 @@
             // lblNinos
             // 
             lblNinos.AutoSize = true;
-            lblNinos.Location = new Point(535, 101);
+            lblNinos.Location = new Point(535, 113);
             lblNinos.Name = "lblNinos";
             lblNinos.Size = new Size(17, 20);
             lblNinos.TabIndex = 25;
@@ -242,14 +244,14 @@
             // lblPrecioFinal
             // 
             lblPrecioFinal.AutoSize = true;
-            lblPrecioFinal.Location = new Point(132, 389);
+            lblPrecioFinal.Location = new Point(132, 479);
             lblPrecioFinal.Name = "lblPrecioFinal";
             lblPrecioFinal.Size = new Size(0, 20);
             lblPrecioFinal.TabIndex = 27;
             // 
             // dtpCheckin
             // 
-            dtpCheckin.Location = new Point(106, 96);
+            dtpCheckin.Location = new Point(106, 108);
             dtpCheckin.Name = "dtpCheckin";
             dtpCheckin.Size = new Size(322, 27);
             dtpCheckin.TabIndex = 30;
@@ -257,7 +259,7 @@
             // 
             // dtpCheckout
             // 
-            dtpCheckout.Location = new Point(123, 164);
+            dtpCheckout.Location = new Point(123, 176);
             dtpCheckout.Name = "dtpCheckout";
             dtpCheckout.Size = new Size(305, 27);
             dtpCheckout.TabIndex = 31;
@@ -266,7 +268,7 @@
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(143, 334);
+            lblPrecioNoche.Location = new Point(143, 416);
             lblPrecioNoche.Name = "lblPrecioNoche";
             lblPrecioNoche.Size = new Size(0, 20);
             lblPrecioNoche.TabIndex = 34;
@@ -274,7 +276,7 @@
             // lbltxtPrecioNoche
             // 
             lbltxtPrecioNoche.AutoSize = true;
-            lbltxtPrecioNoche.Location = new Point(40, 334);
+            lbltxtPrecioNoche.Location = new Point(40, 416);
             lbltxtPrecioNoche.Name = "lbltxtPrecioNoche";
             lbltxtPrecioNoche.Size = new Size(97, 20);
             lbltxtPrecioNoche.TabIndex = 33;
@@ -282,7 +284,7 @@
             // 
             // nudNumMascotas
             // 
-            nudNumMascotas.Location = new Point(559, 167);
+            nudNumMascotas.Location = new Point(559, 179);
             nudNumMascotas.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudNumMascotas.Name = "nudNumMascotas";
             nudNumMascotas.Size = new Size(56, 27);
@@ -291,12 +293,28 @@
             // 
             // nudEquipajeAdicional
             // 
-            nudEquipajeAdicional.Location = new Point(599, 243);
+            nudEquipajeAdicional.Location = new Point(599, 255);
             nudEquipajeAdicional.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudEquipajeAdicional.Name = "nudEquipajeAdicional";
             nudEquipajeAdicional.Size = new Size(55, 27);
             nudEquipajeAdicional.TabIndex = 36;
             nudEquipajeAdicional.ValueChanged += nudEquipajeAdicional_ValueChanged;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Peru;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.ForeColor = Color.FromArgb(255, 222, 171);
+            button1.Location = new Point(380, 479);
+            button1.Margin = new Padding(0);
+            button1.Name = "button1";
+            button1.Size = new Size(107, 42);
+            button1.TabIndex = 38;
+            button1.Text = "Volver";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // FormNuevaEstancia
             // 
@@ -304,6 +322,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(699, 559);
+            Controls.Add(button1);
             Controls.Add(nudCargoAdicional);
             Controls.Add(nudEquipajeAdicional);
             Controls.Add(nudNumMascotas);
@@ -329,7 +348,9 @@
             Controls.Add(btnServicios);
             Controls.Add(btnClientes);
             Controls.Add(btnGuardarReserva);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormNuevaEstancia";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Registrar nueva estancia";
             ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNumMascotas).EndInit();
@@ -367,5 +388,6 @@
         private NumericUpDown nudNumMascotas;
         private NumericUpDown nudEquipajeAdicional;
         private NumericUpDown nudCargoAdicional;
+        private Button button1;
     }
 }

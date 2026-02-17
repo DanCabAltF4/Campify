@@ -103,7 +103,9 @@
             Controls.Add(dgvClientesEstancia);
             Controls.Add(dgvListaClientes);
             Controls.Add(btnGuardar);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormEstanciaClientes";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormEstanciaClientes";
             Load += FormEstanciaClientes_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListaClientes).EndInit();

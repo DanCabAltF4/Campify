@@ -160,7 +160,9 @@
             Controls.Add(lbltxtId);
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormDatosServicio";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormDatosServicio";
             ((System.ComponentModel.ISupportInitialize)nupPrecio).EndInit();
             ResumeLayout(false);

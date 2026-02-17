@@ -223,7 +223,9 @@
             Controls.Add(lbltxtId);
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormDatosEmpleado";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormDatosEmpleado";
             ResumeLayout(false);
             PerformLayout();

@@ -461,11 +461,18 @@ namespace Campify
         /// </summary>
         private async void btnNuevoEmpleado_Click(object sender, EventArgs e)
         {
-            var form = new FormDatosEmpleado(null, _api);
-            if (form.ShowDialog(this) == DialogResult.OK)
+            try
             {
-                await CargarEmpleados();
-                ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
+                var form = new FormDatosEmpleado(null, _api);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    await CargarEmpleados();
+                    ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -476,17 +483,24 @@ namespace Campify
         /// </summary>
         private async void btnEditarEmpleado_Click(object sender, EventArgs e)
         {
-            var empleadoSeleccionado = ucEmpleadoDatos1.EmpleadoActual;
-            if (empleadoSeleccionado == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                var empleadoSeleccionado = ucEmpleadoDatos1.EmpleadoActual;
+                if (empleadoSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var form = new FormDatosEmpleado(empleadoSeleccionado, _api);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    await CargarEmpleados();
+                    ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
+                }
             }
-            var form = new FormDatosEmpleado(empleadoSeleccionado, _api);
-            if (form.ShowDialog(this) == DialogResult.OK)
+            catch (HttpRequestException ex)
             {
-                await CargarEmpleados();
-                ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -567,11 +581,18 @@ namespace Campify
         /// </summary>
         private async void btnNuevoServicio_Click(object sender, EventArgs e)
         {
-            var form = new FormDatosServicio(null, _api);
-            if (form.ShowDialog(this) == DialogResult.OK)
+            try
             {
-                await CargarServicios();
-                ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+                var form = new FormDatosServicio(null, _api);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    await CargarServicios();
+                    ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -582,17 +603,24 @@ namespace Campify
         /// </summary>
         private async void btnEditarServicio_Click(object sender, EventArgs e)
         {
-            var servicioSeleccionado = ucServicioDatos1.ServicioActual;
-            if (servicioSeleccionado == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un servicio para editarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                var servicioSeleccionado = ucServicioDatos1.ServicioActual;
+                if (servicioSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un servicio para editarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var form = new FormDatosServicio(servicioSeleccionado, _api);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    await CargarServicios();
+                    ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+                }
             }
-            var form = new FormDatosServicio(servicioSeleccionado, _api);
-            if (form.ShowDialog(this) == DialogResult.OK)
+            catch (HttpRequestException ex)
             {
-                await CargarServicios();
-                ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -688,19 +716,26 @@ namespace Campify
 
         private async void btnEditarEstancia_Click(object sender, EventArgs e)
         {
-            var estancia = ucEstanciaActual2.EstanciaActual;
-            if (estancia == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar una estancia para editarla.", "Estancia no seleccionada",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                var estancia = ucEstanciaActual2.EstanciaActual;
+                if (estancia == null)
+                {
+                    MessageBox.Show("Debe seleccionar una estancia para editarla.", "Estancia no seleccionada",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia);
-            if (form.ShowDialog(this) == DialogResult.OK)
+                var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    await CargarEstancias();
+                    ucEstanciaActual2.SetData(form.EstanciaCreada);
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                await CargarEstancias();
-                ucEstanciaActual2.SetData(form.EstanciaCreada);
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -796,11 +831,18 @@ namespace Campify
 
         private async void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-            var form = new FormNuevoCliente(_api, null);
-            if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+            try
             {
-                var nuevoCliente = form.ClienteNuevo;
-                await CargarClientes();
+                var form = new FormNuevoCliente(_api, null);
+                if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+                {
+                    var nuevoCliente = form.ClienteNuevo;
+                    await CargarClientes();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -808,21 +850,28 @@ namespace Campify
 
         private async void btnEditarCliente_Click(object sender, EventArgs e)
         {
-            var cliente = ucClienteDatos1.ClienteActual;
-            if (cliente == null)
+            try
             {
-                MessageBox.Show("Debe seleccionar un cliente para editarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                var cliente = ucClienteDatos1.ClienteActual;
+                if (cliente == null)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente para editarlo.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            var form = new FormNuevoCliente(_api, cliente);
-            if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+                var form = new FormNuevoCliente(_api, cliente);
+                if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
+                {
+                    var nuevoCliente = form.ClienteNuevo;
+                    await CargarClientes();
+                    ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                var nuevoCliente = form.ClienteNuevo;
-                await CargarClientes();
-                ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
-            }
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
         }
 
 

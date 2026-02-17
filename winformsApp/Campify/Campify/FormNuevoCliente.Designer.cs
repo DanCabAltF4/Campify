@@ -228,7 +228,9 @@
             Controls.Add(lbltxtFechaNacimiento);
             Controls.Add(lbltxtApellidos);
             Controls.Add(lbltxtNombre);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormNuevoCliente";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormNuevoCliente";
             ResumeLayout(false);
             PerformLayout();

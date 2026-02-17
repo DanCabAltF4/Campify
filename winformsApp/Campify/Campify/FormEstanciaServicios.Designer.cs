@@ -89,7 +89,9 @@
             Controls.Add(dgvServiciosEstancia);
             Controls.Add(dvgListaServicios);
             Controls.Add(btnGuardar);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormEstanciaServicios";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormEstanciaServicios";
             Load += FormEstanciaServicios_Load;
             ((System.ComponentModel.ISupportInitialize)dvgListaServicios).EndInit();

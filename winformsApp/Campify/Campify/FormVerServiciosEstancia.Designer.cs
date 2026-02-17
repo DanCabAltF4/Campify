@@ -77,7 +77,9 @@
             Controls.Add(dgvVerServiciosEstancia);
             Controls.Add(lblParcelaFecha);
             Controls.Add(Volver);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormVerServiciosEstancia";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FormVerServiciosEstancia";
             ((System.ComponentModel.ISupportInitialize)dgvVerServiciosEstancia).EndInit();
             ResumeLayout(false);

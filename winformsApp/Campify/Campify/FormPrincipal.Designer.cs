@@ -831,9 +831,11 @@
             Controls.Add(btnEstancias);
             Controls.Add(btnClientes);
             Controls.Add(btnLogOut);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
-            Text = "Daniel capullo";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Campify";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             pnlServicios.ResumeLayout(false);

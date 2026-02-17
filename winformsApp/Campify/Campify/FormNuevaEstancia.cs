@@ -56,9 +56,8 @@ namespace Forms
             nudNumMascotas.Value = 0;
             nudEquipajeAdicional.Value = 0;
             nudCargoAdicional.Value = 0;
-            nudCargoAdicional.Controls[0].Visible = false;
 
-            if(estancia != null)
+            if (estancia != null)
             {
                 CargarDatosEstancia(estancia);
             }
@@ -145,8 +144,8 @@ namespace Forms
                     break;
             }
             // Cargos por características de la parcela marcadas en los CheckBox
-            if (_parcela.CercaBanos == true)  precioBase += PRECIO_POR_CHECKBOX;
-            if (_parcela.TieneVistas == true)  precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.CercaBanos == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.TieneVistas == true) precioBase += PRECIO_POR_CHECKBOX;
             if (_parcela.ZonaSombra == true) precioBase += PRECIO_POR_CHECKBOX;
             if (_parcela.CercaEntrada == true) precioBase += PRECIO_POR_CHECKBOX;
             if (_parcela.ZonaTranquila == true) precioBase += PRECIO_POR_CHECKBOX;
@@ -206,7 +205,7 @@ namespace Forms
         private bool Disponibilidad0Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
             // Con fecha de checkout
-            if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo)
+            if (dtpCheckout.Checked && checkinNuevo < checkoutNuevo)
             {
                 return true;
             }
@@ -244,12 +243,12 @@ namespace Forms
                     return true;
                 }
                 // POSTERIOR - ckoutNueva = true    ->   ckoutGuardada < ckinNueva < ckoutNueva
-                else if(nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                else if (nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
                     return true;
                 }
                 // ANTERIOR - ckoutNueva = true    ->   ckinNueva < ckoutNueva < ckinGuardada
-                else if(nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
+                else if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
                     return true;
                 }
@@ -369,7 +368,7 @@ namespace Forms
             }
         }
 
-        
+
         //Modifica labels de numero de adultos y niños en funcion de la lista de clientes
         public void ActualizarLabelsClientes()
         {
@@ -448,5 +447,9 @@ namespace Forms
             CalcularPrecioTotal();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
