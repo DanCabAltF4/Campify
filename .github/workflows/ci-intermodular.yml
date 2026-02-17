@@ -3,14 +3,8 @@ name: CI Intermodular
 on:
   push:
     branches: 
-      - 39-diseño-forms-miguel
-      - 93-añadir-soporte-para-tareas-en-background-hilos-en-la-app-móvil
-      - 91-crear-campos-de-usuario-y-contraseña-para-empleados
-      - 74-app-vistas
-      - 84-volver-on-cascade-las-fk-en-tablas-intermedias
-      - 71-app-comunicacion-api
-      - 67-app-navegación
-      - forms
+      - feature/**
+      - develop
   pull_request:
     branches: ["main"]
   workflow_dispatch:
