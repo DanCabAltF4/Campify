@@ -18,7 +18,7 @@ namespace Forms
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
 
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
 
         private BindingList<Cliente> listaClientes = new();
         private BindingList<Cliente> listaClientesEstancia = new();
@@ -30,10 +30,11 @@ namespace Forms
         // CONSTRUCTOR Y LOAD
         // ----------------------------------
 
-        public FormEstanciaClientes(List<Cliente> clientesEstancia)
+        public FormEstanciaClientes(List<Cliente> clientesEstancia, ApiCampify api)
         {
             InitializeComponent();
             listaClientesEstancia= new BindingList<Cliente>(clientesEstancia);
+            _api = api;
         }
 
         private async void FormEstanciaClientes_Load(object sender, EventArgs e)
@@ -80,7 +81,7 @@ namespace Forms
         /// </summary>
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-            var form = new FormNuevoCliente();
+            var form = new FormNuevoCliente(_api);
             if(form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
             {
                 var nuevoCliente = form.ClienteNuevo;

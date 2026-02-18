@@ -21,6 +21,11 @@ public class Empleado {
     private PuestoTrabajo puesto;
     @Column(nullable = false)
     private boolean activo;
+    @Column(length = 100, nullable = false, unique = true)
+    private String email;
+    @Column(length = 60, nullable = false)
+    private String password;
+
 
     public Empleado() {
     }
@@ -79,5 +84,21 @@ public class Empleado {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

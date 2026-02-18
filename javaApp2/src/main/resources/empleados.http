@@ -22,7 +22,7 @@ PUT http://localhost:8080/api/empleados/1
 Content-Type: application/json
 
 {
-  "nombre": "Oriol",
+  "nombre": "manueeee",
   "apellidos": "Fernandez Saiz",
   "dni": "7195495s",
   "telefono": "633533344",

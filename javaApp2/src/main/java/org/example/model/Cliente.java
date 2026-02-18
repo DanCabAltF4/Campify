@@ -32,6 +32,7 @@ public class Cliente {
     private String email;
     @Column(columnDefinition = "CHAR(9)")
     private String telefono;
+
     @ManyToMany(mappedBy = "clientes")
     @JsonIgnore
     private List<Estancia> estancia = new ArrayList<>();
@@ -123,6 +124,7 @@ public class Cliente {
     public void setEstancia(List<Estancia> estancia) {
         this.estancia = estancia;
     }
+
 
     @Override
     public String toString() {

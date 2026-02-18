@@ -8,7 +8,7 @@ namespace Campify
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
-        private readonly ApiCampify _api = new ApiCampify("http://localhost:8080/");
+        private readonly ApiCampify _api;
         private Empleado _empleado;
 
         public Empleado EmpleadoGuardado { get; set; }
@@ -19,10 +19,11 @@ namespace Campify
         // CONSTRUCTOR Y LOAD
         // ----------------------------
 
-        public FormDatosEmpleado(Empleado empleadoSeleccionado)
+        public FormDatosEmpleado(Empleado empleadoSeleccionado, ApiCampify api)
         {
             InitializeComponent();
             _empleado = empleadoSeleccionado;
+            _api = api;
 
             cbPuesto.DataSource = Enum.GetValues(typeof(EnumPuestos));
             cbPuesto.SelectedItem = EnumPuestos.CAMPO;

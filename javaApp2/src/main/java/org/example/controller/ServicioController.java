@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/servicios")
 public class ServicioController {
 
-    private ServiceServicio service;
+    private final ServiceServicio service;
 
     public ServicioController(ServiceServicio service){
         this.service=service;

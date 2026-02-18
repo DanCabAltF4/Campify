@@ -35,15 +35,15 @@ public class ConexionDB {
         return con;
     }
 
-    //Metodo para crear base de datos al inicio del programa
-    public static void crearBaseDatos() {
-        String sql = "CREATE DATABASE IF NOT EXISTS " + NOMBRE_DB;
-        try (Connection con = getInstance().getConexionJDBC();
-             PreparedStatement st = con.prepareStatement(sql);) {
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+//    //Metodo para crear base de datos al inicio del programa
+//    public static void crearBaseDatos() {
+//        String sql = "CREATE DATABASE IF NOT EXISTS " + NOMBRE_DB;
+//        try (Connection con = getInstance().getConexionJDBC();
+//             PreparedStatement st = con.prepareStatement(sql);) {
+//            st.execute(sql);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }

@@ -158,9 +158,9 @@ public class ServiceEstancia implements IServiceEstancia {
         LocalDate checkout = estancia.getCheckOut();
 
         boolean ocupada = false;
-        if(checkout !=null){
+        if (checkout != null) {
             ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
-        }else{
+        } else {
             ocupada = !hoy.isBefore(checkin);
         }
 
@@ -173,14 +173,15 @@ public class ServiceEstancia implements IServiceEstancia {
     //Calcula el numero de adultos y de niños en la fecha de checkin
     private void recalcularNumAdultosYNinos(Estancia estancia) {
         LocalDate checkin = estancia.getCheckIn();
-        int adultos=0;
-        int ninos=0;
+        int adultos = 0;
+        int ninos = 0;
 
-        if(estancia.getClientes()!=null){
-            for(Cliente c: estancia.getClientes()){
+        if (estancia.getClientes() != null) {
+            for (Cliente c : estancia.getClientes()) {
                 LocalDate fechaNac = c.getFechaNacimiento();
-                int edad= Period.between(fechaNac, checkin).getYears();
-                if (edad>=18) adultos++; else ninos++;
+                int edad = Period.between(fechaNac, checkin).getYears();
+                if (edad >= 18) adultos++;
+                else ninos++;
             }
         }
         estancia.setNumeroAdultos(adultos);
