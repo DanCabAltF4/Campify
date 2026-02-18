@@ -7,8 +7,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -48,7 +54,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     }
 
     Scaffold(
-        topBar = { ListaTopBar(context, api) }
+        topBar = { ListaTopBar(api) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -66,35 +72,84 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListaTopBar(context: android.content.Context, api: ApiModel) {
-    TopAppBar(
-        title = { ListaTopBarTitle() },
-        actions = {
-            IconButton(onClick = { api.cargarParcelas() }) {
-                Icon(Icons.Filled.Refresh, contentDescription = "Recargar Parcelas")
-            }
-        },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = fondoPrincipal,
-            titleContentColor = Color.Black
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-    )
+fun ListaTopBar(api: ApiModel) {
+
+    Column {
+        TopAppBar(
+            title = {
+                Column {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+
+                        Image(
+                            painter = painterResource(R.drawable.campify_logo),
+                            contentDescription = null,
+                            modifier = Modifier.size(28.dp)
+                        )
+
+                        Spacer(Modifier.width(8.dp))
+
+                        Text(
+                            text = "Campify",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    }
+
+                    Text(
+                        text = "Gestión del parque",
+                        fontSize = 12.sp,
+                        color = Color.DarkGray
+                    )
+                }
+            },
+            actions = {
+                IconButton(onClick = { api.cargarParcelas() }) {
+                    Icon(
+                        Icons.Default.Refresh,
+                        contentDescription = "Recargar",
+                        tint = Color.Black
+                    )
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = fondoPrincipal
+            )
+        )
+
+        Divider(color = Color(0x22000000), thickness = 1.dp)
+    }
 }
+
+
+
+
 
 @Composable
 fun SearchBar(value: String, onValueChange: (String) -> Unit) {
+
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text("Buscar parcela (id o estado)") },
+        placeholder = { Text("Buscar por ID o estado") },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null
+            )
+        },
+        singleLine = true,
+        shape = RoundedCornerShape(14.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = 16.dp),
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = fondoPrincipal,
+            cursorColor = fondoPrincipal
+        )
     )
 }
+
 
 @Composable
 fun ListaTopBarTitle() {
@@ -124,30 +179,34 @@ fun NavigationSegment(navController: NavHostController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .background(Color(0xFFE0E0E0), shape = MaterialTheme.shapes.small),
+            .background(Color(0xFFE5E5E5), RoundedCornerShape(12.dp))
+            .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         opciones.forEach { opcion ->
-            // Cada "botón" ahora es un Box que ocupa más área
+
+            val estaSeleccionada = opcion == seleccionada
+
             Box(
                 modifier = Modifier
-                    .weight(1f) // ocupa el mismo espacio horizontal
-                    .padding(4.dp) // espacio interno entre botones
+                    .weight(1f)
                     .background(
-                        color = if (opcion == seleccionada) Color(0xFF90CAF9) else Color.Transparent,
-                        shape = MaterialTheme.shapes.small
+                        color = if (estaSeleccionada) fondoPrincipal2 else Color.Transparent,
+                        shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
                         seleccionada = opcion
-                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
+                        navController.navigate(
+                            if (opcion == "Mapa") "Home" else "Lista"
+                        )
                     }
-                    .padding(vertical = 12.dp), // padding interno para clic más cómodo
+                    .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = opcion,
-                    color = if (opcion == seleccionada) Color.Black else Color.Gray,
-                    fontWeight = FontWeight.Medium
+                    color = if (estaSeleccionada) Color.White else Color.Gray,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
         }
@@ -170,39 +229,73 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
 
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
-    val colorFondo = when (parcela.estado_parcela) {
-        EstadoParcela.LIBRE -> colorLibre
-        EstadoParcela.RESERVADA -> colorReservada
-        EstadoParcela.INTERESADO -> colorInteresado
-        EstadoParcela.MANTENIMIENTO -> colorMantenimiento
+
+    val (colorEstado, iconoEstado) = when (parcela.estado_parcela) {
+        EstadoParcela.LIBRE -> colorLibre to Icons.Default.Check
+        EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
+        EstadoParcela.INTERESADO -> colorInteresado to Icons.Default.Person
+        EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Default.Build
     }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = colorFondo),
-        shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(4.dp)
+        shape = RoundedCornerShape(14.dp),
+        elevation = CardDefaults.cardElevation(5.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(18.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Parcela ${parcela.id}",
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-                color = Color.Black
+
+            // Barra lateral
+            Box(
+                modifier = Modifier
+                    .width(6.dp)
+                    .height(50.dp)
+                    .background(colorEstado, RoundedCornerShape(4.dp))
             )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = parcela.estado_parcela.name.lowercase()
-                    .replaceFirstChar { it.uppercase() },
-                color = Color.Black
-            )
+
+            Spacer(Modifier.width(16.dp))
+
+            Column(modifier = Modifier.weight(1f)) {
+
+                Text(
+                    text = "Parcela ${parcela.id}",
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(Modifier.height(6.dp))
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+
+                    Icon(
+                        imageVector = iconoEstado,
+                        contentDescription = null,
+                        tint = colorEstado,
+                        modifier = Modifier.size(18.dp)
+                    )
+
+                    Spacer(Modifier.width(6.dp))
+
+                    Text(
+                        text = parcela.estado_parcela.name
+                            .lowercase()
+                            .replaceFirstChar { it.uppercase() },
+                        fontSize = 14.sp,
+                        color = colorEstado,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
         }
     }
 }
+
+
