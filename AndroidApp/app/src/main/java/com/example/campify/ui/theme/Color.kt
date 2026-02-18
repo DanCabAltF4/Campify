@@ -13,6 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 
 
 val fondoPrincipal = Color(0xFFD7EAC1)      // Verde/crema suave
+val fondoPrincipal2 = Color(0xFFAABB98)
 val fondoTarjeta = Color(0xFFF7EDD1)        // Beige cálido
 
 val topBarColor = Color(0xFFD7EAC1)         // Verde claro pastel
@@ -25,7 +26,7 @@ val botonInactivo = Color(0xFFD7EAC1)       // Verde muy suave
 val botonInactivoTexto = Color.Black
 
 val colorLibre = Color(0xFF81C784)          // Verde pastel
-val colorReservada = Color(0xFFFFE082)      // Amarillo pastel
+val colorReservada = Color(0xFFEAC559)      // Amarillo pastel
 val colorInteresado = Color(0xFF64B5F6)     // Azul pastel
 val colorMantenimiento = Color(0xFFE57373)  // Rojo pastel
 

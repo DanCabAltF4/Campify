@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -48,11 +49,9 @@ fun DetailView(
     val context = LocalContext.current
     val parcelas by api.parcelas
 
-    // Primera carga al entrar a la pantalla
-    LaunchedEffect(Unit) {
-        api.cargarParcelas()
-    }
+    LaunchedEffect(Unit) { api.cargarParcelas() }
 
+    val parcela = parcelas.firstOrNull { it.id == id }
 
     Scaffold(
         topBar = {
@@ -63,17 +62,118 @@ fun DetailView(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = fondoPrincipal,
                     titleContentColor = Color.Black
-                )
+                ),
+                modifier = Modifier.height(72.dp)
             )
         }
     ) { innerPadding ->
-        // Se usa let para reevaluar la parcela dinámicamente cada recomposición
-        parcelas.firstOrNull { it.id == id }?.let { parcela ->
-            ContentDetailView(
-                innerPadding = innerPadding,
-                parcela = parcela,
-                api = api
-            )
+        parcela?.let {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(16.dp)
+            ) {
+                // Título de la parcela
+                Text(
+                    text = "Parcela ${it.id}",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(Modifier.height(8.dp))
+
+                // Estado actual
+                Card(
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(4.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        val (colorEstado, iconoEstado) = when (it.estado_parcela) {
+                            EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
+                            EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
+                            EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
+                            EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .background(colorEstado, RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(iconoEstado, contentDescription = null, tint = Color.White)
+                        }
+
+                        Spacer(Modifier.width(12.dp))
+
+                        Text(
+                            text = it.estado_parcela.name.replaceFirstChar { c -> c.uppercase() },
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 16.sp
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(16.dp))
+
+                // Características booleanas
+                Text("Características", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                Spacer(Modifier.height(8.dp))
+
+                // Cada booleano en su card
+                val booleanos = listOf(
+                    "Baño cercano" to it.cerca_baño,
+                    "Cerca de la entrada" to it.cerca_entrada,
+                    "Tiene vistas" to it.tiene_vistas,
+                    "Zona tranquila" to it.zona_tranquila,
+                    "Zona con sombra" to it.zona_sombra
+                )
+
+                booleanos.forEach { (label, valor) ->
+                    Card(
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(2.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = if (valor) Icons.Filled.Check else Icons.Filled.Close,
+                                contentDescription = null,
+                                tint = if (valor) Color(0xFF2E7D32) else Color(0xFFC62828)
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(label, fontSize = 15.sp)
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(16.dp))
+
+                Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                EstadoParcelaSelector(parcela) { nuevoEstado ->
+                    api.cambiarEstadoParcela(parcela.id, nuevoEstado)
+                }
+            }
+        } ?: run {
+            // Mensaje si no se encuentra la parcela
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Parcela no encontrada", fontSize = 16.sp, color = Color.Gray)
+            }
         }
     }
 }
@@ -154,7 +254,6 @@ fun EstadoParcelaSelector(
     onEstadoChange: (EstadoParcela) -> Unit
 ) {
     val estados = EstadoParcela.values()
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -162,34 +261,28 @@ fun EstadoParcelaSelector(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         estados.forEach { estado ->
-            val icon = when (estado) {
-                EstadoParcela.LIBRE -> Icons.Filled.Check
-                EstadoParcela.RESERVADA -> Icons.Filled.DateRange
-                EstadoParcela.INTERESADO -> Icons.Filled.Person
-                EstadoParcela.MANTENIMIENTO -> Icons.Filled.Close
+            val (colorChip, icon) = when (estado) {
+                EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
+                EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
+                EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
+                EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
             }
 
             FilterChip(
-                selected = parcela.estado_parcela == estado, // siempre usa el estado actual
+                selected = parcela.estado_parcela == estado,
                 onClick = { onEstadoChange(estado) },
                 label = { Text("") },
                 leadingIcon = { Icon(icon, contentDescription = estado.name) },
                 colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = when (estado) {
-                        EstadoParcela.LIBRE -> Color(0xFF4CAF50)
-                        EstadoParcela.RESERVADA -> Color(0xFFFFC107)
-                        EstadoParcela.INTERESADO -> Color(0xFF2196F3)
-                        EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336)
-                    },
+                    selectedContainerColor = colorChip,
                     selectedLabelColor = Color.White,
-                    containerColor = Color.LightGray
+                    containerColor = Color(0xFFF0F0F0)
                 ),
                 shape = RoundedCornerShape(12.dp)
             )
         }
     }
 }
-
 
 
 

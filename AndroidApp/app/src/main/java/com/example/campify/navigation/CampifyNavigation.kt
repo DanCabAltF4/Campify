@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.campify.views.HomeView
 import com.example.campify.data.model.enums.EstadoParcela
@@ -14,9 +15,9 @@ import com.example.campify.views.DetailView
 import com.example.campify.views.ListaView
 import com.example.campify.views.NavView
 
-private var apiModel = ApiModel()
 @Composable
-fun CampifyNavigation(navController: NavHostController) {
+fun CampifyNavigation(apiModel: ApiModel) {
+    val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = NavView.Home.name
