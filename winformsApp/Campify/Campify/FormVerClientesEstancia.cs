@@ -42,6 +42,7 @@ namespace Forms
             _estanciaActual = estanciaActual;
             dgvVerClientesEstancia.DataSource = estanciaActual.Clientes.ToList();
             lblParcelaFecha.Text = "Clientes en parcela nº " + estanciaActual.Parcela.Id + "  del  " + estanciaActual.CheckIn + "  al  " + (estanciaActual.CheckOut != null ? estanciaActual.CheckOut : "-");
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
 
 
@@ -72,6 +73,11 @@ namespace Forms
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

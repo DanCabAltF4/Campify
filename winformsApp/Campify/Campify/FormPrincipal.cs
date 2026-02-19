@@ -35,6 +35,7 @@ namespace Campify
         {
             InitializeComponent();
             _api = api;
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -42,10 +43,10 @@ namespace Campify
             try
             {
                 await CargarParcelas();
-                await CargarEmpleados();
                 await CargarServicios();
                 await CargarEstancias();
-                await CargarClientes();
+                if(!String.Equals(Session.Rol, "CAMPO")) await CargarClientes();
+                if(String.Equals(Session.Rol, "ADMINISTRADOR")) await CargarEmpleados();
             }
             catch (HttpRequestException ex)
             {
@@ -911,6 +912,9 @@ namespace Campify
             }
         }
 
-        
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        }
     }
 }

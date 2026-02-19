@@ -21,20 +21,75 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        // AUTH
-                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
-                        // zona de permisos a definir
-
-                        // RESTO
-                        .anyRequest().authenticated()
-                )
-                .oauth2ResourceServer(oauth -> oauth
+                // IMPORTANTE: esto hace que se use tu jwtAuthenticationConverter()
+                .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                )
+
+                .authorizeHttpRequests(auth -> auth
+
+                        // ====== LOGIN PUBLICO ======
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        // ====== EMPLEADOS (solo ADMIN) ======
+                        // RECEPCIONISTA puede consultar empleado por ID (para poder editar estancias)
+                        .requestMatchers(HttpMethod.GET, "/api/empleados/*")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+
+                        // El resto de peticiones de empleados solo para ADMIN
+                        .requestMatchers("/api/empleados/**").hasRole("ADMINISTRADOR")
+
+                        // ====== CLIENTES ======
+                        .requestMatchers(HttpMethod.GET, "/api/clientes/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.POST, "/api/clientes/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/clientes/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.DELETE, "/api/clientes/**")
+                        .hasRole("ADMINISTRADOR")
+
+                        // ====== SERVICIOS ======
+                        .requestMatchers(HttpMethod.GET, "/api/servicios/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA", "CAMPO")
+                        .requestMatchers(HttpMethod.POST, "/api/servicios/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.PUT, "/api/servicios/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+                        .requestMatchers(HttpMethod.DELETE, "/api/servicios/**")
+                        .hasRole("ADMINISTRADOR")
+
+                        // ====== ESTANCIAS ======
+                        .requestMatchers(HttpMethod.GET, "/api/estancias/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA", "CAMPO")
+                        .requestMatchers(HttpMethod.POST, "/api/estancias/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+
+                        // RECEPCIONISTA necesita PUT para modificar reservas
+                        .requestMatchers(HttpMethod.PUT, "/api/estancias/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+
+                        .requestMatchers(HttpMethod.DELETE, "/api/estancias/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
+
+                        // ====== PARCELAS ======
+                        .requestMatchers(HttpMethod.GET, "/api/parcelas/**")
+                        .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA", "CAMPO")
+                        .requestMatchers(HttpMethod.POST, "/api/parcelas/**")
+                        .hasRole("ADMINISTRADOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/parcelas/**")
+                        .hasRole("ADMINISTRADOR")
+
+                        // PUT: ADMIN, CAMPO y ahora también RECEPCIONISTA (temporal)
+                        .requestMatchers(HttpMethod.PUT, "/api/parcelas/**")
+                        .hasAnyRole("ADMINISTRADOR", "CAMPO", "RECEPCIONISTA")
+
+                        .anyRequest().authenticated()
                 );
 
         return http.build();

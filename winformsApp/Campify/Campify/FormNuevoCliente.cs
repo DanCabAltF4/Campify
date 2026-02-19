@@ -39,6 +39,7 @@ namespace Forms
             InitializeComponent();
             _api = api;
             _cliente = cliente;
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             if (_cliente != null)
             {
@@ -142,6 +143,11 @@ namespace Forms
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

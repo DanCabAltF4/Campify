@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerClientesEstancia));
             dgvVerClientesEstancia = new DataGridView();
             Volver = new Button();
@@ -36,6 +37,8 @@
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
+            lblFechaHora = new Label();
+            tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvVerClientesEstancia).BeginInit();
             pnlTop.SuspendLayout();
             SuspendLayout();
@@ -77,6 +80,7 @@
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(lblFechaHora);
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
@@ -104,9 +108,9 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(10, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(225, 20);
+            lblTitulo.Size = new Size(156, 20);
             lblTitulo.TabIndex = 8;
-            lblTitulo.Text = "Campify - Clientes de la estancia";
+            lblTitulo.Text = "Clientes de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
             // 
             // btnSalir
@@ -120,6 +124,21 @@
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(331, 11);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.TabIndex = 10;
+            // 
+            // tmFechaHora
+            // 
+            tmFechaHora.Enabled = true;
+            tmFechaHora.Interval = 1000;
+            tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // FormVerClientesEstancia
             // 
@@ -151,5 +170,7 @@
         private Button btnMinimizar;
         private Label lblTitulo;
         private Button btnSalir;
+        private Label lblFechaHora;
+        private System.Windows.Forms.Timer tmFechaHora;
     }
 }

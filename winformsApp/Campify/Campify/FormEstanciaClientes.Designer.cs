@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEstanciaClientes));
             btnGuardar = new Button();
             dgvListaClientes = new DataGridView();
@@ -37,9 +38,11 @@
             lblActuales = new Label();
             lblDisponibles = new Label();
             pnlTop = new Panel();
+            lblFechaHora = new Label();
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
+            tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvListaClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClientesEstancia).BeginInit();
             pnlTop.SuspendLayout();
@@ -52,7 +55,7 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardar.Location = new Point(625, 607);
+            btnGuardar.Location = new Point(657, 607);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(94, 36);
             btnGuardar.TabIndex = 0;
@@ -94,7 +97,7 @@
             btnNuevoCliente.FlatAppearance.BorderSize = 0;
             btnNuevoCliente.FlatStyle = FlatStyle.Flat;
             btnNuevoCliente.Font = new Font("Segoe UI", 12F);
-            btnNuevoCliente.Location = new Point(330, 607);
+            btnNuevoCliente.Location = new Point(290, 607);
             btnNuevoCliente.Name = "btnNuevoCliente";
             btnNuevoCliente.Size = new Size(147, 36);
             btnNuevoCliente.TabIndex = 3;
@@ -109,7 +112,7 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.FromArgb(255, 222, 171);
-            btnVolver.Location = new Point(102, 607);
+            btnVolver.Location = new Point(530, 607);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(94, 36);
             btnVolver.TabIndex = 4;
@@ -140,6 +143,7 @@
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(lblFechaHora);
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
@@ -149,6 +153,15 @@
             pnlTop.Size = new Size(800, 36);
             pnlTop.TabIndex = 10;
             pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(330, 12);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.TabIndex = 11;
             // 
             // btnMinimizar
             // 
@@ -167,9 +180,9 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(10, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(225, 20);
+            lblTitulo.Size = new Size(156, 20);
             lblTitulo.TabIndex = 8;
-            lblTitulo.Text = "Campify - Clientes de la estancia";
+            lblTitulo.Text = "Clientes de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
             // 
             // btnSalir
@@ -183,6 +196,12 @@
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            // 
+            // tmFechaHora
+            // 
+            tmFechaHora.Enabled = true;
+            tmFechaHora.Interval = 1000;
+            tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // FormEstanciaClientes
             // 
@@ -224,5 +243,7 @@
         private Button btnMinimizar;
         private Label lblTitulo;
         private Button btnSalir;
+        private Label lblFechaHora;
+        private System.Windows.Forms.Timer tmFechaHora;
     }
 }

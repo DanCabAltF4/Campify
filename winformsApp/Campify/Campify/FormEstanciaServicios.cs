@@ -45,6 +45,7 @@ namespace Forms
             InitializeComponent();
             listaServiciosEstancia = new BindingList<Servicio>(serviciosEstancia);
             _api = api;
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
 
         private async void FormEstanciaServicios_Load(object sender, EventArgs e)
@@ -143,6 +144,11 @@ namespace Forms
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

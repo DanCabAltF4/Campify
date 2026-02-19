@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEstanciaServicios));
             btnGuardar = new Button();
             dvgListaServicios = new DataGridView();
@@ -36,9 +37,11 @@
             lblActuales = new Label();
             btnVolver = new Button();
             pnlTop = new Panel();
+            lblFechaHora = new Label();
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
+            tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dvgListaServicios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiciosEstancia).BeginInit();
             pnlTop.SuspendLayout();
@@ -127,6 +130,7 @@
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(lblFechaHora);
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
@@ -136,6 +140,15 @@
             pnlTop.Size = new Size(800, 36);
             pnlTop.TabIndex = 9;
             pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(330, 12);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.TabIndex = 10;
             // 
             // btnMinimizar
             // 
@@ -154,9 +167,9 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(10, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(231, 20);
+            lblTitulo.Size = new Size(162, 20);
             lblTitulo.TabIndex = 8;
-            lblTitulo.Text = "Campify - Servicios de la estancia";
+            lblTitulo.Text = "Servicios de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
             // 
             // btnSalir
@@ -170,6 +183,12 @@
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            // 
+            // tmFechaHora
+            // 
+            tmFechaHora.Enabled = true;
+            tmFechaHora.Interval = 1000;
+            tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // FormEstanciaServicios
             // 
@@ -209,5 +228,7 @@
         private Button btnMinimizar;
         private Label lblTitulo;
         private Button btnSalir;
+        private Label lblFechaHora;
+        private System.Windows.Forms.Timer tmFechaHora;
     }
 }

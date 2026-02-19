@@ -39,6 +39,7 @@ namespace Campify
 
             cbPuesto.DataSource = Enum.GetValues(typeof(EnumPuestos));
             cbPuesto.SelectedItem = EnumPuestos.CAMPO;
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             CargarDatosEmpleado();
         }
@@ -135,6 +136,11 @@ namespace Campify
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

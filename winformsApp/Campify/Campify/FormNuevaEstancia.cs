@@ -57,7 +57,7 @@ namespace Forms
             _parcela = parcela;
             _estancia.Parcela = parcela;
             _api = api;
-
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             dtpCheckin.Value = DateTime.Today;
             dtpCheckout.ShowCheckBox = true;        // Muestra el checkbox para activar/desactivar el dtpCheckout
@@ -483,6 +483,11 @@ namespace Forms
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

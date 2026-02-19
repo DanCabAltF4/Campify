@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDatosServicio));
             btnVolver = new Button();
             btnGuardar = new Button();
@@ -43,6 +44,8 @@
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
+            lblFechaHora = new Label();
+            tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)nupPrecio).BeginInit();
             pnlTop.SuspendLayout();
             SuspendLayout();
@@ -153,6 +156,7 @@
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(lblFechaHora);
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
@@ -180,9 +184,9 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(10, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(243, 20);
+            lblTitulo.Size = new Size(174, 20);
             lblTitulo.TabIndex = 8;
-            lblTitulo.Text = "Campify - Detalles sobre el servicio";
+            lblTitulo.Text = "Detalles sobre el servicio";
             lblTitulo.MouseDown += pnlTop_MouseDown;
             // 
             // btnSalir
@@ -196,6 +200,21 @@
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(250, 12);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.TabIndex = 37;
+            // 
+            // tmFechaHora
+            // 
+            tmFechaHora.Enabled = true;
+            tmFechaHora.Interval = 1000;
+            tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // FormDatosServicio
             // 
@@ -241,5 +260,7 @@
         private Button btnMinimizar;
         private Label lblTitulo;
         private Button btnSalir;
+        private Label lblFechaHora;
+        private System.Windows.Forms.Timer tmFechaHora;
     }
 }

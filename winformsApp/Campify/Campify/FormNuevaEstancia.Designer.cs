@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaEstancia));
             nudCargoAdicional = new NumericUpDown();
             btnGuardarReserva = new Button();
@@ -59,6 +60,8 @@
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
+            lblFechaHora = new Label();
+            tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)nudCargoAdicional).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumMascotas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudEquipajeAdicional).BeginInit();
@@ -160,7 +163,7 @@
             // lbltxtPrecioFinal
             // 
             lbltxtPrecioFinal.AutoSize = true;
-            lbltxtPrecioFinal.Location = new Point(38, 520);
+            lbltxtPrecioFinal.Location = new Point(38, 513);
             lbltxtPrecioFinal.Name = "lbltxtPrecioFinal";
             lbltxtPrecioFinal.Size = new Size(86, 20);
             lbltxtPrecioFinal.TabIndex = 12;
@@ -250,7 +253,7 @@
             // lblPrecioFinal
             // 
             lblPrecioFinal.AutoSize = true;
-            lblPrecioFinal.Location = new Point(130, 520);
+            lblPrecioFinal.Location = new Point(130, 513);
             lblPrecioFinal.Name = "lblPrecioFinal";
             lblPrecioFinal.Size = new Size(0, 20);
             lblPrecioFinal.TabIndex = 27;
@@ -274,7 +277,7 @@
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
-            lblPrecioNoche.Location = new Point(141, 457);
+            lblPrecioNoche.Location = new Point(141, 463);
             lblPrecioNoche.Name = "lblPrecioNoche";
             lblPrecioNoche.Size = new Size(0, 20);
             lblPrecioNoche.TabIndex = 34;
@@ -282,7 +285,7 @@
             // lbltxtPrecioNoche
             // 
             lbltxtPrecioNoche.AutoSize = true;
-            lbltxtPrecioNoche.Location = new Point(38, 457);
+            lbltxtPrecioNoche.Location = new Point(38, 463);
             lbltxtPrecioNoche.Name = "lbltxtPrecioNoche";
             lbltxtPrecioNoche.Size = new Size(97, 20);
             lbltxtPrecioNoche.TabIndex = 33;
@@ -325,6 +328,7 @@
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(197, 239, 100);
+            pnlTop.Controls.Add(lblFechaHora);
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
@@ -352,9 +356,9 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Location = new Point(10, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(171, 20);
+            lblTitulo.Size = new Size(102, 20);
             lblTitulo.TabIndex = 8;
-            lblTitulo.Text = "Campify - Nueva reserva";
+            lblTitulo.Text = "Nueva reserva";
             lblTitulo.MouseDown += pnlTop_MouseDown;
             // 
             // btnSalir
@@ -368,6 +372,21 @@
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(276, 12);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.TabIndex = 40;
+            // 
+            // tmFechaHora
+            // 
+            tmFechaHora.Enabled = true;
+            tmFechaHora.Interval = 1000;
+            tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // FormNuevaEstancia
             // 
@@ -449,5 +468,7 @@
         private Button btnMinimizar;
         private Label lblTitulo;
         private Button btnSalir;
+        private Label lblFechaHora;
+        private System.Windows.Forms.Timer tmFechaHora;
     }
 }
