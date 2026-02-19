@@ -1,0 +1,55 @@
+name: CI Intermodular
+
+on:
+  push:
+    branches: 
+      - feature/**
+      - develop
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  android-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java (para Android)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ secrets.JAVA_VERSION }}
+
+      - name: Dar permisos a gradlew
+        run: chmod +x AndroidApp/gradlew
+
+      - name: Compilación Android
+        run: |
+          cd AndroidApp
+          ./gradlew build
+
+      - name: Resultado Android
+        run: echo "Compilación Android completada"
+
+  winforms-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ secrets.DOTNET_VERSION }}
+
+      - name: Ejecutar tests WinForms
+        run: |
+          cd winformsApp/Campify
+          dotnet test
+
+      - name: Resultado WinForms
+        run: echo "Tests de WinForms completados"
