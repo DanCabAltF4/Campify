@@ -24,9 +24,9 @@ public class Cliente {
     @Column(length = 150, nullable = false)
     private String direccion;
     @JsonProperty("cPostal")
-    @Column(columnDefinition = "CHAR(5)", nullable = false)
+    @Column(name = "c_postal", columnDefinition = "CHAR(5)", nullable = false)
     private String cPostal;
-    @Column(nullable = false)
+    @Column(name = "fecha_nacimiento", nullable = false)
     private LocalDate fechaNacimiento;
     @Column(length = 100)
     private String email;

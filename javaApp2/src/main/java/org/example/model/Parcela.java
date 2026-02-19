@@ -4,23 +4,35 @@ import jakarta.persistence.*;
 import org.example.model.enums.EstadoParcela;
 import org.example.model.enums.TipoParcela;
 
-@Entity(name = "Parcelas")
+@Entity(name = "parcelas")
 public class Parcela {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "tipo_parcela")
     @Enumerated(EnumType.STRING)
     private TipoParcela tipo_parcela;
-    @Column
+
+    @Column(name = "precio_noche")
     private double precio_noche;
-    @Column
+
+    @Column(name = "cerca_baño")
     private boolean cerca_baño;
-    @Column
+
+    @Column(name = "tiene_vistas")
     private boolean tiene_vistas;
-    @Column
+
+    @Column(name = "zona_sombra")
     private boolean zona_sombra;
+
+    @Column(name = "cerca_entrada")
     private boolean cerca_entrada;
+
+    @Column(name = "zona_tranquila")
     private boolean zona_tranquila;
+
+    @Column(name = "estado_parcela")
     @Enumerated(EnumType.STRING)
     private EstadoParcela estado_parcela;
 
