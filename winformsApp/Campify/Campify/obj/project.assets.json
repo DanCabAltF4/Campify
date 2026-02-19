@@ -19,6 +19,16 @@
           "Microsoft.WindowsDesktop.App.WindowsForms"
         ]
       },
+      "Dto/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Dto.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dto.dll": {}
+        }
+      },
       "Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -33,6 +43,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Dto": "1.0.0",
           "Model": "1.0.0"
         },
         "compile": {
@@ -49,6 +60,11 @@
       "type": "project",
       "path": "../Controles/Controles.csproj",
       "msbuildProject": "../Controles/Controles.csproj"
+    },
+    "Dto/1.0.0": {
+      "type": "project",
+      "path": "../Dto/Dto.csproj",
+      "msbuildProject": "../Dto/Dto.csproj"
     },
     "Model/1.0.0": {
       "type": "project",

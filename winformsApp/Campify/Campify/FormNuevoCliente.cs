@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,16 +15,45 @@ namespace Forms
 {
     public partial class FormNuevoCliente : Form
     {
+        //Atributos para menu superior
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTCAPTION = 0x2;
+
+
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
         private readonly ApiCampify _api;
+        private Cliente? _cliente;
 
         public Cliente? ClienteNuevo { get; set; }
-        public FormNuevoCliente(ApiCampify api)
+
+        public FormNuevoCliente(ApiCampify api, Cliente? cliente)
         {
             InitializeComponent();
             _api = api;
+            _cliente = cliente;
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+            if (_cliente != null)
+            {
+                txbNombre.Text = _cliente.Nombre;
+                txbApellidos.Text = _cliente.Apellidos;
+                txbDni.Text = _cliente.Dni;
+                txbDireccion.Text = _cliente.Direccion;
+                txbCodigoPostal.Text = _cliente.CPostal;
+                dtpFechaNacimiento.Value = _cliente.FechaNacimiento;
+                txbEmail.Text = _cliente.Email;
+                txbTelefono.Text = _cliente.Telefono;
+
+                btnGuardar.Text = "Actualizar";
+            }
         }
 
 
@@ -44,7 +74,6 @@ namespace Forms
                     string.IsNullOrWhiteSpace(txbApellidos.Text) ||
                     string.IsNullOrWhiteSpace(txbDni.Text) ||
                     string.IsNullOrWhiteSpace(txbDireccion.Text) ||
-                    string.IsNullOrWhiteSpace(txbEmail.Text) ||
                     string.IsNullOrWhiteSpace(txbCodigoPostal.Text) ||
                     string.IsNullOrWhiteSpace(txbEmail.Text))
                 {
@@ -52,26 +81,37 @@ namespace Forms
                     return;
                 }
                 // Crear un nuevo objeto Cliente con los datos ingresados
-                Cliente nuevo = new Cliente
+                Cliente nuevo = _cliente ?? new Cliente();
+
+                nuevo.Nombre = txbNombre.Text;
+                nuevo.Apellidos = txbApellidos.Text;
+                nuevo.Dni = txbDni.Text;
+                nuevo.Direccion = txbDireccion.Text;
+                nuevo.CPostal = txbCodigoPostal.Text;
+                nuevo.FechaNacimiento = dtpFechaNacimiento.Value;
+                nuevo.Email = txbEmail.Text;
+                nuevo.Telefono = txbTelefono.Text;
+
+                if (nuevo.Id == 0)
                 {
-                    Nombre = txbNombre.Text,
-                    Apellidos = txbApellidos.Text,
-                    Dni = txbDni.Text,
-                    Direccion = txbDireccion.Text,
-                    CPostal = txbCodigoPostal.Text,
-                    FechaNacimiento = dtpFechaNacimiento.Value,
-                    Email = txbEmail.Text,
-                    Telefono = txbTelefono.Text
-                };
-                // Guardar el nuevo cliente en la base de datos mediante la API y lo devuevlve al formulario de origen
-                var resultado = await _api.Create<Cliente>("api/clientes", nuevo);
-                ClienteNuevo = resultado;
+                    nuevo = await _api.Create<Cliente>("api/clientes", nuevo);
+                    MessageBox.Show("Cliente creado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    nuevo = await _api.Update("api/clientes", _cliente.Id, nuevo);
+                    MessageBox.Show("Cliente actualizado.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                _cliente = nuevo;
+                ClienteNuevo = nuevo;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (HttpRequestException ex)
             {
-                MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -83,6 +123,31 @@ namespace Forms
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

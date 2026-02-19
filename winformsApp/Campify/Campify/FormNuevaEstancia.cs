@@ -7,14 +7,27 @@ using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Forms
 {
     public partial class FormNuevaEstancia : Form
     {
+        //Atributos para menu superior
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HTCAPTION = 0x2;
+
+
         // ----------------------------------
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
@@ -27,6 +40,8 @@ namespace Forms
         private readonly ApiCampify _api;
         private Estancia _estancia;
         private Parcela _parcela;
+        private double _precioBase;
+
 
         public Estancia EstanciaCreada { get; set; }
 
@@ -35,14 +50,14 @@ namespace Forms
         // CONSTRUCTOR Y LOAD
         // ----------------------------------
 
-        public FormNuevaEstancia(Parcela parcela, ApiCampify api)
+        public FormNuevaEstancia(Parcela parcela, ApiCampify api, Estancia? estancia = null)
         {
             InitializeComponent();
-            _estancia = new Estancia();
+            _estancia = estancia ?? new Estancia();
             _parcela = parcela;
             _estancia.Parcela = parcela;
             _api = api;
-
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             dtpCheckin.Value = DateTime.Today;
             dtpCheckout.ShowCheckBox = true;        // Muestra el checkbox para activar/desactivar el dtpCheckout
@@ -54,10 +69,17 @@ namespace Forms
             nudNumMascotas.Value = 0;
             nudEquipajeAdicional.Value = 0;
             nudCargoAdicional.Value = 0;
-            nudCargoAdicional.Controls[0].Visible = false;
+
+            if (estancia != null)
+            {
+                CargarDatosEstancia(estancia);
+            }
 
             CargarDatosParcela();
+            ActualizarLabelsClientes();
         }
+
+
 
 
         // ----------------------------------
@@ -69,10 +91,38 @@ namespace Forms
         /// </summary>
         private void CargarDatosParcela()
         {
-            lblParcela.Text = _estancia.Parcela.Id.ToString();
-            lblPrecioNoche.Text = $"{_estancia.Parcela.PrecioNoche} €";
+            lblParcela.Text = _parcela.Id.ToString();
+            lblPrecioNoche.Text = $"{_parcela.PrecioNoche} €";
             CalcularPrecioTotal();
         }
+
+
+        private void CargarDatosEstancia(Estancia estancia)
+        {
+            dtpCheckin.Value = estancia.CheckIn.ToDateTime(TimeOnly.MinValue);
+
+            if (estancia.CheckOut != null)
+            {
+                dtpCheckout.Checked = true;
+                dtpCheckout.Value = estancia.CheckOut.Value.ToDateTime(TimeOnly.MinValue);
+            }
+            else
+            {
+                dtpCheckout.Checked = false;
+                dtpCheckout.Value = DateTime.Today;
+            }
+
+            cbTemporada.SelectedItem = estancia.Temporada;
+
+            nudNumMascotas.Value = estancia.NumeroMascotas;
+            nudEquipajeAdicional.Value = (decimal)estancia.CantidadEquipajeExtra;
+            nudCargoAdicional.Value = (decimal)estancia.CargoAdicional;
+
+            _estancia.Clientes ??= new List<Cliente>();
+            _estancia.Servicios ??= new List<Servicio>();
+        }
+
+
 
         /// <summary>
         /// Calcula el precio total de la estancia en función de los datos introducidos
@@ -107,29 +157,15 @@ namespace Forms
                     break;
             }
             // Cargos por características de la parcela marcadas en los CheckBox
-            if (_parcela.CercaBanos == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.TieneVistas == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.ZonaSombra == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.CercaEntrada == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
-            if (_parcela.ZonaTranquila == true)
-            {
-                precioBase += PRECIO_POR_CHECKBOX;
-            }
+            if (_parcela.CercaBanos == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.TieneVistas == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.ZonaSombra == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.CercaEntrada == true) precioBase += PRECIO_POR_CHECKBOX;
+            if (_parcela.ZonaTranquila == true) precioBase += PRECIO_POR_CHECKBOX;
+
             // Cálculo del precio final
-            double precioTotal = precioBase + cargoMascotas + cargoEquipaje + cargoAdicional + cargoTemporada;
-            lblPrecioFinal.Text = $"{precioTotal} €";
+            _precioBase = precioBase + cargoMascotas + cargoEquipaje + cargoAdicional + cargoTemporada;
+            RecalcularPrecioFinal();
         }
 
         /// <summary>
@@ -138,31 +174,41 @@ namespace Forms
         /// </summary>
         private async Task<bool> ComprobarDisponibilidad()
         {
-            var disponible = false;
-            DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
-            DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
-            var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
-            estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
-            estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
-
-            switch (estancias.Count)
+            try
             {
-                // 0 estancias
-                case 0:
-                    disponible = Disponibilidad0Estancias(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                var disponible = false;
+                DateOnly checkinNuevo = DateOnly.FromDateTime(dtpCheckin.Value);
+                DateOnly checkoutNuevo = DateOnly.FromDateTime(dtpCheckout.Value);
 
-                // 1 estancia
-                case 1:
-                    disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                var estancias = await _api.GetAllAsync<Estancia>("api/estancias");
+                if (_estancia != null && _estancia.Id != 0) estancias = estancias.Where(e => e.Id != _estancia.Id).ToList(); //si editamos excluimos la actual
+                estancias = estancias.Where(est => est.Parcela.Id == _parcela.Id).ToList(); //Filtramos estancias por parcela
+                estancias.Sort((x, y) => x.CheckIn.CompareTo(y.CheckIn));        //Ordenamos por fecha de checkin
 
-                // 2 o mas estancias
-                default:
-                    disponible = Disponibilidad2Estancias(estancias, checkinNuevo, checkoutNuevo);
-                    break;
+                switch (estancias.Count)
+                {
+                    // 0 estancias
+                    case 0:
+                        disponible = Disponibilidad0Estancias(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+
+                    // 1 estancia
+                    case 1:
+                        disponible = Disponibilidad1Estancia(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+
+                    // 2 o mas estancias
+                    default:
+                        disponible = Disponibilidad2Estancias(estancias, checkinNuevo, checkoutNuevo);
+                        break;
+                }
+                return disponible;
             }
-            return disponible;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
         }
 
         /// <summary>
@@ -172,7 +218,7 @@ namespace Forms
         private bool Disponibilidad0Estancias(List<Estancia> estancias, DateOnly checkinNuevo, DateOnly checkoutNuevo)
         {
             // Con fecha de checkout
-            if(dtpCheckout.Checked && checkinNuevo < checkoutNuevo)
+            if (dtpCheckout.Checked && checkinNuevo < checkoutNuevo)
             {
                 return true;
             }
@@ -210,12 +256,12 @@ namespace Forms
                     return true;
                 }
                 // POSTERIOR - ckoutNueva = true    ->   ckoutGuardada < ckinNueva < ckoutNueva
-                else if(nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
+                else if (nuevaTieneCheckout && primera.CheckOut <= checkinNuevo && checkinNuevo < checkoutNuevo)
                 {
                     return true;
                 }
                 // ANTERIOR - ckoutNueva = true    ->   ckinNueva < ckoutNueva < ckinGuardada
-                else if(nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
+                else if (nuevaTieneCheckout && checkinNuevo < checkoutNuevo && checkoutNuevo <= primera.CheckIn)
                 {
                     return true;
                 }
@@ -274,33 +320,53 @@ namespace Forms
         /// </summary>
         private async void btnGuardarReserva_Click(object sender, EventArgs e)
         {
-            bool disponible=  await ComprobarDisponibilidad();
-            if (disponible)
+            try
             {
-                // Asignar los valores del formulario a la estancia
-                _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
-                _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
-                _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
-                _estancia.NumeroAdultos = 0;
-                _estancia.NumeroNinos = 0;
-                _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
-                _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
-                _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
-                string valor = lblPrecioFinal.Text.Split(' ')[0];
-                _estancia.PrecioFinal = double.Parse(valor);
-                _estancia.Empleado = new Empleado { Id = 2 };           // Empleado por defecto, luego se cambiará al empleado logueado
+                bool disponible = await ComprobarDisponibilidad();
+                if (disponible)
+                {
+                    // Asignar los valores del formulario a la estancia
+                    _estancia.CheckIn = DateOnly.FromDateTime(dtpCheckin.Value.Date);
+                    _estancia.CheckOut = dtpCheckout.Checked ? DateOnly.FromDateTime(dtpCheckout.Value.Date) : null;
+                    _estancia.Temporada = (EnumTemporadas)cbTemporada.SelectedItem;
 
-                // Guardar la estancia mediante la API
-                EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
-                MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                    _estancia.NumeroAdultos = _estancia.Clientes.Count(c => c.EsAdulto);
+                    _estancia.NumeroNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
+                    _estancia.NumeroMascotas = (int)nudNumMascotas.Value;
+
+                    _estancia.CantidadEquipajeExtra = (double)nudEquipajeAdicional.Value;
+                    _estancia.CargoAdicional = (double)nudCargoAdicional.Value;
+                    string valor = lblPrecioFinal.Text.Split(' ')[0];
+                    _estancia.PrecioFinal = double.Parse(valor);
+
+                    Empleado empleado = await _api.GetByIdAsync<Empleado>("api/empleados", Session.UserId);
+                    _estancia.Empleado = empleado;
+
+                    if (_estancia.Id == 0)
+                    {
+                        EstanciaCreada = await _api.Create<Estancia>("api/estancias", _estancia);
+                        MessageBox.Show("Estancia añadida.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        EstanciaCreada = await _api.Update<Estancia>("api/estancias", _estancia.Id, _estancia);
+                        MessageBox.Show("Estancia actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Parcela no disponible en esas fechas");
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                MessageBox.Show("Parcela no disponible en esas fechas");
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         /// <summary>
         /// Abre el formulario para seleccionar los clientes de la estancia
@@ -311,8 +377,21 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Clientes = form.ListaFinalClientes;
+                ActualizarLabelsClientes();
             }
         }
+
+
+        //Modifica labels de numero de adultos y niños en funcion de la lista de clientes
+        public void ActualizarLabelsClientes()
+        {
+            int numAdultos = _estancia.Clientes.Count(c => c.EsAdulto);
+            int numNinos = _estancia.Clientes.Count(c => !c.EsAdulto);
+            lblAdultos.Text = numAdultos.ToString();
+            lblNinos.Text = numNinos.ToString();
+        }
+
+
 
         /// <summary>
         /// Abre el formulario para seleccionar los servicios de la estancia
@@ -323,9 +402,20 @@ namespace Forms
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 _estancia.Servicios = form.ListaFinalServicios;
+                RecalcularPrecioFinal();
             }
 
         }
+
+        // Modifica label de precio final añadiendo el precio de los servicios seleccionados
+        private void RecalcularPrecioFinal()
+        {
+            double precioServicios = _estancia.Servicios?.Sum(s => s.Precio) ?? 0;
+            double total = _precioBase + precioServicios;
+            lblPrecioFinal.Text = $"{total} €";
+        }
+
+
 
         private void cbTemporada_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -370,9 +460,34 @@ namespace Forms
             CalcularPrecioTotal();
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            ComprobarDisponibilidad();
+            this.Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

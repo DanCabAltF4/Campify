@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.example.model.enums.PuestoTrabajo;
 
 @Entity
+@Table(name = "empleados")
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

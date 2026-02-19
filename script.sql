@@ -153,14 +153,13 @@ insert into clientes (fecha_nacimiento, nombre, apellidos, email, direccion, c_p
 
 
 -- EMPLEADOS (con email + password)
--- IMPORTANTE: sustituye estos hashes por los tuyos reales de BCrypt
 insert into empleado (activo, nombre, apellidos, dni, telefono, email, password, puesto) values
 (1, 'Ana',    'Martínez López', '99887766D', '633445566', 'ana@campify.com',
- '$2a$10$uG9m7mZf3Q4b7o3mH0YcMe6Z7r5vC8f8g4CzQv8bQvPZlF4Zk7QnK', 'ADMINISTRADOR'),
+ '$2a$10$5FIKkkwH5.tGnRFajxh6xO1BmxPX/ihNoUJO5rfmhTQdrrmJVBTSq', 'ADMINISTRADOR'),
 (1, 'Javier', 'Santos Pérez',   '88776655E', '644556677', 'javier@campify.com',
- '$2a$10$uG9m7mZf3Q4b7o3mH0YcMe6Z7r5vC8f8g4CzQv8bQvPZlF4Zk7QnK', 'RECEPCIONISTA'),
+ '$2a$10$5FIKkkwH5.tGnRFajxh6xO1BmxPX/ihNoUJO5rfmhTQdrrmJVBTSq', 'RECEPCIONISTA'),
 (1, 'Lucía',  'Ortega Ramos',   '77665544F', '655667788', 'lucia@campify.com',
- '$2a$10$uG9m7mZf3Q4b7o3mH0YcMe6Z7r5vC8f8g4CzQv8bQvPZlF4Zk7QnK', 'CAMPO');
+ '$2a$10$5FIKkkwH5.tGnRFajxh6xO1BmxPX/ihNoUJO5rfmhTQdrrmJVBTSq', 'CAMPO');
 
 
 -- PARCELAS
