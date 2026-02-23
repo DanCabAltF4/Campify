@@ -41,10 +41,10 @@
             txbDescripcion = new TextBox();
             lbltxtDescripcion = new Label();
             pnlTop = new Panel();
+            lblFechaHora = new Label();
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
-            lblFechaHora = new Label();
             tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)nupPrecio).BeginInit();
             pnlTop.SuspendLayout();
@@ -57,9 +57,10 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.Moccasin;
-            btnVolver.Location = new Point(159, 380);
+            btnVolver.Location = new Point(139, 285);
+            btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(102, 38);
+            btnVolver.Size = new Size(89, 28);
             btnVolver.TabIndex = 1;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
@@ -72,9 +73,10 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.Moccasin;
-            btnGuardar.Location = new Point(372, 380);
+            btnGuardar.Location = new Point(326, 285);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(102, 38);
+            btnGuardar.Size = new Size(89, 28);
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -83,35 +85,36 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(68, 64);
+            lblId.Location = new Point(60, 48);
             lblId.Name = "lblId";
-            lblId.Size = new Size(0, 20);
+            lblId.Size = new Size(0, 15);
             lblId.TabIndex = 29;
             // 
             // lbltxtId
             // 
             lbltxtId.AutoSize = true;
             lbltxtId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtId.Location = new Point(33, 64);
+            lbltxtId.Location = new Point(29, 48);
             lbltxtId.Name = "lbltxtId";
-            lbltxtId.Size = new Size(32, 20);
+            lbltxtId.Size = new Size(24, 15);
             lbltxtId.TabIndex = 28;
             lbltxtId.Text = "Nº:";
             // 
             // txbNombre
             // 
-            txbNombre.Location = new Point(110, 122);
+            txbNombre.Location = new Point(96, 92);
+            txbNombre.Margin = new Padding(3, 2, 3, 2);
             txbNombre.Name = "txbNombre";
-            txbNombre.Size = new Size(290, 27);
+            txbNombre.Size = new Size(254, 23);
             txbNombre.TabIndex = 31;
             // 
             // lbltxtNombre
             // 
             lbltxtNombre.AutoSize = true;
             lbltxtNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtNombre.Location = new Point(33, 125);
+            lbltxtNombre.Location = new Point(29, 94);
             lbltxtNombre.Name = "lbltxtNombre";
-            lbltxtNombre.Size = new Size(71, 20);
+            lbltxtNombre.Size = new Size(56, 15);
             lbltxtNombre.TabIndex = 30;
             lbltxtNombre.Text = "Nombre:";
             // 
@@ -119,9 +122,9 @@
             // 
             lbltxtPrecio.AutoSize = true;
             lbltxtPrecio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtPrecio.Location = new Point(434, 125);
+            lbltxtPrecio.Location = new Point(380, 94);
             lbltxtPrecio.Name = "lbltxtPrecio";
-            lbltxtPrecio.Size = new Size(56, 20);
+            lbltxtPrecio.Size = new Size(45, 15);
             lbltxtPrecio.TabIndex = 32;
             lbltxtPrecio.Text = "Precio:";
             // 
@@ -129,27 +132,29 @@
             // 
             nupPrecio.DecimalPlaces = 2;
             nupPrecio.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nupPrecio.Location = new Point(496, 122);
+            nupPrecio.Location = new Point(434, 92);
+            nupPrecio.Margin = new Padding(3, 2, 3, 2);
             nupPrecio.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
             nupPrecio.Name = "nupPrecio";
-            nupPrecio.Size = new Size(89, 27);
+            nupPrecio.Size = new Size(78, 23);
             nupPrecio.TabIndex = 33;
             // 
             // txbDescripcion
             // 
-            txbDescripcion.Location = new Point(33, 227);
+            txbDescripcion.Location = new Point(29, 170);
+            txbDescripcion.Margin = new Padding(3, 2, 3, 2);
             txbDescripcion.Multiline = true;
             txbDescripcion.Name = "txbDescripcion";
-            txbDescripcion.Size = new Size(552, 115);
+            txbDescripcion.Size = new Size(484, 87);
             txbDescripcion.TabIndex = 35;
             // 
             // lbltxtDescripcion
             // 
             lbltxtDescripcion.AutoSize = true;
             lbltxtDescripcion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtDescripcion.Location = new Point(33, 187);
+            lbltxtDescripcion.Location = new Point(29, 140);
             lbltxtDescripcion.Name = "lbltxtDescripcion";
-            lbltxtDescripcion.Size = new Size(94, 20);
+            lbltxtDescripcion.Size = new Size(75, 15);
             lbltxtDescripcion.TabIndex = 34;
             lbltxtDescripcion.Text = "Descripción:";
             // 
@@ -162,19 +167,30 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(620, 36);
+            pnlTop.Size = new Size(542, 27);
             pnlTop.TabIndex = 36;
             pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(219, 9);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 13);
+            lblFechaHora.TabIndex = 37;
             // 
             // btnMinimizar
             // 
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(535, 1);
+            btnMinimizar.Location = new Point(468, 1);
+            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.Size = new Size(28, 24);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -182,9 +198,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Location = new Point(9, 8);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(174, 20);
+            lblTitulo.Size = new Size(135, 15);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Detalles sobre el servicio";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -194,21 +210,13 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(573, 1);
+            btnSalir.Location = new Point(501, 1);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(44, 32);
+            btnSalir.Size = new Size(38, 24);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
-            // 
-            // lblFechaHora
-            // 
-            lblFechaHora.AutoSize = true;
-            lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(250, 12);
-            lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 19);
-            lblFechaHora.TabIndex = 37;
             // 
             // tmFechaHora
             // 
@@ -218,10 +226,10 @@
             // 
             // FormDatosServicio
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(620, 450);
+            ClientSize = new Size(542, 338);
             Controls.Add(pnlTop);
             Controls.Add(txbDescripcion);
             Controls.Add(lbltxtDescripcion);
@@ -234,6 +242,7 @@
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormDatosServicio";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormDatosServicio";

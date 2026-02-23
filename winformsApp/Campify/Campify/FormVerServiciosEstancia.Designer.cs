@@ -34,10 +34,10 @@
             lblParcelaFecha = new Label();
             dgvVerServiciosEstancia = new DataGridView();
             pnlTop = new Panel();
+            lblFechaHora = new Label();
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
-            lblFechaHora = new Label();
             tmFechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dgvVerServiciosEstancia).BeginInit();
             pnlTop.SuspendLayout();
@@ -50,9 +50,10 @@
             Volver.FlatStyle = FlatStyle.Flat;
             Volver.Font = new Font("Segoe UI", 12F);
             Volver.ForeColor = Color.Moccasin;
-            Volver.Location = new Point(349, 424);
+            Volver.Location = new Point(305, 318);
+            Volver.Margin = new Padding(3, 2, 3, 2);
             Volver.Name = "Volver";
-            Volver.Size = new Size(101, 42);
+            Volver.Size = new Size(88, 32);
             Volver.TabIndex = 2;
             Volver.Text = "Volver";
             Volver.UseVisualStyleBackColor = false;
@@ -62,19 +63,20 @@
             // 
             lblParcelaFecha.AutoSize = true;
             lblParcelaFecha.Font = new Font("Segoe UI", 12F);
-            lblParcelaFecha.Location = new Point(12, 47);
+            lblParcelaFecha.Location = new Point(10, 35);
             lblParcelaFecha.Name = "lblParcelaFecha";
-            lblParcelaFecha.Size = new Size(416, 28);
+            lblParcelaFecha.Size = new Size(332, 21);
             lblParcelaFecha.TabIndex = 4;
             lblParcelaFecha.Text = "Servicios en PARCELA del CHEKIN al CHEKOUT";
             // 
             // dgvVerServiciosEstancia
             // 
             dgvVerServiciosEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVerServiciosEstancia.Location = new Point(12, 91);
+            dgvVerServiciosEstancia.Location = new Point(10, 68);
+            dgvVerServiciosEstancia.Margin = new Padding(3, 2, 3, 2);
             dgvVerServiciosEstancia.Name = "dgvVerServiciosEstancia";
             dgvVerServiciosEstancia.RowHeadersWidth = 51;
-            dgvVerServiciosEstancia.Size = new Size(783, 314);
+            dgvVerServiciosEstancia.Size = new Size(685, 236);
             dgvVerServiciosEstancia.TabIndex = 5;
             // 
             // pnlTop
@@ -86,19 +88,30 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(800, 36);
+            pnlTop.Size = new Size(700, 27);
             pnlTop.TabIndex = 9;
             pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(289, 7);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 13);
+            lblFechaHora.TabIndex = 10;
             // 
             // btnMinimizar
             // 
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(716, 1);
+            btnMinimizar.Location = new Point(626, 1);
+            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.Size = new Size(28, 24);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -106,9 +119,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Location = new Point(9, 8);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(162, 20);
+            lblTitulo.Size = new Size(127, 15);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Servicios de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -118,21 +131,13 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(754, 1);
+            btnSalir.Location = new Point(660, 1);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(44, 32);
+            btnSalir.Size = new Size(38, 24);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
-            // 
-            // lblFechaHora
-            // 
-            lblFechaHora.AutoSize = true;
-            lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(330, 9);
-            lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 19);
-            lblFechaHora.TabIndex = 10;
             // 
             // tmFechaHora
             // 
@@ -142,15 +147,16 @@
             // 
             // FormVerServiciosEstancia
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 486);
+            ClientSize = new Size(700, 364);
             Controls.Add(pnlTop);
             Controls.Add(dgvVerServiciosEstancia);
             Controls.Add(lblParcelaFecha);
             Controls.Add(Volver);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormVerServiciosEstancia";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormVerServiciosEstancia";

@@ -49,10 +49,10 @@
             txbEmail = new TextBox();
             dtpFechaNacimiento = new DateTimePicker();
             pnlTop = new Panel();
+            lblFechaHora = new Label();
             btnMinimizar = new Button();
             lblTitulo = new Label();
             btnSalir = new Button();
-            lblFechaHora = new Label();
             tmFechaHora = new System.Windows.Forms.Timer(components);
             pnlTop.SuspendLayout();
             SuspendLayout();
@@ -60,72 +60,72 @@
             // lbltxtNombre
             // 
             lbltxtNombre.AutoSize = true;
-            lbltxtNombre.Location = new Point(45, 79);
+            lbltxtNombre.Location = new Point(39, 59);
             lbltxtNombre.Name = "lbltxtNombre";
-            lbltxtNombre.Size = new Size(67, 20);
+            lbltxtNombre.Size = new Size(54, 15);
             lbltxtNombre.TabIndex = 0;
             lbltxtNombre.Text = "Nombre:";
             // 
             // lbltxtApellidos
             // 
             lbltxtApellidos.AutoSize = true;
-            lbltxtApellidos.Location = new Point(45, 143);
+            lbltxtApellidos.Location = new Point(39, 107);
             lbltxtApellidos.Name = "lbltxtApellidos";
-            lbltxtApellidos.Size = new Size(72, 20);
+            lbltxtApellidos.Size = new Size(56, 15);
             lbltxtApellidos.TabIndex = 2;
             lbltxtApellidos.Text = "Apellidos";
             // 
             // lbltxtFechaNacimiento
             // 
             lbltxtFechaNacimiento.AutoSize = true;
-            lbltxtFechaNacimiento.Location = new Point(45, 269);
+            lbltxtFechaNacimiento.Location = new Point(39, 202);
             lbltxtFechaNacimiento.Name = "lbltxtFechaNacimiento";
-            lbltxtFechaNacimiento.Size = new Size(149, 20);
+            lbltxtFechaNacimiento.Size = new Size(120, 15);
             lbltxtFechaNacimiento.TabIndex = 3;
             lbltxtFechaNacimiento.Text = "Fecha de nacimiento:";
             // 
             // lbltxtTelefono
             // 
             lbltxtTelefono.AutoSize = true;
-            lbltxtTelefono.Location = new Point(414, 279);
+            lbltxtTelefono.Location = new Point(362, 209);
             lbltxtTelefono.Name = "lbltxtTelefono";
-            lbltxtTelefono.Size = new Size(70, 20);
+            lbltxtTelefono.Size = new Size(56, 15);
             lbltxtTelefono.TabIndex = 4;
             lbltxtTelefono.Text = "Telefono:";
             // 
             // lbltxtDireccion
             // 
             lbltxtDireccion.AutoSize = true;
-            lbltxtDireccion.Location = new Point(417, 79);
+            lbltxtDireccion.Location = new Point(365, 59);
             lbltxtDireccion.Name = "lbltxtDireccion";
-            lbltxtDireccion.Size = new Size(72, 20);
+            lbltxtDireccion.Size = new Size(57, 15);
             lbltxtDireccion.TabIndex = 5;
             lbltxtDireccion.Text = "Direccion";
             // 
             // lbltxtCodigoPostal
             // 
             lbltxtCodigoPostal.AutoSize = true;
-            lbltxtCodigoPostal.Location = new Point(417, 209);
+            lbltxtCodigoPostal.Location = new Point(365, 157);
             lbltxtCodigoPostal.Name = "lbltxtCodigoPostal";
-            lbltxtCodigoPostal.Size = new Size(106, 20);
+            lbltxtCodigoPostal.Size = new Size(84, 15);
             lbltxtCodigoPostal.TabIndex = 6;
             lbltxtCodigoPostal.Text = "Codigo postal:";
             // 
             // lbltxtEmail
             // 
             lbltxtEmail.AutoSize = true;
-            lbltxtEmail.Location = new Point(417, 140);
+            lbltxtEmail.Location = new Point(365, 105);
             lbltxtEmail.Name = "lbltxtEmail";
-            lbltxtEmail.Size = new Size(49, 20);
+            lbltxtEmail.Size = new Size(39, 15);
             lbltxtEmail.TabIndex = 7;
             lbltxtEmail.Text = "Email:";
             // 
             // lbltxtDni
             // 
             lbltxtDni.AutoSize = true;
-            lbltxtDni.Location = new Point(45, 213);
+            lbltxtDni.Location = new Point(39, 160);
             lbltxtDni.Name = "lbltxtDni";
-            lbltxtDni.Size = new Size(38, 20);
+            lbltxtDni.Size = new Size(30, 15);
             lbltxtDni.TabIndex = 8;
             lbltxtDni.Text = "DNI:";
             // 
@@ -135,9 +135,10 @@
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
-            btnGuardar.Location = new Point(495, 419);
+            btnGuardar.Location = new Point(433, 314);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(139, 38);
+            btnGuardar.Size = new Size(122, 28);
             btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -149,9 +150,10 @@
             btnVolver.FlatAppearance.BorderSize = 0;
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
-            btnVolver.Location = new Point(220, 419);
+            btnVolver.Location = new Point(192, 314);
+            btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(139, 38);
+            btnVolver.Size = new Size(122, 28);
             btnVolver.TabIndex = 9;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
@@ -159,58 +161,66 @@
             // 
             // txbNombre
             // 
-            txbNombre.Location = new Point(118, 76);
+            txbNombre.Location = new Point(103, 57);
+            txbNombre.Margin = new Padding(3, 2, 3, 2);
             txbNombre.Name = "txbNombre";
-            txbNombre.Size = new Size(227, 27);
+            txbNombre.Size = new Size(199, 23);
             txbNombre.TabIndex = 1;
             // 
             // txbApellidos
             // 
-            txbApellidos.Location = new Point(123, 140);
+            txbApellidos.Location = new Point(108, 105);
+            txbApellidos.Margin = new Padding(3, 2, 3, 2);
             txbApellidos.Name = "txbApellidos";
-            txbApellidos.Size = new Size(222, 27);
+            txbApellidos.Size = new Size(195, 23);
             txbApellidos.TabIndex = 2;
             // 
             // txbDni
             // 
-            txbDni.Location = new Point(89, 210);
+            txbDni.Location = new Point(78, 158);
+            txbDni.Margin = new Padding(3, 2, 3, 2);
             txbDni.Name = "txbDni";
-            txbDni.Size = new Size(144, 27);
+            txbDni.Size = new Size(126, 23);
             txbDni.TabIndex = 3;
             // 
             // txbDireccion
             // 
-            txbDireccion.Location = new Point(495, 76);
+            txbDireccion.Location = new Point(433, 57);
+            txbDireccion.Margin = new Padding(3, 2, 3, 2);
             txbDireccion.Name = "txbDireccion";
-            txbDireccion.Size = new Size(345, 27);
+            txbDireccion.Size = new Size(302, 23);
             txbDireccion.TabIndex = 4;
             // 
             // txbCodigoPostal
             // 
-            txbCodigoPostal.Location = new Point(529, 206);
+            txbCodigoPostal.Location = new Point(463, 154);
+            txbCodigoPostal.Margin = new Padding(3, 2, 3, 2);
             txbCodigoPostal.Name = "txbCodigoPostal";
-            txbCodigoPostal.Size = new Size(120, 27);
+            txbCodigoPostal.Size = new Size(106, 23);
             txbCodigoPostal.TabIndex = 6;
             // 
             // txbTelefono
             // 
-            txbTelefono.Location = new Point(490, 279);
+            txbTelefono.Location = new Point(429, 209);
+            txbTelefono.Margin = new Padding(3, 2, 3, 2);
             txbTelefono.Name = "txbTelefono";
-            txbTelefono.Size = new Size(159, 27);
+            txbTelefono.Size = new Size(140, 23);
             txbTelefono.TabIndex = 7;
             // 
             // txbEmail
             // 
-            txbEmail.Location = new Point(472, 140);
+            txbEmail.Location = new Point(413, 105);
+            txbEmail.Margin = new Padding(3, 2, 3, 2);
             txbEmail.Name = "txbEmail";
-            txbEmail.Size = new Size(368, 27);
+            txbEmail.Size = new Size(322, 23);
             txbEmail.TabIndex = 5;
             // 
             // dtpFechaNacimiento
             // 
-            dtpFechaNacimiento.Location = new Point(45, 292);
+            dtpFechaNacimiento.Location = new Point(39, 219);
+            dtpFechaNacimiento.Margin = new Padding(3, 2, 3, 2);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            dtpFechaNacimiento.Size = new Size(300, 27);
+            dtpFechaNacimiento.Size = new Size(263, 23);
             dtpFechaNacimiento.TabIndex = 8;
             // 
             // pnlTop
@@ -222,19 +232,30 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(896, 36);
+            pnlTop.Size = new Size(784, 27);
             pnlTop.TabIndex = 11;
             pnlTop.MouseDown += pnlTop_MouseDown;
+            // 
+            // lblFechaHora
+            // 
+            lblFechaHora.AutoSize = true;
+            lblFechaHora.Font = new Font("Segoe UI", 8F);
+            lblFechaHora.Location = new Point(302, 7);
+            lblFechaHora.Name = "lblFechaHora";
+            lblFechaHora.Size = new Size(0, 13);
+            lblFechaHora.TabIndex = 12;
             // 
             // btnMinimizar
             // 
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(808, 1);
+            btnMinimizar.Location = new Point(707, 1);
+            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.Size = new Size(28, 24);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -242,9 +263,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Location = new Point(9, 8);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(100, 20);
+            lblTitulo.Size = new Size(80, 15);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Nuevo cliente";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -254,21 +275,13 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(846, 1);
+            btnSalir.Location = new Point(740, 1);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(44, 32);
+            btnSalir.Size = new Size(38, 24);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
-            // 
-            // lblFechaHora
-            // 
-            lblFechaHora.AutoSize = true;
-            lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(345, 9);
-            lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 19);
-            lblFechaHora.TabIndex = 12;
             // 
             // tmFechaHora
             // 
@@ -278,10 +291,10 @@
             // 
             // FormNuevoCliente
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(896, 486);
+            ClientSize = new Size(784, 364);
             Controls.Add(pnlTop);
             Controls.Add(txbNombre);
             Controls.Add(txbApellidos);
@@ -302,6 +315,7 @@
             Controls.Add(lbltxtApellidos);
             Controls.Add(lbltxtNombre);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormNuevoCliente";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormNuevoCliente";

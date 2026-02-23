@@ -55,9 +55,10 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardar.Location = new Point(657, 607);
+            btnGuardar.Location = new Point(575, 455);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(94, 36);
+            btnGuardar.Size = new Size(82, 27);
             btnGuardar.TabIndex = 0;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -69,11 +70,12 @@
             dgvListaClientes.AllowUserToDeleteRows = false;
             dgvListaClientes.AllowUserToResizeRows = false;
             dgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListaClientes.Location = new Point(10, 94);
+            dgvListaClientes.Location = new Point(9, 70);
+            dgvListaClientes.Margin = new Padding(3, 2, 3, 2);
             dgvListaClientes.Name = "dgvListaClientes";
             dgvListaClientes.ReadOnly = true;
             dgvListaClientes.RowHeadersWidth = 51;
-            dgvListaClientes.Size = new Size(776, 219);
+            dgvListaClientes.Size = new Size(679, 164);
             dgvListaClientes.TabIndex = 1;
             dgvListaClientes.CellDoubleClick += dgvListaClientes_CellDoubleClick;
             // 
@@ -83,11 +85,12 @@
             dgvClientesEstancia.AllowUserToDeleteRows = false;
             dgvClientesEstancia.AllowUserToResizeRows = false;
             dgvClientesEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClientesEstancia.Location = new Point(10, 390);
+            dgvClientesEstancia.Location = new Point(9, 292);
+            dgvClientesEstancia.Margin = new Padding(3, 2, 3, 2);
             dgvClientesEstancia.Name = "dgvClientesEstancia";
             dgvClientesEstancia.ReadOnly = true;
             dgvClientesEstancia.RowHeadersWidth = 51;
-            dgvClientesEstancia.Size = new Size(776, 188);
+            dgvClientesEstancia.Size = new Size(679, 141);
             dgvClientesEstancia.TabIndex = 2;
             dgvClientesEstancia.CellDoubleClick += dgvClientesEstancia_CellDoubleClick;
             // 
@@ -97,9 +100,10 @@
             btnNuevoCliente.FlatAppearance.BorderSize = 0;
             btnNuevoCliente.FlatStyle = FlatStyle.Flat;
             btnNuevoCliente.Font = new Font("Segoe UI", 12F);
-            btnNuevoCliente.Location = new Point(290, 607);
+            btnNuevoCliente.Location = new Point(254, 455);
+            btnNuevoCliente.Margin = new Padding(3, 2, 3, 2);
             btnNuevoCliente.Name = "btnNuevoCliente";
-            btnNuevoCliente.Size = new Size(147, 36);
+            btnNuevoCliente.Size = new Size(129, 27);
             btnNuevoCliente.TabIndex = 3;
             btnNuevoCliente.Text = "Nuevo cliente";
             btnNuevoCliente.UseVisualStyleBackColor = false;
@@ -112,9 +116,10 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.FromArgb(255, 222, 171);
-            btnVolver.Location = new Point(530, 607);
+            btnVolver.Location = new Point(464, 455);
+            btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(94, 36);
+            btnVolver.Size = new Size(82, 27);
             btnVolver.TabIndex = 4;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
@@ -124,9 +129,9 @@
             // 
             lblActuales.AutoSize = true;
             lblActuales.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblActuales.Location = new Point(10, 350);
+            lblActuales.Location = new Point(9, 262);
             lblActuales.Name = "lblActuales";
-            lblActuales.Size = new Size(147, 23);
+            lblActuales.Size = new Size(123, 19);
             lblActuales.TabIndex = 5;
             lblActuales.Text = "Clientes actuales:";
             // 
@@ -134,9 +139,9 @@
             // 
             lblDisponibles.AutoSize = true;
             lblDisponibles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDisponibles.Location = new Point(10, 58);
+            lblDisponibles.Location = new Point(9, 44);
             lblDisponibles.Name = "lblDisponibles";
-            lblDisponibles.Size = new Size(149, 23);
+            lblDisponibles.Size = new Size(124, 19);
             lblDisponibles.TabIndex = 6;
             lblDisponibles.Text = "Listas de clientes:";
             // 
@@ -149,8 +154,9 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(800, 36);
+            pnlTop.Size = new Size(700, 27);
             pnlTop.TabIndex = 10;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -158,9 +164,9 @@
             // 
             lblFechaHora.AutoSize = true;
             lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(330, 12);
+            lblFechaHora.Location = new Point(289, 9);
             lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.Size = new Size(0, 13);
             lblFechaHora.TabIndex = 11;
             // 
             // btnMinimizar
@@ -168,9 +174,10 @@
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(719, 3);
+            btnMinimizar.Location = new Point(629, 2);
+            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.Size = new Size(28, 24);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -178,9 +185,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Location = new Point(9, 8);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(156, 20);
+            lblTitulo.Size = new Size(123, 15);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Clientes de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -190,9 +197,10 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(757, 3);
+            btnSalir.Location = new Point(662, 2);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(44, 32);
+            btnSalir.Size = new Size(38, 24);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -205,10 +213,10 @@
             // 
             // FormEstanciaClientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 667);
+            ClientSize = new Size(700, 500);
             Controls.Add(pnlTop);
             Controls.Add(lblDisponibles);
             Controls.Add(lblActuales);
@@ -218,6 +226,7 @@
             Controls.Add(dgvListaClientes);
             Controls.Add(btnGuardar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormEstanciaClientes";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormEstanciaClientes";
