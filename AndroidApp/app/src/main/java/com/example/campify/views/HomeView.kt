@@ -12,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,13 +34,29 @@ import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipal2
-import com.example.campify.views.NavView
+import com.example.campify.viewmodels.ApiModel
+import kotlinx.coroutines.flow.firstOrNull
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView(navController: NavHostController) {
+fun HomeView(navController: NavHostController, apiModel: ApiModel) {
     val context = LocalContext.current
 
+    val loginState by apiModel.loginState.collectAsState()
+    LaunchedEffect(Unit) {
+        if (apiModel.token.firstOrNull() != null) {
+            apiModel.checkAuth()
+        } else {
+            navController.navigate("Login")
+        }
+    }
+    LaunchedEffect(loginState) {
+        when (loginState) {
+            ApiModel.LoginState.Valid -> Unit
+            ApiModel.LoginState.Waiting -> Unit
+            else -> navController.navigate("Login")
+        }
+    }
     Scaffold(
         topBar = { HomeTopBar(context) }
     ) { innerPadding ->

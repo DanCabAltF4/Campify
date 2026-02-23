@@ -1,6 +1,5 @@
 package com.example.campify.views
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,7 +14,6 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -45,7 +43,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     val parcelasFiltradas = remember(parcelas, searchText) {
         if (searchText.isNotEmpty()) {
             parcelas.filter {
-                it.estado_parcela.name.contains(searchText, ignoreCase = true) ||
+                it.estadoParcela.name.contains(searchText, ignoreCase = true) ||
                         it.id.toString().contains(searchText)
             }
         } else {
@@ -230,7 +228,7 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
 
-    val (colorEstado, iconoEstado) = when (parcela.estado_parcela) {
+    val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
         EstadoParcela.LIBRE -> colorLibre to Icons.Default.Check
         EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
         EstadoParcela.INTERESADO -> colorInteresado to Icons.Default.Person
@@ -285,7 +283,7 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
                     Spacer(Modifier.width(6.dp))
 
                     Text(
-                        text = parcela.estado_parcela.name
+                        text = parcela.estadoParcela.name
                             .lowercase()
                             .replaceFirstChar { it.uppercase() },
                         fontSize = 14.sp,

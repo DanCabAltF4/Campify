@@ -1,7 +1,6 @@
 package com.example.campify.views
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
@@ -19,20 +17,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
@@ -94,7 +87,7 @@ fun DetailView(
                             .padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        val (colorEstado, iconoEstado) = when (it.estado_parcela) {
+                        val (colorEstado, iconoEstado) = when (it.estadoParcela) {
                             EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
                             EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
                             EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
@@ -113,7 +106,7 @@ fun DetailView(
                         Spacer(Modifier.width(12.dp))
 
                         Text(
-                            text = it.estado_parcela.name.replaceFirstChar { c -> c.uppercase() },
+                            text = it.estadoParcela.name.replaceFirstChar { c -> c.uppercase() },
                             fontWeight = FontWeight.Medium,
                             fontSize = 16.sp
                         )
@@ -128,11 +121,11 @@ fun DetailView(
 
                 // Cada booleano en su card
                 val booleanos = listOf(
-                    "Baño cercano" to it.cerca_baño,
-                    "Cerca de la entrada" to it.cerca_entrada,
-                    "Tiene vistas" to it.tiene_vistas,
-                    "Zona tranquila" to it.zona_tranquila,
-                    "Zona con sombra" to it.zona_sombra
+                    "Baño cercano" to it.cercaBaño,
+                    "Cerca de la entrada" to it.cercaEntrada,
+                    "Tiene vistas" to it.tieneVistas,
+                    "Zona tranquila" to it.zonaTranquila,
+                    "Zona con sombra" to it.zonaSombra
                 )
 
                 booleanos.forEach { (label, valor) ->
@@ -228,15 +221,15 @@ fun ContentDetailView(
     ) {
         Text("Parcela: ${parcela.id}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
         Spacer(modifier = Modifier.height(4.dp))
-        Text("Estado: ${parcela.estado_parcela.name}", fontWeight = FontWeight.Medium)
+        Text("Estado: ${parcela.estadoParcela.name}", fontWeight = FontWeight.Medium)
         Spacer(modifier = Modifier.height(8.dp))
 
         // Características booleanas
-        BooleanRow("Baño cercano", parcela.cerca_baño)
-        BooleanRow("Cerca de la entrada", parcela.cerca_entrada)
-        BooleanRow("Tiene vistas", parcela.tiene_vistas)
-        BooleanRow("Zona tranquila", parcela.zona_tranquila)
-        BooleanRow("Zona con sombra", parcela.zona_sombra)
+        BooleanRow("Baño cercano", parcela.cercaBaño)
+        BooleanRow("Cerca de la entrada", parcela.cercaEntrada)
+        BooleanRow("Tiene vistas", parcela.tieneVistas)
+        BooleanRow("Zona tranquila", parcela.zonaTranquila)
+        BooleanRow("Zona con sombra", parcela.zonaSombra)
         Spacer(modifier = Modifier.height(8.dp))
 
         Text("Estado:", fontWeight = FontWeight.Medium)
@@ -269,7 +262,7 @@ fun EstadoParcelaSelector(
             }
 
             FilterChip(
-                selected = parcela.estado_parcela == estado,
+                selected = parcela.estadoParcela == estado,
                 onClick = { onEstadoChange(estado) },
                 label = { Text("") },
                 leadingIcon = { Icon(icon, contentDescription = estado.name) },

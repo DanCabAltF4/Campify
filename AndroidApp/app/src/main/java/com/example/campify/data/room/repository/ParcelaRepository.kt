@@ -1,5 +1,6 @@
 package com.example.campify.data.room.repository
 
+import android.util.Log
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.remote.ParcelaService
 import com.example.campify.data.room.dao.ParcelaDAO
@@ -12,9 +13,14 @@ class ParcelaRepository(
 ) {
 
     suspend fun syncParcelas() {
-        val remotas = api.getParcelas()
-        dao.clear()
-        dao.insertAll(remotas.map { it.toEntity() })
+        val remotas = api.findAll()
+        if (remotas.isSuccessful) {
+            var remotasBody = remotas.body()
+            dao.clear()
+            dao.insertAll(remotasBody!!.map { it.toEntity() })
+        }else{
+            Log.e("ERROR","Busqueda de parcelas fallida")
+        }
     }
 
     suspend fun getParcelas(): List<Parcela> =
