@@ -195,7 +195,7 @@
             btnEliminarServicio.Location = new Point(677, 326);
             btnEliminarServicio.Margin = new Padding(0);
             btnEliminarServicio.Name = "btnEliminarServicio";
-            btnEliminarServicio.Size = new Size(122, 34);
+            btnEliminarServicio.Size = new Size(123, 36);
             btnEliminarServicio.TabIndex = 5;
             btnEliminarServicio.Text = "Eliminar";
             btnEliminarServicio.UseVisualStyleBackColor = false;
@@ -211,7 +211,7 @@
             btnEditarServicio.Location = new Point(550, 326);
             btnEditarServicio.Margin = new Padding(0);
             btnEditarServicio.Name = "btnEditarServicio";
-            btnEditarServicio.Size = new Size(127, 34);
+            btnEditarServicio.Size = new Size(127, 36);
             btnEditarServicio.TabIndex = 4;
             btnEditarServicio.Text = "Editar";
             btnEditarServicio.UseVisualStyleBackColor = false;
@@ -227,7 +227,7 @@
             btnNuevoServicio.Location = new Point(428, 326);
             btnNuevoServicio.Margin = new Padding(0);
             btnNuevoServicio.Name = "btnNuevoServicio";
-            btnNuevoServicio.Size = new Size(122, 34);
+            btnNuevoServicio.Size = new Size(122, 36);
             btnNuevoServicio.TabIndex = 3;
             btnNuevoServicio.Text = "Nuevo";
             btnNuevoServicio.UseVisualStyleBackColor = false;
@@ -277,7 +277,7 @@
             btnReservar.Location = new Point(428, 325);
             btnReservar.Margin = new Padding(0);
             btnReservar.Name = "btnReservar";
-            btnReservar.Size = new Size(198, 34);
+            btnReservar.Size = new Size(198, 35);
             btnReservar.TabIndex = 9;
             btnReservar.Text = "Reservar";
             btnReservar.UseVisualStyleBackColor = false;
@@ -347,6 +347,7 @@
             pbMapa.SizeMode = PictureBoxSizeMode.StretchImage;
             pbMapa.TabIndex = 15;
             pbMapa.TabStop = false;
+            pbMapa.DoubleClick += pbMapa_DoubleClick;
             // 
             // btnEstanciaActual
             // 
@@ -470,7 +471,7 @@
             btnMantenimiento.Location = new Point(626, 325);
             btnMantenimiento.Margin = new Padding(0);
             btnMantenimiento.Name = "btnMantenimiento";
-            btnMantenimiento.Size = new Size(171, 34);
+            btnMantenimiento.Size = new Size(174, 35);
             btnMantenimiento.TabIndex = 18;
             btnMantenimiento.Text = "Mantenimiento";
             btnMantenimiento.UseVisualStyleBackColor = false;
@@ -502,7 +503,7 @@
             btnServiciosEstancia.Location = new Point(626, 325);
             btnServiciosEstancia.Margin = new Padding(0);
             btnServiciosEstancia.Name = "btnServiciosEstancia";
-            btnServiciosEstancia.Size = new Size(171, 34);
+            btnServiciosEstancia.Size = new Size(174, 35);
             btnServiciosEstancia.TabIndex = 21;
             btnServiciosEstancia.Text = "Servicios";
             btnServiciosEstancia.UseVisualStyleBackColor = false;
@@ -579,7 +580,7 @@
             btnNuevoEmpleado.Location = new Point(427, 328);
             btnNuevoEmpleado.Margin = new Padding(0);
             btnNuevoEmpleado.Name = "btnNuevoEmpleado";
-            btnNuevoEmpleado.Size = new Size(122, 34);
+            btnNuevoEmpleado.Size = new Size(123, 34);
             btnNuevoEmpleado.TabIndex = 2;
             btnNuevoEmpleado.Text = "Nuevo";
             btnNuevoEmpleado.UseVisualStyleBackColor = false;
@@ -640,7 +641,7 @@
             btnEliminarEstancia.Location = new Point(605, 329);
             btnEliminarEstancia.Margin = new Padding(0);
             btnEliminarEstancia.Name = "btnEliminarEstancia";
-            btnEliminarEstancia.Size = new Size(193, 34);
+            btnEliminarEstancia.Size = new Size(193, 36);
             btnEliminarEstancia.TabIndex = 7;
             btnEliminarEstancia.Text = "Eliminar";
             btnEliminarEstancia.UseVisualStyleBackColor = false;
@@ -656,7 +657,7 @@
             btnEditarEstancia.Location = new Point(426, 329);
             btnEditarEstancia.Margin = new Padding(0);
             btnEditarEstancia.Name = "btnEditarEstancia";
-            btnEditarEstancia.Size = new Size(178, 34);
+            btnEditarEstancia.Size = new Size(179, 36);
             btnEditarEstancia.TabIndex = 6;
             btnEditarEstancia.Text = "Editar";
             btnEditarEstancia.UseVisualStyleBackColor = false;
@@ -790,7 +791,7 @@
             btnEditarCliente.Location = new Point(549, 328);
             btnEditarCliente.Margin = new Padding(0);
             btnEditarCliente.Name = "btnEditarCliente";
-            btnEditarCliente.Size = new Size(127, 33);
+            btnEditarCliente.Size = new Size(127, 34);
             btnEditarCliente.TabIndex = 3;
             btnEditarCliente.Text = "Editar";
             btnEditarCliente.UseVisualStyleBackColor = false;
@@ -806,7 +807,7 @@
             btnEliminarCliente.Location = new Point(676, 328);
             btnEliminarCliente.Margin = new Padding(0);
             btnEliminarCliente.Name = "btnEliminarCliente";
-            btnEliminarCliente.Size = new Size(122, 34);
+            btnEliminarCliente.Size = new Size(123, 34);
             btnEliminarCliente.TabIndex = 4;
             btnEliminarCliente.Text = "Eliminar";
             btnEliminarCliente.UseVisualStyleBackColor = false;

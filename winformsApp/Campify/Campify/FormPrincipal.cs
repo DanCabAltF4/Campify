@@ -49,7 +49,7 @@ namespace Campify
                 await CargarServicios();
                 await CargarEstancias();
 
-                if(String.Equals(Session.Rol, "CAMPO"))
+                if (String.Equals(Session.Rol, "CAMPO"))
                 {
                     btnReservar.Visible = false;
                     btnNuevoServicio.Visible = false;
@@ -71,6 +71,8 @@ namespace Campify
                 if (String.Equals(Session.Rol, "ADMINISTRADOR"))
                 {
                     btnEmpleados.Visible = true;
+                    btnEliminarCliente.Visible = true;
+                    btnEliminarServicio.Visible = true;
                     await CargarEmpleados();
                 }
             }
@@ -111,6 +113,10 @@ namespace Campify
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
+        }
+        private void tmFechaHora_Tick(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
 
 
@@ -460,7 +466,7 @@ namespace Campify
         private void btnClientesEstancia_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;
-            if(parcela == null)
+            if (parcela == null)
             {
                 MessageBox.Show("Debe seleccionar una parcela para ver sus clientes y servicios.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -879,8 +885,11 @@ namespace Campify
             pnlEstancias.Visible = false;
             pnlClientes.Visible = true;
 
-            btnEliminarCliente.Visible = false;
-            btnEliminarServicio.Visible = false;
+            if (!String.Equals(Session.Rol, "ADMINISTRADOR"))
+            {
+                btnEliminarCliente.Visible = false;
+                btnEliminarServicio.Visible = false;
+            }
         }
 
 
@@ -978,9 +987,12 @@ namespace Campify
             }
         }
 
-        private void tmFechaHora_Tick(object sender, EventArgs e)
+        private void pbMapa_DoubleClick(object sender, EventArgs e)
         {
-            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            using (var form = new FormVerMapa())
+            {
+                form.ShowDialog(this);
+            }
         }
     }
 }
