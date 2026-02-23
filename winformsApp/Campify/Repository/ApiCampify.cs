@@ -103,6 +103,24 @@ namespace Repository
         }
 
 
+        /// <summary>
+        /// Metodo para cambiar el estado de la parcela.
+        /// </summary>
+        public async Task<Parcela> CambiarEstadoParcela(int idParcela, EnumEstados nuevoEstado)
+        {
+            ApplyAuthHeader();
+
+            var url = $"/api/parcelas/{idParcela}/estado/{nuevoEstado}";
+            var response = await _http.PutAsync(url, null);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<Parcela>(_jsonOptions);
+        }
+
+
+
+
         public static string MensajeErrorHttp(HttpRequestException ex)
         {
 
