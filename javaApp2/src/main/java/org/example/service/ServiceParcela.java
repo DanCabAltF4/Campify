@@ -68,24 +68,31 @@ public class ServiceParcela implements  IServiceParcela{
      */
     private void comprobarEstadoParcelas(List<Parcela> parcelas, List<Estancia> estancias) {
         LocalDate hoy = LocalDate.now();
-        for(Parcela parcela : parcelas){
-            boolean ocupadaHoy= false;
-            for(Estancia estancia : estancias){
-                if(parcela.getId() == estancia.getParcela().getId()){
+
+        for (Parcela parcela : parcelas) {
+            // Si ya está en MANTENIMIENTO, RESERVADA o INTERESADO, no lo tocamos
+            if (parcela.getEstado_parcela() == EstadoParcela.MANTENIMIENTO ||
+                    parcela.getEstado_parcela() == EstadoParcela.RESERVADA ||
+                    parcela.getEstado_parcela() == EstadoParcela.INTERESADO) {
+                continue;
+            }
+
+            boolean ocupadaHoy = false;
+            for (Estancia estancia : estancias) {
+                if (parcela.getId() == estancia.getParcela().getId()) {
                     LocalDate checkin = estancia.getCheckIn();
                     LocalDate checkout = estancia.getCheckOut();
-                    if(checkout == null){
+                    if (checkout == null) {
                         ocupadaHoy = !hoy.isBefore(checkin);
-                    }else{
+                    } else {
                         ocupadaHoy = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
                     }
-                    if(ocupadaHoy){
-                        break;
-                    }
+                    if (ocupadaHoy) break;
                 }
             }
+
             EstadoParcela nuevoEstado = ocupadaHoy ? EstadoParcela.RESERVADA : EstadoParcela.LIBRE;
-            if(parcela.getEstado_parcela() != EstadoParcela.MANTENIMIENTO && parcela.getEstado_parcela() != nuevoEstado){
+            if (parcela.getEstado_parcela() != nuevoEstado) {
                 parcela.setEstado_parcela(nuevoEstado);
                 repoParcela.save(parcela);
             }
