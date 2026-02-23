@@ -1,6 +1,7 @@
 package com.example.campify.data.room.mapper
 
 import com.example.campify.data.model.Parcela
+import com.example.campify.data.model.enums.TipoParcela
 import com.example.campify.data.room.entity.ParcelaEntity
 
 fun Parcela.toEntity() = ParcelaEntity(

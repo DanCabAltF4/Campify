@@ -25,6 +25,7 @@ class ApiModel(private val authRepository: AuthRepository, private val roomDB: A
     private val repo = ParcelaRepository(parcelasService, roomDB.parcelaDao())
     val parcelas = mutableStateOf<List<Parcela>>(emptyList())
 
+
     fun tokenProvider(): ()-> String? = {
         runBlocking { token.first()}
     }

@@ -13,7 +13,7 @@ import java.util.concurrent.Executors
 
 @Database(
     entities = [ParcelaEntity::class],
-    version = 1
+    version = 4
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

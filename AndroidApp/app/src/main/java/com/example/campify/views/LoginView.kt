@@ -34,6 +34,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.campify.ui.theme.botonActivo
+import com.example.campify.ui.theme.botonActivoTexto
+import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.viewmodels.ApiModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,14 +52,15 @@ fun LoginView(
     val loginState by apiModel.loginState.collectAsState()
     LaunchedEffect(loginState) {
         when (loginState) {
-            apiModel.LoginState.Valid -> navController.popBackStack("List",false)
-            apiModel.LoginState.Invalid -> {
-                Toast.makeText(
-                    context, "Inicio de Sesión Invalido", Toast.LENGTH_SHORT
-                ).show()
+            is ApiModel.LoginState.Valid -> {
+                navController.navigate("Home") {
+                    popUpTo("Login") { inclusive = true } // elimina Login del back stack
+                }
+            }
+            is ApiModel.LoginState.Invalid -> {
+                Toast.makeText(context, "Inicio de Sesión Invalido", Toast.LENGTH_SHORT).show()
                 apiModel.resetLoginState()
             }
-
             else -> Unit
         }
     }

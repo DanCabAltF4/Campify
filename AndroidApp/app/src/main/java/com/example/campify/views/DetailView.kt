@@ -92,6 +92,7 @@ fun DetailView(
                             EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
                             EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
                             EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
+                            null -> Color(0xFFF44336) to Icons.Filled.Close
                         }
 
                         Box(
@@ -106,7 +107,7 @@ fun DetailView(
                         Spacer(Modifier.width(12.dp))
 
                         Text(
-                            text = it.estadoParcela.name.replaceFirstChar { c -> c.uppercase() },
+                            text = it.estadoParcela!!.name.replaceFirstChar { c -> c.uppercase() },
                             fontWeight = FontWeight.Medium,
                             fontSize = 16.sp
                         )
@@ -221,7 +222,7 @@ fun ContentDetailView(
     ) {
         Text("Parcela: ${parcela.id}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
         Spacer(modifier = Modifier.height(4.dp))
-        Text("Estado: ${parcela.estadoParcela.name}", fontWeight = FontWeight.Medium)
+        Text("Estado: ${parcela.estadoParcela?.name}", fontWeight = FontWeight.Medium)
         Spacer(modifier = Modifier.height(8.dp))
 
         // Características booleanas
@@ -262,7 +263,7 @@ fun EstadoParcelaSelector(
             }
 
             FilterChip(
-                selected = parcela.estadoParcela == estado,
+                selected = parcela.estadoParcela == estado, // si es null, todos false
                 onClick = { onEstadoChange(estado) },
                 label = { Text("") },
                 leadingIcon = { Icon(icon, contentDescription = estado.name) },

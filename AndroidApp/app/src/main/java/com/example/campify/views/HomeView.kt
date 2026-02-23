@@ -1,5 +1,6 @@
 package com.campify.views
 
+import android.content.Context
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -58,7 +59,7 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
         }
     }
     Scaffold(
-        topBar = { HomeTopBar(context) }
+        topBar = { HomeTopBar(context, navController, apiModel) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -74,7 +75,7 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar(context: android.content.Context) {
+fun HomeTopBar(context: Context, navController: NavHostController, apiModel: ApiModel) {
 
     Column {
         TopAppBar(
@@ -107,6 +108,8 @@ fun HomeTopBar(context: android.content.Context) {
             actions = {
                 IconButton(onClick = {
                     Toast.makeText(context, "Volver a iniciar sesión", Toast.LENGTH_SHORT).show()
+                    navController.navigate("Login")
+                    apiModel.logout()
                 }) {
                     Icon(
                         Icons.Default.AccountCircle,

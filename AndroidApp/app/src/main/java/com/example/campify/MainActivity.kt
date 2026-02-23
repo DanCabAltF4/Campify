@@ -19,6 +19,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Inicializa session
+        session = SessionDataStore(this)
+
+        // Ahora sí puedes crear ApiModel
         apiModel = ApiModel(
             AuthRepository(
                 api = RetrofitClient.auth(),
@@ -26,6 +31,7 @@ class MainActivity : ComponentActivity() {
             ),
             AppDatabase.getDatabase(this)
         )
+
         setContent {
             CampifyTheme {
                 CampifyNavigation(
