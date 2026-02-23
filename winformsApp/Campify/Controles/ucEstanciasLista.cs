@@ -41,6 +41,7 @@ namespace Controles
 
             bool activa = Estancia.CheckIn <= hoy && (Estancia.CheckOut == null || hoy < Estancia.CheckOut.Value);
             if (activa) BackColor = Color.LightCoral;
+            else if (Estancia.CheckOut < hoy) BackColor = Color.LightGray;
             else BackColor = Color.LightGreen;
         }
 

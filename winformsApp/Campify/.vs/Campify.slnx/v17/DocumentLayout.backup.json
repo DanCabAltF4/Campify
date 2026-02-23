@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0274EA15-E463-4F0D-95CB-4B66C10BB0D1}|Repository\\Repository.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\repository\\apicampify.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0274EA15-E463-4F0D-95CB-4B66C10BB0D1}|Repository\\Repository.csproj|solutionrelative:repository\\apicampify.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|solutionrelative:campify\\formprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{06BA0CB8-20A6-01FC-D826-5628E409FDF8}|Campify\\Forms.csproj|c:\\users\\doowy\\escritorio\\github\\campify\\winformsapp\\campify\\campify\\formnuevaestancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 259,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,33 +58,58 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApiCampify.cs",
+              "DocumentMoniker": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\ApiCampify.cs",
+              "RelativeDocumentMoniker": "Repository\\ApiCampify.cs",
+              "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Repository\\ApiCampify.cs",
+              "RelativeToolTip": "Repository\\ApiCampify.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAiwHUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-23T20:40:19.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormPrincipal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs",
+              "RelativeDocumentMoniker": "Campify\\FormPrincipal.cs",
+              "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Campify\\FormPrincipal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-23T20:37:41.599Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Login.cs",
               "RelativeDocumentMoniker": "Campify\\Login.cs",
-              "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Login.cs*",
-              "RelativeToolTip": "Campify\\Login.cs*",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABWAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\Login.cs",
+              "RelativeToolTip": "Campify\\Login.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-19T14:11:29.113Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FormPrincipal.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs",
               "RelativeDocumentMoniker": "Campify\\FormPrincipal.cs",
               "ToolTip": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormPrincipal.cs",
               "RelativeToolTip": "Campify\\FormPrincipal.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAJQBAAAAAAAAAAAuwKoBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-19T12:13:18.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "FormNuevaEstancia.cs",
               "DocumentMoniker": "C:\\Users\\doowy\\Escritorio\\GitHub\\Campify\\winformsApp\\Campify\\Campify\\FormNuevaEstancia.cs",
               "RelativeDocumentMoniker": "Campify\\FormNuevaEstancia.cs",
@@ -84,8 +117,7 @@
               "RelativeToolTip": "Campify\\FormNuevaEstancia.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAgwDsAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T11:47:06.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-19T11:47:06.685Z"
             }
           ]
         }

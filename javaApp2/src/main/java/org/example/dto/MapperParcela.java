@@ -18,7 +18,8 @@ public final class MapperParcela {
                 p.isZona_sombra(),
                 p.isCerca_entrada(),
                 p.isZona_tranquila(),
-                p.getEstado_parcela()
+                p.getEstado_parcela(),
+                p.getImagen()
         );
     }
 
@@ -35,6 +36,7 @@ public final class MapperParcela {
         if (dto.zonaSombra() != null) p.setZona_sombra(dto.zonaSombra());
         if (dto.cercaEntrada() != null) p.setCerca_entrada(dto.cercaEntrada());
         if (dto.zonaTranquila() != null) p.setZona_tranquila(dto.zonaTranquila());
+        if (dto.imagen() != null) p.setImagen(dto.imagen());
 
         p.setEstado_parcela(dto.estadoParcela());
         return p;
