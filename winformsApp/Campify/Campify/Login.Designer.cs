@@ -88,7 +88,7 @@
             tbUsuario.Margin = new Padding(3, 2, 3, 2);
             tbUsuario.Name = "tbUsuario";
             tbUsuario.Size = new Size(172, 23);
-            tbUsuario.TabIndex = 4;
+            tbUsuario.TabIndex = 1;
             tbUsuario.Text = "ana@campify.com";
             // 
             // lblUsuario
@@ -106,9 +106,11 @@
             tbPassword.Location = new Point(150, 164);
             tbPassword.Margin = new Padding(3, 2, 3, 2);
             tbPassword.Name = "tbPassword";
+            tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(172, 23);
-            tbPassword.TabIndex = 6;
+            tbPassword.TabIndex = 2;
             tbPassword.Text = "1234";
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // btnSalir
             // 
@@ -119,7 +121,7 @@
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(38, 24);
-            btnSalir.TabIndex = 7;
+            btnSalir.TabIndex = 5;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
@@ -157,7 +159,7 @@
             btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
             btnMinimizar.Size = new Size(28, 24);
-            btnMinimizar.TabIndex = 9;
+            btnMinimizar.TabIndex = 4;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
             // 

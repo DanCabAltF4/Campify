@@ -42,11 +42,37 @@ namespace Campify
         {
             try
             {
+                btnEmpleados.Visible = false;
+                btnClientes.Visible = false;
+
                 await CargarParcelas();
                 await CargarServicios();
                 await CargarEstancias();
-                if(!String.Equals(Session.Rol, "CAMPO")) await CargarClientes();
-                if(String.Equals(Session.Rol, "ADMINISTRADOR")) await CargarEmpleados();
+
+                if(String.Equals(Session.Rol, "CAMPO"))
+                {
+                    btnReservar.Visible = false;
+                    btnNuevoServicio.Visible = false;
+                    btnEditarServicio.Visible = false;
+                    btnEliminarServicio.Visible = false;
+                    btnEditarEstancia.Visible = false;
+                    btnEliminarEstancia.Visible = false;
+                    btnClientesEstancia.Visible = false;
+                }
+
+                if (!String.Equals(Session.Rol, "CAMPO"))
+                {
+                    btnClientes.Visible = true;
+                    btnEliminarCliente.Visible = false;
+                    btnEliminarServicio.Visible = false;
+                    await CargarClientes();
+                }
+
+                if (String.Equals(Session.Rol, "ADMINISTRADOR"))
+                {
+                    btnEmpleados.Visible = true;
+                    await CargarEmpleados();
+                }
             }
             catch (HttpRequestException ex)
             {
@@ -228,13 +254,45 @@ namespace Campify
         /// <summary>
         /// Cambia el panel principal a la vista de parcelas.
         /// </summary>
-        private void btnParcelas_Click(object sender, EventArgs e)
+        private async void btnParcelas_Click(object sender, EventArgs e)
         {
             pnlEmpleados.Visible = false;
             pnlServicios.Visible = false;
             pnlEstancias.Visible = false;
             pnlClientes.Visible = false;
             pnlParcelas.Visible = true;
+
+            try
+            {
+                await CargarParcelas();
+
+                if (String.Equals(Session.Rol, "CAMPO"))
+                {
+                    btnReservar.Visible = false;
+                    btnClientesEstancia.Visible = false;
+                    btnServiciosEstancia.Visible = false;
+                }
+
+                if (!String.Equals(Session.Rol, "CAMPO"))
+                {
+                    btnClientes.Visible = true;
+                    await CargarClientes();
+                }
+
+                if (String.Equals(Session.Rol, "ADMINISTRADOR"))
+                {
+                    btnEmpleados.Visible = true;
+                    await CargarEmpleados();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -273,7 +331,7 @@ namespace Campify
             btnClientesEstancia.Visible = false;
             btnServiciosEstancia.Visible = false;
 
-            btnReservar.Visible = true;
+            //if (String.Equals(Session.Rol, "CAMPO")) ? btnReservar.Visible = false : ;
             btnMantenimiento.Visible = true;
         }
 
@@ -402,6 +460,11 @@ namespace Campify
         private void btnClientesEstancia_Click(object sender, EventArgs e)
         {
             Parcela parcela = ucParcelaDatos.ParcelaActual;
+            if(parcela == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para ver sus clientes y servicios.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (parcela.Estado != EnumEstados.RESERVADA)
             {
                 MessageBox.Show("La parcela no tiene una estancia hoy.", "Estancia no activa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -815,6 +878,9 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlEstancias.Visible = false;
             pnlClientes.Visible = true;
+
+            btnEliminarCliente.Visible = false;
+            btnEliminarServicio.Visible = false;
         }
 
 

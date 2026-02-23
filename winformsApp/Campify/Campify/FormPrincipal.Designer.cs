@@ -120,7 +120,7 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEmpleados.Location = new Point(354, 37);
+            btnEmpleados.Location = new Point(602, 37);
             btnEmpleados.Name = "btnEmpleados";
             btnEmpleados.Size = new Size(118, 44);
             btnEmpleados.TabIndex = 1;
@@ -176,12 +176,12 @@
             btnRefrescarServicios.FlatAppearance.BorderSize = 0;
             btnRefrescarServicios.FlatStyle = FlatStyle.Flat;
             btnRefrescarServicios.Font = new Font("Segoe UI", 20F);
+            btnRefrescarServicios.Image = Forms.Properties.Resources.refresh_arrow;
             btnRefrescarServicios.Location = new Point(384, -4);
             btnRefrescarServicios.Margin = new Padding(0);
             btnRefrescarServicios.Name = "btnRefrescarServicios";
-            btnRefrescarServicios.Size = new Size(44, 40);
+            btnRefrescarServicios.Size = new Size(40, 40);
             btnRefrescarServicios.TabIndex = 23;
-            btnRefrescarServicios.Text = "🔄";
             btnRefrescarServicios.UseVisualStyleBackColor = true;
             btnRefrescarServicios.Click += btnRefrescarServicios_Click;
             // 
@@ -451,12 +451,12 @@
             btnRefrescarParcelas.FlatAppearance.BorderSize = 0;
             btnRefrescarParcelas.FlatStyle = FlatStyle.Flat;
             btnRefrescarParcelas.Font = new Font("Segoe UI", 20F);
+            btnRefrescarParcelas.Image = Forms.Properties.Resources.refresh_arrow;
             btnRefrescarParcelas.Location = new Point(384, -6);
             btnRefrescarParcelas.Margin = new Padding(0);
             btnRefrescarParcelas.Name = "btnRefrescarParcelas";
-            btnRefrescarParcelas.Size = new Size(44, 40);
+            btnRefrescarParcelas.Size = new Size(41, 36);
             btnRefrescarParcelas.TabIndex = 22;
-            btnRefrescarParcelas.Text = "🔄";
             btnRefrescarParcelas.UseVisualStyleBackColor = true;
             btnRefrescarParcelas.Click += btnRefrescarParcelas_Click;
             // 
@@ -528,12 +528,12 @@
             btnRefrescarEmpleados.FlatAppearance.BorderSize = 0;
             btnRefrescarEmpleados.FlatStyle = FlatStyle.Flat;
             btnRefrescarEmpleados.Font = new Font("Segoe UI", 20F);
+            btnRefrescarEmpleados.Image = Forms.Properties.Resources.refresh_arrow;
             btnRefrescarEmpleados.Location = new Point(383, -6);
             btnRefrescarEmpleados.Margin = new Padding(0);
             btnRefrescarEmpleados.Name = "btnRefrescarEmpleados";
             btnRefrescarEmpleados.Size = new Size(44, 40);
             btnRefrescarEmpleados.TabIndex = 23;
-            btnRefrescarEmpleados.Text = "🔄";
             btnRefrescarEmpleados.UseVisualStyleBackColor = true;
             btnRefrescarEmpleados.Click += btnRefrescarEmpleados_Click;
             // 
@@ -608,7 +608,7 @@
             btnEstancias.FlatStyle = FlatStyle.Flat;
             btnEstancias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEstancias.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEstancias.Location = new Point(477, 37);
+            btnEstancias.Location = new Point(354, 37);
             btnEstancias.Name = "btnEstancias";
             btnEstancias.Size = new Size(118, 44);
             btnEstancias.TabIndex = 21;
@@ -667,12 +667,12 @@
             btnRefrescarEstancias.FlatAppearance.BorderSize = 0;
             btnRefrescarEstancias.FlatStyle = FlatStyle.Flat;
             btnRefrescarEstancias.Font = new Font("Segoe UI", 20F);
+            btnRefrescarEstancias.Image = Forms.Properties.Resources.refresh_arrow;
             btnRefrescarEstancias.Location = new Point(386, -2);
             btnRefrescarEstancias.Margin = new Padding(0);
             btnRefrescarEstancias.Name = "btnRefrescarEstancias";
             btnRefrescarEstancias.Size = new Size(41, 38);
             btnRefrescarEstancias.TabIndex = 2;
-            btnRefrescarEstancias.Text = "🔄";
             btnRefrescarEstancias.UseVisualStyleBackColor = true;
             btnRefrescarEstancias.Click += btnRefrescarEstancias_Click;
             // 
@@ -700,7 +700,7 @@
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClientes.ForeColor = Color.FromArgb(44, 79, 29);
-            btnClientes.Location = new Point(600, 37);
+            btnClientes.Location = new Point(478, 37);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(118, 44);
             btnClientes.TabIndex = 23;
@@ -747,12 +747,12 @@
             btnRefrescarClientes.FlatAppearance.BorderSize = 0;
             btnRefrescarClientes.FlatStyle = FlatStyle.Flat;
             btnRefrescarClientes.Font = new Font("Segoe UI", 20F);
+            btnRefrescarClientes.Image = Forms.Properties.Resources.refresh_arrow;
             btnRefrescarClientes.Location = new Point(383, -6);
             btnRefrescarClientes.Margin = new Padding(0);
             btnRefrescarClientes.Name = "btnRefrescarClientes";
             btnRefrescarClientes.Size = new Size(44, 40);
             btnRefrescarClientes.TabIndex = 23;
-            btnRefrescarClientes.Text = "🔄";
             btnRefrescarClientes.UseVisualStyleBackColor = true;
             btnRefrescarClientes.Click += RefrescarClientes;
             // 
@@ -787,10 +787,10 @@
             btnEditarCliente.FlatStyle = FlatStyle.Flat;
             btnEditarCliente.Font = new Font("Segoe UI", 12F);
             btnEditarCliente.ForeColor = Color.Moccasin;
-            btnEditarCliente.Location = new Point(550, 328);
+            btnEditarCliente.Location = new Point(549, 328);
             btnEditarCliente.Margin = new Padding(0);
             btnEditarCliente.Name = "btnEditarCliente";
-            btnEditarCliente.Size = new Size(127, 34);
+            btnEditarCliente.Size = new Size(127, 33);
             btnEditarCliente.TabIndex = 3;
             btnEditarCliente.Text = "Editar";
             btnEditarCliente.UseVisualStyleBackColor = false;
@@ -899,11 +899,11 @@
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(799, 474);
             Controls.Add(pnlTop);
-            Controls.Add(pnlClientes);
-            Controls.Add(pnlParcelas);
-            Controls.Add(pnlServicios);
             Controls.Add(pnlEmpleados);
+            Controls.Add(pnlClientes);
             Controls.Add(pnlEstancias);
+            Controls.Add(pnlServicios);
+            Controls.Add(pnlParcelas);
             Controls.Add(pbLogo);
             Controls.Add(btnParcelas);
             Controls.Add(btnServicios);
