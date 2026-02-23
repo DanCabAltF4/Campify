@@ -3,8 +3,7 @@ name: CI Intermodular
 on:
   push:
     branches: 
-      - feature/**
-      - develop
+     - '**'
   pull_request:
     branches: ["main"]
   workflow_dispatch:
