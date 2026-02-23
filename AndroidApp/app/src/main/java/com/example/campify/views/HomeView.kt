@@ -107,7 +107,6 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
             },
             actions = {
                 IconButton(onClick = {
-                    Toast.makeText(context, "Volver a iniciar sesión", Toast.LENGTH_SHORT).show()
                     navController.navigate("Login")
                     apiModel.logout()
                 }) {
