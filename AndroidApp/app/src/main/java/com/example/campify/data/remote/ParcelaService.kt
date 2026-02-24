@@ -1,6 +1,7 @@
 package com.example.campify.data.remote
 
 import com.example.campify.data.model.Parcela
+import com.example.campify.data.model.enums.EstadoParcela
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,5 +23,9 @@ interface ParcelaService {
         @Body parcela: Parcela
     )
 
-
+    @PUT("parcelas/{id}/estado/{estado}")
+    suspend fun cambiarEstado(
+        @Path("id") id: Int,
+        @Path("estado") estado: EstadoParcela
+    ): Response<Parcela>
 }

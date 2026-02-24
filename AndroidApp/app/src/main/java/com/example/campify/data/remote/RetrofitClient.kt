@@ -1,5 +1,6 @@
 package com.example.campify.data.remote
 
+import com.example.campify.data.model.enums.EstadoParcela
 import com.example.kotlinapp.data.AuthInterceptor
 import com.example.kotlinapp.data.services.AuthService
 import okhttp3.OkHttpClient

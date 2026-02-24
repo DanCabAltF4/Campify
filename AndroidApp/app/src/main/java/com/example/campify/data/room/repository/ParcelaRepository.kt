@@ -2,6 +2,7 @@ package com.example.campify.data.room.repository
 
 import android.util.Log
 import com.example.campify.data.model.Parcela
+import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.data.remote.ParcelaService
 import com.example.campify.data.room.dao.ParcelaDAO
 import com.example.campify.data.room.mapper.toDomain
@@ -11,6 +12,15 @@ class ParcelaRepository(
     private val api: ParcelaService,
     private val dao: ParcelaDAO
 ) {
+
+    suspend fun cambiarEstado(id: Int, estado: EstadoParcela) {
+        val response = api.cambiarEstado(id, estado)
+        if (response.isSuccessful) {
+            response.body()?.let {
+                dao.update(it.toEntity())
+            }
+        }
+    }
 
     suspend fun syncParcelas() {
         val remotas = api.findAll()

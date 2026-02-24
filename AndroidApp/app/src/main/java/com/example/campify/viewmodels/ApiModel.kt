@@ -60,24 +60,18 @@ class ApiModel(private val authRepository: AuthRepository, private val roomDB: A
 
 
     fun cambiarEstadoParcela(id: Int, nuevoEstado: EstadoParcela) {
-        // Actualizamos localmente la lista para la UI
-        val parcelaActualizada = parcelas.value.map { p ->
-            if (p.id == id) p.copy(estadoParcela = nuevoEstado) else p
-        }
-        parcelas.value = parcelaActualizada
 
-        // Preparamos el objeto completo
-        val parcelaParaEnviar = parcelaActualizada.first { it.id == id }
+        // Update UI inmediata
+        parcelas.value = parcelas.value.map {
+            if (it.id == id) it.copy(estadoParcela = nuevoEstado) else it
+        }
 
         viewModelScope.launch {
             try {
-                // Actualizar primero Room
-                repo.updateLocal(parcelaParaEnviar)
-
-                // Luego enviar al API
-                repo.actualizarParcela(parcelaParaEnviar)
+                repo.cambiarEstado(id, nuevoEstado)
+                repo.updateLocal(parcelas.value.first { it.id == id })
             } catch (e: Exception) {
-                Log.e("API", "Error actualizando parcela", e)
+                Log.e("API", "Error cambiando estado", e)
             }
         }
     }
