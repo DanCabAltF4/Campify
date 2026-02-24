@@ -40,50 +40,8 @@ namespace Campify
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-                btnEmpleados.Visible = false;
-                btnClientes.Visible = false;
-
-                await CargarParcelas();
-                await CargarServicios();
-                await CargarEstancias();
-
-                if (String.Equals(Session.Rol, "CAMPO"))
-                {
-                    btnReservar.Visible = false;
-                    btnNuevoServicio.Visible = false;
-                    btnEditarServicio.Visible = false;
-                    btnEliminarServicio.Visible = false;
-                    btnEditarEstancia.Visible = false;
-                    btnEliminarEstancia.Visible = false;
-                    btnClientesEstancia.Visible = false;
-                }
-
-                if (!String.Equals(Session.Rol, "CAMPO"))
-                {
-                    btnClientes.Visible = true;
-                    btnEliminarCliente.Visible = false;
-                    btnEliminarServicio.Visible = false;
-                    await CargarClientes();
-                }
-
-                if (String.Equals(Session.Rol, "ADMINISTRADOR"))
-                {
-                    btnEmpleados.Visible = true;
-                    btnEliminarCliente.Visible = true;
-                    btnEliminarServicio.Visible = true;
-                    await CargarEmpleados();
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            OcultarBotonesPorRol();
+            await CargarDatosPorRol();
         }
 
 
@@ -94,6 +52,7 @@ namespace Campify
 
 
         // BARRA SUPERIOR 
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Session.Logout();
@@ -118,6 +77,72 @@ namespace Campify
         {
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
+
+
+
+        // OCULTAR BOTONES Y CARGAR DATOS POR ROL
+
+        private void OcultarBotonesPorRol()
+        {
+            switch (Session.Rol)
+            {
+                case "ADMINISTRADOR":
+                    break;
+
+                case "RECEPCIONISTA":
+                    OcultarAdmin();
+                    break;
+
+                case "CAMPO":
+                    OcultarAdmin();
+                    OcultarRecepcion();
+                    break;
+            }
+        }
+
+        private void OcultarAdmin()
+        {
+            btnEmpleados.Visible = false;
+            btnNuevoEmpleado.Visible = false;
+            btnEditarEmpleado.Visible = false;
+            btnEliminarEmpleado.Visible = false;
+
+            //btnNuevaParcela.Visible = false;
+            //btnEditarParcela.Visible = false;
+            //btnEliminarParcela.Visible = false;
+
+            btnEliminarServicio.Visible = false;
+            btnEliminarCliente.Visible = false;
+        }
+
+        private void OcultarRecepcion()
+        {
+            btnClientes.Visible = false;
+            btnNuevoCliente.Visible = false;
+            btnEditarCliente.Visible = false;
+
+            btnReservar.Visible = false;
+            btnClientesEstancia.Visible = false;
+            btnServiciosEstancia.Visible = false;
+            
+
+            btnNuevoServicio.Visible = false;
+            btnEditarServicio.Visible = false;
+
+            btnEditarEstancia.Visible = false;
+            btnEliminarEstancia.Visible = false;
+        }
+
+        private async Task CargarDatosPorRol()
+        {
+            await CargarParcelas();
+            await CargarServicios();
+            await CargarEstancias();
+            if (Session.Rol != "CAMPO") await CargarClientes();
+            if (Session.Rol == "ADMINISTRADOR") await CargarEmpleados();
+        }
+
+
 
 
         // CARGA DE DATOS
@@ -337,7 +362,7 @@ namespace Campify
             btnClientesEstancia.Visible = false;
             btnServiciosEstancia.Visible = false;
 
-            //if (String.Equals(Session.Rol, "CAMPO")) ? btnReservar.Visible = false : ;
+            if (String.Equals(Session.Rol, "CAMPO")) btnReservar.Visible = false; else btnReservar.Visible = true;
             btnMantenimiento.Visible = true;
         }
 
