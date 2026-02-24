@@ -107,9 +107,9 @@ namespace Campify
             btnEditarEmpleado.Visible = false;
             btnEliminarEmpleado.Visible = false;
 
-            //btnNuevaParcela.Visible = false;
-            //btnEditarParcela.Visible = false;
-            //btnEliminarParcela.Visible = false;
+            btnNuevaParcela.Visible = false;
+            btnEditarParcela.Visible = false;
+            btnEliminarParcela.Visible = false;
 
             btnEliminarServicio.Visible = false;
             btnEliminarCliente.Visible = false;
@@ -411,6 +411,9 @@ namespace Campify
         }
 
 
+        /// <summary>
+        /// Abre formulario para ver la imágen de la parcela
+        /// </summary>
         private void btnImagen_Click(object sender, EventArgs e)
         {
             if (ucParcelaDatos.ParcelaActual == null)
@@ -419,7 +422,7 @@ namespace Campify
                 return;
             }
 
-            if(ucParcelaDatos.ParcelaActual.Imagen == null)
+            if (ucParcelaDatos.ParcelaActual.Imagen == null)
             {
                 MessageBox.Show("La parcela seleccionada no tiene una imagen.", "Sin imagen", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -429,6 +432,54 @@ namespace Campify
             {
                 form.ShowDialog(this);
             }
+        }
+
+
+        /// <summary>
+        /// Abre formulario para crear nueva parcela
+        /// </summary>
+        private async void btnNuevaParcela_Click(object sender, EventArgs e)
+        {
+            using(var form = new FormNuevaParcela(_api, null))
+            {
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    ucParcelaDatos.MostrarDatos(form.ParcelaCreada);
+                    btnDatos.PerformClick();
+                    await CargarParcelas();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Abre formulario y carga datos de parcela para editarla
+        /// </summary>
+        private void btnEditarParcela_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        /// <summary>
+        /// Elimina la parcela seleccionada
+        /// </summary>
+        private async void btnEliminarParcela_Click(object sender, EventArgs e)
+        {
+            if (ucParcelaDatos.ParcelaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para eliminarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(MessageBox.Show("Se eliminará la parcela seleccionada.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int idParcela = ucParcelaDatos.ParcelaActual.Id;
+                await _api.Delete<Parcela>("api/parcelas", idParcela);
+                MessageBox.Show("Parcela eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CargarParcelas();
+            }
+
         }
 
 
