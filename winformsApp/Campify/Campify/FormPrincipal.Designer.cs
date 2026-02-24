@@ -50,6 +50,9 @@
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
+            btnEliminarParcela = new Button();
+            btnEditarParcela = new Button();
+            btnNuevaParcela = new Button();
             btnImagen = new Button();
             ucParcelaDatos = new Controles.ucParcelaDatos();
             ucEstanciaActual1 = new Controles.ucEstanciaActual();
@@ -91,6 +94,7 @@
             lblTitulo = new Label();
             btnSalir = new Button();
             tmFechaHora = new System.Windows.Forms.Timer(components);
+            lblCreditos = new Label();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
@@ -370,6 +374,9 @@
             // 
             // panelDatos
             // 
+            panelDatos.Controls.Add(btnEliminarParcela);
+            panelDatos.Controls.Add(btnEditarParcela);
+            panelDatos.Controls.Add(btnNuevaParcela);
             panelDatos.Controls.Add(btnImagen);
             panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
@@ -379,6 +386,54 @@
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
+            // 
+            // btnEliminarParcela
+            // 
+            btnEliminarParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnEliminarParcela.FlatAppearance.BorderSize = 0;
+            btnEliminarParcela.FlatStyle = FlatStyle.Flat;
+            btnEliminarParcela.Font = new Font("Segoe UI", 12F);
+            btnEliminarParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnEliminarParcela.Location = new Point(283, 348);
+            btnEliminarParcela.Margin = new Padding(0);
+            btnEliminarParcela.Name = "btnEliminarParcela";
+            btnEliminarParcela.Size = new Size(138, 40);
+            btnEliminarParcela.TabIndex = 25;
+            btnEliminarParcela.Text = "Eliminar";
+            btnEliminarParcela.UseVisualStyleBackColor = false;
+            btnEliminarParcela.Click += btnEliminarParcela_Click;
+            // 
+            // btnEditarParcela
+            // 
+            btnEditarParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnEditarParcela.FlatAppearance.BorderSize = 0;
+            btnEditarParcela.FlatStyle = FlatStyle.Flat;
+            btnEditarParcela.Font = new Font("Segoe UI", 12F);
+            btnEditarParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnEditarParcela.Location = new Point(142, 348);
+            btnEditarParcela.Margin = new Padding(0);
+            btnEditarParcela.Name = "btnEditarParcela";
+            btnEditarParcela.Size = new Size(141, 40);
+            btnEditarParcela.TabIndex = 24;
+            btnEditarParcela.Text = "Editar";
+            btnEditarParcela.UseVisualStyleBackColor = false;
+            btnEditarParcela.Click += btnEditarParcela_Click;
+            // 
+            // btnNuevaParcela
+            // 
+            btnNuevaParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnNuevaParcela.FlatAppearance.BorderSize = 0;
+            btnNuevaParcela.FlatStyle = FlatStyle.Flat;
+            btnNuevaParcela.Font = new Font("Segoe UI", 12F);
+            btnNuevaParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnNuevaParcela.Location = new Point(0, 348);
+            btnNuevaParcela.Margin = new Padding(0);
+            btnNuevaParcela.Name = "btnNuevaParcela";
+            btnNuevaParcela.Size = new Size(142, 40);
+            btnNuevaParcela.TabIndex = 23;
+            btnNuevaParcela.Text = "Nueva";
+            btnNuevaParcela.UseVisualStyleBackColor = false;
+            btnNuevaParcela.Click += btnNuevaParcela_Click;
             // 
             // btnImagen
             // 
@@ -483,7 +538,7 @@
             btnMantenimiento.Location = new Point(715, 433);
             btnMantenimiento.Margin = new Padding(0);
             btnMantenimiento.Name = "btnMantenimiento";
-            btnMantenimiento.Size = new Size(199, 47);
+            btnMantenimiento.Size = new Size(196, 47);
             btnMantenimiento.TabIndex = 18;
             btnMantenimiento.Text = "Mantenimiento";
             btnMantenimiento.UseVisualStyleBackColor = false;
@@ -846,7 +901,7 @@
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(913, 36);
+            pnlTop.Size = new Size(910, 36);
             pnlTop.TabIndex = 26;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -899,12 +954,21 @@
             tmFechaHora.Interval = 1000;
             tmFechaHora.Tick += tmFechaHora_Tick;
             // 
+            // lblCreditos
+            // 
+            lblCreditos.Location = new Point(4, 39);
+            lblCreditos.Name = "lblCreditos";
+            lblCreditos.Size = new Size(19, 19);
+            lblCreditos.TabIndex = 27;
+            lblCreditos.DoubleClick += lblCreditos_DoubleClick;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(913, 632);
+            ClientSize = new Size(910, 632);
+            Controls.Add(lblCreditos);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlClientes);
@@ -1003,5 +1067,9 @@
         private Label lblFechaHora;
         private System.Windows.Forms.Timer tmFechaHora;
         private Button btnImagen;
+        private Button btnNuevaParcela;
+        private Button btnEliminarParcela;
+        private Button btnEditarParcela;
+        private Label lblCreditos;
     }
 }
