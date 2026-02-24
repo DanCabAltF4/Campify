@@ -52,6 +52,11 @@
             lblTitulo = new Label();
             btnSalir = new Button();
             tmFechaHora = new System.Windows.Forms.Timer(components);
+            tbPassword = new TextBox();
+            lblPassword = new Label();
+            tbRepPassword = new TextBox();
+            lblRepPassword = new Label();
+            checkBox1 = new CheckBox();
             pnlTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,10 +67,9 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.Moccasin;
-            btnVolver.Location = new Point(136, 284);
-            btnVolver.Margin = new Padding(3, 2, 3, 2);
+            btnVolver.Location = new Point(163, 502);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(89, 28);
+            btnVolver.Size = new Size(102, 37);
             btnVolver.TabIndex = 0;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
@@ -78,10 +82,9 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.Moccasin;
-            btnGuardar.Location = new Point(311, 284);
-            btnGuardar.Margin = new Padding(3, 2, 3, 2);
+            btnGuardar.Location = new Point(370, 502);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(89, 28);
+            btnGuardar.Size = new Size(102, 37);
             btnGuardar.TabIndex = 1;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -90,120 +93,115 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(55, 47);
+            lblId.Location = new Point(63, 63);
             lblId.Name = "lblId";
-            lblId.Size = new Size(0, 15);
+            lblId.Size = new Size(0, 20);
             lblId.TabIndex = 27;
             // 
             // lbltxtActivo
             // 
             lbltxtActivo.AutoSize = true;
             lbltxtActivo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtActivo.Location = new Point(349, 218);
+            lbltxtActivo.Location = new Point(494, 63);
             lbltxtActivo.Name = "lbltxtActivo";
-            lbltxtActivo.Size = new Size(46, 15);
+            lbltxtActivo.Size = new Size(64, 20);
             lbltxtActivo.TabIndex = 20;
-            lbltxtActivo.Text = "Activo:";
+            lbltxtActivo.Text = "-Activo:";
             // 
             // lbltxtTelefono
             // 
             lbltxtTelefono.AutoSize = true;
             lbltxtTelefono.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtTelefono.Location = new Point(349, 154);
+            lbltxtTelefono.Location = new Point(363, 203);
             lbltxtTelefono.Name = "lbltxtTelefono";
-            lbltxtTelefono.Size = new Size(25, 15);
+            lbltxtTelefono.Size = new Size(39, 20);
             lbltxtTelefono.TabIndex = 19;
-            lbltxtTelefono.Text = "Tlf:";
+            lbltxtTelefono.Text = "-Tlf:";
             // 
             // lbltxtPuesto
             // 
             lbltxtPuesto.AutoSize = true;
             lbltxtPuesto.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtPuesto.Location = new Point(24, 218);
+            lbltxtPuesto.Location = new Point(363, 133);
             lbltxtPuesto.Name = "lbltxtPuesto";
-            lbltxtPuesto.Size = new Size(48, 15);
+            lbltxtPuesto.Size = new Size(67, 20);
             lbltxtPuesto.TabIndex = 18;
-            lbltxtPuesto.Text = "Puesto:";
+            lbltxtPuesto.Text = "-Puesto:";
             // 
             // lbltxtDni
             // 
             lbltxtDni.AutoSize = true;
             lbltxtDni.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtDni.Location = new Point(349, 98);
+            lbltxtDni.Location = new Point(228, 63);
             lbltxtDni.Name = "lbltxtDni";
-            lbltxtDni.Size = new Size(32, 15);
+            lbltxtDni.Size = new Size(47, 20);
             lbltxtDni.TabIndex = 17;
-            lbltxtDni.Text = "DNI:";
+            lbltxtDni.Text = "-DNI:";
             // 
             // lbltxtApellidos
             // 
             lbltxtApellidos.AutoSize = true;
             lbltxtApellidos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtApellidos.Location = new Point(24, 154);
+            lbltxtApellidos.Location = new Point(27, 202);
             lbltxtApellidos.Name = "lbltxtApellidos";
-            lbltxtApellidos.Size = new Size(60, 15);
+            lbltxtApellidos.Size = new Size(84, 20);
             lbltxtApellidos.TabIndex = 16;
-            lbltxtApellidos.Text = "Apellidos:";
+            lbltxtApellidos.Text = "-Apellidos:";
             // 
             // lbltxtNombre
             // 
             lbltxtNombre.AutoSize = true;
             lbltxtNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtNombre.Location = new Point(24, 98);
+            lbltxtNombre.Location = new Point(27, 133);
             lbltxtNombre.Name = "lbltxtNombre";
-            lbltxtNombre.Size = new Size(56, 15);
+            lbltxtNombre.Size = new Size(77, 20);
             lbltxtNombre.TabIndex = 15;
-            lbltxtNombre.Text = "Nombre:";
+            lbltxtNombre.Text = "-Nombre:";
             // 
             // lbltxtId
             // 
             lbltxtId.AutoSize = true;
             lbltxtId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtId.Location = new Point(24, 47);
+            lbltxtId.Location = new Point(27, 63);
             lbltxtId.Name = "lbltxtId";
-            lbltxtId.Size = new Size(24, 15);
+            lbltxtId.Size = new Size(38, 20);
             lbltxtId.TabIndex = 14;
-            lbltxtId.Text = "Nº:";
+            lbltxtId.Text = "-Nº:";
             // 
             // txbNombre
             // 
-            txbNombre.Location = new Point(92, 96);
-            txbNombre.Margin = new Padding(3, 2, 3, 2);
+            txbNombre.Location = new Point(105, 130);
             txbNombre.Name = "txbNombre";
-            txbNombre.Size = new Size(200, 23);
+            txbNombre.Size = new Size(228, 27);
             txbNombre.TabIndex = 28;
             // 
             // txbApellidos
             // 
-            txbApellidos.Location = new Point(98, 152);
-            txbApellidos.Margin = new Padding(3, 2, 3, 2);
+            txbApellidos.Location = new Point(112, 200);
             txbApellidos.Name = "txbApellidos";
-            txbApellidos.Size = new Size(194, 23);
+            txbApellidos.Size = new Size(221, 27);
             txbApellidos.TabIndex = 29;
             // 
             // txbDni
             // 
-            txbDni.Location = new Point(390, 96);
-            txbDni.Margin = new Padding(3, 2, 3, 2);
+            txbDni.Location = new Point(275, 60);
             txbDni.Name = "txbDni";
-            txbDni.Size = new Size(131, 23);
+            txbDni.Size = new Size(149, 27);
             txbDni.TabIndex = 31;
             // 
             // txbTelefono
             // 
-            txbTelefono.Location = new Point(383, 152);
-            txbTelefono.Margin = new Padding(3, 2, 3, 2);
+            txbTelefono.Location = new Point(402, 201);
             txbTelefono.Name = "txbTelefono";
-            txbTelefono.Size = new Size(138, 23);
+            txbTelefono.Size = new Size(203, 27);
             txbTelefono.TabIndex = 32;
             // 
             // cbPuesto
             // 
             cbPuesto.FormattingEnabled = true;
-            cbPuesto.Location = new Point(83, 216);
-            cbPuesto.Margin = new Padding(3, 2, 3, 2);
+            cbPuesto.Location = new Point(431, 130);
             cbPuesto.Name = "cbPuesto";
-            cbPuesto.Size = new Size(153, 23);
+            cbPuesto.Size = new Size(174, 28);
             cbPuesto.TabIndex = 34;
             // 
             // chbActivo
@@ -211,10 +209,9 @@
             chbActivo.AutoSize = true;
             chbActivo.Checked = true;
             chbActivo.CheckState = CheckState.Checked;
-            chbActivo.Location = new Point(405, 220);
-            chbActivo.Margin = new Padding(3, 2, 3, 2);
+            chbActivo.Location = new Point(558, 65);
             chbActivo.Name = "chbActivo";
-            chbActivo.Size = new Size(15, 14);
+            chbActivo.Size = new Size(18, 17);
             chbActivo.TabIndex = 35;
             chbActivo.UseVisualStyleBackColor = true;
             // 
@@ -227,9 +224,8 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
-            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(542, 27);
+            pnlTop.Size = new Size(639, 36);
             pnlTop.TabIndex = 36;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -237,9 +233,9 @@
             // 
             lblFechaHora.AutoSize = true;
             lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(219, 9);
+            lblFechaHora.Location = new Point(250, 12);
             lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 13);
+            lblFechaHora.Size = new Size(0, 19);
             lblFechaHora.TabIndex = 37;
             // 
             // btnMinimizar
@@ -247,10 +243,9 @@
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(468, 1);
-            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
+            btnMinimizar.Location = new Point(535, 1);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(28, 24);
+            btnMinimizar.Size = new Size(32, 32);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -258,9 +253,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(9, 8);
+            lblTitulo.Location = new Point(10, 11);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(123, 15);
+            lblTitulo.Size = new Size(160, 20);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Detalles del empleado";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -270,10 +265,9 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(501, 1);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(573, 1);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(38, 24);
+            btnSalir.Size = new Size(43, 32);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -284,12 +278,65 @@
             tmFechaHora.Interval = 1000;
             tmFechaHora.Tick += tmFechaHora_Tick;
             // 
+            // tbPassword
+            // 
+            tbPassword.Location = new Point(184, 358);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(311, 27);
+            tbPassword.TabIndex = 38;
+            tbPassword.UseSystemPasswordChar = true;
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblPassword.Location = new Point(27, 358);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(98, 20);
+            lblPassword.TabIndex = 37;
+            lblPassword.Text = "-Contraseña:";
+            // 
+            // tbRepPassword
+            // 
+            tbRepPassword.Location = new Point(184, 416);
+            tbRepPassword.Name = "tbRepPassword";
+            tbRepPassword.Size = new Size(311, 27);
+            tbRepPassword.TabIndex = 40;
+            tbRepPassword.UseSystemPasswordChar = true;
+            // 
+            // lblRepPassword
+            // 
+            lblRepPassword.AutoSize = true;
+            lblRepPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblRepPassword.Location = new Point(27, 419);
+            lblRepPassword.Name = "lblRepPassword";
+            lblRepPassword.Size = new Size(151, 20);
+            lblRepPassword.TabIndex = 39;
+            lblRepPassword.Text = "-Repetir contraseña:";
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.CheckAlign = ContentAlignment.MiddleRight;
+            checkBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            checkBox1.Location = new Point(27, 298);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(184, 24);
+            checkBox1.TabIndex = 41;
+            checkBox1.Text = "¿Cambiar contraseña?";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // FormDatosEmpleado
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(542, 338);
+            ClientSize = new Size(639, 561);
+            Controls.Add(checkBox1);
+            Controls.Add(tbRepPassword);
+            Controls.Add(lblRepPassword);
+            Controls.Add(tbPassword);
+            Controls.Add(lblPassword);
             Controls.Add(pnlTop);
             Controls.Add(chbActivo);
             Controls.Add(cbPuesto);
@@ -308,7 +355,6 @@
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormDatosEmpleado";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormDatosEmpleado";
@@ -342,5 +388,10 @@
         private Button btnSalir;
         private Label lblFechaHora;
         private System.Windows.Forms.Timer tmFechaHora;
+        private TextBox tbPassword;
+        private Label lblPassword;
+        private TextBox tbRepPassword;
+        private Label lblRepPassword;
+        private CheckBox checkBox1;
     }
 }
