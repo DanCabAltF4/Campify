@@ -69,11 +69,8 @@ public class SecurityConfig {
                         .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA", "CAMPO")
                         .requestMatchers(HttpMethod.POST, "/api/estancias/**")
                         .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
-
-                        // RECEPCIONISTA necesita PUT para modificar reservas
                         .requestMatchers(HttpMethod.PUT, "/api/estancias/**")
                         .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
-
                         .requestMatchers(HttpMethod.DELETE, "/api/estancias/**")
                         .hasAnyRole("ADMINISTRADOR", "RECEPCIONISTA")
 
@@ -84,8 +81,6 @@ public class SecurityConfig {
                         .hasRole("ADMINISTRADOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/parcelas/**")
                         .hasRole("ADMINISTRADOR")
-
-                        // PUT: ADMIN, CAMPO y ahora también RECEPCIONISTA (temporal)
                         .requestMatchers(HttpMethod.PUT, "/api/parcelas/**")
                         .hasAnyRole("ADMINISTRADOR", "CAMPO", "RECEPCIONISTA")
 

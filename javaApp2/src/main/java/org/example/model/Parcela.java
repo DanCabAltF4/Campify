@@ -36,6 +36,9 @@ public class Parcela {
     @Enumerated(EnumType.STRING)
     private EstadoParcela estado_parcela;
 
+    @Column(name = "imagen", columnDefinition = "LONGTEXT")
+    private String imagen;
+
 
     public Parcela() {
     }
@@ -50,6 +53,14 @@ public class Parcela {
 
     public double getPrecio_noche() {
         return precio_noche;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public void setPrecio_noche(double precio_noche) {

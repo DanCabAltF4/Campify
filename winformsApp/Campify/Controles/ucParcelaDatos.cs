@@ -59,5 +59,6 @@ namespace Controles
             lblEntrada.Text = "";
             lblZonaTranquila.Text = "";
         }
+
     }
 }

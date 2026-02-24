@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controles;
+using Model;
+using Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Forms
 {
-    public partial class FormVerMapa : Form
+    public partial class FormsVerImagen : Form
     {
         //Atributos para menu superior
         [DllImport("user32.dll")]
@@ -24,10 +27,40 @@ namespace Forms
         private const int HTCAPTION = 0x2;
 
 
-        public FormVerMapa()
+        // Atributos de la clase
+        private ApiCampify _api;
+        private Parcela _parcela;
+
+        public FormsVerImagen(ApiCampify api, Parcela parcela)
         {
             InitializeComponent();
+            _api = api;
+            _parcela = parcela;
         }
+
+        private void FormsVerImagen_Load(object sender, EventArgs e)
+        {
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            
+            String imgBase64 = _parcela.Imagen;
+
+
+            if(imgBase64 == null)
+            {
+                pbImagen.Image = null;
+                return;
+            }
+
+            byte[] imgBytes = Convert.FromBase64String(imgBase64);
+            using (var ms = new MemoryStream(imgBytes))
+            {
+                pbImagen.Image = Image.FromStream(ms);
+                pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+
+        }
+
+
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -53,5 +86,7 @@ namespace Forms
         {
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
+
+
     }
 }
