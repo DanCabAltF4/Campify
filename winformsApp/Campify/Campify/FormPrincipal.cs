@@ -40,6 +40,7 @@ namespace Campify
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            btnParcelas.BackColor = Color.FromArgb(160, 210, 140);
             OcultarBotonesPorRol();
             await CargarDatosPorRol();
         }
@@ -292,6 +293,12 @@ namespace Campify
             pnlEstancias.Visible = false;
             pnlClientes.Visible = false;
             pnlParcelas.Visible = true;
+
+            btnParcelas.BackColor = Color.FromArgb(160, 210, 140);
+            btnServicios.BackColor = Color.FromArgb(197, 239, 170);
+            btnEstancias.BackColor = Color.FromArgb(197, 239, 170);
+            btnClientes.BackColor = Color.FromArgb(197, 239, 170);
+            btnEmpleados.BackColor = Color.FromArgb(197, 239, 170);
 
             try
             {
@@ -674,6 +681,12 @@ namespace Campify
             pnlEstancias.Visible = false;
             pnlClientes.Visible = false;
             pnlEmpleados.Visible = true;
+
+            btnParcelas.BackColor = Color.FromArgb(197, 239, 170);
+            btnServicios.BackColor = Color.FromArgb(197, 239, 170);
+            btnEstancias.BackColor = Color.FromArgb(197, 239, 170);
+            btnClientes.BackColor = Color.FromArgb(197, 239, 170);
+            btnEmpleados.BackColor = Color.FromArgb(160, 210, 140);
         }
 
 
@@ -795,6 +808,12 @@ namespace Campify
             pnlEstancias.Visible = false;
             pnlClientes.Visible = false;
             pnlServicios.Visible = true;
+
+            btnParcelas.BackColor = Color.FromArgb(197, 239, 170);
+            btnServicios.BackColor = Color.FromArgb(160, 210, 140);
+            btnEstancias.BackColor = Color.FromArgb(197, 239, 170);
+            btnClientes.BackColor = Color.FromArgb(197, 239, 170);
+            btnEmpleados.BackColor = Color.FromArgb(197, 239, 170);
         }
 
 
@@ -916,6 +935,12 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlClientes.Visible = false;
             pnlEstancias.Visible = true;
+
+            btnParcelas.BackColor = Color.FromArgb(197, 239, 170);
+            btnServicios.BackColor = Color.FromArgb(197, 239, 170);
+            btnEstancias.BackColor = Color.FromArgb(160, 210, 140);
+            btnClientes.BackColor = Color.FromArgb(197, 239, 170);
+            btnEmpleados.BackColor = Color.FromArgb(197, 239, 170);
         }
 
 
@@ -1008,6 +1033,12 @@ namespace Campify
             pnlServicios.Visible = false;
             pnlEstancias.Visible = false;
             pnlClientes.Visible = true;
+
+            btnParcelas.BackColor = Color.FromArgb(197, 239, 170);
+            btnServicios.BackColor = Color.FromArgb(197, 239, 170);
+            btnEstancias.BackColor = Color.FromArgb(197, 239, 170);
+            btnClientes.BackColor = Color.FromArgb(160, 210, 140);
+            btnEmpleados.BackColor = Color.FromArgb(197, 239, 170);
 
             if (!String.Equals(Session.Rol, "ADMINISTRADOR"))
             {
