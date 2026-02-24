@@ -15,7 +15,8 @@ data class ParcelaEntity(
     val zona_sombra: Boolean,
     val cerca_entrada: Boolean,
     val zona_tranquila: Boolean,
-    val estado_parcela: EstadoParcela
+    val estado_parcela: EstadoParcela,
+    val imagen_parcela: String?
 )
 
 

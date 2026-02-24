@@ -1,5 +1,6 @@
 package com.example.campify.views
 
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +33,9 @@ import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.ui.theme.*
 import com.example.campify.viewmodels.ApiModel
+import android.util.Base64
+import androidx.compose.ui.layout.ContentScale
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -337,8 +342,54 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
     }
 }
 
+
+@OptIn(ExperimentalEncodingApi::class)
+fun base64ToBitmap(base64: String): android.graphics.Bitmap? {
+    return try {
+        val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
+        BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
+
+@Composable
+fun ParcelaThumbnail(base64: String?) {
+
+    val bitmap = remember(base64) {
+        base64
+            ?.substringAfter("base64,", base64)
+            ?.let { base64ToBitmap(it) }
+    }
+
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        modifier = Modifier
+            .size(80.dp)
+    ) {
+        if (bitmap != null) {
+            Image(
+                bitmap = bitmap.asImageBitmap(),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            Image(
+                painter = painterResource(R.drawable.campify_logo),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+    }
+}
+
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
+
+
 
     // Valores seguros por defecto para estado y icono
     val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
@@ -368,25 +419,25 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
             Box(
                 modifier = Modifier
                     .width(6.dp)
-                    .height(50.dp)
+                    .height(70.dp)
                     .background(colorEstado, RoundedCornerShape(4.dp))
             )
 
-            Spacer(Modifier.width(16.dp))
+            Spacer(Modifier.width(12.dp))
 
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
 
                 Text(
                     text = "Parcela ${parcela.id}",
                     fontSize = 17.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    fontWeight = FontWeight.Bold
                 )
 
                 Spacer(Modifier.height(6.dp))
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
-
                     Icon(
                         imageVector = iconoEstado,
                         contentDescription = null,
@@ -402,20 +453,24 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
                             ?.replaceFirstChar { it.uppercase() }
                             ?: "Desconocido",
                         fontSize = 14.sp,
-                        color = colorEstado,
-                        fontWeight = FontWeight.Medium
+                        color = colorEstado
                     )
                 }
 
                 Spacer(Modifier.height(4.dp))
 
-                // Mostrar tipo de parcela seguro
                 Text(
                     text = "Tipo: ${parcela.tipoParcela?.name ?: "Desconocido"}",
                     fontSize = 14.sp,
                     color = Color.DarkGray
                 )
             }
+
+            Spacer(Modifier.width(12.dp))
+
+            // Imagen a la derecha
+            ParcelaThumbnail(parcela.imagenParcela)
         }
     }
 }
+

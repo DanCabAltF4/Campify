@@ -17,7 +17,11 @@ class ParcelaRepository(
         if (remotas.isSuccessful) {
             var remotasBody = remotas.body()
             dao.clear()
+            Log.d("API_IMG", remotasBody?.firstOrNull()?.imagenParcela ?: "null")
             dao.insertAll(remotasBody!!.map { it.toEntity() })
+            val locales = dao.getAll()
+            Log.d("ROOM_IMG", locales.firstOrNull()?.imagen_parcela ?: "null")
+
         }else{
             Log.e("ERROR","Busqueda de parcelas fallida")
         }

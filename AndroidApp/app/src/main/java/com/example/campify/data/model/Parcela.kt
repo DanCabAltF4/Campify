@@ -13,5 +13,6 @@ data class Parcela(
     @SerializedName("zona_sombra") var zonaSombra: Boolean,
     @SerializedName("cerca_entrada") val cercaEntrada: Boolean,
     @SerializedName("zona_tranquila") val zonaTranquila: Boolean,
-    @SerializedName("estado_parcela") var estadoParcela: EstadoParcela
+    @SerializedName("estado_parcela") var estadoParcela: EstadoParcela,
+    @SerializedName("imagen") val imagenParcela: String?
 )
