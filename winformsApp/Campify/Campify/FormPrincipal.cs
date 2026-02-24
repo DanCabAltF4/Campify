@@ -455,9 +455,23 @@ namespace Campify
         /// <summary>
         /// Abre formulario y carga datos de parcela para editarla
         /// </summary>
-        private void btnEditarParcela_Click(object sender, EventArgs e)
+        private async void btnEditarParcela_Click(object sender, EventArgs e)
         {
+            if (ucParcelaDatos.ParcelaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para editarla.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            using (var form = new FormNuevaParcela(_api, ucParcelaDatos.ParcelaActual))
+            {
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    ucParcelaDatos.MostrarDatos(form.ParcelaCreada);
+                    btnDatos.PerformClick();
+                    await CargarParcelas();
+                }
+            }
         }
 
 

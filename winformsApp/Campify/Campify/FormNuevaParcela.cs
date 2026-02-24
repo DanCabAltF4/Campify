@@ -38,6 +38,8 @@ namespace Forms
             InitializeComponent();
             _api = api;
             _parcela = parcela;
+
+            cbTipoParcela.DataSource = Enum.GetValues(typeof(EnumTipos));
         }
 
         private void FormNuevaParcela_Load(object sender, EventArgs e)
@@ -68,5 +70,10 @@ namespace Forms
 
         }
 
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.DialogResult= DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

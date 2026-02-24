@@ -36,7 +36,24 @@
             lblTitulo = new Label();
             btnSalir = new Button();
             tmFechaHora = new System.Windows.Forms.Timer(components);
+            lblId = new Label();
+            lblTipoParcela = new Label();
+            lblImagen = new Label();
+            lblPrecioNoche = new Label();
+            lbltxtId = new Label();
+            ckCercaBaño = new CheckBox();
+            ckCercaEntrada = new CheckBox();
+            ckTieneVistas = new CheckBox();
+            ckZonaSombra = new CheckBox();
+            ckZonaTranquila = new CheckBox();
+            cbTipoParcela = new ComboBox();
+            nudPrecioNoche = new NumericUpDown();
+            pbImagen = new PictureBox();
+            btnVolver = new Button();
+            btnGuardar = new Button();
             pnlTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioNoche).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbImagen).BeginInit();
             SuspendLayout();
             // 
             // pnlTop
@@ -49,7 +66,7 @@
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(800, 36);
+            pnlTop.Size = new Size(810, 36);
             pnlTop.TabIndex = 27;
             // 
             // lblFechaHora
@@ -100,12 +117,194 @@
             tmFechaHora.Interval = 1000;
             tmFechaHora.Tick += tmFechaHora_Tick;
             // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblId.Location = new Point(36, 74);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(38, 20);
+            lblId.TabIndex = 28;
+            lblId.Text = "-Nº:";
+            // 
+            // lblTipoParcela
+            // 
+            lblTipoParcela.AutoSize = true;
+            lblTipoParcela.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTipoParcela.Location = new Point(337, 74);
+            lblTipoParcela.Name = "lblTipoParcela";
+            lblTipoParcela.Size = new Size(125, 20);
+            lblTipoParcela.TabIndex = 30;
+            lblTipoParcela.Text = "-Tipo de parcela:";
+            // 
+            // lblImagen
+            // 
+            lblImagen.AutoSize = true;
+            lblImagen.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblImagen.Location = new Point(36, 357);
+            lblImagen.Name = "lblImagen";
+            lblImagen.Size = new Size(72, 20);
+            lblImagen.TabIndex = 32;
+            lblImagen.Text = "-Imagen:";
+            // 
+            // lblPrecioNoche
+            // 
+            lblPrecioNoche.AutoSize = true;
+            lblPrecioNoche.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblPrecioNoche.Location = new Point(36, 262);
+            lblPrecioNoche.Name = "lblPrecioNoche";
+            lblPrecioNoche.Size = new Size(108, 20);
+            lblPrecioNoche.TabIndex = 34;
+            lblPrecioNoche.Text = "-Precio noche:";
+            // 
+            // lbltxtId
+            // 
+            lbltxtId.AutoSize = true;
+            lbltxtId.Location = new Point(77, 74);
+            lbltxtId.Name = "lbltxtId";
+            lbltxtId.Size = new Size(0, 20);
+            lbltxtId.TabIndex = 38;
+            // 
+            // ckCercaBaño
+            // 
+            ckCercaBaño.AutoSize = true;
+            ckCercaBaño.CheckAlign = ContentAlignment.BottomCenter;
+            ckCercaBaño.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ckCercaBaño.Location = new Point(36, 156);
+            ckCercaBaño.Name = "ckCercaBaño";
+            ckCercaBaño.Size = new Size(99, 41);
+            ckCercaBaño.TabIndex = 39;
+            ckCercaBaño.Text = "-Baño cerca:";
+            ckCercaBaño.UseVisualStyleBackColor = true;
+            // 
+            // ckCercaEntrada
+            // 
+            ckCercaEntrada.AutoSize = true;
+            ckCercaEntrada.CheckAlign = ContentAlignment.BottomCenter;
+            ckCercaEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ckCercaEntrada.Location = new Point(173, 156);
+            ckCercaEntrada.Name = "ckCercaEntrada";
+            ckCercaEntrada.Size = new Size(117, 41);
+            ckCercaEntrada.TabIndex = 40;
+            ckCercaEntrada.Text = "-Entrada cerca:";
+            ckCercaEntrada.UseVisualStyleBackColor = true;
+            // 
+            // ckTieneVistas
+            // 
+            ckTieneVistas.AutoSize = true;
+            ckTieneVistas.CheckAlign = ContentAlignment.BottomCenter;
+            ckTieneVistas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ckTieneVistas.Location = new Point(337, 156);
+            ckTieneVistas.Name = "ckTieneVistas";
+            ckTieneVistas.Size = new Size(105, 41);
+            ckTieneVistas.TabIndex = 41;
+            ckTieneVistas.Text = "-Tiene vistas:";
+            ckTieneVistas.UseVisualStyleBackColor = true;
+            // 
+            // ckZonaSombra
+            // 
+            ckZonaSombra.AutoSize = true;
+            ckZonaSombra.CheckAlign = ContentAlignment.BottomCenter;
+            ckZonaSombra.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ckZonaSombra.Location = new Point(475, 156);
+            ckZonaSombra.Name = "ckZonaSombra";
+            ckZonaSombra.Size = new Size(136, 41);
+            ckZonaSombra.TabIndex = 42;
+            ckZonaSombra.Text = "-Zona de sombra:";
+            ckZonaSombra.UseVisualStyleBackColor = true;
+            // 
+            // ckZonaTranquila
+            // 
+            ckZonaTranquila.AutoSize = true;
+            ckZonaTranquila.CheckAlign = ContentAlignment.BottomCenter;
+            ckZonaTranquila.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ckZonaTranquila.Location = new Point(650, 156);
+            ckZonaTranquila.Name = "ckZonaTranquila";
+            ckZonaTranquila.Size = new Size(125, 41);
+            ckZonaTranquila.TabIndex = 43;
+            ckZonaTranquila.Text = "-Zona tranquila:";
+            ckZonaTranquila.UseVisualStyleBackColor = true;
+            // 
+            // cbTipoParcela
+            // 
+            cbTipoParcela.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTipoParcela.FormattingEnabled = true;
+            cbTipoParcela.Location = new Point(468, 71);
+            cbTipoParcela.Name = "cbTipoParcela";
+            cbTipoParcela.Size = new Size(192, 28);
+            cbTipoParcela.TabIndex = 44;
+            // 
+            // nudPrecioNoche
+            // 
+            nudPrecioNoche.DecimalPlaces = 2;
+            nudPrecioNoche.Location = new Point(150, 260);
+            nudPrecioNoche.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            nudPrecioNoche.Name = "nudPrecioNoche";
+            nudPrecioNoche.Size = new Size(150, 27);
+            nudPrecioNoche.TabIndex = 45;
+            nudPrecioNoche.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // pbImagen
+            // 
+            pbImagen.Location = new Point(475, 260);
+            pbImagen.Name = "pbImagen";
+            pbImagen.Size = new Size(300, 225);
+            pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
+            pbImagen.TabIndex = 46;
+            pbImagen.TabStop = false;
+            // 
+            // btnVolver
+            // 
+            btnVolver.BackColor = Color.FromArgb(190, 130, 65);
+            btnVolver.FlatAppearance.BorderSize = 0;
+            btnVolver.FlatStyle = FlatStyle.Flat;
+            btnVolver.Font = new Font("Segoe UI", 12F);
+            btnVolver.ForeColor = Color.FromArgb(255, 222, 171);
+            btnVolver.Location = new Point(36, 450);
+            btnVolver.Margin = new Padding(0);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(130, 35);
+            btnVolver.TabIndex = 47;
+            btnVolver.Text = "Volver";
+            btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.BackColor = Color.FromArgb(190, 130, 65);
+            btnGuardar.FlatAppearance.BorderSize = 0;
+            btnGuardar.FlatStyle = FlatStyle.Flat;
+            btnGuardar.Font = new Font("Segoe UI", 12F);
+            btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
+            btnGuardar.Location = new Point(275, 450);
+            btnGuardar.Margin = new Padding(0);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(130, 35);
+            btnGuardar.TabIndex = 48;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            // 
             // FormNuevaParcela
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(810, 518);
+            Controls.Add(btnGuardar);
+            Controls.Add(btnVolver);
+            Controls.Add(pbImagen);
+            Controls.Add(nudPrecioNoche);
+            Controls.Add(cbTipoParcela);
+            Controls.Add(ckZonaTranquila);
+            Controls.Add(ckZonaSombra);
+            Controls.Add(ckTieneVistas);
+            Controls.Add(ckCercaEntrada);
+            Controls.Add(ckCercaBaño);
+            Controls.Add(lbltxtId);
+            Controls.Add(lblPrecioNoche);
+            Controls.Add(lblImagen);
+            Controls.Add(lblTipoParcela);
+            Controls.Add(lblId);
             Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormNuevaParcela";
@@ -114,7 +313,10 @@
             Load += FormNuevaParcela_Load;
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudPrecioNoche).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbImagen).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -125,5 +327,20 @@
         private Label lblTitulo;
         private Button btnSalir;
         private System.Windows.Forms.Timer tmFechaHora;
+        private Label lblId;
+        private Label lblTipoParcela;
+        private Label lblImagen;
+        private Label lblPrecioNoche;
+        private Label lbltxtId;
+        private CheckBox ckCercaBaño;
+        private CheckBox ckCercaEntrada;
+        private CheckBox ckTieneVistas;
+        private CheckBox ckZonaSombra;
+        private CheckBox ckZonaTranquila;
+        private ComboBox cbTipoParcela;
+        private NumericUpDown nudPrecioNoche;
+        private PictureBox pbImagen;
+        private Button btnVolver;
+        private Button btnGuardar;
     }
 }
