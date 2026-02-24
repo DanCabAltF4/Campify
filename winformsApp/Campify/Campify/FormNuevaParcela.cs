@@ -123,6 +123,8 @@ namespace Forms
                 if (ofd.ShowDialog() != DialogResult.OK) return;
 
                 byte[] bytes = File.ReadAllBytes(ofd.FileName);
+                byte[] reducido = RedimensionarImagen(bytes, 1200);
+
                 _archivoSeleccionado64 = Convert.ToBase64String(bytes);
 
                 // Previsualizar
@@ -133,6 +135,32 @@ namespace Forms
             }
         }
 
+        //Redimensionar imágen para reducir el peso de los json en las peticiones
+        private byte[] RedimensionarImagen(byte[] originalBytes, int maxWidth)
+        {
+            using var ms = new MemoryStream(originalBytes);
+            using var imgOriginal = Image.FromStream(ms);
+
+            int newWidth = imgOriginal.Width;
+            int newHeight = imgOriginal.Height;
+
+            if (imgOriginal.Width > maxWidth)
+            {
+                double ratio = (double)maxWidth / imgOriginal.Width;
+                newWidth = maxWidth;
+                newHeight = (int)(imgOriginal.Height * ratio);
+            }
+
+            using var bmp = new Bitmap(newWidth, newHeight);
+            using var g = Graphics.FromImage(bmp);
+
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            g.DrawImage(imgOriginal, 0, 0, newWidth, newHeight);
+
+            using var msOut = new MemoryStream();
+            bmp.Save(msOut, System.Drawing.Imaging.ImageFormat.Jpeg); // Comprimir imagen a JPEG
+            return msOut.ToArray();
+        }
 
 
 

@@ -1113,7 +1113,7 @@ namespace Campify
 
         private void lblCreditos_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

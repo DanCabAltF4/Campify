@@ -394,10 +394,10 @@
             btnEliminarParcela.FlatStyle = FlatStyle.Flat;
             btnEliminarParcela.Font = new Font("Segoe UI", 12F);
             btnEliminarParcela.ForeColor = Color.FromArgb(255, 222, 171);
-            btnEliminarParcela.Location = new Point(283, 348);
+            btnEliminarParcela.Location = new Point(281, 348);
             btnEliminarParcela.Margin = new Padding(0);
             btnEliminarParcela.Name = "btnEliminarParcela";
-            btnEliminarParcela.Size = new Size(138, 40);
+            btnEliminarParcela.Size = new Size(145, 40);
             btnEliminarParcela.TabIndex = 25;
             btnEliminarParcela.Text = "Eliminar";
             btnEliminarParcela.UseVisualStyleBackColor = false;
@@ -958,7 +958,7 @@
             // 
             lblCreditos.Location = new Point(4, 39);
             lblCreditos.Name = "lblCreditos";
-            lblCreditos.Size = new Size(19, 19);
+            lblCreditos.Size = new Size(16, 15);
             lblCreditos.TabIndex = 27;
             lblCreditos.DoubleClick += lblCreditos_DoubleClick;
             // 
