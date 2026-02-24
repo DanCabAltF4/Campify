@@ -306,13 +306,13 @@ fun NavigationSegment(
     ) {
         opciones.forEach { opcion ->
 
-            val estaSeleccionada = opcion == seleccionada
+            val seleccionadaActual = opcion == seleccionada
 
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .background(
-                        color = if (estaSeleccionada) botonActivoColor else Color.Transparent,
+                        color = if (seleccionadaActual) botonActivoColor else Color.Transparent,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
@@ -324,8 +324,7 @@ fun NavigationSegment(
             ) {
                 Text(
                     text = opcion,
-                    color = if (estaSeleccionada) dynamicColor(Color.White, Color.Black)
-                    else textSecondary,
+                    color = if (seleccionadaActual) Color.White else textSecondary,
                     fontWeight = FontWeight.SemiBold
                 )
             }
