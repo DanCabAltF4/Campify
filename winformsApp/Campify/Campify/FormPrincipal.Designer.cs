@@ -126,7 +126,7 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEmpleados.Location = new Point(688, 49);
+            btnEmpleados.Location = new Point(667, 59);
             btnEmpleados.Margin = new Padding(3, 4, 3, 4);
             btnEmpleados.Name = "btnEmpleados";
             btnEmpleados.Size = new Size(135, 59);
@@ -141,10 +141,10 @@
             btnParcelas.FlatStyle = FlatStyle.Flat;
             btnParcelas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnParcelas.ForeColor = Color.FromArgb(44, 79, 29);
-            btnParcelas.Location = new Point(122, 49);
+            btnParcelas.Location = new Point(112, 59);
             btnParcelas.Margin = new Padding(3, 4, 3, 4);
             btnParcelas.Name = "btnParcelas";
-            btnParcelas.Size = new Size(135, 59);
+            btnParcelas.Size = new Size(124, 59);
             btnParcelas.TabIndex = 2;
             btnParcelas.Text = "Parcelas";
             btnParcelas.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnServicios.ForeColor = Color.FromArgb(44, 79, 29);
-            btnServicios.Location = new Point(263, 49);
+            btnServicios.Location = new Point(242, 59);
             btnServicios.Margin = new Padding(3, 4, 3, 4);
             btnServicios.Name = "btnServicios";
             btnServicios.Size = new Size(135, 59);
@@ -675,7 +675,7 @@
             btnEstancias.FlatStyle = FlatStyle.Flat;
             btnEstancias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEstancias.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEstancias.Location = new Point(405, 49);
+            btnEstancias.Location = new Point(384, 59);
             btnEstancias.Margin = new Padding(3, 4, 3, 4);
             btnEstancias.Name = "btnEstancias";
             btnEstancias.Size = new Size(135, 59);
@@ -766,7 +766,7 @@
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClientes.ForeColor = Color.FromArgb(44, 79, 29);
-            btnClientes.Location = new Point(546, 49);
+            btnClientes.Location = new Point(525, 59);
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(135, 59);
@@ -882,13 +882,16 @@
             btnLogOut.FlatStyle = FlatStyle.Flat;
             btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnLogOut.ForeColor = Color.FromArgb(44, 79, 29);
-            btnLogOut.Image = Forms.Properties.Resources.logout;
-            btnLogOut.Location = new Point(843, 49);
-            btnLogOut.Margin = new Padding(3, 4, 3, 4);
+            btnLogOut.Image = (Image)resources.GetObject("btnLogOut.Image");
+            btnLogOut.ImageAlign = ContentAlignment.TopCenter;
+            btnLogOut.Location = new Point(824, 36);
+            btnLogOut.Margin = new Padding(0);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(59, 59);
+            btnLogOut.Size = new Size(87, 82);
             btnLogOut.TabIndex = 25;
-            btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.TextAlign = ContentAlignment.BottomCenter;
+            btnLogOut.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnLogOut.UseVisualStyleBackColor = false;
             btnLogOut.Click += btnLogOut_Click;
             // 
             // pnlTop
@@ -968,13 +971,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(910, 632);
+            Controls.Add(pnlTop);
             Controls.Add(lblCreditos);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlClientes);
             Controls.Add(pnlEstancias);
             Controls.Add(pnlServicios);
-            Controls.Add(pnlTop);
             Controls.Add(pbLogo);
             Controls.Add(btnParcelas);
             Controls.Add(btnServicios);

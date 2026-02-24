@@ -21,7 +21,7 @@ namespace Campify
         // DECLARACION DE VARIABLES Y OBJETOS
         // ----------------------------------
         private readonly ApiCampify _api;
-        private Empleado _empleado;
+        private Empleado? _empleado;
 
         public Empleado EmpleadoGuardado { get; set; }
 
@@ -38,8 +38,20 @@ namespace Campify
             _api = api;
 
             cbPuesto.DataSource = Enum.GetValues(typeof(EnumPuestos));
-            cbPuesto.SelectedItem = EnumPuestos.CAMPO;
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+            if(_empleado == null)
+            {
+                lbltxtId.Text = "---";
+                txbDni.Text = "";
+                chbActivo.Checked = true;
+                txbNombre.Text = "";
+                txbApellidos.Text = "";
+
+            }
+
+                cbPuesto.SelectedItem = EnumPuestos.CAMPO;
+
 
             CargarDatosEmpleado();
         }

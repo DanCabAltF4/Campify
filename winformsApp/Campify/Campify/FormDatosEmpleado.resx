@@ -120,21 +120,21 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMinimizar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAALAAAACwARRqq2kAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAlUlEQVRIS+2UQQrCQAxF3063utVbeBZ33sJ6B1cueuHKgxZCaK0wzmKwDwLhJ5lAMjOw0QJH4AKc
-        g6avZqyYGzAAr6Dpqxkrpr0GB+AarP/QwFjMtXYVl2dxtnvIeczENWtXOQHPZB6+Czn7Uct51v4BcyPq
-        xrFM6KvlvK9GtLRkD5woWnL1a5r5+UPLtN+g+ne9UZc3fOxGj2RVBZgAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rwAAAK8BK7AVuQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACVSURBVEhL7ZRB
+        CsJADEXfTre61Vt4FnfewnoHVy564cqDFkJorTDOYrAPAuEnmUAyM7DRAkfgApyDpq9mrJgbMACvoOmr
+        GSumvQYH4Bqs/9DAWMy1dhWXZ3G2e8h5zMQ1a1c5Ac9kHr4LOftRy3nW/gFzI+rGsUzoq+W8r0a0tGQP
+        nChacvVrmvn5Q8u036D6d71Rlzd87EaPZFUFmAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnSalir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAAHUAAAB1AePCB2UAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAsklEQVQ4T6WTSw7CMAwF5yAgFvwk7r9gAeIygFjz24KmIlUUnKZSLXnj5zdJWhtgBuyBB3AAVtRD
-        7QS8gSOwsKj5k+UV2JbOX00t7/VA7kUxgkRm86kopRRySM1s+gyWwCUQE6Rmtt5/rzVwDppqeQN22RN7
-        SO0mTXOKTQMyaDYmAVrmQchYcwiZ/Bud7VJMDa1B6kb5FQhjR9k1+Bvl0pwigriI3UoK8SZj1tkeV1/z
-        /As4Lajtsu4KFQAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        dAAAAHQBMYXlgQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACySURBVDhPpZNL
+        DsIwDAXnICAW/CTuv2AB4jKAWPPbgqYiVRScplIteePnN0laG2AG7IEHcABW1EPtBLyBI7CwqPmT5RXY
+        ls5fTS3v9UDuRTGCRGbzqSilFHJIzWz6DJbAJRATpGa23n+vNXAOmmp5A3bZE3tI7SZNc4pNAzJoNiYB
+        WuZByFhzCJn8G53tUkwNrUHqRvkVCGNH2TX4G+XSnCKCuIjdSgrxJmPW2R5XX/P8CzgtqO2y7goVAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <metadata name="tmFechaHora.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
