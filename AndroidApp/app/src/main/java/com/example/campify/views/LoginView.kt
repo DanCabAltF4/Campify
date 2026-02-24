@@ -49,7 +49,12 @@ import androidx.navigation.NavController
 import com.example.campify.R
 import com.example.campify.ui.theme.botonActivo
 import com.example.campify.ui.theme.botonActivoTexto
+import com.example.campify.ui.theme.dynamicColor
 import com.example.campify.ui.theme.fondoPrincipal
+import com.example.campify.ui.theme.fondoPrincipalDark
+import com.example.campify.ui.theme.fondoPrincipalLight
+import com.example.campify.ui.theme.textoPrincipalDark
+import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.viewmodels.ApiModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,8 +81,10 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
         }
     }
 
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+
     Scaffold(
-        topBar = { LoginTopBar() }
+        topBar = { LoginTopBar() },
     ) { padding ->
         Column(
             modifier = Modifier
@@ -87,11 +94,10 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFF7F7F7), RoundedCornerShape(16.dp))
+                    .background(dynamicColor(Color(0xFFF7F7F7), Color(0xFF2C2C2C)), RoundedCornerShape(16.dp))
                     .padding(24.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
@@ -100,33 +106,33 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it.trim() },
-                    label = { Text("Email") },
+                    label = { Text("Email", color = textColor) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = botonActivo,
                         focusedLabelColor = botonActivo,
-                        cursorColor = Color.Black
-                    )
+                        unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
+                    ),
                 )
 
                 // Password
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it.trim() },
-                    label = { Text("Contraseña") },
+                    label = { Text("Contraseña", color = textColor) },
                     visualTransformation = if (passwordVisible) VisualTransformation.None
                     else PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth(),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = botonActivo,
                         focusedLabelColor = botonActivo,
-                        cursorColor = Color.Black
+                        unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
                     ),
                     trailingIcon = {
                         val icon = if (passwordVisible) Icons.Default.KeyboardArrowDown
                         else Icons.Default.KeyboardArrowUp
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(imageVector = icon, contentDescription = null)
+                            Icon(imageVector = icon, contentDescription = null, tint = textColor)
                         }
                     }
                 )
@@ -147,9 +153,13 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
     }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginTopBar() {
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val bgColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark)
+
     Column {
         TopAppBar(
             title = {
@@ -165,18 +175,19 @@ fun LoginTopBar() {
                             "Campify",
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
-                            color = Color.Black
+                            color = textColor
                         )
                         Text(
                             "Inicia sesión para continuar",
                             fontSize = 12.sp,
-                            color = Color.DarkGray
+                            color = dynamicColor(Color.DarkGray, Color.LightGray)
                         )
                     }
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = fondoPrincipal
+                containerColor = bgColor,
+                titleContentColor = textColor
             )
         )
     }
