@@ -43,214 +43,100 @@ fun DetailView(
     id: Int?,
     rolUsuario: String?
 ) {
-    val context = LocalContext.current
     val parcelas by api.parcelas
-
     LaunchedEffect(Unit) { api.cargarParcelas() }
-
     val parcela = parcelas.firstOrNull { it.id == id }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { DetailTopBarTitle() },
-                navigationIcon = { BackButton(navController) },
-                actions = { ConfigButton(context) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = fondoPrincipal,
-                    titleContentColor = Color.Black
-                ),
-                modifier = Modifier.height(72.dp)
-            )
+        topBar = { DetailTopBar(navController) },
+        content = { innerPadding ->
+            DetailContent(parcela, innerPadding, api, rolUsuario)
         }
-    ) { innerPadding ->
-        parcela?.let {
-            val scrollState = rememberScrollState()
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState)
-                    .padding(innerPadding)
-                    .padding(16.dp)
-            ) {
-                // Título de la parcela
-                Text(
-                    text = "Parcela ${it.id}",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(Modifier.height(8.dp))
+    )
+}
 
-                // Estado actual
-                Card(
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
-                    elevation = CardDefaults.cardElevation(4.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        val (colorEstado, iconoEstado) = when (it.estadoParcela) {
-                            EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
-                            EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
-                            EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
-                            EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
-                            null -> Color(0xFFF44336) to Icons.Filled.Close
-                        }
 
-                        Box(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .background(colorEstado, RoundedCornerShape(8.dp)),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(iconoEstado, contentDescription = null, tint = Color.White)
-                        }
-
-                        Spacer(Modifier.width(12.dp))
-
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DetailTopBar(navController: NavHostController) {
+    Column {
+        TopAppBar(
+            title = {
+                Column {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            painter = painterResource(R.drawable.campify_logo),
+                            contentDescription = "Logo",
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Spacer(Modifier.width(8.dp))
                         Text(
-                            text = it.estadoParcela!!.name.replaceFirstChar { c -> c.uppercase() },
-                            fontWeight = FontWeight.Medium,
-                            fontSize = 16.sp
+                            text = "Campify",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
                         )
                     }
                 }
-
-                Spacer(Modifier.height(16.dp))
-
-                // Características booleanas
-                Text("Características", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
-                Spacer(Modifier.height(8.dp))
-
-                // Cada booleano en su card
-                val booleanos = listOf(
-                    "Baño cercano" to it.cercaBaño,
-                    "Cerca de la entrada" to it.cercaEntrada,
-                    "Tiene vistas" to it.tieneVistas,
-                    "Zona tranquila" to it.zonaTranquila,
-                    "Zona con sombra" to it.zonaSombra
-                )
-
-                booleanos.forEach { (label, valor) ->
-                    Card(
-                        shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.White),
-                        elevation = CardDefaults.cardElevation(2.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.padding(12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(
-                                imageVector = if (valor) Icons.Filled.Check else Icons.Filled.Close,
-                                contentDescription = null,
-                                tint = if (valor) Color(0xFF2E7D32) else Color(0xFFC62828)
-                            )
-                            Spacer(Modifier.width(8.dp))
-                            Text(label, fontSize = 15.sp)
-                        }
-                    }
+            },
+            navigationIcon = {
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Volver")
                 }
-
-                Spacer(Modifier.height(16.dp))
-                if (rolUsuario != "RECEPCIONISTA") {
-                    Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
-                    EstadoParcelaSelector(parcela, rolUsuario) { nuevoEstado ->
-                        api.cambiarEstadoParcela(parcela.id, nuevoEstado)
-                    }
+            },
+            actions = {
+                IconButton(onClick = { /* Aquí acción de configuración */ }) {
+                    Icon(Icons.Filled.Settings, contentDescription = "Configuración")
                 }
-
-            }
-        } ?: run {
-            // Mensaje si no se encuentra la parcela
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Parcela no encontrada", fontSize = 16.sp, color = Color.Gray)
-            }
-        }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = fondoPrincipal,
+                titleContentColor = Color.Black
+            ),
+            modifier = Modifier.height(72.dp)
+        )
     }
 }
-
 // TopBar title con logo
 @Composable
-fun DetailTopBarTitle() {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(R.drawable.campify_logo),
-            contentDescription = "Logo",
-            modifier = Modifier.size(32.dp)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text("Campify")
-    }
-}
-
-// Botón de retroceso
-@Composable
-fun BackButton(navController: NavHostController) {
-    IconButton(onClick = { navController.popBackStack() }) {
-        Icon(Icons.Filled.ArrowBack, contentDescription = "Volver")
-    }
-}
-
-// Botón de configuración
-@Composable
-fun ConfigButton(context: Context) {
-    IconButton(onClick = {
-        Toast.makeText(context, "Configuración", Toast.LENGTH_SHORT).show()
-    }) {
-        Icon(
-            imageVector = Icons.Filled.Settings,
-            contentDescription = "Configuración"
-        )
-    }
-}
-
-// Contenido del detalle de la parcela
-@Composable
-fun ContentDetailView(
+fun DetailContent(
+    parcela: Parcela?,
     innerPadding: PaddingValues,
-    parcela: Parcela,
     api: ApiModel,
     rolUsuario: String?
 ) {
-    Column(
-        modifier = Modifier
-            .padding(innerPadding)
-            .padding(16.dp)
-            .fillMaxSize()
-    ) {
-        Text("Parcela: ${parcela.id}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(4.dp))
-        Text("Estado: ${parcela.estadoParcela?.name}", fontWeight = FontWeight.Medium)
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Características booleanas
-        BooleanRow("Baño cercano", parcela.cercaBaño)
-        BooleanRow("Cerca de la entrada", parcela.cercaEntrada)
-        BooleanRow("Tiene vistas", parcela.tieneVistas)
-        BooleanRow("Zona tranquila", parcela.zonaTranquila)
-        BooleanRow("Zona con sombra", parcela.zonaSombra)
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text("Estado:", fontWeight = FontWeight.Medium)
-        EstadoParcelaSelector(
-            parcela = parcela,
-            rolUsuario = rolUsuario
-        ) { nuevoEstado ->
-            api.cambiarEstadoParcela(parcela.id, nuevoEstado)
+    parcela?.let {
+        val scrollState = rememberScrollState()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(innerPadding)
+                .padding(16.dp)
+        ) {
+            ParcelaTitle(it)
+            Spacer(Modifier.height(8.dp))
+            ParcelaEstadoCard(it)
+            Spacer(Modifier.height(16.dp))
+            ParcelaCaracteristicas(it)
+            Spacer(Modifier.height(16.dp))
+            if (rolUsuario != "RECEPCIONISTA") {
+                Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                EstadoParcelaSelector(parcela = it, rolUsuario = rolUsuario) { nuevoEstado ->
+                    api.cambiarEstadoParcela(it.id, nuevoEstado)
+                }
+            }
+        }
+    } ?: run {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Parcela no encontrada", fontSize = 16.sp, color = Color.Gray)
         }
     }
 }
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -313,6 +199,98 @@ fun BooleanRow(label: String, value: Boolean) {
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(label)
+    }
+}
+
+@Composable
+fun ParcelaTitle(parcela: Parcela) {
+    Text(
+        text = "Parcela ${parcela.id}",
+        fontSize = 22.sp,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+@Composable
+fun ParcelaEstadoCard(parcela: Parcela) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(4.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
+                EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
+                EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
+                EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
+                EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
+                null -> Color(0xFFF44336) to Icons.Filled.Close
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(colorEstado, RoundedCornerShape(8.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(iconoEstado, contentDescription = null, tint = Color.White)
+            }
+
+            Spacer(Modifier.width(12.dp))
+
+            Text(
+                text = parcela.estadoParcela!!.name.replaceFirstChar { it.uppercase() },
+                fontWeight = FontWeight.Medium,
+                fontSize = 16.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun ParcelaCaracteristicas(parcela: Parcela) {
+    Text("Características", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+    Spacer(Modifier.height(8.dp))
+
+    val booleanos = listOf(
+        "Baño cercano" to parcela.cercaBaño,
+        "Cerca de la entrada" to parcela.cercaEntrada,
+        "Tiene vistas" to parcela.tieneVistas,
+        "Zona tranquila" to parcela.zonaTranquila,
+        "Zona con sombra" to parcela.zonaSombra
+    )
+
+    booleanos.forEach { (label, valor) ->
+        BooleanCard(label, valor)
+    }
+}
+
+@Composable
+fun BooleanCard(label: String, valor: Boolean) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(2.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = if (valor) Icons.Filled.Check else Icons.Filled.Close,
+                contentDescription = null,
+                tint = if (valor) Color(0xFF2E7D32) else Color(0xFFC62828)
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(label, fontSize = 15.sp)
+        }
     }
 }
 

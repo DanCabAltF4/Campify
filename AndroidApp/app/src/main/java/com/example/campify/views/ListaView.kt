@@ -39,17 +39,30 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     var searchText by remember { mutableStateOf("") }
     val parcelas by api.parcelas
 
+    // Estados de los checkboxes para filtros
+    var filtroBano by remember { mutableStateOf(false) }
+    var filtroEntrada by remember { mutableStateOf(false) }
+    var filtroVistas by remember { mutableStateOf(false) }
+    var filtroTranquila by remember { mutableStateOf(false) }
+    var filtroSombra by remember { mutableStateOf(false) }
+
+    // Estado del desplegable
+    var showFiltros by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) { api.cargarParcelas() }
 
-    val parcelasFiltradas = remember(parcelas, searchText) {
-        if (searchText.isNotEmpty()) {
-            parcelas.filter { parcela ->
-                // Safe call en estadoParcela y fallback a string vacío
-                (parcela.estadoParcela?.name ?: "").contains(searchText, ignoreCase = true) ||
-                        parcela.id.toString().contains(searchText)
-            }
-        } else {
-            parcelas
+    // Filtrado combinado: búsqueda + checkboxes
+    val parcelasFiltradas = remember(parcelas, searchText, filtroBano, filtroEntrada, filtroVistas, filtroTranquila, filtroSombra) {
+        parcelas.filter { parcela ->
+            val textoOk = searchText.isEmpty() ||
+                    (parcela.estadoParcela?.name ?: "").contains(searchText, ignoreCase = true) ||
+                    parcela.id.toString().contains(searchText)
+            val filtroOk = (!filtroBano || parcela.cercaBaño) &&
+                    (!filtroEntrada || parcela.cercaEntrada) &&
+                    (!filtroVistas || parcela.tieneVistas) &&
+                    (!filtroTranquila || parcela.zonaTranquila) &&
+                    (!filtroSombra || parcela.zonaSombra)
+            textoOk && filtroOk
         }
     }
 
@@ -64,8 +77,105 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
             NavigationSegment(navController)
             Spacer(modifier = Modifier.height(8.dp))
             SearchBar(searchText) { searchText = it }
+
             Spacer(modifier = Modifier.height(8.dp))
+
+            // Botón para desplegar/ocultar filtros
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .background(Color(0xFFE5E5E5), RoundedCornerShape(12.dp))
+                    .clickable { showFiltros = !showFiltros }
+                    .padding(vertical = 12.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = if (showFiltros) "Ocultar filtros avanzados ▲" else "Mostrar filtros avanzados ▼",
+                    fontWeight = FontWeight.Medium,
+                    color = Color.DarkGray
+                )
+            }
+
+            // Filtros desplegables
+            if (showFiltros) {
+                FiltroCheckboxes(
+                    filtroBano, { filtroBano = it },
+                    filtroEntrada, { filtroEntrada = it },
+                    filtroVistas, { filtroVistas = it },
+                    filtroTranquila, { filtroTranquila = it },
+                    filtroSombra, { filtroSombra = it }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
             ParcelaList(parcelasFiltradas, navController)
+        }
+    }
+}
+
+@Composable
+fun FiltroCheckboxes(
+    filtroBano: Boolean, onBanoChange: (Boolean) -> Unit,
+    filtroEntrada: Boolean, onEntradaChange: (Boolean) -> Unit,
+    filtroVistas: Boolean, onVistasChange: (Boolean) -> Unit,
+    filtroTranquila: Boolean, onTranquilaChange: (Boolean) -> Unit,
+    filtroSombra: Boolean, onSombraChange: (Boolean) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .background(Color(0xFFF7F7F7), RoundedCornerShape(12.dp))
+            .padding(12.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = filtroBano, onCheckedChange = onBanoChange, colors = CheckboxDefaults.colors(
+                        checkedColor = botonActivo,       // Color del check cuando está activo
+                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
+                        checkmarkColor = Color.White       // Color del icono de check
+                    ))
+                    Text("Baño cercano")
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = filtroEntrada, onCheckedChange = onEntradaChange,colors = CheckboxDefaults.colors(
+                        checkedColor = botonActivo,       // Color del check cuando está activo
+                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
+                        checkmarkColor = Color.White       // Color del icono de check
+                    ))
+                    Text("Cerca entrada")
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = filtroVistas, onCheckedChange = onVistasChange,colors = CheckboxDefaults.colors(
+                        checkedColor = botonActivo,       // Color del check cuando está activo
+                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
+                        checkmarkColor = Color.White       // Color del icono de check
+                    ))
+                    Text("Tiene vistas")
+                }
+            }
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = filtroTranquila, onCheckedChange = onTranquilaChange,colors = CheckboxDefaults.colors(
+                        checkedColor = botonActivo,       // Color del check cuando está activo
+                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
+                        checkmarkColor = Color.White       // Color del icono de check
+                    ))
+                    Text("Zona tranquila")
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = filtroSombra, onCheckedChange = onSombraChange,colors = CheckboxDefaults.colors(
+                        checkedColor = botonActivo,       // Color del check cuando está activo
+                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
+                        checkmarkColor = Color.White       // Color del icono de check
+                    ))
+                    Text("Zona con sombra")
+                }
+            }
         }
     }
 }
