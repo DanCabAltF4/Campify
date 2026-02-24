@@ -124,7 +124,7 @@ namespace Campify
             btnReservar.Visible = false;
             btnClientesEstancia.Visible = false;
             btnServiciosEstancia.Visible = false;
-            
+
 
             btnNuevoServicio.Visible = false;
             btnEditarServicio.Visible = false;
@@ -347,6 +347,16 @@ namespace Campify
         }
 
 
+        private void pbMapa_DoubleClick(object sender, EventArgs e)
+        {
+            using (var form = new FormVerMapa())
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+
+
         // -- PANEL DATOS
 
         /// <summary>
@@ -397,6 +407,27 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+            if (ucParcelaDatos.ParcelaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una parcela para ver su imagen.", "Parcela no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(ucParcelaDatos.ParcelaActual.Imagen == null)
+            {
+                MessageBox.Show("La parcela seleccionada no tiene una imagen.", "Sin imagen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (var form = new FormsVerImagen(_api, ucParcelaDatos.ParcelaActual))
+            {
+                form.ShowDialog(this);
             }
         }
 
@@ -1012,12 +1043,6 @@ namespace Campify
             }
         }
 
-        private void pbMapa_DoubleClick(object sender, EventArgs e)
-        {
-            using (var form = new FormVerMapa())
-            {
-                form.ShowDialog(this);
-            }
-        }
+
     }
 }

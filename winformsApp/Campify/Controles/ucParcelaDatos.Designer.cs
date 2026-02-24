@@ -62,7 +62,7 @@
             // 
             lbltxtEstado.AutoSize = true;
             lbltxtEstado.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtEstado.Location = new Point(14, 169);
+            lbltxtEstado.Location = new Point(14, 156);
             lbltxtEstado.Name = "lbltxtEstado";
             lbltxtEstado.Size = new Size(60, 20);
             lbltxtEstado.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             lbltxtPrecio.AutoSize = true;
             lbltxtPrecio.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtPrecio.Location = new Point(14, 235);
+            lbltxtPrecio.Location = new Point(14, 226);
             lbltxtPrecio.Name = "lbltxtPrecio";
             lbltxtPrecio.Size = new Size(56, 20);
             lbltxtPrecio.TabIndex = 9;
@@ -92,7 +92,7 @@
             // 
             lbltxtEntrada.AutoSize = true;
             lbltxtEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtEntrada.Location = new Point(235, 235);
+            lbltxtEntrada.Location = new Point(235, 226);
             lbltxtEntrada.Name = "lbltxtEntrada";
             lbltxtEntrada.Size = new Size(107, 20);
             lbltxtEntrada.TabIndex = 14;
@@ -102,7 +102,7 @@
             // 
             lbltxtZonaTranquila.AutoSize = true;
             lbltxtZonaTranquila.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtZonaTranquila.Location = new Point(235, 309);
+            lbltxtZonaTranquila.Location = new Point(235, 291);
             lbltxtZonaTranquila.Name = "lbltxtZonaTranquila";
             lbltxtZonaTranquila.Size = new Size(115, 20);
             lbltxtZonaTranquila.TabIndex = 13;
@@ -122,7 +122,7 @@
             // 
             lbltxtSombra.AutoSize = true;
             lbltxtSombra.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lbltxtSombra.Location = new Point(235, 169);
+            lbltxtSombra.Location = new Point(235, 156);
             lbltxtSombra.Name = "lbltxtSombra";
             lbltxtSombra.Size = new Size(67, 20);
             lbltxtSombra.TabIndex = 11;
@@ -141,7 +141,7 @@
             // lblEntrada
             // 
             lblEntrada.AutoSize = true;
-            lblEntrada.Location = new Point(343, 235);
+            lblEntrada.Location = new Point(343, 226);
             lblEntrada.Name = "lblEntrada";
             lblEntrada.Size = new Size(31, 20);
             lblEntrada.TabIndex = 24;
@@ -150,7 +150,7 @@
             // lblZonaTranquila
             // 
             lblZonaTranquila.AutoSize = true;
-            lblZonaTranquila.Location = new Point(350, 309);
+            lblZonaTranquila.Location = new Point(350, 291);
             lblZonaTranquila.Name = "lblZonaTranquila";
             lblZonaTranquila.Size = new Size(31, 20);
             lblZonaTranquila.TabIndex = 23;
@@ -168,7 +168,7 @@
             // lblSombra
             // 
             lblSombra.AutoSize = true;
-            lblSombra.Location = new Point(305, 169);
+            lblSombra.Location = new Point(305, 156);
             lblSombra.Name = "lblSombra";
             lblSombra.Size = new Size(31, 20);
             lblSombra.TabIndex = 21;
@@ -186,7 +186,7 @@
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(76, 235);
+            lblPrecio.Location = new Point(76, 226);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(25, 20);
             lblPrecio.TabIndex = 19;
@@ -204,7 +204,7 @@
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(80, 169);
+            lblEstado.Location = new Point(80, 156);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(128, 20);
             lblEstado.TabIndex = 16;

@@ -50,6 +50,7 @@
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
             panelDatos = new Panel();
+            btnImagen = new Button();
             ucParcelaDatos = new Controles.ucParcelaDatos();
             ucEstanciaActual1 = new Controles.ucEstanciaActual();
             flpHistorial = new FlowLayoutPanel();
@@ -369,6 +370,7 @@
             // 
             // panelDatos
             // 
+            panelDatos.Controls.Add(btnImagen);
             panelDatos.Controls.Add(ucParcelaDatos);
             panelDatos.Controls.Add(ucEstanciaActual1);
             panelDatos.Controls.Add(flpHistorial);
@@ -377,6 +379,18 @@
             panelDatos.Name = "panelDatos";
             panelDatos.Size = new Size(421, 388);
             panelDatos.TabIndex = 17;
+            // 
+            // btnImagen
+            // 
+            btnImagen.FlatAppearance.BorderSize = 0;
+            btnImagen.FlatStyle = FlatStyle.Flat;
+            btnImagen.Image = Forms.Properties.Resources.image;
+            btnImagen.Location = new Point(50, 290);
+            btnImagen.Name = "btnImagen";
+            btnImagen.Size = new Size(51, 38);
+            btnImagen.TabIndex = 23;
+            btnImagen.UseVisualStyleBackColor = true;
+            btnImagen.Click += btnImagen_Click;
             // 
             // ucParcelaDatos
             // 
@@ -891,11 +905,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(913, 632);
+            Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlClientes);
             Controls.Add(pnlEstancias);
             Controls.Add(pnlServicios);
-            Controls.Add(pnlParcelas);
             Controls.Add(pnlTop);
             Controls.Add(pbLogo);
             Controls.Add(btnParcelas);
@@ -988,5 +1002,6 @@
         private Button btnSalir;
         private Label lblFechaHora;
         private System.Windows.Forms.Timer tmFechaHora;
+        private Button btnImagen;
     }
 }
