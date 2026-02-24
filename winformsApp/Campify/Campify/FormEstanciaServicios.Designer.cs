@@ -54,9 +54,10 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 12F);
             btnGuardar.ForeColor = Color.FromArgb(255, 222, 171);
-            btnGuardar.Location = new Point(461, 607);
+            btnGuardar.Location = new Point(403, 455);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(98, 36);
+            btnGuardar.Size = new Size(86, 27);
             btnGuardar.TabIndex = 0;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -69,11 +70,12 @@
             dvgListaServicios.AllowUserToResizeRows = false;
             dvgListaServicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgListaServicios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgListaServicios.Location = new Point(10, 94);
+            dvgListaServicios.Location = new Point(9, 70);
+            dvgListaServicios.Margin = new Padding(3, 2, 3, 2);
             dvgListaServicios.Name = "dvgListaServicios";
             dvgListaServicios.ReadOnly = true;
             dvgListaServicios.RowHeadersWidth = 51;
-            dvgListaServicios.Size = new Size(776, 219);
+            dvgListaServicios.Size = new Size(679, 164);
             dvgListaServicios.TabIndex = 1;
             dvgListaServicios.CellDoubleClick += dvgListaServicios_CellDoubleClick;
             // 
@@ -84,11 +86,12 @@
             dgvServiciosEstancia.AllowUserToResizeRows = false;
             dgvServiciosEstancia.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServiciosEstancia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServiciosEstancia.Location = new Point(10, 390);
+            dgvServiciosEstancia.Location = new Point(9, 292);
+            dgvServiciosEstancia.Margin = new Padding(3, 2, 3, 2);
             dgvServiciosEstancia.Name = "dgvServiciosEstancia";
             dgvServiciosEstancia.ReadOnly = true;
             dgvServiciosEstancia.RowHeadersWidth = 51;
-            dgvServiciosEstancia.Size = new Size(776, 188);
+            dgvServiciosEstancia.Size = new Size(679, 141);
             dgvServiciosEstancia.TabIndex = 2;
             dgvServiciosEstancia.CellDoubleClick += dgvServiciosEstancia_CellDoubleClick;
             // 
@@ -96,9 +99,9 @@
             // 
             lblDisponibles.AutoSize = true;
             lblDisponibles.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDisponibles.Location = new Point(10, 58);
+            lblDisponibles.Location = new Point(9, 44);
             lblDisponibles.Name = "lblDisponibles";
-            lblDisponibles.Size = new Size(182, 23);
+            lblDisponibles.Size = new Size(154, 19);
             lblDisponibles.TabIndex = 3;
             lblDisponibles.Text = "Servicios disponibles:";
             // 
@@ -106,9 +109,9 @@
             // 
             lblActuales.AutoSize = true;
             lblActuales.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblActuales.Location = new Point(10, 350);
+            lblActuales.Location = new Point(9, 262);
             lblActuales.Name = "lblActuales";
-            lblActuales.Size = new Size(155, 23);
+            lblActuales.Size = new Size(132, 19);
             lblActuales.TabIndex = 4;
             lblActuales.Text = "Servicios actuales:";
             // 
@@ -119,9 +122,10 @@
             btnVolver.FlatStyle = FlatStyle.Flat;
             btnVolver.Font = new Font("Segoe UI", 12F);
             btnVolver.ForeColor = Color.FromArgb(255, 222, 171);
-            btnVolver.Location = new Point(216, 607);
+            btnVolver.Location = new Point(189, 455);
+            btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(98, 36);
+            btnVolver.Size = new Size(86, 27);
             btnVolver.TabIndex = 5;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
@@ -136,8 +140,9 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(800, 36);
+            pnlTop.Size = new Size(700, 27);
             pnlTop.TabIndex = 9;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -145,9 +150,9 @@
             // 
             lblFechaHora.AutoSize = true;
             lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(330, 12);
+            lblFechaHora.Location = new Point(289, 9);
             lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 19);
+            lblFechaHora.Size = new Size(0, 13);
             lblFechaHora.TabIndex = 10;
             // 
             // btnMinimizar
@@ -155,9 +160,10 @@
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(719, 3);
+            btnMinimizar.Location = new Point(629, 2);
+            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(32, 32);
+            btnMinimizar.Size = new Size(28, 24);
             btnMinimizar.TabIndex = 9;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -165,9 +171,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 10);
+            lblTitulo.Location = new Point(9, 8);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(162, 20);
+            lblTitulo.Size = new Size(127, 15);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Servicios de la estancia";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -177,9 +183,10 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(757, 3);
+            btnSalir.Location = new Point(662, 2);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(44, 32);
+            btnSalir.Size = new Size(38, 24);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -192,10 +199,10 @@
             // 
             // FormEstanciaServicios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(800, 667);
+            ClientSize = new Size(700, 500);
             Controls.Add(pnlTop);
             Controls.Add(btnVolver);
             Controls.Add(lblActuales);
@@ -204,6 +211,7 @@
             Controls.Add(dvgListaServicios);
             Controls.Add(btnGuardar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormEstanciaServicios";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormEstanciaServicios";

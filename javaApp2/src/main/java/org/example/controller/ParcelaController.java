@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Parcela;
+import org.example.model.enums.EstadoParcela;
 import org.example.service.ServiceParcela;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +39,10 @@ public class ParcelaController {
     @GetMapping
     public List<Parcela> findAll(){
         return service.findAll();
+    }
+
+    @PutMapping("/{id}/estado/{estado}")
+    public Parcela cambiarEstado(@PathVariable int id, @PathVariable EstadoParcela estado){
+        return service.cambiarEstado(id, estado);
     }
 }

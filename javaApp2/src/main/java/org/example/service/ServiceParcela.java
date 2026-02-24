@@ -99,5 +99,10 @@ public class ServiceParcela implements  IServiceParcela{
         }
     }
 
-
+    public Parcela cambiarEstado(int id, EstadoParcela estado) {
+        Parcela buscada = findById(id);
+        if(buscada==null) return null;
+        buscada.setEstado_parcela(estado);
+        return repoParcela.save(buscada);
+    }
 }
