@@ -33,8 +33,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.campify.R
+import com.example.campify.ui.theme.botonActivoDark
+import com.example.campify.ui.theme.botonActivoLight
+import com.example.campify.ui.theme.dynamicColor
 import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipal2
+import com.example.campify.ui.theme.fondoPrincipalDark
+import com.example.campify.ui.theme.fondoPrincipalLight
+import com.example.campify.ui.theme.textoPrincipalDark
+import com.example.campify.ui.theme.textoPrincipalLight
+import com.example.campify.ui.theme.textoSecundarioDark
+import com.example.campify.ui.theme.textoSecundarioLight
 import com.example.campify.viewmodels.ApiModel
 import kotlinx.coroutines.flow.firstOrNull
 
@@ -58,6 +67,11 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
             else -> navController.navigate("Login")
         }
     }
+
+    val segmentSelectedColor = dynamicColor(fondoPrincipal2, fondoPrincipal2) // puedes definir otro para oscuro
+    val textPrimary = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val textSecondary = dynamicColor(textoSecundarioLight, textoSecundarioDark)
+
     Scaffold(
         topBar = { HomeTopBar(context, navController, apiModel) }
     ) { innerPadding ->
@@ -66,9 +80,9 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            NavigationSegment(navController, seleccionInicial = "Mapa")
+            NavigationSegment(navController, seleccionInicial = "Mapa", segmentSelectedColor, textPrimary, textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
-            HomeContent()
+            HomeContent(textPrimary, textSecondary)
         }
     }
 }
@@ -76,6 +90,9 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeTopBar(context: Context, navController: NavHostController, apiModel: ApiModel) {
+    val containerColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark)
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val secondaryText = dynamicColor(textoSecundarioLight, textoSecundarioDark)
 
     Column {
         TopAppBar(
@@ -94,14 +111,14 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
                             "Campify",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            color = textColor
                         )
                     }
 
                     Text(
                         "Mapa del parque",
                         fontSize = 12.sp,
-                        color = Color.DarkGray
+                        color = secondaryText
                     )
                 }
             },
@@ -113,50 +130,28 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
                     Icon(
                         Icons.Default.AccountCircle,
                         contentDescription = "Perfil",
-                        tint = Color.Black
+                        tint = textColor
                     )
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = fondoPrincipal
+                containerColor = containerColor
             )
         )
 
-        Divider(color = Color(0x22000000), thickness = 1.dp)
+        Divider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
     }
 }
 
-
+// Segmented navigation actualizado
 @Composable
-fun HomeTopBarTitle() {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(R.drawable.campify_logo),
-            contentDescription = "Logo Campify",
-            modifier = Modifier.size(36.dp)
-        )
-        Spacer(modifier = Modifier.width(12.dp))
-        Text(
-            "Campify",
-            fontSize = 22.sp,
-            color = Color.Black,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
-
-@Composable
-fun LoginButton(context: android.content.Context) {
-    IconButton(onClick = {
-        Toast.makeText(context, "Volver a iniciar sesion", Toast.LENGTH_SHORT).show()
-    }) {
-        Icon(Icons.Filled.AccountCircle, contentDescription = "Configuración")
-    }
-}
-
-// Botones de navegación estilo “SegmentedButton”
-@Composable
-fun NavigationSegment(navController: NavHostController, seleccionInicial: String) {
+fun NavigationSegment(
+    navController: NavHostController,
+    seleccionInicial: String,
+    segmentSelectedColor: Color,
+    textPrimary: Color,
+    textSecondary: Color
+) {
 
     val opciones = listOf("Mapa", "Lista")
     var seleccionada by remember { mutableStateOf(seleccionInicial) }
@@ -165,7 +160,7 @@ fun NavigationSegment(navController: NavHostController, seleccionInicial: String
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .background(Color(0xFFE5E5E5), RoundedCornerShape(12.dp))
+            .background(dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C)), RoundedCornerShape(12.dp))
             .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
@@ -177,7 +172,8 @@ fun NavigationSegment(navController: NavHostController, seleccionInicial: String
                 modifier = Modifier
                     .weight(1f)
                     .background(
-                        color = if (seleccionadaActual) fondoPrincipal2 else Color.Transparent,
+                        color = if (seleccionadaActual) dynamicColor(botonActivoLight, botonActivoDark
+                        ) else Color.Transparent,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
@@ -189,7 +185,7 @@ fun NavigationSegment(navController: NavHostController, seleccionInicial: String
             ) {
                 Text(
                     text = opcion,
-                    color = if (seleccionadaActual) Color.White else Color.Gray,
+                    color = if (seleccionadaActual) Color.White else textSecondary,
                     fontWeight = FontWeight.SemiBold
                 )
             }
@@ -197,14 +193,13 @@ fun NavigationSegment(navController: NavHostController, seleccionInicial: String
     }
 }
 
-
+// HomeContent con colores dinámicos
 @Composable
-fun HomeContent() {
+fun HomeContent(textPrimary: Color, textSecondary: Color) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFEFEFEF))
             .padding(16.dp)
     ) {
 
@@ -212,7 +207,7 @@ fun HomeContent() {
             "Mapa de parcelas",
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
-            color = Color.DarkGray
+            color = textSecondary
         )
 
         Spacer(Modifier.height(12.dp))

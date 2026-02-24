@@ -9,16 +9,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,7 +28,7 @@ import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.data.model.enums.PuestoTrabajo
-import com.example.campify.ui.theme.fondoPrincipal
+import com.example.campify.ui.theme.*
 import com.example.campify.viewmodels.ApiModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +43,7 @@ fun DetailView(
     LaunchedEffect(Unit) { api.cargarParcelas() }
     val parcela = parcelas.firstOrNull { it.id == id }
 
+
     Scaffold(
         topBar = { DetailTopBar(navController) },
         content = { innerPadding ->
@@ -55,49 +52,45 @@ fun DetailView(
     )
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailTopBar(navController: NavHostController) {
+    val containerColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark)
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
     Column {
         TopAppBar(
             title = {
-                Column {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Image(
-                            painter = painterResource(R.drawable.campify_logo),
-                            contentDescription = "Logo",
-                            modifier = Modifier.size(28.dp)
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            text = "Campify",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                    }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(R.drawable.campify_logo),
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(28.dp)
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = "Campify",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = textColor
+                    )
                 }
             },
             navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Volver")
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Volver", tint = textColor)
                 }
             },
             actions = {
-                IconButton(onClick = { /* Aquí acción de configuración */ }) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Configuración")
+                IconButton(onClick = { /* acción */ }) {
+                    Icon(Icons.Filled.Settings, contentDescription = "Configuración", tint = textColor)
                 }
             },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = fondoPrincipal,
-                titleContentColor = Color.Black
-            ),
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = containerColor, titleContentColor = textColor),
             modifier = Modifier.height(72.dp)
         )
     }
 }
-// TopBar title con logo
+
 @Composable
 fun DetailContent(
     parcela: Parcela?,
@@ -121,7 +114,12 @@ fun DetailContent(
             ParcelaCaracteristicas(it)
             Spacer(Modifier.height(16.dp))
             if (rolUsuario != "RECEPCIONISTA") {
-                Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                Text(
+                    "Cambiar Estado",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 18.sp,
+                    color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+                )
                 EstadoParcelaSelector(parcela = it, rolUsuario = rolUsuario) { nuevoEstado ->
                     api.cambiarEstadoParcela(it.id, nuevoEstado)
                 }
@@ -129,15 +127,15 @@ fun DetailContent(
         }
     } ?: run {
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(dynamicColor(fondoPrincipalLight, fondoPrincipalDark)),
             contentAlignment = Alignment.Center
         ) {
-            Text("Parcela no encontrada", fontSize = 16.sp, color = Color.Gray)
+            Text("Parcela no encontrada", fontSize = 16.sp, color = dynamicColor(Color.Gray, Color.LightGray))
         }
     }
 }
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -146,11 +144,10 @@ fun EstadoParcelaSelector(
     rolUsuario: String?,
     onEstadoChange: (EstadoParcela) -> Unit
 ) {
-    // Filtramos para que RESERVADA no aparezca
     val estados = EstadoParcela.values().filter { estado ->
         when (rolUsuario?.uppercase()) {
             "CAMPO" -> estado != EstadoParcela.MANTENIMIENTO && estado != EstadoParcela.RESERVADA
-            else -> estado != EstadoParcela.RESERVADA // opcional, si no quieres RESERVADA para nadie
+            else -> estado != EstadoParcela.RESERVADA
         }
     }
 
@@ -162,21 +159,21 @@ fun EstadoParcelaSelector(
     ) {
         estados.forEach { estado ->
             val (colorChip, icon) = when (estado) {
-                EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
-                EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
-                EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
+                EstadoParcela.LIBRE -> colorLibre to Icons.Filled.Check
+                EstadoParcela.INTERESADO -> colorInteresado to Icons.Filled.Person
+                EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Filled.Close
                 else -> Color.Gray to Icons.Filled.Close
             }
 
             FilterChip(
                 selected = parcela.estadoParcela == estado,
                 onClick = { onEstadoChange(estado) },
-                label = { Text("") },
-                leadingIcon = { Icon(icon, contentDescription = estado.name) },
+                label = { Text("", color = dynamicColor(textoPrincipalLight, textoPrincipalDark)) },
+                leadingIcon = { Icon(icon, contentDescription = estado.name, tint = Color.White) },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = colorChip,
                     selectedLabelColor = Color.White,
-                    containerColor = Color(0xFFF0F0F0)
+                    containerColor = dynamicColor(Color(0xFFF0F0F0), Color(0xFF2C2C2C))
                 ),
                 shape = RoundedCornerShape(12.dp)
             )
@@ -184,21 +181,16 @@ fun EstadoParcelaSelector(
     }
 }
 
-
-
-// Fila para mostrar booleanos con icono ✔/✖
 @Composable
 fun BooleanRow(label: String, value: Boolean) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = if (value) Icons.Filled.Check else Icons.Filled.Close,
             contentDescription = null,
             tint = if (value) Color(0xFF2E7D32) else Color(0xFFC62828)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(label)
+        Text(label, color = dynamicColor(textoPrincipalLight, textoPrincipalDark))
     }
 }
 
@@ -207,28 +199,29 @@ fun ParcelaTitle(parcela: Parcela) {
     Text(
         text = "Parcela ${parcela.id}",
         fontSize = 22.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
     )
 }
 
 @Composable
 fun ParcelaEstadoCard(parcela: Parcela) {
+    val cardColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark)
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+
     Card(
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = cardColor),
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
-                EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
-                EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
-                EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
-                EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
-                null -> Color(0xFFF44336) to Icons.Filled.Close
+                EstadoParcela.LIBRE -> colorLibre to Icons.Filled.Check
+                EstadoParcela.RESERVADA -> colorReservada to Icons.Filled.DateRange
+                EstadoParcela.INTERESADO -> colorInteresado to Icons.Filled.Person
+                EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Filled.Close
+                null -> Color.Gray to Icons.Filled.Close
             }
 
             Box(
@@ -245,7 +238,8 @@ fun ParcelaEstadoCard(parcela: Parcela) {
             Text(
                 text = parcela.estadoParcela!!.name.replaceFirstChar { it.uppercase() },
                 fontWeight = FontWeight.Medium,
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                color = textColor
             )
         }
     }
@@ -253,7 +247,12 @@ fun ParcelaEstadoCard(parcela: Parcela) {
 
 @Composable
 fun ParcelaCaracteristicas(parcela: Parcela) {
-    Text("Características", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+    Text(
+        "Características",
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    )
     Spacer(Modifier.height(8.dp))
 
     val booleanos = listOf(
@@ -273,24 +272,20 @@ fun ParcelaCaracteristicas(parcela: Parcela) {
 fun BooleanCard(label: String, valor: Boolean) {
     Card(
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark)),
         elevation = CardDefaults.cardElevation(2.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = if (valor) Icons.Filled.Check else Icons.Filled.Close,
                 contentDescription = null,
                 tint = if (valor) Color(0xFF2E7D32) else Color(0xFFC62828)
             )
-            Spacer(Modifier.width(8.dp))
-            Text(label, fontSize = 15.sp)
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(label, fontSize = 15.sp, color = dynamicColor(textoPrincipalLight, textoPrincipalDark))
         }
     }
 }
-

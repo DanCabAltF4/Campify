@@ -9,13 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -71,17 +65,23 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
         }
     }
 
+
+    val segmentBackground = dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C))
+    val textPrimary = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val textSecondary = dynamicColor(textoSecundarioLight, textoSecundarioDark)
+    val botonActivoColor = dynamicColor(botonActivoLight, botonActivoDark)
+
     Scaffold(
-        topBar = { ListaTopBar(api) }
+        topBar = { ListaTopBar(api) },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            NavigationSegment(navController)
+            NavigationSegment(navController, segmentBackground, botonActivoColor, textPrimary, textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
-            SearchBar(searchText) { searchText = it }
+            SearchBar(searchText, textPrimary) { searchText = it }
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -90,7 +90,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .background(Color(0xFFE5E5E5), RoundedCornerShape(12.dp))
+                    .background(dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C)), RoundedCornerShape(12.dp))
                     .clickable { showFiltros = !showFiltros }
                     .padding(vertical = 12.dp),
                 contentAlignment = Alignment.Center
@@ -98,7 +98,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 Text(
                     text = if (showFiltros) "Ocultar filtros avanzados ▲" else "Mostrar filtros avanzados ▼",
                     fontWeight = FontWeight.Medium,
-                    color = Color.DarkGray
+                    color = textPrimary
                 )
             }
 
@@ -109,7 +109,9 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                     filtroEntrada, { filtroEntrada = it },
                     filtroVistas, { filtroVistas = it },
                     filtroTranquila, { filtroTranquila = it },
-                    filtroSombra, { filtroSombra = it }
+                    filtroSombra, { filtroSombra = it },
+                    botonActivoColor,
+                    textPrimary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -125,12 +127,14 @@ fun FiltroCheckboxes(
     filtroEntrada: Boolean, onEntradaChange: (Boolean) -> Unit,
     filtroVistas: Boolean, onVistasChange: (Boolean) -> Unit,
     filtroTranquila: Boolean, onTranquilaChange: (Boolean) -> Unit,
-    filtroSombra: Boolean, onSombraChange: (Boolean) -> Unit
+    filtroSombra: Boolean, onSombraChange: (Boolean) -> Unit,
+    botonActivoColor: Color,
+    textColor: Color
 ) {
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
-            .background(Color(0xFFF7F7F7), RoundedCornerShape(12.dp))
+            .background(dynamicColor(Color(0xFFF7F7F7), Color(0xFF1C1C1C)), RoundedCornerShape(12.dp))
             .padding(12.dp)
     ) {
         Row(
@@ -139,46 +143,66 @@ fun FiltroCheckboxes(
         ) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = filtroBano, onCheckedChange = onBanoChange, colors = CheckboxDefaults.colors(
-                        checkedColor = botonActivo,       // Color del check cuando está activo
-                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
-                        checkmarkColor = Color.White       // Color del icono de check
-                    ))
-                    Text("Baño cercano")
+                    Checkbox(
+                        checked = filtroBano,
+                        onCheckedChange = onBanoChange,
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = botonActivoColor,
+                            uncheckedColor = dynamicColor(Color.Gray, Color.LightGray),
+                            checkmarkColor = dynamicColor(Color.White, Color.Black)
+                        )
+                    )
+                    Text("Baño cercano", color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = filtroEntrada, onCheckedChange = onEntradaChange,colors = CheckboxDefaults.colors(
-                        checkedColor = botonActivo,       // Color del check cuando está activo
-                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
-                        checkmarkColor = Color.White       // Color del icono de check
-                    ))
-                    Text("Cerca entrada")
+                    Checkbox(
+                        checked = filtroEntrada,
+                        onCheckedChange = onEntradaChange,
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = botonActivoColor,
+                            uncheckedColor = dynamicColor(Color.Gray, Color.LightGray),
+                            checkmarkColor = dynamicColor(Color.White, Color.Black)
+                        )
+                    )
+                    Text("Cerca entrada", color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = filtroVistas, onCheckedChange = onVistasChange,colors = CheckboxDefaults.colors(
-                        checkedColor = botonActivo,       // Color del check cuando está activo
-                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
-                        checkmarkColor = Color.White       // Color del icono de check
-                    ))
-                    Text("Tiene vistas")
+                    Checkbox(
+                        checked = filtroVistas,
+                        onCheckedChange = onVistasChange,
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = botonActivoColor,
+                            uncheckedColor = dynamicColor(Color.Gray, Color.LightGray),
+                            checkmarkColor = dynamicColor(Color.White, Color.Black)
+                        )
+                    )
+                    Text("Tiene vistas", color = textColor)
                 }
             }
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = filtroTranquila, onCheckedChange = onTranquilaChange,colors = CheckboxDefaults.colors(
-                        checkedColor = botonActivo,       // Color del check cuando está activo
-                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
-                        checkmarkColor = Color.White       // Color del icono de check
-                    ))
-                    Text("Zona tranquila")
+                    Checkbox(
+                        checked = filtroTranquila,
+                        onCheckedChange = onTranquilaChange,
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = botonActivoColor,
+                            uncheckedColor = dynamicColor(Color.Gray, Color.LightGray),
+                            checkmarkColor = dynamicColor(Color.White, Color.Black)
+                        )
+                    )
+                    Text("Zona tranquila", color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = filtroSombra, onCheckedChange = onSombraChange,colors = CheckboxDefaults.colors(
-                        checkedColor = botonActivo,       // Color del check cuando está activo
-                        uncheckedColor = Color.Gray,      // Color del borde cuando no está marcado
-                        checkmarkColor = Color.White       // Color del icono de check
-                    ))
-                    Text("Zona con sombra")
+                    Checkbox(
+                        checked = filtroSombra,
+                        onCheckedChange = onSombraChange,
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = botonActivoColor,
+                            uncheckedColor = dynamicColor(Color.Gray, Color.LightGray),
+                            checkmarkColor = dynamicColor(Color.White, Color.Black)
+                        )
+                    )
+                    Text("Zona con sombra", color = textColor)
                 }
             }
         }
@@ -188,6 +212,9 @@ fun FiltroCheckboxes(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListaTopBar(api: ApiModel) {
+    val containerColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark)
+    val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val secondaryText = dynamicColor(textoSecundarioLight, textoSecundarioDark)
 
     Column {
         TopAppBar(
@@ -207,14 +234,14 @@ fun ListaTopBar(api: ApiModel) {
                             text = "Campify",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            color = textColor
                         )
                     }
 
                     Text(
                         text = "Gestión del parque",
                         fontSize = 12.sp,
-                        color = Color.DarkGray
+                        color = secondaryText
                     )
                 }
             },
@@ -223,35 +250,26 @@ fun ListaTopBar(api: ApiModel) {
                     Icon(
                         Icons.Default.Refresh,
                         contentDescription = "Recargar",
-                        tint = Color.Black
+                        tint = textColor
                     )
                 }
             },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = fondoPrincipal
-            )
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = containerColor)
         )
 
-        Divider(color = Color(0x22000000), thickness = 1.dp)
+        Divider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
     }
 }
 
-
-
-
-
+// SearchBar
 @Composable
-fun SearchBar(value: String, onValueChange: (String) -> Unit) {
-
+fun SearchBar(value: String, textColor: Color, onValueChange: (String) -> Unit) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text("Buscar por ID o estado") },
+        placeholder = { Text("Buscar por ID o estado", color = textColor) },
         leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = null
-            )
+            Icon(Icons.Default.Search, contentDescription = null, tint = textColor)
         },
         singleLine = true,
         shape = RoundedCornerShape(14.dp),
@@ -259,34 +277,22 @@ fun SearchBar(value: String, onValueChange: (String) -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = fondoPrincipal,
-            cursorColor = fondoPrincipal
+            focusedBorderColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark),
+            cursorColor = textColor,
+            unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
         )
     )
 }
 
-
+// NavigationSegment
 @Composable
-fun ListaTopBarTitle() {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(R.drawable.campify_logo),
-            contentDescription = "Logo",
-            modifier = Modifier.size(36.dp)
-        )
-        Spacer(modifier = Modifier.width(12.dp))
-        Text(
-            "Campify",
-            fontSize = 22.sp,
-            color = Color.Black,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
-
-// Reemplazo de botones por SegmentedButton-like
-@Composable
-fun NavigationSegment(navController: NavHostController) {
+fun NavigationSegment(
+    navController: NavHostController,
+    backgroundColor: Color,
+    botonActivoColor: Color,
+    textPrimary: Color,
+    textSecondary: Color
+) {
     val opciones = listOf("Mapa", "Lista")
     var seleccionada by remember { mutableStateOf("Lista") }
 
@@ -294,33 +300,31 @@ fun NavigationSegment(navController: NavHostController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .background(Color(0xFFE5E5E5), RoundedCornerShape(12.dp))
+            .background(backgroundColor, RoundedCornerShape(12.dp))
             .padding(4.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         opciones.forEach { opcion ->
 
-            val estaSeleccionada = opcion == seleccionada
+            val seleccionadaActual = opcion == seleccionada
 
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .background(
-                        color = if (estaSeleccionada) fondoPrincipal2 else Color.Transparent,
+                        color = if (seleccionadaActual) botonActivoColor else Color.Transparent,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clickable {
                         seleccionada = opcion
-                        navController.navigate(
-                            if (opcion == "Mapa") "Home" else "Lista"
-                        )
+                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
                     }
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = opcion,
-                    color = if (estaSeleccionada) Color.White else Color.Gray,
+                    color = if (seleccionadaActual) Color.White else textSecondary,
                     fontWeight = FontWeight.SemiBold
                 )
             }
@@ -328,11 +332,12 @@ fun NavigationSegment(navController: NavHostController) {
     }
 }
 
-
+// ParcelaList
 @Composable
 fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -342,7 +347,7 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
     }
 }
 
-
+// ParcelaItem y ParcelaThumbnail
 @OptIn(ExperimentalEncodingApi::class)
 fun base64ToBitmap(base64: String): android.graphics.Bitmap? {
     return try {
@@ -356,17 +361,14 @@ fun base64ToBitmap(base64: String): android.graphics.Bitmap? {
 
 @Composable
 fun ParcelaThumbnail(base64: String?) {
-
     val bitmap = remember(base64) {
-        base64
-            ?.substringAfter("base64,", base64)
-            ?.let { base64ToBitmap(it) }
+        base64?.substringAfter("base64,", base64)?.let { base64ToBitmap(it) }
     }
 
     Card(
         shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
-            .size(80.dp)
+        modifier = Modifier.size(80.dp),
+        colors = CardDefaults.cardColors(containerColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark))
     ) {
         if (bitmap != null) {
             Image(
@@ -388,16 +390,12 @@ fun ParcelaThumbnail(base64: String?) {
 
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
-
-
-
-    // Valores seguros por defecto para estado y icono
     val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
         EstadoParcela.LIBRE -> colorLibre to Icons.Default.Check
         EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
         EstadoParcela.INTERESADO -> colorInteresado to Icons.Default.Person
         EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Default.Build
-        null -> Color.Gray to Icons.Default.Clear // fallback seguro
+        null -> Color.Gray to Icons.Default.Clear
     }
 
     Card(
@@ -406,7 +404,7 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
             .clickable { onClick() },
         shape = RoundedCornerShape(14.dp),
         elevation = CardDefaults.cardElevation(5.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark))
     ) {
         Row(
             modifier = Modifier
@@ -414,7 +412,6 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
                 .padding(18.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             // Barra lateral
             Box(
                 modifier = Modifier
@@ -425,14 +422,12 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
 
             Spacer(Modifier.width(12.dp))
 
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = "Parcela ${parcela.id}",
                     fontSize = 17.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
                 )
 
                 Spacer(Modifier.height(6.dp))
@@ -462,15 +457,13 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
                 Text(
                     text = "Tipo: ${parcela.tipoParcela?.name ?: "Desconocido"}",
                     fontSize = 14.sp,
-                    color = Color.DarkGray
+                    color = dynamicColor(textoSecundarioLight, textoSecundarioDark)
                 )
             }
 
             Spacer(Modifier.width(12.dp))
 
-            // Imagen a la derecha
             ParcelaThumbnail(parcela.imagenParcela)
         }
     }
 }
-
