@@ -1,6 +1,8 @@
 package com.example.campify.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -35,7 +37,8 @@ fun CampifyNavigation(apiModel: ApiModel) {
         composable(route = "detail/{id}", arguments = listOf(navArgument("id") { type = NavType.IntType })
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getInt("id")
-            DetailView(navController, apiModel, id)
+            val rolUsuario by apiModel.rol.collectAsState(initial = null)
+            DetailView(navController, apiModel, id, rolUsuario)
         }
     }
 }

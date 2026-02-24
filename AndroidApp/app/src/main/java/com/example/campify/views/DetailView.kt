@@ -31,6 +31,7 @@ import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
+import com.example.campify.data.model.enums.PuestoTrabajo
 import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.viewmodels.ApiModel
 
@@ -39,7 +40,8 @@ import com.example.campify.viewmodels.ApiModel
 fun DetailView(
     navController: NavHostController,
     api: ApiModel,
-    id: Int?
+    id: Int?,
+    rolUsuario: String?
 ) {
     val context = LocalContext.current
     val parcelas by api.parcelas
@@ -158,11 +160,13 @@ fun DetailView(
                 }
 
                 Spacer(Modifier.height(16.dp))
-
-                Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
-                EstadoParcelaSelector(parcela) { nuevoEstado ->
-                    api.cambiarEstadoParcela(parcela.id, nuevoEstado)
+                if (rolUsuario != "RECEPCIONISTA") {
+                    Text("Cambiar Estado", fontWeight = FontWeight.SemiBold, fontSize = 18.sp)
+                    EstadoParcelaSelector(parcela, rolUsuario) { nuevoEstado ->
+                        api.cambiarEstadoParcela(parcela.id, nuevoEstado)
+                    }
                 }
+
             }
         } ?: run {
             // Mensaje si no se encuentra la parcela
@@ -216,7 +220,8 @@ fun ConfigButton(context: Context) {
 fun ContentDetailView(
     innerPadding: PaddingValues,
     parcela: Parcela,
-    api: ApiModel
+    api: ApiModel,
+    rolUsuario: String?
 ) {
     Column(
         modifier = Modifier
@@ -238,7 +243,10 @@ fun ContentDetailView(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text("Estado:", fontWeight = FontWeight.Medium)
-        EstadoParcelaSelector(parcela = parcela) { nuevoEstado ->
+        EstadoParcelaSelector(
+            parcela = parcela,
+            rolUsuario = rolUsuario
+        ) { nuevoEstado ->
             api.cambiarEstadoParcela(parcela.id, nuevoEstado)
         }
     }
@@ -249,9 +257,17 @@ fun ContentDetailView(
 @Composable
 fun EstadoParcelaSelector(
     parcela: Parcela,
+    rolUsuario: String?,
     onEstadoChange: (EstadoParcela) -> Unit
 ) {
-    val estados = EstadoParcela.values()
+    // Filtramos para que RESERVADA no aparezca
+    val estados = EstadoParcela.values().filter { estado ->
+        when (rolUsuario?.uppercase()) {
+            "CAMPO" -> estado != EstadoParcela.MANTENIMIENTO && estado != EstadoParcela.RESERVADA
+            else -> estado != EstadoParcela.RESERVADA // opcional, si no quieres RESERVADA para nadie
+        }
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -261,13 +277,13 @@ fun EstadoParcelaSelector(
         estados.forEach { estado ->
             val (colorChip, icon) = when (estado) {
                 EstadoParcela.LIBRE -> Color(0xFF4CAF50) to Icons.Filled.Check
-                EstadoParcela.RESERVADA -> Color(0xFFFFC107) to Icons.Filled.DateRange
                 EstadoParcela.INTERESADO -> Color(0xFF2196F3) to Icons.Filled.Person
                 EstadoParcela.MANTENIMIENTO -> Color(0xFFF44336) to Icons.Filled.Close
+                else -> Color.Gray to Icons.Filled.Close
             }
 
             FilterChip(
-                selected = parcela.estadoParcela == estado, // si es null, todos false
+                selected = parcela.estadoParcela == estado,
                 onClick = { onEstadoChange(estado) },
                 label = { Text("") },
                 leadingIcon = { Icon(icon, contentDescription = estado.name) },
