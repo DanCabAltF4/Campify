@@ -38,7 +38,6 @@
             tmFechaHora = new System.Windows.Forms.Timer(components);
             lblId = new Label();
             lblTipoParcela = new Label();
-            lblImagen = new Label();
             lblPrecioNoche = new Label();
             lbltxtId = new Label();
             ckCercaBaño = new CheckBox();
@@ -51,6 +50,7 @@
             pbImagen = new PictureBox();
             btnVolver = new Button();
             btnGuardar = new Button();
+            btnSubirImagen = new Button();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrecioNoche).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbImagen).BeginInit();
@@ -68,6 +68,7 @@
             pnlTop.Name = "pnlTop";
             pnlTop.Size = new Size(810, 36);
             pnlTop.TabIndex = 27;
+            pnlTop.MouseDown += pnlTop_MouseDown;
             // 
             // lblFechaHora
             // 
@@ -114,7 +115,7 @@
             // tmFechaHora
             // 
             tmFechaHora.Enabled = true;
-            tmFechaHora.Interval = 1000;
+            tmFechaHora.Interval = 10;
             tmFechaHora.Tick += tmFechaHora_Tick;
             // 
             // lblId
@@ -131,27 +132,17 @@
             // 
             lblTipoParcela.AutoSize = true;
             lblTipoParcela.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTipoParcela.Location = new Point(337, 74);
+            lblTipoParcela.Location = new Point(41, 241);
             lblTipoParcela.Name = "lblTipoParcela";
             lblTipoParcela.Size = new Size(125, 20);
             lblTipoParcela.TabIndex = 30;
             lblTipoParcela.Text = "-Tipo de parcela:";
             // 
-            // lblImagen
-            // 
-            lblImagen.AutoSize = true;
-            lblImagen.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblImagen.Location = new Point(36, 357);
-            lblImagen.Name = "lblImagen";
-            lblImagen.Size = new Size(72, 20);
-            lblImagen.TabIndex = 32;
-            lblImagen.Text = "-Imagen:";
-            // 
             // lblPrecioNoche
             // 
             lblPrecioNoche.AutoSize = true;
             lblPrecioNoche.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPrecioNoche.Location = new Point(36, 262);
+            lblPrecioNoche.Location = new Point(36, 341);
             lblPrecioNoche.Name = "lblPrecioNoche";
             lblPrecioNoche.Size = new Size(108, 20);
             lblPrecioNoche.TabIndex = 34;
@@ -170,7 +161,7 @@
             ckCercaBaño.AutoSize = true;
             ckCercaBaño.CheckAlign = ContentAlignment.BottomCenter;
             ckCercaBaño.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ckCercaBaño.Location = new Point(36, 156);
+            ckCercaBaño.Location = new Point(36, 145);
             ckCercaBaño.Name = "ckCercaBaño";
             ckCercaBaño.Size = new Size(99, 41);
             ckCercaBaño.TabIndex = 39;
@@ -182,7 +173,7 @@
             ckCercaEntrada.AutoSize = true;
             ckCercaEntrada.CheckAlign = ContentAlignment.BottomCenter;
             ckCercaEntrada.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ckCercaEntrada.Location = new Point(173, 156);
+            ckCercaEntrada.Location = new Point(173, 145);
             ckCercaEntrada.Name = "ckCercaEntrada";
             ckCercaEntrada.Size = new Size(117, 41);
             ckCercaEntrada.TabIndex = 40;
@@ -194,7 +185,7 @@
             ckTieneVistas.AutoSize = true;
             ckTieneVistas.CheckAlign = ContentAlignment.BottomCenter;
             ckTieneVistas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ckTieneVistas.Location = new Point(337, 156);
+            ckTieneVistas.Location = new Point(337, 145);
             ckTieneVistas.Name = "ckTieneVistas";
             ckTieneVistas.Size = new Size(105, 41);
             ckTieneVistas.TabIndex = 41;
@@ -206,7 +197,7 @@
             ckZonaSombra.AutoSize = true;
             ckZonaSombra.CheckAlign = ContentAlignment.BottomCenter;
             ckZonaSombra.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ckZonaSombra.Location = new Point(475, 156);
+            ckZonaSombra.Location = new Point(475, 145);
             ckZonaSombra.Name = "ckZonaSombra";
             ckZonaSombra.Size = new Size(136, 41);
             ckZonaSombra.TabIndex = 42;
@@ -218,7 +209,7 @@
             ckZonaTranquila.AutoSize = true;
             ckZonaTranquila.CheckAlign = ContentAlignment.BottomCenter;
             ckZonaTranquila.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ckZonaTranquila.Location = new Point(650, 156);
+            ckZonaTranquila.Location = new Point(650, 145);
             ckZonaTranquila.Name = "ckZonaTranquila";
             ckZonaTranquila.Size = new Size(125, 41);
             ckZonaTranquila.TabIndex = 43;
@@ -229,7 +220,7 @@
             // 
             cbTipoParcela.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTipoParcela.FormattingEnabled = true;
-            cbTipoParcela.Location = new Point(468, 71);
+            cbTipoParcela.Location = new Point(172, 238);
             cbTipoParcela.Name = "cbTipoParcela";
             cbTipoParcela.Size = new Size(192, 28);
             cbTipoParcela.TabIndex = 44;
@@ -237,16 +228,16 @@
             // nudPrecioNoche
             // 
             nudPrecioNoche.DecimalPlaces = 2;
-            nudPrecioNoche.Location = new Point(150, 260);
+            nudPrecioNoche.Location = new Point(150, 339);
             nudPrecioNoche.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             nudPrecioNoche.Name = "nudPrecioNoche";
-            nudPrecioNoche.Size = new Size(150, 27);
+            nudPrecioNoche.Size = new Size(96, 27);
             nudPrecioNoche.TabIndex = 45;
-            nudPrecioNoche.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudPrecioNoche.TextAlign = HorizontalAlignment.Right;
             // 
             // pbImagen
             // 
-            pbImagen.Location = new Point(475, 260);
+            pbImagen.Location = new Point(468, 219);
             pbImagen.Name = "pbImagen";
             pbImagen.Size = new Size(300, 225);
             pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
@@ -283,6 +274,20 @@
             btnGuardar.TabIndex = 48;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
+            // btnSubirImagen
+            // 
+            btnSubirImagen.BackColor = Color.FromArgb(190, 130, 65);
+            btnSubirImagen.FlatAppearance.BorderSize = 0;
+            btnSubirImagen.FlatStyle = FlatStyle.Flat;
+            btnSubirImagen.Location = new Point(468, 456);
+            btnSubirImagen.Name = "btnSubirImagen";
+            btnSubirImagen.Size = new Size(300, 29);
+            btnSubirImagen.TabIndex = 49;
+            btnSubirImagen.Text = "Subir imágen";
+            btnSubirImagen.UseVisualStyleBackColor = false;
+            btnSubirImagen.Click += btnSubirImagen_Click;
             // 
             // FormNuevaParcela
             // 
@@ -290,6 +295,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(810, 518);
+            Controls.Add(btnSubirImagen);
             Controls.Add(btnGuardar);
             Controls.Add(btnVolver);
             Controls.Add(pbImagen);
@@ -302,7 +308,6 @@
             Controls.Add(ckCercaBaño);
             Controls.Add(lbltxtId);
             Controls.Add(lblPrecioNoche);
-            Controls.Add(lblImagen);
             Controls.Add(lblTipoParcela);
             Controls.Add(lblId);
             Controls.Add(pnlTop);
@@ -329,7 +334,6 @@
         private System.Windows.Forms.Timer tmFechaHora;
         private Label lblId;
         private Label lblTipoParcela;
-        private Label lblImagen;
         private Label lblPrecioNoche;
         private Label lbltxtId;
         private CheckBox ckCercaBaño;
@@ -342,5 +346,6 @@
         private PictureBox pbImagen;
         private Button btnVolver;
         private Button btnGuardar;
+        private Button btnSubirImagen;
     }
 }
