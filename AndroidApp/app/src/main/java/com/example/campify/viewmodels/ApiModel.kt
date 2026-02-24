@@ -21,6 +21,7 @@ import kotlinx.coroutines.runBlocking
 class ApiModel(private val authRepository: AuthRepository, private val roomDB: AppDatabase) : ViewModel() {
 
     val token = authRepository.token
+    val rol = authRepository.rol
     private val parcelasService = RetrofitClient.parcelas(tokenProvider())
     private val repo = ParcelaRepository(parcelasService, roomDB.parcelaDao())
     val parcelas = mutableStateOf<List<Parcela>>(emptyList())

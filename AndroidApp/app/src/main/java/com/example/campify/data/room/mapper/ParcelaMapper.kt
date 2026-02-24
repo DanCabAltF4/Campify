@@ -13,7 +13,8 @@ fun Parcela.toEntity() = ParcelaEntity(
     zona_sombra = zonaSombra,
     zona_tranquila = zonaTranquila,
     estado_parcela = estadoParcela,
-    tipo_parcela = tipoParcela
+    tipo_parcela = tipoParcela,
+    imagen_parcela = imagenParcela
 )
 
 fun ParcelaEntity.toDomain() = Parcela(
@@ -25,5 +26,6 @@ fun ParcelaEntity.toDomain() = Parcela(
     zonaSombra = zona_sombra,
     zonaTranquila = zona_tranquila,
     estadoParcela = estado_parcela,
-    tipoParcela = tipo_parcela
+    tipoParcela = tipo_parcela,
+    imagenParcela = imagen_parcela
 )
