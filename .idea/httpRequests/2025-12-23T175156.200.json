@@ -1,0 +1,11 @@
+{
+  "cerca_baño": false,
+  "cerca_entrada": false,
+  "estado_parcela": "INTERESADO",
+  "id": 3,
+  "precio_noche": 35.5,
+  "tiene_vistas": true,
+  "tipo_parcela": "NORMAL",
+  "zona_sombra": true,
+  "zona_tranquila": false
+}

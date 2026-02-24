@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -46,9 +47,15 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
+    implementation("androidx.room:room-runtime:${libs.versions.roomRuntimeAndroid.get()}")
+    implementation("androidx.room:room-ktx:${libs.versions.roomRuntimeAndroid.get()}")
+    ksp("androidx.room:room-compiler:${libs.versions.roomRuntimeAndroid.get()}")
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose.android)
+    implementation(libs.androidx.navigation.runtime.android)
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +63,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.runtime.livedata)
+    //https
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 }

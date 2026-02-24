@@ -4,44 +4,40 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.campify.data.remote.RetrofitClient
+import com.example.campify.data.room.AppDatabase
+import com.example.campify.navigation.CampifyNavigation
 import com.example.campify.ui.theme.CampifyTheme
+import com.example.campify.viewmodels.ApiModel
+import com.example.kotlinapp.data.AuthRepository
+import com.example.kotlinapp.data.SessionDataStore
 
 class MainActivity : ComponentActivity() {
+    private lateinit var apiModel: ApiModel
+    private lateinit var session : SessionDataStore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Inicializa session
+        session = SessionDataStore(this)
+
+        // Ahora sí puedes crear ApiModel
+        apiModel = ApiModel(
+            AuthRepository(
+                api = RetrofitClient.auth(),
+                session = session
+            ),
+            AppDatabase.getDatabase(this)
+        )
+
         setContent {
             CampifyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                CampifyNavigation(
+                    apiModel = apiModel
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CampifyTheme {
-        Greeting("Android")
     }
 }
