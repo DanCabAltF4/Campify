@@ -1,6 +1,5 @@
 package com.example.campify.views
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,11 +10,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -44,9 +43,10 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
 
     val parcelasFiltradas = remember(parcelas, searchText) {
         if (searchText.isNotEmpty()) {
-            parcelas.filter {
-                it.estado_parcela.name.contains(searchText, ignoreCase = true) ||
-                        it.id.toString().contains(searchText)
+            parcelas.filter { parcela ->
+                // Safe call en estadoParcela y fallback a string vacío
+                (parcela.estadoParcela?.name ?: "").contains(searchText, ignoreCase = true) ||
+                        parcela.id.toString().contains(searchText)
             }
         } else {
             parcelas
@@ -230,11 +230,13 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
 @Composable
 fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
 
-    val (colorEstado, iconoEstado) = when (parcela.estado_parcela) {
+    // Valores seguros por defecto para estado y icono
+    val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
         EstadoParcela.LIBRE -> colorLibre to Icons.Default.Check
         EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
         EstadoParcela.INTERESADO -> colorInteresado to Icons.Default.Person
         EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Default.Build
+        null -> Color.Gray to Icons.Default.Clear // fallback seguro
     }
 
     Card(
@@ -285,17 +287,25 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
                     Spacer(Modifier.width(6.dp))
 
                     Text(
-                        text = parcela.estado_parcela.name
-                            .lowercase()
-                            .replaceFirstChar { it.uppercase() },
+                        text = parcela.estadoParcela?.name
+                            ?.lowercase()
+                            ?.replaceFirstChar { it.uppercase() }
+                            ?: "Desconocido",
                         fontSize = 14.sp,
                         color = colorEstado,
                         fontWeight = FontWeight.Medium
                     )
                 }
+
+                Spacer(Modifier.height(4.dp))
+
+                // Mostrar tipo de parcela seguro
+                Text(
+                    text = "Tipo: ${parcela.tipoParcela?.name ?: "Desconocido"}",
+                    fontSize = 14.sp,
+                    color = Color.DarkGray
+                )
             }
         }
     }
 }
-
-
