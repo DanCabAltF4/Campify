@@ -110,6 +110,8 @@ namespace Forms
             this.Close();
         }
 
+
+        // Metodo referente al boton de subir imagen
         private void btnSubirImagen_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -122,6 +124,7 @@ namespace Forms
 
                 byte[] bytes = File.ReadAllBytes(ofd.FileName);
                 _archivoSeleccionado64 = Convert.ToBase64String(bytes);
+
                 // Previsualizar
                 pbImagen.Image?.Dispose();
                 using var ms = new MemoryStream(bytes);
@@ -129,6 +132,9 @@ namespace Forms
                 pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
+
+
+
 
         private void pnlTop_MouseDown(object sender, MouseEventArgs e)
         {

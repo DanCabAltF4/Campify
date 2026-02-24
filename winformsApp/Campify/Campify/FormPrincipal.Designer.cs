@@ -94,6 +94,7 @@
             lblTitulo = new Label();
             btnSalir = new Button();
             tmFechaHora = new System.Windows.Forms.Timer(components);
+            lblCreditos = new Label();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             panelMapaLista.SuspendLayout();
@@ -953,12 +954,21 @@
             tmFechaHora.Interval = 1000;
             tmFechaHora.Tick += tmFechaHora_Tick;
             // 
+            // lblCreditos
+            // 
+            lblCreditos.Location = new Point(4, 39);
+            lblCreditos.Name = "lblCreditos";
+            lblCreditos.Size = new Size(19, 19);
+            lblCreditos.TabIndex = 27;
+            lblCreditos.DoubleClick += lblCreditos_DoubleClick;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
             ClientSize = new Size(910, 632);
+            Controls.Add(lblCreditos);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
             Controls.Add(pnlClientes);
@@ -1060,5 +1070,6 @@
         private Button btnNuevaParcela;
         private Button btnEliminarParcela;
         private Button btnEditarParcela;
+        private Label lblCreditos;
     }
 }

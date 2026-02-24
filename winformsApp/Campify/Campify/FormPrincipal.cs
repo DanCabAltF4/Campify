@@ -371,6 +371,7 @@ namespace Campify
 
             btnClientesEstancia.Visible = false;
             btnServiciosEstancia.Visible = false;
+            btnImagen.Visible = true;
 
             if (String.Equals(Session.Rol, "CAMPO")) btnReservar.Visible = false; else btnReservar.Visible = true;
             btnMantenimiento.Visible = true;
@@ -440,7 +441,7 @@ namespace Campify
         /// </summary>
         private async void btnNuevaParcela_Click(object sender, EventArgs e)
         {
-            using(var form = new FormNuevaParcela(_api, null))
+            using (var form = new FormNuevaParcela(_api, null))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
@@ -486,7 +487,7 @@ namespace Campify
                 return;
             }
 
-            if(MessageBox.Show("Se eliminará la parcela seleccionada.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Se eliminará la parcela seleccionada.\n¿Desea continuar?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 int idParcela = ucParcelaDatos.ParcelaActual.Id;
                 await _api.Delete<Parcela>("api/parcelas", idParcela);
@@ -575,6 +576,7 @@ namespace Campify
 
             btnReservar.Visible = false;
             btnMantenimiento.Visible = false;
+            btnImagen.Visible = false;
 
             btnClientesEstancia.Visible = true;
             btnServiciosEstancia.Visible = true;
@@ -631,6 +633,7 @@ namespace Campify
             {
                 ucParcelaDatos.Visible = false;
                 ucEstanciaActual1.Visible = false;
+                btnImagen.Visible = false;
                 flpHistorial.Visible = true;
                 await CargarHistorial();
             }
@@ -1108,6 +1111,9 @@ namespace Campify
             }
         }
 
-
+        private void lblCreditos_DoubleClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
