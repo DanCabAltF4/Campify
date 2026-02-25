@@ -642,6 +642,7 @@
             // 
             // cbFiltroEstado
             // 
+            cbFiltroEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFiltroEstado.Enabled = false;
             cbFiltroEstado.FormattingEnabled = true;
             cbFiltroEstado.Location = new Point(227, 59);

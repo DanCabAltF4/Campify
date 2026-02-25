@@ -37,7 +37,7 @@ namespace Campify
             InitializeComponent();
             _api = api;
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            //cbFiltroEstado.DataSource = 
+            cbFiltroEstado.DataSource = Enum.GetValues(typeof(EnumEstados));
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -404,6 +404,7 @@ namespace Campify
             }
         }
 
+
         private void ckFiltroEstado_CheckedChanged(object sender, EventArgs e)
         {
             cbFiltroEstado.Enabled = !cbFiltroEstado.Enabled;
@@ -413,9 +414,25 @@ namespace Campify
         {
             nudFiltroPrecioMin.Enabled = !nudFiltroPrecioMin.Enabled;
         }
+
         private void ckFiltroPrecioMax_CheckedChanged(object sender, EventArgs e)
         {
             nudFiltroPrecioMax.Enabled = !nudFiltroPrecioMax.Enabled;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            var filtro = ConstruirFiltroParcela();
+            var pred = ParcelaFiltering.BuildPredicate(filtro);
+
+            if (ckFiltroPrecioMin.Checked && ckFiltroPrecioMax.Checked && nudFiltroPrecioMin.Value > nudFiltroPrecioMax.Value)
+            {
+                MessageBox.Show("El precio mínimo no puede ser mayor que el máximo.", "Filtro de precio",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var filtradas = _parcelas.Where(pred).ToList();
+            CargarParcelasFiltradas(filtradas);
         }
 
         public class ParcelaFilter
@@ -469,6 +486,7 @@ namespace Campify
                     (f.PrecioMax == null || p.PrecioNoche <= f.PrecioMax.Value);
             }
         }
+
 
 
         // -- PANEL DATOS
@@ -1288,14 +1306,7 @@ namespace Campify
             MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            var filtro = ConstruirFiltroParcela();
-            var pred = ParcelaFiltering.BuildPredicate(filtro);
 
-            var filtradas = _parcelas.Where(pred).ToList();
-            CargarParcelasFiltradas(filtradas);
-        }
 
 
     }
