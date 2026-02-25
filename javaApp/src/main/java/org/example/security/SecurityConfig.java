@@ -82,7 +82,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/parcelas/**")
                         .hasRole("ADMINISTRADOR")
                         .requestMatchers(HttpMethod.PUT, "/api/parcelas/**")
-                        .hasAnyRole("ADMINISTRADOR", "CAMPO", "RECEPCIONISTA")
+                        .hasAnyRole("ADMINISTRADOR")
 
                         .anyRequest().authenticated()
                 );
