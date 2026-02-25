@@ -1,7 +1,5 @@
 package com.example.campify.views
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,11 +12,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,9 +27,9 @@ import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
-import com.example.campify.data.model.enums.PuestoTrabajo
 import com.example.campify.ui.theme.*
 import com.example.campify.viewmodels.ApiModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,11 +43,13 @@ fun DetailView(
     LaunchedEffect(Unit) { api.cargarParcelas() }
     val parcela = parcelas.firstOrNull { it.id == id }
 
+    val snackbarHostState = remember { SnackbarHostState() } // <-- snackbars
 
     Scaffold(
         topBar = { DetailTopBar(navController) },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // <-- host
         content = { innerPadding ->
-            DetailContent(parcela, innerPadding, api, rolUsuario)
+            DetailContent(parcela, innerPadding, api, rolUsuario, snackbarHostState)
         }
     )
 }
@@ -96,7 +98,8 @@ fun DetailContent(
     parcela: Parcela?,
     innerPadding: PaddingValues,
     api: ApiModel,
-    rolUsuario: String?
+    rolUsuario: String?,
+    snackbarHostState: SnackbarHostState
 ) {
     parcela?.let {
         val scrollState = rememberScrollState()
@@ -104,6 +107,7 @@ fun DetailContent(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
+                .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
@@ -118,14 +122,17 @@ fun DetailContent(
                     "Cambiar Estado",
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 18.sp,
-                    color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+                    color = MaterialTheme.colorScheme.onBackground
                 )
-                EstadoParcelaSelector(parcela = it, rolUsuario = rolUsuario) { nuevoEstado ->
+                EstadoParcelaSelector(
+                    parcela = it,
+                    rolUsuario = rolUsuario
+                ) { nuevoEstado ->
                     api.cambiarEstadoParcela(it.id, nuevoEstado)
                 }
             }
         }
-    } ?: run {
+    }?: run {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -151,6 +158,10 @@ fun EstadoParcelaSelector(
         }
     }
 
+    // Estado para controlar si se muestra el diálogo y qué estado quiere cambiar
+    var estadoSeleccionado by remember { mutableStateOf<EstadoParcela?>(null) }
+    var mostrarDialogo by remember { mutableStateOf(false) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -167,8 +178,11 @@ fun EstadoParcelaSelector(
 
             FilterChip(
                 selected = parcela.estadoParcela == estado,
-                onClick = { onEstadoChange(estado) },
-                label = { Text("", color = dynamicColor(textoPrincipalLight, textoPrincipalDark)) },
+                onClick = {
+                    estadoSeleccionado = estado
+                    mostrarDialogo = true // <-- abrir diálogo
+                },
+                label = { Text("", color = MaterialTheme.colorScheme.onBackground) },
                 leadingIcon = { Icon(icon, contentDescription = estado.name, tint = Color.White) },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = colorChip,
@@ -179,6 +193,66 @@ fun EstadoParcelaSelector(
             )
         }
     }
+
+    // Diálogo de confirmación
+    if (mostrarDialogo && estadoSeleccionado != null) {
+        ConfirmDialog(
+            estado = estadoSeleccionado!!,
+            onConfirm = {
+                onEstadoChange(it)
+                mostrarDialogo = false
+            },
+            onDismiss = { mostrarDialogo = false }
+        )
+    }
+}
+
+
+@Composable
+fun ConfirmDialog(
+    estado: EstadoParcela,
+    onConfirm: (EstadoParcela) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "Confirmación",
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = dynamicColor(Color(0xFF000000), Color(0xFFFFFFFF))
+            )
+        },
+        text = {
+            Text(
+                "¿Estás seguro que quieres cambiar el estado a ${estado.name}?",
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { onConfirm(estado) },
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = Color.White,
+                    containerColor = dynamicColor(botonActivoLight, botonActivoDark)
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ) { Text("Sí", fontWeight = FontWeight.Bold) }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onBackground
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ) { Text("No", fontWeight = FontWeight.Medium) }
+        },
+        shape = RoundedCornerShape(16.dp),
+        containerColor = dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717))
+    )
 }
 
 @Composable

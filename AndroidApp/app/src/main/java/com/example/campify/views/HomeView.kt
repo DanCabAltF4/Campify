@@ -79,6 +79,7 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
         ) {
             NavigationSegment(navController, seleccionInicial = "Mapa", segmentSelectedColor, textPrimary, textSecondary)
             Spacer(modifier = Modifier.height(8.dp))

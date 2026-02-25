@@ -78,6 +78,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
         ) {
             NavigationSegment(navController, segmentBackground, botonActivoColor, textPrimary, textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
