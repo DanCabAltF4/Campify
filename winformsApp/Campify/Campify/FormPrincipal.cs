@@ -600,7 +600,6 @@ namespace Campify
                 return;
             }
 
-            this.Hide();
             using (var form = new FormNuevaParcela(_api, ucParcelaDatos.ParcelaActual))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -610,7 +609,7 @@ namespace Campify
                     await CargarParcelas();
                 }
             }
-            this.Show();
+
         }
 
 
@@ -882,14 +881,12 @@ namespace Campify
                     return;
                 }
 
-                this.Hide();
                 var form = new FormDatosEmpleado(empleadoSeleccionado, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEmpleados();
                     ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1013,14 +1010,12 @@ namespace Campify
                     return;
                 }
 
-                this.Hide();
                 var form = new FormDatosServicio(servicioSeleccionado, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarServicios();
                     ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1135,14 +1130,12 @@ namespace Campify
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                this.Hide();
                 var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEstancias();
                     ucEstanciaActual2.SetData(form.EstanciaCreada);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1284,7 +1277,6 @@ namespace Campify
                     return;
                 }
 
-                this.Hide();
                 var form = new FormNuevoCliente(_api, cliente);
                 if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
                 {
@@ -1292,7 +1284,6 @@ namespace Campify
                     await CargarClientes();
                     ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
