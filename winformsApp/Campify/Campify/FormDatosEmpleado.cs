@@ -1,6 +1,7 @@
 using Model;
 using Repository;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 
 namespace Campify
 {
@@ -39,21 +40,28 @@ namespace Campify
 
             cbPuesto.DataSource = Enum.GetValues(typeof(EnumPuestos));
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        }
 
-            if(_empleado == null)
+
+        private void FormDatosEmpleado_Load(object sender, EventArgs e)
+        {
+            if (_empleado == null)
             {
                 lbltxtId.Text = "---";
                 txbDni.Text = "";
                 chbActivo.Checked = true;
                 txbNombre.Text = "";
                 txbApellidos.Text = "";
-
-            }
-
                 cbPuesto.SelectedItem = EnumPuestos.CAMPO;
-
-
-            CargarDatosEmpleado();
+                ckPassword.Visible = false;
+            }
+            else
+            {
+                CargarDatosEmpleado();
+                ckPassword.Checked = false;
+                tbPassword.Enabled = false;
+                tbRepPassword.Enabled = false;
+            }
         }
 
 
@@ -63,16 +71,14 @@ namespace Campify
 
         private void CargarDatosEmpleado()
         {
-            if (_empleado != null)
-            {
-                lblId.Text = _empleado.Id.ToString();
-                txbNombre.Text = _empleado.Nombre;
-                txbApellidos.Text = _empleado.Apellidos;
-                txbDni.Text = _empleado.Dni;
-                txbTelefono.Text = _empleado.Telefono;
-                cbPuesto.SelectedItem = _empleado.Puesto;
-                chbActivo.Checked = _empleado.Activo;
-            }
+            lblId.Text = _empleado.Id.ToString();
+            txbNombre.Text = _empleado.Nombre;
+            txbApellidos.Text = _empleado.Apellidos;
+            txbDni.Text = _empleado.Dni;
+            txbTelefono.Text = _empleado.Telefono;
+            cbPuesto.SelectedItem = _empleado.Puesto;
+            chbActivo.Checked = _empleado.Activo;
+            tbEmail.Text = _empleado.Email;
         }
 
 
@@ -100,6 +106,10 @@ namespace Campify
         {
             try
             {
+                bool creando = (_empleado == null);
+                bool cambiarPass = creando || ckPassword.Checked;
+
+
                 // Asigna los valores de los controles al empleado
                 if (_empleado == null) _empleado = new Empleado(); // Asegura que _empleado no sea null
                 _empleado.Nombre = txbNombre.Text;
@@ -108,6 +118,25 @@ namespace Campify
                 _empleado.Telefono = txbTelefono.Text;
                 _empleado.Puesto = (EnumPuestos)cbPuesto.SelectedItem;
                 _empleado.Activo = chbActivo.Checked;
+                _empleado.Email = tbEmail.Text;
+
+                if (cambiarPass)
+                {
+                    if(string.IsNullOrWhiteSpace(tbPassword.Text) ||
+                        string.IsNullOrWhiteSpace(tbRepPassword.Text))
+                    {
+                        MessageBox.Show("Los campos de contraseña no pueden estar en blanco", "Campos faltantes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    if(!string.Equals(tbPassword.Text, tbRepPassword.Text))
+                    {
+                        MessageBox.Show("Las contraseñas deben de ser iguales", "Contraseñas no coinciden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    _empleado.Password = tbPassword.Text;
+                }
+
 
                 // Comprueba si es un empleado nuevo o existente y llama a la API correspondiente
                 if (_empleado.Id == 0)
@@ -117,8 +146,8 @@ namespace Campify
                 }
                 else
                 {
-                    MessageBox.Show("Se modificará al empleado.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
+                    var res = MessageBox.Show("Se modificará al empleado.\n¿Desea continuar?", "Confirmar cambios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(res==DialogResult.Yes) EmpleadoGuardado = await _api.Update<Empleado>("api/empleados", _empleado.Id, _empleado);
                 }
 
                 this.DialogResult = DialogResult.OK;
@@ -154,5 +183,13 @@ namespace Campify
         {
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
+
+        private void ckPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            tbPassword.Enabled = !tbPassword.Enabled;
+            tbRepPassword.Enabled = !tbRepPassword.Enabled;
+        }
+
+
     }
 }
