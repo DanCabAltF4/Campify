@@ -28,7 +28,11 @@ import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.ui.theme.*
 import com.example.campify.viewmodels.ApiModel
 import android.util.Base64
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.window.Dialog
 import kotlin.io.encoding.ExperimentalEncodingApi
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,6 +42,8 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     var searchText by remember { mutableStateOf("") }
     val parcelas by api.parcelas
 
+    //Estados para mostrar popUp de la imagen
+    var selectedParcelaForPopup by remember { mutableStateOf<Parcela?>(null) }
     // Estados de los checkboxes para filtros
     var filtroBano by remember { mutableStateOf(false) }
     var filtroEntrada by remember { mutableStateOf(false) }
@@ -51,7 +57,15 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     LaunchedEffect(Unit) { api.cargarParcelas() }
 
     // Filtrado combinado: búsqueda + checkboxes
-    val parcelasFiltradas = remember(parcelas, searchText, filtroBano, filtroEntrada, filtroVistas, filtroTranquila, filtroSombra) {
+    val parcelasFiltradas = remember(
+        parcelas,
+        searchText,
+        filtroBano,
+        filtroEntrada,
+        filtroVistas,
+        filtroTranquila,
+        filtroSombra
+    ) {
         parcelas.filter { parcela ->
             val textoOk = searchText.isEmpty() ||
                     (parcela.estadoParcela?.name ?: "").contains(searchText, ignoreCase = true) ||
@@ -70,7 +84,6 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     val textPrimary = dynamicColor(textoPrincipalLight, textoPrincipalDark)
     val textSecondary = dynamicColor(textoSecundarioLight, textoSecundarioDark)
     val botonActivoColor = dynamicColor(botonActivoLight, botonActivoDark)
-
     Scaffold(
         topBar = { ListaTopBar(api) },
     ) { innerPadding ->
@@ -79,7 +92,14 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            NavigationSegment(navController, segmentBackground, botonActivoColor, textPrimary, textSecondary)
+
+            NavigationSegment(
+                navController,
+                segmentBackground,
+                botonActivoColor,
+                textPrimary,
+                textSecondary
+            )
             Spacer(modifier = Modifier.height(8.dp))
             SearchBar(searchText, textPrimary) { searchText = it }
 
@@ -90,7 +110,10 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
-                    .background(dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C)), RoundedCornerShape(12.dp))
+                    .background(
+                        dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C)),
+                        RoundedCornerShape(12.dp)
+                    )
                     .clickable { showFiltros = !showFiltros }
                     .padding(vertical = 12.dp),
                 contentAlignment = Alignment.Center
@@ -115,9 +138,13 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
-
-            ParcelaList(parcelasFiltradas, navController)
+            ParcelaList(parcelasFiltradas, navController) { parcela ->
+                selectedParcelaForPopup = parcela
+            }
         }
+    }
+    selectedParcelaForPopup?.let { parcela ->
+        ImagenPopUp(parcela = parcela, onDismiss = { selectedParcelaForPopup = null })
     }
 }
 
@@ -134,7 +161,10 @@ fun FiltroCheckboxes(
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
-            .background(dynamicColor(Color(0xFFF7F7F7), Color(0xFF1C1C1C)), RoundedCornerShape(12.dp))
+            .background(
+                dynamicColor(Color(0xFFF7F7F7), Color(0xFF1C1C1C)),
+                RoundedCornerShape(12.dp)
+            )
             .padding(12.dp)
     ) {
         Row(
@@ -334,7 +364,11 @@ fun NavigationSegment(
 
 // ParcelaList
 @Composable
-fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
+fun ParcelaList(
+    parcelas: List<Parcela>,
+    navController: NavHostController,
+    onDoubleClick: (Parcela) -> Unit // New parameter
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -342,7 +376,11 @@ fun ParcelaList(parcelas: List<Parcela>, navController: NavHostController) {
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(parcelas) { parcela ->
-            ParcelaItem(parcela) { navController.navigate("detail/${parcela.id}") }
+            ParcelaItem(
+                parcela = parcela,
+                onClick = { navController.navigate("detail/${parcela.id}") },
+                onDoubleClick = { onDoubleClick(parcela) }
+            )
         }
     }
 }
@@ -368,7 +406,12 @@ fun ParcelaThumbnail(base64: String?) {
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier.size(80.dp),
-        colors = CardDefaults.cardColors(containerColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark))
+        colors = CardDefaults.cardColors(
+            containerColor = dynamicColor(
+                fondoTarjetaLight,
+                fondoTarjetaDark
+            )
+        )
     ) {
         if (bitmap != null) {
             Image(
@@ -389,7 +432,7 @@ fun ParcelaThumbnail(base64: String?) {
 }
 
 @Composable
-fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
+fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit) {
     val (colorEstado, iconoEstado) = when (parcela.estadoParcela) {
         EstadoParcela.LIBRE -> colorLibre to Icons.Default.Check
         EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
@@ -397,14 +440,24 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
         EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Default.Build
         null -> Color.Gray to Icons.Default.Clear
     }
-
+    val bitmap = remember(parcela.imagenParcela) {
+        parcela.imagenParcela?.substringAfter("base64,", parcela.imagenParcela)
+            ?.let { base64ToBitmap(it) }
+    }
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() },
+            .combinedClickable(
+                onClick = onClick,
+                onDoubleClick = onDoubleClick
+            ),
         shape = RoundedCornerShape(14.dp),
         elevation = CardDefaults.cardElevation(5.dp),
-        colors = CardDefaults.cardColors(containerColor = dynamicColor(fondoTarjetaLight, fondoTarjetaDark))
+        colors = CardDefaults.cardColors(
+            containerColor = dynamicColor(
+                fondoTarjetaLight,
+                fondoTarjetaDark
+            )
+        )
     ) {
         Row(
             modifier = Modifier
@@ -464,6 +517,38 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit) {
             Spacer(Modifier.width(12.dp))
 
             ParcelaThumbnail(parcela.imagenParcela)
+        }
+    }
+}
+
+@Composable
+fun ImagenPopUp(parcela: Parcela, onDismiss: () -> Unit) {
+    Dialog(onDismissRequest = onDismiss) {
+        val bitmap = remember(parcela.imagenParcela) {
+            parcela.imagenParcela
+                ?.let { raw ->
+                    val base64Data = raw.substringAfter("base64,", raw)
+                    base64ToBitmap(base64Data)
+                }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(Color.Black, RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            if (bitmap != null) {
+                Image(
+                    bitmap = bitmap.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.FillWidth
+                )
+            } else {
+                LaunchedEffect(Unit) { onDismiss() }
+            }
         }
     }
 }

@@ -80,11 +80,6 @@ fun DetailTopBar(navController: NavHostController) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Volver", tint = textColor)
                 }
             },
-            actions = {
-                IconButton(onClick = { /* acción */ }) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Configuración", tint = textColor)
-                }
-            },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = containerColor, titleContentColor = textColor),
             modifier = Modifier.height(72.dp)
         )
@@ -155,7 +150,8 @@ fun EstadoParcelaSelector(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.SpaceEvenly,
+
     ) {
         estados.forEach { estado ->
             val (colorChip, icon) = when (estado) {
