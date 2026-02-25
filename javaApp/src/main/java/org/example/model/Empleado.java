@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.example.model.enums.PuestoTrabajo;
 
@@ -24,6 +25,7 @@ public class Empleado {
     private boolean activo;
     @Column(length = 100, nullable = false, unique = true)
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 60, nullable = false)
     private String password;
 

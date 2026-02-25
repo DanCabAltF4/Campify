@@ -102,12 +102,14 @@ namespace Forms
         /// </summary>
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var form = new FormNuevoCliente(_api, null);
             if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
             {
                 var nuevoCliente = form.ClienteNuevo;
                 listaClientesEstancia.Add(nuevoCliente);
             }
+            this.Show();
         }
 
 

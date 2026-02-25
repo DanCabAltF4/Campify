@@ -19,7 +19,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        System.out.println(">>> ENTRÓ AL CONTROLLER /login con email=" + loginRequest.email());
+
         Empleado emp = service.validarLogin(loginRequest.email(), loginRequest.password());
 
         if (emp == null) {

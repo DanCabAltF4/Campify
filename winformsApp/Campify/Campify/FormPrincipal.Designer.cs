@@ -45,22 +45,36 @@
             btnReservar = new Button();
             btLista = new Button();
             btnHistorial = new Button();
-            panelMapaLista = new Panel();
+            pnlMapaLista = new Panel();
             flpParcelas = new FlowLayoutPanel();
             pbMapa = new PictureBox();
             btnEstanciaActual = new Button();
-            panelDatos = new Panel();
-            btnEliminarParcela = new Button();
-            btnEditarParcela = new Button();
-            btnNuevaParcela = new Button();
+            pnlDatos = new Panel();
             btnImagen = new Button();
             ucParcelaDatos = new Controles.ucParcelaDatos();
             ucEstanciaActual1 = new Controles.ucEstanciaActual();
             flpHistorial = new FlowLayoutPanel();
             ucHistorial1 = new Controles.ucHistorial();
+            btnEliminarParcela = new Button();
+            btnEditarParcela = new Button();
+            btnNuevaParcela = new Button();
             btMapa = new Button();
             pnlParcelas = new Panel();
+            btnFiltros = new Button();
             btnRefrescarParcelas = new Button();
+            pnlFiltros = new Panel();
+            ckFiltroPrecioMax = new CheckBox();
+            nudFiltroPrecioMax = new NumericUpDown();
+            btnFiltrar = new Button();
+            nudFiltroPrecioMin = new NumericUpDown();
+            ckFiltroTranquilo = new CheckBox();
+            cbFiltroEstado = new ComboBox();
+            ckFiltroEstado = new CheckBox();
+            ckFiltroVistas = new CheckBox();
+            ckFiltroPrecioMin = new CheckBox();
+            ckFiltroSombra = new CheckBox();
+            ckFiltroEntrada = new CheckBox();
+            ckFiltroBaño = new CheckBox();
             btnMantenimiento = new Button();
             btnClientesEstancia = new Button();
             btnServiciosEstancia = new Button();
@@ -97,11 +111,14 @@
             lblCreditos = new Label();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
-            panelMapaLista.SuspendLayout();
+            pnlMapaLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbMapa).BeginInit();
-            panelDatos.SuspendLayout();
+            pnlDatos.SuspendLayout();
             flpHistorial.SuspendLayout();
             pnlParcelas.SuspendLayout();
+            pnlFiltros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudFiltroPrecioMax).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudFiltroPrecioMin).BeginInit();
             pnlEmpleados.SuspendLayout();
             pnlEstancias.SuspendLayout();
             pnlClientes.SuspendLayout();
@@ -297,10 +314,10 @@
             btLista.FlatStyle = FlatStyle.Flat;
             btLista.Font = new Font("Segoe UI", 12F);
             btLista.ForeColor = Color.FromArgb(255, 222, 171);
-            btLista.Location = new Point(217, 0);
+            btLista.Location = new Point(201, 0);
             btLista.Margin = new Padding(0);
             btLista.Name = "btLista";
-            btLista.Size = new Size(220, 45);
+            btLista.Size = new Size(200, 45);
             btLista.TabIndex = 13;
             btLista.Text = "Lista";
             btLista.UseVisualStyleBackColor = false;
@@ -322,15 +339,15 @@
             btnHistorial.UseVisualStyleBackColor = false;
             btnHistorial.Click += btnHistorial_Click;
             // 
-            // panelMapaLista
+            // pnlMapaLista
             // 
-            panelMapaLista.Controls.Add(flpParcelas);
-            panelMapaLista.Controls.Add(pbMapa);
-            panelMapaLista.Location = new Point(1, 45);
-            panelMapaLista.Margin = new Padding(0);
-            panelMapaLista.Name = "panelMapaLista";
-            panelMapaLista.Size = new Size(488, 433);
-            panelMapaLista.TabIndex = 16;
+            pnlMapaLista.Controls.Add(flpParcelas);
+            pnlMapaLista.Controls.Add(pbMapa);
+            pnlMapaLista.Location = new Point(1, 45);
+            pnlMapaLista.Margin = new Padding(0);
+            pnlMapaLista.Name = "pnlMapaLista";
+            pnlMapaLista.Size = new Size(488, 433);
+            pnlMapaLista.TabIndex = 16;
             // 
             // flpParcelas
             // 
@@ -372,68 +389,17 @@
             btnEstanciaActual.UseVisualStyleBackColor = false;
             btnEstanciaActual.Click += btnEstanciaActual_Click;
             // 
-            // panelDatos
+            // pnlDatos
             // 
-            panelDatos.Controls.Add(btnEliminarParcela);
-            panelDatos.Controls.Add(btnEditarParcela);
-            panelDatos.Controls.Add(btnNuevaParcela);
-            panelDatos.Controls.Add(btnImagen);
-            panelDatos.Controls.Add(ucParcelaDatos);
-            panelDatos.Controls.Add(ucEstanciaActual1);
-            panelDatos.Controls.Add(flpHistorial);
-            panelDatos.Location = new Point(489, 45);
-            panelDatos.Margin = new Padding(0);
-            panelDatos.Name = "panelDatos";
-            panelDatos.Size = new Size(421, 388);
-            panelDatos.TabIndex = 17;
-            // 
-            // btnEliminarParcela
-            // 
-            btnEliminarParcela.BackColor = Color.FromArgb(190, 130, 65);
-            btnEliminarParcela.FlatAppearance.BorderSize = 0;
-            btnEliminarParcela.FlatStyle = FlatStyle.Flat;
-            btnEliminarParcela.Font = new Font("Segoe UI", 12F);
-            btnEliminarParcela.ForeColor = Color.FromArgb(255, 222, 171);
-            btnEliminarParcela.Location = new Point(281, 348);
-            btnEliminarParcela.Margin = new Padding(0);
-            btnEliminarParcela.Name = "btnEliminarParcela";
-            btnEliminarParcela.Size = new Size(145, 40);
-            btnEliminarParcela.TabIndex = 25;
-            btnEliminarParcela.Text = "Eliminar";
-            btnEliminarParcela.UseVisualStyleBackColor = false;
-            btnEliminarParcela.Click += btnEliminarParcela_Click;
-            // 
-            // btnEditarParcela
-            // 
-            btnEditarParcela.BackColor = Color.FromArgb(190, 130, 65);
-            btnEditarParcela.FlatAppearance.BorderSize = 0;
-            btnEditarParcela.FlatStyle = FlatStyle.Flat;
-            btnEditarParcela.Font = new Font("Segoe UI", 12F);
-            btnEditarParcela.ForeColor = Color.FromArgb(255, 222, 171);
-            btnEditarParcela.Location = new Point(142, 348);
-            btnEditarParcela.Margin = new Padding(0);
-            btnEditarParcela.Name = "btnEditarParcela";
-            btnEditarParcela.Size = new Size(141, 40);
-            btnEditarParcela.TabIndex = 24;
-            btnEditarParcela.Text = "Editar";
-            btnEditarParcela.UseVisualStyleBackColor = false;
-            btnEditarParcela.Click += btnEditarParcela_Click;
-            // 
-            // btnNuevaParcela
-            // 
-            btnNuevaParcela.BackColor = Color.FromArgb(190, 130, 65);
-            btnNuevaParcela.FlatAppearance.BorderSize = 0;
-            btnNuevaParcela.FlatStyle = FlatStyle.Flat;
-            btnNuevaParcela.Font = new Font("Segoe UI", 12F);
-            btnNuevaParcela.ForeColor = Color.FromArgb(255, 222, 171);
-            btnNuevaParcela.Location = new Point(0, 348);
-            btnNuevaParcela.Margin = new Padding(0);
-            btnNuevaParcela.Name = "btnNuevaParcela";
-            btnNuevaParcela.Size = new Size(142, 40);
-            btnNuevaParcela.TabIndex = 23;
-            btnNuevaParcela.Text = "Nueva";
-            btnNuevaParcela.UseVisualStyleBackColor = false;
-            btnNuevaParcela.Click += btnNuevaParcela_Click;
+            pnlDatos.Controls.Add(btnImagen);
+            pnlDatos.Controls.Add(ucParcelaDatos);
+            pnlDatos.Controls.Add(ucEstanciaActual1);
+            pnlDatos.Controls.Add(flpHistorial);
+            pnlDatos.Location = new Point(489, 45);
+            pnlDatos.Margin = new Padding(0);
+            pnlDatos.Name = "pnlDatos";
+            pnlDatos.Size = new Size(421, 388);
+            pnlDatos.TabIndex = 17;
             // 
             // btnImagen
             // 
@@ -479,6 +445,54 @@
             ucHistorial1.Size = new Size(401, 72);
             ucHistorial1.TabIndex = 0;
             // 
+            // btnEliminarParcela
+            // 
+            btnEliminarParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnEliminarParcela.FlatAppearance.BorderSize = 0;
+            btnEliminarParcela.FlatStyle = FlatStyle.Flat;
+            btnEliminarParcela.Font = new Font("Segoe UI", 12F);
+            btnEliminarParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnEliminarParcela.Location = new Point(772, 393);
+            btnEliminarParcela.Margin = new Padding(0);
+            btnEliminarParcela.Name = "btnEliminarParcela";
+            btnEliminarParcela.Size = new Size(145, 40);
+            btnEliminarParcela.TabIndex = 25;
+            btnEliminarParcela.Text = "Eliminar";
+            btnEliminarParcela.UseVisualStyleBackColor = false;
+            btnEliminarParcela.Click += btnEliminarParcela_Click;
+            // 
+            // btnEditarParcela
+            // 
+            btnEditarParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnEditarParcela.FlatAppearance.BorderSize = 0;
+            btnEditarParcela.FlatStyle = FlatStyle.Flat;
+            btnEditarParcela.Font = new Font("Segoe UI", 12F);
+            btnEditarParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnEditarParcela.Location = new Point(633, 393);
+            btnEditarParcela.Margin = new Padding(0);
+            btnEditarParcela.Name = "btnEditarParcela";
+            btnEditarParcela.Size = new Size(141, 40);
+            btnEditarParcela.TabIndex = 24;
+            btnEditarParcela.Text = "Editar";
+            btnEditarParcela.UseVisualStyleBackColor = false;
+            btnEditarParcela.Click += btnEditarParcela_Click;
+            // 
+            // btnNuevaParcela
+            // 
+            btnNuevaParcela.BackColor = Color.FromArgb(190, 130, 65);
+            btnNuevaParcela.FlatAppearance.BorderSize = 0;
+            btnNuevaParcela.FlatStyle = FlatStyle.Flat;
+            btnNuevaParcela.Font = new Font("Segoe UI", 12F);
+            btnNuevaParcela.ForeColor = Color.FromArgb(255, 222, 171);
+            btnNuevaParcela.Location = new Point(489, 393);
+            btnNuevaParcela.Margin = new Padding(0);
+            btnNuevaParcela.Name = "btnNuevaParcela";
+            btnNuevaParcela.Size = new Size(144, 40);
+            btnNuevaParcela.TabIndex = 23;
+            btnNuevaParcela.Text = "Nueva";
+            btnNuevaParcela.UseVisualStyleBackColor = false;
+            btnNuevaParcela.Click += btnNuevaParcela_Click;
+            // 
             // btMapa
             // 
             btMapa.BackColor = Color.Peru;
@@ -489,7 +503,7 @@
             btMapa.Location = new Point(1, 0);
             btMapa.Margin = new Padding(0);
             btMapa.Name = "btMapa";
-            btMapa.Size = new Size(216, 45);
+            btMapa.Size = new Size(200, 45);
             btMapa.TabIndex = 12;
             btMapa.Text = "Mapa";
             btMapa.UseVisualStyleBackColor = false;
@@ -497,14 +511,19 @@
             // 
             // pnlParcelas
             // 
-            pnlParcelas.Controls.Add(btnRefrescarParcelas);
-            pnlParcelas.Controls.Add(btLista);
+            pnlParcelas.Controls.Add(btnEditarParcela);
+            pnlParcelas.Controls.Add(btnNuevaParcela);
+            pnlParcelas.Controls.Add(btnEliminarParcela);
             pnlParcelas.Controls.Add(btMapa);
-            pnlParcelas.Controls.Add(panelMapaLista);
+            pnlParcelas.Controls.Add(btLista);
+            pnlParcelas.Controls.Add(btnFiltros);
+            pnlParcelas.Controls.Add(btnRefrescarParcelas);
+            pnlParcelas.Controls.Add(pnlMapaLista);
             pnlParcelas.Controls.Add(btnDatos);
             pnlParcelas.Controls.Add(btnEstanciaActual);
             pnlParcelas.Controls.Add(btnHistorial);
-            pnlParcelas.Controls.Add(panelDatos);
+            pnlParcelas.Controls.Add(pnlFiltros);
+            pnlParcelas.Controls.Add(pnlDatos);
             pnlParcelas.Controls.Add(btnReservar);
             pnlParcelas.Controls.Add(btnMantenimiento);
             pnlParcelas.Controls.Add(btnClientesEstancia);
@@ -514,19 +533,184 @@
             pnlParcelas.Size = new Size(913, 480);
             pnlParcelas.TabIndex = 18;
             // 
+            // btnFiltros
+            // 
+            btnFiltros.FlatAppearance.BorderSize = 0;
+            btnFiltros.FlatStyle = FlatStyle.Flat;
+            btnFiltros.Font = new Font("Segoe UI", 20F);
+            btnFiltros.Image = (Image)resources.GetObject("btnFiltros.Image");
+            btnFiltros.Location = new Point(405, 4);
+            btnFiltros.Margin = new Padding(0);
+            btnFiltros.Name = "btnFiltros";
+            btnFiltros.Size = new Size(37, 37);
+            btnFiltros.TabIndex = 23;
+            btnFiltros.UseVisualStyleBackColor = true;
+            btnFiltros.Click += btnFiltros_Click;
+            // 
             // btnRefrescarParcelas
             // 
             btnRefrescarParcelas.FlatAppearance.BorderSize = 0;
             btnRefrescarParcelas.FlatStyle = FlatStyle.Flat;
             btnRefrescarParcelas.Font = new Font("Segoe UI", 20F);
             btnRefrescarParcelas.Image = Forms.Properties.Resources.refresh_arrow;
-            btnRefrescarParcelas.Location = new Point(445, 2);
+            btnRefrescarParcelas.Location = new Point(445, 3);
             btnRefrescarParcelas.Margin = new Padding(0);
             btnRefrescarParcelas.Name = "btnRefrescarParcelas";
-            btnRefrescarParcelas.Size = new Size(37, 39);
+            btnRefrescarParcelas.Size = new Size(37, 37);
             btnRefrescarParcelas.TabIndex = 22;
             btnRefrescarParcelas.UseVisualStyleBackColor = true;
             btnRefrescarParcelas.Click += btnRefrescarParcelas_Click;
+            // 
+            // pnlFiltros
+            // 
+            pnlFiltros.Controls.Add(ckFiltroPrecioMax);
+            pnlFiltros.Controls.Add(nudFiltroPrecioMax);
+            pnlFiltros.Controls.Add(btnFiltrar);
+            pnlFiltros.Controls.Add(nudFiltroPrecioMin);
+            pnlFiltros.Controls.Add(ckFiltroTranquilo);
+            pnlFiltros.Controls.Add(cbFiltroEstado);
+            pnlFiltros.Controls.Add(ckFiltroEstado);
+            pnlFiltros.Controls.Add(ckFiltroVistas);
+            pnlFiltros.Controls.Add(ckFiltroPrecioMin);
+            pnlFiltros.Controls.Add(ckFiltroSombra);
+            pnlFiltros.Controls.Add(ckFiltroEntrada);
+            pnlFiltros.Controls.Add(ckFiltroBaño);
+            pnlFiltros.Location = new Point(488, 44);
+            pnlFiltros.Margin = new Padding(0);
+            pnlFiltros.Name = "pnlFiltros";
+            pnlFiltros.Size = new Size(421, 349);
+            pnlFiltros.TabIndex = 28;
+            pnlFiltros.Visible = false;
+            // 
+            // ckFiltroPrecioMax
+            // 
+            ckFiltroPrecioMax.AutoSize = true;
+            ckFiltroPrecioMax.Location = new Point(324, 153);
+            ckFiltroPrecioMax.Name = "ckFiltroPrecioMax";
+            ckFiltroPrecioMax.Size = new Size(71, 24);
+            ckFiltroPrecioMax.TabIndex = 12;
+            ckFiltroPrecioMax.Text = "€ max";
+            ckFiltroPrecioMax.UseVisualStyleBackColor = true;
+            ckFiltroPrecioMax.CheckedChanged += ckFiltroPrecioMax_CheckedChanged;
+            // 
+            // nudFiltroPrecioMax
+            // 
+            nudFiltroPrecioMax.DecimalPlaces = 2;
+            nudFiltroPrecioMax.Enabled = false;
+            nudFiltroPrecioMax.Location = new Point(324, 192);
+            nudFiltroPrecioMax.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            nudFiltroPrecioMax.Name = "nudFiltroPrecioMax";
+            nudFiltroPrecioMax.Size = new Size(75, 27);
+            nudFiltroPrecioMax.TabIndex = 11;
+            nudFiltroPrecioMax.TextAlign = HorizontalAlignment.Right;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.BackColor = Color.FromArgb(190, 130, 65);
+            btnFiltrar.FlatAppearance.BorderSize = 0;
+            btnFiltrar.FlatStyle = FlatStyle.Flat;
+            btnFiltrar.Font = new Font("Segoe UI", 10F);
+            btnFiltrar.ForeColor = Color.FromArgb(255, 222, 171);
+            btnFiltrar.Location = new Point(273, 284);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(94, 29);
+            btnFiltrar.TabIndex = 10;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = false;
+            btnFiltrar.Click += btnFiltrar_Click;
+            // 
+            // nudFiltroPrecioMin
+            // 
+            nudFiltroPrecioMin.DecimalPlaces = 2;
+            nudFiltroPrecioMin.Enabled = false;
+            nudFiltroPrecioMin.Location = new Point(227, 192);
+            nudFiltroPrecioMin.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            nudFiltroPrecioMin.Name = "nudFiltroPrecioMin";
+            nudFiltroPrecioMin.Size = new Size(75, 27);
+            nudFiltroPrecioMin.TabIndex = 9;
+            nudFiltroPrecioMin.TextAlign = HorizontalAlignment.Right;
+            // 
+            // ckFiltroTranquilo
+            // 
+            ckFiltroTranquilo.AutoSize = true;
+            ckFiltroTranquilo.Location = new Point(23, 291);
+            ckFiltroTranquilo.Name = "ckFiltroTranquilo";
+            ckFiltroTranquilo.Size = new Size(128, 24);
+            ckFiltroTranquilo.TabIndex = 8;
+            ckFiltroTranquilo.Text = "Zona tranquila";
+            ckFiltroTranquilo.UseVisualStyleBackColor = true;
+            // 
+            // cbFiltroEstado
+            // 
+            cbFiltroEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFiltroEstado.Enabled = false;
+            cbFiltroEstado.FormattingEnabled = true;
+            cbFiltroEstado.Location = new Point(227, 59);
+            cbFiltroEstado.Name = "cbFiltroEstado";
+            cbFiltroEstado.Size = new Size(172, 28);
+            cbFiltroEstado.TabIndex = 7;
+            // 
+            // ckFiltroEstado
+            // 
+            ckFiltroEstado.AutoSize = true;
+            ckFiltroEstado.Location = new Point(227, 25);
+            ckFiltroEstado.Name = "ckFiltroEstado";
+            ckFiltroEstado.Size = new Size(150, 24);
+            ckFiltroEstado.TabIndex = 6;
+            ckFiltroEstado.Text = "Estado de parcela";
+            ckFiltroEstado.UseVisualStyleBackColor = true;
+            ckFiltroEstado.CheckedChanged += ckFiltroEstado_CheckedChanged;
+            // 
+            // ckFiltroVistas
+            // 
+            ckFiltroVistas.AutoSize = true;
+            ckFiltroVistas.Location = new Point(23, 95);
+            ckFiltroVistas.Name = "ckFiltroVistas";
+            ckFiltroVistas.Size = new Size(107, 24);
+            ckFiltroVistas.TabIndex = 5;
+            ckFiltroVistas.Text = "Tiene vistas";
+            ckFiltroVistas.UseVisualStyleBackColor = true;
+            // 
+            // ckFiltroPrecioMin
+            // 
+            ckFiltroPrecioMin.AutoSize = true;
+            ckFiltroPrecioMin.Location = new Point(227, 153);
+            ckFiltroPrecioMin.Name = "ckFiltroPrecioMin";
+            ckFiltroPrecioMin.Size = new Size(68, 24);
+            ckFiltroPrecioMin.TabIndex = 4;
+            ckFiltroPrecioMin.Text = "€ min";
+            ckFiltroPrecioMin.UseVisualStyleBackColor = true;
+            ckFiltroPrecioMin.CheckedChanged += ckFiltroPrecio_CheckedChanged;
+            // 
+            // ckFiltroSombra
+            // 
+            ckFiltroSombra.AutoSize = true;
+            ckFiltroSombra.Location = new Point(23, 162);
+            ckFiltroSombra.Name = "ckFiltroSombra";
+            ckFiltroSombra.Size = new Size(140, 24);
+            ckFiltroSombra.TabIndex = 3;
+            ckFiltroSombra.Text = "Zona de sombra";
+            ckFiltroSombra.UseVisualStyleBackColor = true;
+            // 
+            // ckFiltroEntrada
+            // 
+            ckFiltroEntrada.AutoSize = true;
+            ckFiltroEntrada.Location = new Point(23, 228);
+            ckFiltroEntrada.Name = "ckFiltroEntrada";
+            ckFiltroEntrada.Size = new Size(144, 24);
+            ckFiltroEntrada.TabIndex = 2;
+            ckFiltroEntrada.Text = "Cerca de entrada";
+            ckFiltroEntrada.UseVisualStyleBackColor = true;
+            // 
+            // ckFiltroBaño
+            // 
+            ckFiltroBaño.AutoSize = true;
+            ckFiltroBaño.Location = new Point(23, 25);
+            ckFiltroBaño.Name = "ckFiltroBaño";
+            ckFiltroBaño.Size = new Size(104, 24);
+            ckFiltroBaño.TabIndex = 1;
+            ckFiltroBaño.Text = "Baño cerca";
+            ckFiltroBaño.UseVisualStyleBackColor = true;
             // 
             // btnMantenimiento
             // 
@@ -993,11 +1177,15 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             pnlServicios.ResumeLayout(false);
-            panelMapaLista.ResumeLayout(false);
+            pnlMapaLista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbMapa).EndInit();
-            panelDatos.ResumeLayout(false);
+            pnlDatos.ResumeLayout(false);
             flpHistorial.ResumeLayout(false);
             pnlParcelas.ResumeLayout(false);
+            pnlFiltros.ResumeLayout(false);
+            pnlFiltros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudFiltroPrecioMax).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudFiltroPrecioMin).EndInit();
             pnlEmpleados.ResumeLayout(false);
             pnlEstancias.ResumeLayout(false);
             pnlClientes.ResumeLayout(false);
@@ -1018,11 +1206,11 @@
         private Button btnReservar;
         private Button btLista;
         private Button btnHistorial;
-        private Panel panelMapaLista;
+        private Panel pnlMapaLista;
         private FlowLayoutPanel flpParcelas;
         private PictureBox pbMapa;
         private Button btnEstanciaActual;
-        private Panel panelDatos;
+        private Panel pnlDatos;
         private Controles.ucParcelaDatos ucParcelaDatos;
         private Button btMapa;
         private Panel pnlParcelas;
@@ -1074,5 +1262,19 @@
         private Button btnEliminarParcela;
         private Button btnEditarParcela;
         private Label lblCreditos;
+        private Button btnFiltros;
+        private Panel pnlFiltros;
+        private CheckBox ckFiltroBaño;
+        private CheckBox ckFiltroEstado;
+        private CheckBox ckFiltroVistas;
+        private CheckBox ckFiltroPrecioMin;
+        private CheckBox ckFiltroSombra;
+        private CheckBox ckFiltroEntrada;
+        private Button btnFiltrar;
+        private NumericUpDown nudFiltroPrecioMin;
+        private CheckBox ckFiltroTranquilo;
+        private ComboBox cbFiltroEstado;
+        private NumericUpDown nudFiltroPrecioMax;
+        private CheckBox ckFiltroPrecioMax;
     }
 }

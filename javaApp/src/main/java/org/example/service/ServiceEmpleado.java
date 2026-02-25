@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.model.Empleado;
 import org.example.persistence.EmpleadoRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,13 +11,16 @@ import java.util.List;
 public class ServiceEmpleado implements IServiceEmpleado{
 
     private EmpleadoRepository repo;
+    private final PasswordEncoder encoder;
 
-    public ServiceEmpleado(EmpleadoRepository repo) {
+    public ServiceEmpleado(EmpleadoRepository repo, PasswordEncoder encoder) {
         this.repo = repo;
+        this.encoder = encoder;
     }
 
     @Override
     public Empleado insert(Empleado empleado) {
+        empleado.setPassword(encoder.encode(empleado.getPassword()));
         return repo.save(empleado);
     }
 
@@ -30,6 +34,13 @@ public class ServiceEmpleado implements IServiceEmpleado{
             buscado.setTelefono(empleado.getTelefono());
             buscado.setActivo(empleado.isActivo());
             buscado.setPuesto(empleado.getPuesto());
+            buscado.setEmail(empleado.getEmail());
+
+            String passNueva = empleado.getPassword();
+            if (passNueva != null && !passNueva.isBlank()) {
+                buscado.setPassword(encoder.encode(passNueva));
+            }
+
             buscado = repo.save(buscado);
         }
         return buscado;
