@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -73,10 +74,12 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
                     popUpTo("Login") { inclusive = true }
                 }
             }
+
             is ApiModel.LoginState.Invalid -> {
                 Toast.makeText(context, "Inicio de sesión inválido", Toast.LENGTH_SHORT).show()
                 apiModel.resetLoginState()
             }
+
             else -> Unit
         }
     }
@@ -86,67 +89,82 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
     Scaffold(
         topBar = { LoginTopBar() },
     ) { padding ->
-        Column(
+        // Fondo completo primero
+        Box(
             modifier = Modifier
-                .padding(padding)
-                .padding(16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717))) // fondo total
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .background(dynamicColor(Color(0xFFF7F7F7), Color(0xFF2C2C2C)), RoundedCornerShape(16.dp))
-                    .padding(24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                    .padding(padding) // padding del Scaffold
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                // Email
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it.trim() },
-                    label = { Text("Email", color = textColor) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = botonActivo,
-                        focusedLabelColor = botonActivo,
-                        unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
-                    ),
-                )
-
-                // Password
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it.trim() },
-                    label = { Text("Contraseña", color = textColor) },
-                    visualTransformation = if (passwordVisible) VisualTransformation.None
-                    else PasswordVisualTransformation(),
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = botonActivo,
-                        focusedLabelColor = botonActivo,
-                        unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
-                    ),
-                    trailingIcon = {
-                        val icon = if (passwordVisible) Icons.Default.KeyboardArrowDown
-                        else Icons.Default.KeyboardArrowUp
-                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(imageVector = icon, contentDescription = null, tint = textColor)
-                        }
-                    }
-                )
-
-                // Login button
-                TextButton(
-                    onClick = { apiModel.login(email, password) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.textButtonColors(
-                        containerColor = botonActivo,
-                        contentColor = botonActivoTexto
-                    )
+                // Aquí va tu caja interna con TextFields y botón
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            dynamicColor(Color(0xFFF7F7F7), Color(0xFF2C2C2C)),
+                            RoundedCornerShape(16.dp)
+                        )
+                        .padding(24.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Text("Login")
+
+                    // Email
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it.trim() },
+                        label = { Text("Email", color = textColor) },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = botonActivo,
+                            focusedLabelColor = botonActivo,
+                            unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
+                        ),
+                    )
+
+                    // Password
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it.trim() },
+                        label = { Text("Contraseña", color = textColor) },
+                        visualTransformation = if (passwordVisible) VisualTransformation.None
+                        else PasswordVisualTransformation(),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = botonActivo,
+                            focusedLabelColor = botonActivo,
+                            unfocusedBorderColor = dynamicColor(Color.Gray, Color.LightGray)
+                        ),
+                        trailingIcon = {
+                            val icon = if (passwordVisible) Icons.Default.KeyboardArrowDown
+                            else Icons.Default.KeyboardArrowUp
+                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                                Icon(
+                                    imageVector = icon,
+                                    contentDescription = null,
+                                    tint = textColor
+                                )
+                            }
+                        }
+                    )
+
+                    // Login button
+                    TextButton(
+                        onClick = { apiModel.login(email, password) },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.textButtonColors(
+                            containerColor = botonActivo,
+                            contentColor = botonActivoTexto
+                        )
+                    ) {
+                        Text("Login")
+                    }
                 }
             }
         }
