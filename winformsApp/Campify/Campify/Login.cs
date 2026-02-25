@@ -54,6 +54,7 @@ namespace Forms
 
                 Session.Login(res.Token, res.Id, res.Puesto);
 
+                this.Hide();
                 using (var form = new FormPrincipal(_api))
                 {
                     var result = form.ShowDialog(this);
@@ -63,6 +64,7 @@ namespace Forms
 
                     }
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -90,7 +92,5 @@ namespace Forms
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
-
-
     }
 }

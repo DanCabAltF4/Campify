@@ -25,6 +25,7 @@ namespace Campify
         // ----------------------------------
 
         private readonly ApiCampify _api;
+        private List<Parcela> _parcelas;
 
 
         // ----------------------------------
@@ -36,6 +37,7 @@ namespace Campify
             InitializeComponent();
             _api = api;
             lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            //cbFiltroEstado.DataSource = 
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -156,6 +158,20 @@ namespace Campify
             flpParcelas.Controls.Clear();
             List<Parcela> parcelas = await _api.GetAllAsync<Parcela>("api/parcelas");
             foreach (Parcela p in parcelas)
+            {
+                ucParcela uc = new ucParcela();
+                uc.SetData(p);
+                uc.ParcelaClick += ParcelaClick;
+                flpParcelas.Controls.Add(uc);
+            }
+            _parcelas = parcelas;
+        }
+
+        // Carga en el flowlayout la lista de parcelas ya filtradas
+        private void CargarParcelasFiltradas(List<Parcela> listaFiltrada)
+        {
+            flpParcelas.Controls.Clear();
+            foreach (Parcela p in listaFiltrada)
             {
                 ucParcela uc = new ucParcela();
                 uc.SetData(p);
@@ -356,12 +372,103 @@ namespace Campify
 
         private void pbMapa_DoubleClick(object sender, EventArgs e)
         {
+            this.Hide();
             using (var form = new FormVerMapa())
             {
                 form.ShowDialog(this);
             }
+            this.Show();
         }
 
+
+        // Parte referente al panel de filtros
+        private void btnFiltros_Click(object sender, EventArgs e)
+        {
+            if (pnlDatos.Visible == true) pnlDatos.Visible = false; else pnlDatos.Visible = true;
+
+            if (pnlFiltros.Visible == true)
+            {
+                pnlFiltros.Visible = false;
+                ckFiltroBaño.Checked = false;
+                ckFiltroEntrada.Checked = false;
+                ckFiltroEstado.Checked = false;
+                ckFiltroPrecioMin.Checked = false;
+                ckFiltroPrecioMax.Checked = false;
+                ckFiltroSombra.Checked = false;
+                ckFiltroTranquilo.Checked = false;
+                ckFiltroVistas.Checked = false;
+            }
+            else
+            {
+                pnlFiltros.Visible = true;
+            }
+        }
+
+        private void ckFiltroEstado_CheckedChanged(object sender, EventArgs e)
+        {
+            cbFiltroEstado.Enabled = !cbFiltroEstado.Enabled;
+        }
+
+        private void ckFiltroPrecio_CheckedChanged(object sender, EventArgs e)
+        {
+            nudFiltroPrecioMin.Enabled = !nudFiltroPrecioMin.Enabled;
+        }
+        private void ckFiltroPrecioMax_CheckedChanged(object sender, EventArgs e)
+        {
+            nudFiltroPrecioMax.Enabled = !nudFiltroPrecioMax.Enabled;
+        }
+
+        public class ParcelaFilter
+        {
+            public bool? CercaBanos { get; set; }
+            public bool? TieneVistas { get; set; }
+            public bool? ZonaSombra { get; set; }
+            public bool? CercaEntrada { get; set; }
+            public bool? ZonaTranquila { get; set; }
+            public EnumEstados? Estado { get; set; }
+            public double? PrecioMin { get; set; }
+            public double? PrecioMax { get; set; }
+        }
+
+        private ParcelaFilter ConstruirFiltroParcela()
+        {
+            return new ParcelaFilter
+            {
+                CercaBanos = ckFiltroBaño.Checked ? true : (bool?)null,
+                TieneVistas = ckFiltroVistas.Checked ? true : (bool?)null,
+                ZonaSombra = ckFiltroSombra.Checked ? true : (bool?)null,
+                CercaEntrada = ckFiltroEntrada.Checked ? true : (bool?)null,
+                ZonaTranquila = ckFiltroTranquilo.Checked ? true : (bool?)null,
+
+                Estado = ckFiltroEstado.Checked
+                    ? (cbFiltroEstado.SelectedItem is EnumEstados e ? e : (EnumEstados?)null)
+                    : null,
+
+                PrecioMin = ckFiltroPrecioMin.Checked ? (double)nudFiltroPrecioMin.Value : null,
+                PrecioMax = ckFiltroPrecioMax.Checked ? (double)nudFiltroPrecioMax.Value : null
+            };
+        }
+
+        public static class ParcelaFiltering
+        {
+            public static Func<Parcela, bool> BuildPredicate(ParcelaFilter f)
+            {
+                return p =>
+                    // Checks booleanos
+                    (f.CercaBanos == null || p.CercaBanos == f.CercaBanos.Value) &&
+                    (f.TieneVistas == null || p.TieneVistas == f.TieneVistas.Value) &&
+                    (f.ZonaSombra == null || p.ZonaSombra == f.ZonaSombra.Value) &&
+                    (f.CercaEntrada == null || p.CercaEntrada == f.CercaEntrada.Value) &&
+                    (f.ZonaTranquila == null || p.ZonaTranquila == f.ZonaTranquila.Value) &&
+
+                    // Estado
+                    (f.Estado == null || p.Estado == f.Estado.Value) &&
+
+                    // Precio (min/max independientes)
+                    (f.PrecioMin == null || p.PrecioNoche >= f.PrecioMin.Value) &&
+                    (f.PrecioMax == null || p.PrecioNoche <= f.PrecioMax.Value);
+            }
+        }
 
 
         // -- PANEL DATOS
@@ -436,10 +543,12 @@ namespace Campify
                 return;
             }
 
+            this.Hide();
             using (var form = new FormsVerImagen(_api, ucParcelaDatos.ParcelaActual))
             {
                 form.ShowDialog(this);
             }
+            this.Show();
         }
 
 
@@ -448,6 +557,7 @@ namespace Campify
         /// </summary>
         private async void btnNuevaParcela_Click(object sender, EventArgs e)
         {
+            this.Hide();
             using (var form = new FormNuevaParcela(_api, null))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -457,6 +567,7 @@ namespace Campify
                     await CargarParcelas();
                 }
             }
+            this.Show();
         }
 
 
@@ -471,6 +582,7 @@ namespace Campify
                 return;
             }
 
+            this.Hide();
             using (var form = new FormNuevaParcela(_api, ucParcelaDatos.ParcelaActual))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -480,6 +592,7 @@ namespace Campify
                     await CargarParcelas();
                 }
             }
+            this.Show();
         }
 
 
@@ -523,12 +636,16 @@ namespace Campify
                     MessageBox.Show("La parcela seleccionada no está libre.", "Parcela no libre", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                this.Hide();
                 var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     ucEstanciaActual1.SetData(form.EstanciaCreada);
                     await CargarParcelas();
                 }
+                this.Show();
+
             }
             catch (HttpRequestException ex)
             {
@@ -607,8 +724,13 @@ namespace Campify
                 return;
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
-            var form = new FormVerClientesEstancia(estanciaActual);
-            form.ShowDialog(this);
+
+            this.Hide();
+            using (var form = new FormVerClientesEstancia(estanciaActual))
+            {
+                form.ShowDialog(this);
+            }
+            this.Show();
         }
 
 
@@ -624,8 +746,12 @@ namespace Campify
                 return;
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
-            var form = new FormVerServiciosEstancia(estanciaActual);
-            form.ShowDialog(this);
+            this.Hide();
+            using (var form = new FormVerServiciosEstancia(estanciaActual))
+            {
+                form.ShowDialog(this);
+            }
+            this.Show();
         }
 
 
@@ -707,12 +833,14 @@ namespace Campify
         {
             try
             {
+                this.Hide();
                 var form = new FormDatosEmpleado(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEmpleados();
                     ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -735,12 +863,15 @@ namespace Campify
                     MessageBox.Show("Debe seleccionar un empleado para editarlo.", "Empleado no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                this.Hide();
                 var form = new FormDatosEmpleado(empleadoSeleccionado, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEmpleados();
                     ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -833,12 +964,14 @@ namespace Campify
         {
             try
             {
+                this.Hide();
                 var form = new FormDatosServicio(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarServicios();
                     ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -861,12 +994,15 @@ namespace Campify
                     MessageBox.Show("Debe seleccionar un servicio para editarlo.", "Servicio no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                this.Hide();
                 var form = new FormDatosServicio(servicioSeleccionado, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarServicios();
                     ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -981,13 +1117,14 @@ namespace Campify
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                this.Hide();
                 var form = new FormNuevaEstancia(estancia.Parcela, _api, estancia);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEstancias();
                     ucEstanciaActual2.SetData(form.EstanciaCreada);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1101,12 +1238,14 @@ namespace Campify
         {
             try
             {
+                this.Hide();
                 var form = new FormNuevoCliente(_api, null);
                 if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
                 {
                     var nuevoCliente = form.ClienteNuevo;
                     await CargarClientes();
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1127,6 +1266,7 @@ namespace Campify
                     return;
                 }
 
+                this.Hide();
                 var form = new FormNuevoCliente(_api, cliente);
                 if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
                 {
@@ -1134,6 +1274,7 @@ namespace Campify
                     await CargarClientes();
                     ucClienteDatos1.MostrarDatos(form.ClienteNuevo);
                 }
+                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1146,5 +1287,16 @@ namespace Campify
         {
             MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            var filtro = ConstruirFiltroParcela();
+            var pred = ParcelaFiltering.BuildPredicate(filtro);
+
+            var filtradas = _parcelas.Where(pred).ToList();
+            CargarParcelasFiltradas(filtradas);
+        }
+
+
     }
 }

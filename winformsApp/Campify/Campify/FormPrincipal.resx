@@ -49678,6 +49678,16 @@
         AAAAAAAAAOAp4v8B44HJAzpa5GUAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnFiltros.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        4wAAAOMBD+bfpwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADUSURBVFhH7ZXB
+        CgFRFIa/smTPCq9hhQ1lqbwF3gQvoCyVp5CX4DFYsaOfpnQ7xowZd6j71bc6c/9zuk3nQuBBCxh5Vj3v
+        LIBrQc40wMko+PKoAXZGwZdbDVAD5sDGs7r+6tN/GAgEfo8mMDR2eFqV0XDD39EFLsbm+lRltd0mcSyN
+        kKwqMzFTIyCrY7dJHCVgAqyNHZ5WZai5MgOBwP9TAQbGvo9UTd98BQUfjA3nugfK7uE86BvNXtlzD+eB
+        ntQkL+QZqLuH86IDrIx9H6laqme3cG4CIfPWq4/gqQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnLogOut.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAAA0CAYAAAA62j4JAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAB
