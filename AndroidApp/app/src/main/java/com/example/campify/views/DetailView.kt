@@ -251,7 +251,7 @@ fun ConfirmDialog(
             ) { Text("No", fontWeight = FontWeight.Medium) }
         },
         shape = RoundedCornerShape(16.dp),
-        containerColor = dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717))
+        containerColor = dynamicColor(Color(0xFFF0F0F0), Color(0xFF2C2C2C))
     )
 }
 
