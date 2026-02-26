@@ -809,8 +809,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoParcelas = false;
         private async void btnRefrescarParcelas_Click(object sender, EventArgs e)
         {
+            if (_cargandoParcelas) return;
+
+            _cargandoParcelas = true;
+            btnRefrescarParcelas.Enabled = false;
+
             try
             {
                 await CargarParcelas();
@@ -818,6 +824,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoParcelas = false;
+                btnRefrescarParcelas.Enabled = true;
             }
         }
 
@@ -940,8 +951,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoEmpleados = false;
         private async void btnRefrescarEmpleados_Click(object sender, EventArgs e)
         {
+            if (_cargandoEmpleados) return;
+
+            _cargandoEmpleados = true;
+            btnRefrescarEmpleados.Enabled = false;
+
             try
             {
                 await CargarEmpleados();
@@ -949,6 +966,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoEmpleados = false;
+                btnRefrescarEmpleados.Enabled = true;
             }
         }
 
@@ -1069,8 +1091,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoServicios = false;
         private async void btnRefrescarServicios_Click(object sender, EventArgs e)
         {
+            if (_cargandoServicios) return;
+
+            _cargandoServicios = true;
+            btnRefrescarServicios.Enabled = false;
+
             try
             {
                 await CargarServicios();
@@ -1078,6 +1106,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoServicios = false;
+                btnRefrescarServicios.Enabled = true;
             }
         }
 
@@ -1116,7 +1149,7 @@ namespace Campify
 
         private async void btnDescargarFicha_Click(object sender, EventArgs e)
         {
-            if(ucEstanciaActual2.EstanciaActual == null)
+            if (ucEstanciaActual2.EstanciaActual == null)
             {
                 MessageBox.Show("Debe seleccionar una estancia para descargar su ficha.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -1125,11 +1158,11 @@ namespace Campify
             int idEstancia = ucEstanciaActual2.EstanciaActual.Id;
             byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
 
-            string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),  "Downloads");
+            string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
             int idParcela = ucEstanciaActual2.EstanciaActual.Parcela.Id;
             string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
-            string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf"   );
+            string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
 
             await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
 
@@ -1141,8 +1174,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoEstancias = false;
         private async void btnRefrescarEstancias_Click(object sender, EventArgs e)
         {
+            if (_cargandoEstancias) return;
+
+            _cargandoEstancias = true;
+            btnRefrescarEstancias.Enabled = false;
+
             try
             {
                 await CargarEstancias();
@@ -1150,6 +1189,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoEstancias = false;
+                btnRefrescarEstancias.Enabled = true;
             }
         }
 
@@ -1233,8 +1277,13 @@ namespace Campify
         }
 
 
+        private bool _cargandoClientes = false;
         private async void RefrescarClientes(object sender, EventArgs e)
         {
+            if (_cargandoClientes) return;
+
+            _cargandoClientes = true;
+            btnRefrescarClientes.Enabled = false;
             try
             {
                 await CargarClientes();
@@ -1242,6 +1291,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoClientes = false;
+                btnRefrescarClientes.Enabled = true;
             }
         }
 
@@ -1329,7 +1383,10 @@ namespace Campify
 
         private void lblCreditos_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Random rnd = new Random();
+            int numero = rnd.Next(1, 251);
+            string msj = (numero == 1) ? ("Desarrollado por:\n\n-ChatGPT\n-Copilot\n-Gemini\n-Base44\n-Sudor y lágrimas") : ("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar");
+            MessageBox.Show(msj, "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
