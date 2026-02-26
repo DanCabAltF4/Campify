@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ServiceCliente implements IServiceCliente {
 
-    private ClienteRepository repo;
+    private final ClienteRepository repo;
 
     public ServiceCliente(ClienteRepository repo){
         this.repo=repo;

@@ -16,11 +16,11 @@ import java.util.List;
 @Transactional
 public class ServiceEstancia implements IServiceEstancia {
 
-    private EstanciaRepository repo;
-    private ClienteRepository clienteRepo;
-    private ServicioRepository servicioRepo;
-    private ParcelaRepository parcelaRepo;
-    private EmpleadoRepository empleadoRepo;
+    private final EstanciaRepository repo;
+    private final ClienteRepository clienteRepo;
+    private final ServicioRepository servicioRepo;
+    private final ParcelaRepository parcelaRepo;
+    private final EmpleadoRepository empleadoRepo;
 
     public ServiceEstancia(
             EstanciaRepository repo,
@@ -157,7 +157,7 @@ public class ServiceEstancia implements IServiceEstancia {
         LocalDate checkin = estancia.getCheckIn();
         LocalDate checkout = estancia.getCheckOut();
 
-        boolean ocupada = false;
+        boolean ocupada;
         if (checkout != null) {
             ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
         } else {
