@@ -29,8 +29,12 @@ import com.example.campify.ui.theme.*
 import com.example.campify.viewmodels.ApiModel
 import android.util.Base64
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.window.Dialog
 import kotlin.io.encoding.ExperimentalEncodingApi
@@ -532,24 +536,42 @@ fun ImagenPopUp(parcela: Parcela, onDismiss: () -> Unit) {
                     base64ToBitmap(base64Data)
                 }
         }
+        var scale by remember { mutableStateOf(1f) }
+        var offset by remember { mutableStateOf(Offset.Zero) }
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(Color.Black, RoundedCornerShape(16.dp)),
+                .pointerInput(Unit) {
+                    detectTransformGestures { _, pan, zoom, _ ->
+                        scale = (scale * zoom).coerceIn(1f, 5f) // límite de zoom 1x a 5x
+                        offset = Offset(
+                            x = (offset.x + pan.x).coerceIn(-1000f, 1000f),
+                            y = (offset.y + pan.y).coerceIn(-1000f, 1000f)
+                        )
+                    }
+                },
             contentAlignment = Alignment.Center
         ) {
             if (bitmap != null) {
                 Image(
                     bitmap = bitmap.asImageBitmap(),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.FillWidth
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(
+                            scaleX = scale,
+                            scaleY = scale,
+                            translationX = offset.x,
+                            translationY = offset.y
+                        ),
+                    contentScale = ContentScale.Fit
                 )
             } else {
                 LaunchedEffect(Unit) { onDismiss() }
             }
+
         }
     }
 }
