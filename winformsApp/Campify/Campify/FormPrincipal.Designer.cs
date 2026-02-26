@@ -87,6 +87,7 @@
             flpEmpleados = new FlowLayoutPanel();
             btnEstancias = new Button();
             pnlEstancias = new Panel();
+            btnDescargarFicha = new Button();
             btnEliminarEstancia = new Button();
             btnEditarEstancia = new Button();
             btnRefrescarEstancias = new Button();
@@ -870,6 +871,7 @@
             // 
             // pnlEstancias
             // 
+            pnlEstancias.Controls.Add(btnDescargarFicha);
             pnlEstancias.Controls.Add(btnEliminarEstancia);
             pnlEstancias.Controls.Add(btnEditarEstancia);
             pnlEstancias.Controls.Add(btnRefrescarEstancias);
@@ -880,6 +882,20 @@
             pnlEstancias.Size = new Size(913, 487);
             pnlEstancias.TabIndex = 22;
             pnlEstancias.Visible = false;
+            // 
+            // btnDescargarFicha
+            // 
+            btnDescargarFicha.FlatAppearance.BorderSize = 0;
+            btnDescargarFicha.FlatStyle = FlatStyle.Flat;
+            btnDescargarFicha.Font = new Font("Segoe UI", 20F);
+            btnDescargarFicha.Image = (Image)resources.GetObject("btnDescargarFicha.Image");
+            btnDescargarFicha.Location = new Point(510, 3);
+            btnDescargarFicha.Margin = new Padding(0);
+            btnDescargarFicha.Name = "btnDescargarFicha";
+            btnDescargarFicha.Size = new Size(49, 43);
+            btnDescargarFicha.TabIndex = 26;
+            btnDescargarFicha.UseVisualStyleBackColor = true;
+            btnDescargarFicha.Click += this.btnDescargarFicha_Click;
             // 
             // btnEliminarEstancia
             // 
@@ -1157,10 +1173,10 @@
             ClientSize = new Size(910, 632);
             Controls.Add(pnlTop);
             Controls.Add(lblCreditos);
+            Controls.Add(pnlEstancias);
+            Controls.Add(pnlClientes);
             Controls.Add(pnlParcelas);
             Controls.Add(pnlEmpleados);
-            Controls.Add(pnlClientes);
-            Controls.Add(pnlEstancias);
             Controls.Add(pnlServicios);
             Controls.Add(pbLogo);
             Controls.Add(btnParcelas);
@@ -1276,5 +1292,6 @@
         private ComboBox cbFiltroEstado;
         private NumericUpDown nudFiltroPrecioMax;
         private CheckBox ckFiltroPrecioMax;
+        private Button btnDescargarFicha;
     }
 }

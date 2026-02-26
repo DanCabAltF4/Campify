@@ -1,5 +1,6 @@
 ﻿using Dto;
 using Model;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -118,6 +119,18 @@ namespace Repository
             return await response.Content.ReadFromJsonAsync<Parcela>(_jsonOptions);
         }
 
+
+        // Metodo para descargar el archivo pdf de clientes
+        public async Task<byte[]> GetBytesAsync(string endpoint)
+        {
+            ApplyAuthHeader();
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            using var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsByteArrayAsync();
+        }
 
 
 

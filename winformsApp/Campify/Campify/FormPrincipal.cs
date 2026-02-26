@@ -654,14 +654,26 @@ namespace Campify
                     return;
                 }
 
-                this.Hide();
                 var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     ucEstanciaActual1.SetData(form.EstanciaCreada);
                     await CargarParcelas();
                 }
-                this.Show();
+
+                // Descargar ficha de clientes de la estancia 
+                int idEstancia = ucEstanciaActual1.EstanciaActual.Id;
+                byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
+
+                string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+                int idParcela = ucEstanciaActual1.EstanciaActual.Parcela.Id;
+                string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
+                string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
+
+                await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
+
+                MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
 
             }
             catch (HttpRequestException ex)
@@ -1102,6 +1114,30 @@ namespace Campify
         }
 
 
+        private async void btnDescargarFicha_Click(object sender, EventArgs e)
+        {
+            if(ucEstanciaActual2.EstanciaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una estancia para descargar su ficha.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idEstancia = ucEstanciaActual2.EstanciaActual.Id;
+            byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
+
+            string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),  "Downloads");
+
+            int idParcela = ucEstanciaActual2.EstanciaActual.Parcela.Id;
+            string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
+            string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf"   );
+
+            await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
+
+            MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
+
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -1161,6 +1197,7 @@ namespace Campify
                     await _api.Delete<Estancia>("api/estancias", ucEstanciaActual2.EstanciaActual.Id);
                     MessageBox.Show("Estancia eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await CargarEstancias();
+                    await CargarParcelas();
                     ucEstanciaActual2.Limpiar();
                 }
             }
@@ -1249,14 +1286,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormNuevoCliente(_api, null);
                 if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
                 {
                     var nuevoCliente = form.ClienteNuevo;
                     await CargarClientes();
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1296,8 +1331,6 @@ namespace Campify
         {
             MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
 
 
     }
