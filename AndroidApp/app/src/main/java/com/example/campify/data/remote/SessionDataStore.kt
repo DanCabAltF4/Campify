@@ -1,4 +1,4 @@
-package com.example.kotlinapp.data
+package com.example.campify.data.remote
 
 import android.content.Context
 import androidx.datastore.core.DataStore

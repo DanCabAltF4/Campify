@@ -9,8 +9,8 @@ import com.example.campify.data.room.AppDatabase
 import com.example.campify.navigation.CampifyNavigation
 import com.example.campify.ui.theme.CampifyTheme
 import com.example.campify.viewmodels.ApiModel
-import com.example.kotlinapp.data.AuthRepository
-import com.example.kotlinapp.data.SessionDataStore
+import com.example.campify.data.remote.AuthRepository
+import com.example.campify.data.remote.SessionDataStore
 
 class MainActivity : ComponentActivity() {
     private lateinit var apiModel: ApiModel

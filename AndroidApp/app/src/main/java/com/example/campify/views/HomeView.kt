@@ -1,21 +1,39 @@
-package com.campify.views
+package com.example.campify.views
 
-import android.content.Context
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,7 +44,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,7 +53,6 @@ import com.example.campify.R
 import com.example.campify.ui.theme.botonActivoDark
 import com.example.campify.ui.theme.botonActivoLight
 import com.example.campify.ui.theme.dynamicColor
-import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipal2
 import com.example.campify.ui.theme.fondoPrincipalDark
 import com.example.campify.ui.theme.fondoPrincipalLight
@@ -47,11 +63,8 @@ import com.example.campify.ui.theme.textoSecundarioLight
 import com.example.campify.viewmodels.ApiModel
 import kotlinx.coroutines.flow.firstOrNull
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeView(navController: NavHostController, apiModel: ApiModel) {
-    val context = LocalContext.current
-
     val loginState by apiModel.loginState.collectAsState()
     LaunchedEffect(Unit) {
         if (apiModel.token.firstOrNull() != null) {
@@ -68,12 +81,12 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
         }
     }
 
-    val segmentSelectedColor = dynamicColor(fondoPrincipal2, fondoPrincipal2) // puedes definir otro para oscuro
-    val textPrimary = dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    dynamicColor(fondoPrincipal2, fondoPrincipal2) // puedes definir otro para oscuro
+    dynamicColor(textoPrincipalLight, textoPrincipalDark)
     val textSecondary = dynamicColor(textoSecundarioLight, textoSecundarioDark)
 
     Scaffold(
-        topBar = { HomeTopBar(context, navController, apiModel) }
+        topBar = { HomeTopBar(navController, apiModel) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -81,16 +94,16 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
                 .padding(innerPadding)
                 .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
         ) {
-            NavigationSegment(navController, seleccionInicial = "Mapa", segmentSelectedColor, textPrimary, textSecondary)
+            NavigationSegment(navController, seleccionInicial = "Mapa", textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
-            HomeContent(textPrimary, textSecondary)
+            HomeContent(textSecondary)
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar(context: Context, navController: NavHostController, apiModel: ApiModel) {
+fun HomeTopBar(navController: NavHostController, apiModel: ApiModel) {
     val containerColor = dynamicColor(fondoPrincipalLight, fondoPrincipalDark)
     val textColor = dynamicColor(textoPrincipalLight, textoPrincipalDark)
     val secondaryText = dynamicColor(textoSecundarioLight, textoSecundarioDark)
@@ -140,7 +153,7 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
             )
         )
 
-        Divider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
+        HorizontalDivider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
     }
 }
 
@@ -149,8 +162,6 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
 fun NavigationSegment(
     navController: NavHostController,
     seleccionInicial: String,
-    segmentSelectedColor: Color,
-    textPrimary: Color,
     textSecondary: Color
 ) {
 
@@ -196,7 +207,7 @@ fun NavigationSegment(
 
 // HomeContent con colores dinámicos
 @Composable
-fun HomeContent(textPrimary: Color, textSecondary: Color) {
+fun HomeContent(textSecondary: Color) {
 
     Column(
         modifier = Modifier
@@ -225,7 +236,7 @@ fun HomeContent(textPrimary: Color, textSecondary: Color) {
 
 @Composable
 fun MapaImagenZoomable(@DrawableRes mapaResId: Int) {
-    var scale by remember { mutableStateOf(1f) }
+    var scale by remember { mutableFloatStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
 
     Box(
