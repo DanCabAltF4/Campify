@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name" translatable="false">Campify</string>
+
+    <string name="login_email">E-Mail</string>
+    <string name="login_password">Passwort</string>
+    <string name="login_placeholder">Anmelden</string>
+    <string name="login_error">Ungültige Anmeldung</string>
+    <string name="login_subtitle">Melden Sie sich an, um fortzufahren</string>
+
+    <string name="map_subtitle">Parkkarte</string>
+    <string name="nav_map">Karte</string>
+    <string name="nav_list">Liste</string>
+    <string name="map_title">Parzellkarte</string>
+    <string name="list_subtitle">Parkverwaltung</string>
+
+    <string name="search_placeholder">Nach ID oder Status suchen</string>
+    <string name="filter_show">Erweiterte Filter anzeigen ▼</string>
+    <string name="filter_hide">Erweiterte Filter ausblenden ▲</string>
+    <string name="filter_bathroom">Nahe Toilette</string>
+    <string name="filter_entrance">Nahe Eingang</string>
+    <string name="filter_views">Hat Aussicht</string>
+    <string name="filter_quiet">Ruhiger Bereich</string>
+    <string name="filter_shade">Schattenbereich</string>
+
+    <string name="parcel_name">Parzelle</string>
+    <string name="parcel_status_free">Frei</string>
+    <string name="parcel_status_reserved">Reserviert</string>
+    <string name="parcel_status_interested">Interessiert</string>
+    <string name="parcel_status_maintenance">Wartung</string>
+    <string name="parcel_type_normal">NORMAL</string>
+    <string name="parcel_type_semi">HALBPARZELLE</string>
+    <string name="parcel_type_label">Typ</string>
+    <string name="parcel_features">Eigenschaften</string>
+    <string name="parcel_change_status">Status ändern</string>
+    <string name="confirm_change_title">Bestätigung</string>
+    <string name="confirm_change_status">Möchten Sie den Status wirklich auf %1$s ändern?</string>
+</resources>

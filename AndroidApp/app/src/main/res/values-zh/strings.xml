@@ -1,0 +1,35 @@
+<resources>
+    <string name="login_email">电子邮件</string>
+    <string name="login_password">密码</string>
+    <string name="login_placeholder">登录</string>
+    <string name="login_error">无效登录</string>
+    <string name="login_subtitle">请登录以继续</string>
+
+    <string name="map_subtitle">公园地图</string>
+    <string name="nav_map">地图</string>
+    <string name="nav_list">列表</string>
+    <string name="map_title">地块地图</string>
+    <string name="list_subtitle">公园管理</string>
+
+    <string name="search_placeholder">按ID或状态搜索</string>
+    <string name="filter_show">显示高级筛选 ▼</string>
+    <string name="filter_hide">隐藏高级筛选 ▲</string>
+    <string name="filter_bathroom">附近厕所</string>
+    <string name="filter_entrance">靠近入口</string>
+    <string name="filter_views">有景观</string>
+    <string name="filter_quiet">安静区域</string>
+    <string name="filter_shade">有阴凉区域</string>
+
+    <string name="parcel_name">地块</string>
+    <string name="parcel_status_free">空闲</string>
+    <string name="parcel_status_reserved">已预订</string>
+    <string name="parcel_status_interested">有兴趣</string>
+    <string name="parcel_status_maintenance">维护中</string>
+    <string name="parcel_type_normal">普通</string>
+    <string name="parcel_type_semi">半地块</string>
+    <string name="parcel_type_label">类型</string>
+    <string name="parcel_features">特征</string>
+    <string name="parcel_change_status">更改状态</string>
+    <string name="confirm_change_title">确认</string>
+    <string name="confirm_change_status">您确定要将状态更改为 %1$s 吗？</string>
+</resources>

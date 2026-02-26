@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Campify</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_placeholder">Login</string>
+    <string name="login_error">Invalid login</string>
+    <string name="login_subtitle">Sign in to continue</string>
+
+    <string name="map_subtitle">Park Map</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_list">List</string>
+    <string name="map_title">Plot Map</string>
+    <string name="list_subtitle">Park Management</string>
+
+    <string name="search_placeholder">Search by ID or status</string>
+    <string name="filter_show">Show advanced filters ▼</string>
+    <string name="filter_hide">Hide advanced filters ▲</string>
+    <string name="filter_bathroom">Nearby bathroom</string>
+    <string name="filter_entrance">Near entrance</string>
+    <string name="filter_views">Has views</string>
+    <string name="filter_quiet">Quiet area</string>
+    <string name="filter_shade">Shaded area</string>
+
+    <string name="parcel_name">Plot</string>
+    <string name="parcel_status_free">Available</string>
+    <string name="parcel_status_reserved">Booked</string>
+    <string name="parcel_status_interested">Interested</string>
+    <string name="parcel_status_maintenance">Maintenance</string>
+    <string name="parcel_type_normal">NORMAL</string>
+    <string name="parcel_type_semi">SEMI-PLOT</string>
+    <string name="parcel_type_label">Type</string>
+    <string name="parcel_features">Features</string>
+    <string name="parcel_change_status">Change Status</string>
+    <string name="confirm_change_title">Confirmation</string>
+    <string name="confirm_change_status">Are you sure you want to change the status to %1$s?</string>
+</resources>

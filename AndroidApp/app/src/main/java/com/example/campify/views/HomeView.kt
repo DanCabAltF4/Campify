@@ -1,7 +1,6 @@
 package com.campify.views
 
 import android.content.Context
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,6 +27,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +36,6 @@ import com.example.campify.R
 import com.example.campify.ui.theme.botonActivoDark
 import com.example.campify.ui.theme.botonActivoLight
 import com.example.campify.ui.theme.dynamicColor
-import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipal2
 import com.example.campify.ui.theme.fondoPrincipalDark
 import com.example.campify.ui.theme.fondoPrincipalLight
@@ -81,7 +80,7 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
                 .padding(innerPadding)
                 .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
         ) {
-            NavigationSegment(navController, seleccionInicial = "Mapa", segmentSelectedColor, textPrimary, textSecondary)
+            NavigationSegment(navController, seleccionInicial = stringResource(R.string.nav_map), segmentSelectedColor, textPrimary, textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
             HomeContent(textPrimary, textSecondary)
         }
@@ -117,7 +116,7 @@ fun HomeTopBar(context: Context, navController: NavHostController, apiModel: Api
                     }
 
                     Text(
-                        "Mapa del parque",
+                        text = stringResource(R.string.map_subtitle),
                         fontSize = 12.sp,
                         color = secondaryText
                     )
@@ -153,8 +152,9 @@ fun NavigationSegment(
     textPrimary: Color,
     textSecondary: Color
 ) {
-
-    val opciones = listOf("Mapa", "Lista")
+    val mapa = stringResource(R.string.nav_map)
+    val lista = stringResource(R.string.nav_list)
+    val opciones = listOf(mapa, lista)
     var seleccionada by remember { mutableStateOf(seleccionInicial) }
 
     Row(
@@ -179,7 +179,7 @@ fun NavigationSegment(
                     )
                     .clickable {
                         seleccionada = opcion
-                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
+                        navController.navigate(if (opcion == mapa) "Home" else "Lista")
                     }
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
@@ -205,7 +205,7 @@ fun HomeContent(textPrimary: Color, textSecondary: Color) {
     ) {
 
         Text(
-            "Mapa de parcelas",
+            stringResource(R.string.map_title),
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
             color = textSecondary

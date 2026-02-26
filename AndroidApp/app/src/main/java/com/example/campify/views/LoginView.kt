@@ -18,7 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -51,7 +51,6 @@ import com.example.campify.R
 import com.example.campify.ui.theme.botonActivo
 import com.example.campify.ui.theme.botonActivoTexto
 import com.example.campify.ui.theme.dynamicColor
-import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipalDark
 import com.example.campify.ui.theme.fondoPrincipalLight
 import com.example.campify.ui.theme.textoPrincipalDark
@@ -66,7 +65,7 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
     val context = LocalContext.current
     val loginState by apiModel.loginState.collectAsState()
     var passwordVisible by remember { mutableStateOf(false) }
-
+    val textoError = stringResource(R.string.login_error)
     LaunchedEffect(loginState) {
         when (loginState) {
             is ApiModel.LoginState.Valid -> {
@@ -76,7 +75,7 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
             }
 
             is ApiModel.LoginState.Invalid -> {
-                Toast.makeText(context, "Inicio de sesión inválido", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, textoError, Toast.LENGTH_SHORT).show()
                 apiModel.resetLoginState()
             }
 
@@ -119,7 +118,7 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it.trim() },
-                        label = { Text("Email", color = textColor) },
+                        label = { Text(stringResource(R.string.login_email), color = textColor) },
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = botonActivo,
@@ -132,7 +131,7 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it.trim() },
-                        label = { Text("Contraseña", color = textColor) },
+                        label = { Text(stringResource(R.string.login_password), color = textColor) },
                         visualTransformation = if (passwordVisible) VisualTransformation.None
                         else PasswordVisualTransformation(),
                         modifier = Modifier.fillMaxWidth(),
@@ -163,7 +162,7 @@ fun LoginView(navController: NavController, apiModel: ApiModel) {
                             contentColor = botonActivoTexto
                         )
                     ) {
-                        Text("Login")
+                        Text(stringResource(R.string.login_placeholder))
                     }
                 }
             }
@@ -196,7 +195,7 @@ fun LoginTopBar() {
                             color = textColor
                         )
                         Text(
-                            "Inicia sesión para continuar",
+                            stringResource(R.string.login_subtitle),
                             fontSize = 12.sp,
                             color = dynamicColor(Color.DarkGray, Color.LightGray)
                         )

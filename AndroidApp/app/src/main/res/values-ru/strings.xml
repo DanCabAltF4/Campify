@@ -1,0 +1,35 @@
+<resources>
+    <string name="login_email">Эл. почта</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_placeholder">Войти</string>
+    <string name="login_error">Неверный вход</string>
+    <string name="login_subtitle">Войдите, чтобы продолжить</string>
+
+    <string name="map_subtitle">Карта парка</string>
+    <string name="nav_map">Карта</string>
+    <string name="nav_list">Список</string>
+    <string name="map_title">Карта участков</string>
+    <string name="list_subtitle">Управление парком</string>
+
+    <string name="search_placeholder">Поиск по ID или статусу</string>
+    <string name="filter_show">Показать расширенные фильтры ▼</string>
+    <string name="filter_hide">Скрыть расширенные фильтры ▲</string>
+    <string name="filter_bathroom">Близко к туалету</string>
+    <string name="filter_entrance">Близко к входу</string>
+    <string name="filter_views">Есть вид</string>
+    <string name="filter_quiet">Тихая зона</string>
+    <string name="filter_shade">Затенённая зона</string>
+
+    <string name="parcel_name">Участок</string>
+    <string name="parcel_status_free">Свободен</string>
+    <string name="parcel_status_reserved">Зарезервирован</string>
+    <string name="parcel_status_interested">Заинтересован</string>
+    <string name="parcel_status_maintenance">Обслуживание</string>
+    <string name="parcel_type_normal">Обычный</string>
+    <string name="parcel_type_semi">Полуучасток</string>
+    <string name="parcel_type_label">Тип</string>
+    <string name="parcel_features">Особенности</string>
+    <string name="parcel_change_status">Изменить статус</string>
+    <string name="confirm_change_title">Подтверждение</string>
+    <string name="confirm_change_status">Вы уверены, что хотите изменить статус на %1$s?</string>
+</resources>
