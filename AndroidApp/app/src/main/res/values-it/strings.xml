@@ -1,0 +1,35 @@
+<resources>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_placeholder">Accedi</string>
+    <string name="login_error">Accesso non valido</string>
+    <string name="login_subtitle">Accedi per continuare</string>
+
+    <string name="map_subtitle">Mappa del parco</string>
+    <string name="nav_map">Mappa</string>
+    <string name="nav_list">Lista</string>
+    <string name="map_title">Mappa dei lotti</string>
+    <string name="list_subtitle">Gestione del parco</string>
+
+    <string name="search_placeholder">Cerca per ID o stato</string>
+    <string name="filter_show">Mostra filtri avanzati ▼</string>
+    <string name="filter_hide">Nascondi filtri avanzati ▲</string>
+    <string name="filter_bathroom">Bagno vicino</string>
+    <string name="filter_entrance">Vicino all’ingresso</string>
+    <string name="filter_views">Ha vista</string>
+    <string name="filter_quiet">Zona tranquilla</string>
+    <string name="filter_shade">Zona ombreggiata</string>
+
+    <string name="parcel_name">Lotto</string>
+    <string name="parcel_status_free">Libero</string>
+    <string name="parcel_status_reserved">Riservato</string>
+    <string name="parcel_status_interested">Interessato</string>
+    <string name="parcel_status_maintenance">Manutenzione</string>
+    <string name="parcel_type_normal">NORMALE</string>
+    <string name="parcel_type_semi">SEMILOTTO</string>
+    <string name="parcel_type_label">Tipo</string>
+    <string name="parcel_features">Caratteristiche</string>
+    <string name="parcel_change_status">Cambia stato</string>
+    <string name="confirm_change_title">Conferma</string>
+    <string name="confirm_change_status">Sei sicuro di voler cambiare lo stato in %1$s?</string>
+</resources>

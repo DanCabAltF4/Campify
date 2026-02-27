@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">Campify</string>
+    <string name="app_name" translatable="false">Campify</string>
+
+    <string name="login_email">Email</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_placeholder">Iniciar Sesion</string>
+    <string name="login_error">Inicio de sesión inválido</string>
+    <string name="login_subtitle">Inicia sesión para continuar</string>
+
+    <string name="map_subtitle">Mapa del parque</string>
+    <string name="nav_map">Mapa</string>
+    <string name="nav_list">Lista</string>
+    <string name="map_title">Mapa de parcelas</string>
+    <string name="list_subtitle">Gestion del parque</string>
+
+    <string name="search_placeholder">Buscar por ID o estado</string>
+    <string name="filter_show">Mostrar filtros avanzados ▼</string>
+    <string name="filter_hide">Ocultar filtros avanzados ▲</string>
+    <string name="filter_bathroom">Baño cercano</string>
+    <string name="filter_entrance">Cerca entrada</string>
+    <string name="filter_views">Tiene vistas</string>
+    <string name="filter_quiet">Zona tranquila</string>
+    <string name="filter_shade">Zona con sombra</string>
+
+    <string name="parcel_name">Parcela</string>
+    <string name="parcel_status_free">Libre</string>
+    <string name="parcel_status_reserved">Reservada</string>
+    <string name="parcel_status_interested">Interesado</string>
+    <string name="parcel_status_maintenance">Mantenimiento</string>
+    <string name="parcel_type_normal">NORMAL</string>
+    <string name="parcel_type_semi">SEMIPARCELA</string>
+    <string name="parcel_type_label">Tipo</string>
+    <string name="parcel_features">Caracteristicas</string>
+    <string name="parcel_change_status">Cambiar Estado</string>
+    <string name="confirm_change_title">Confirmacion</string>
+    <string name="confirm_change_status">¿Estás seguro que quieres cambiar el estado a %1$s?</string>
 </resources>

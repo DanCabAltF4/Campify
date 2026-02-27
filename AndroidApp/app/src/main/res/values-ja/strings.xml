@@ -1,0 +1,35 @@
+<resources>
+    <string name="login_email">メール</string>
+    <string name="login_password">パスワード</string>
+    <string name="login_placeholder">ログイン</string>
+    <string name="login_error">無効なログイン</string>
+    <string name="login_subtitle">続行するにはログインしてください</string>
+
+    <string name="map_subtitle">公園の地図</string>
+    <string name="nav_map">地図</string>
+    <string name="nav_list">リスト</string>
+    <string name="map_title">区画地図</string>
+    <string name="list_subtitle">公園管理</string>
+
+    <string name="search_placeholder">IDまたは状態で検索</string>
+    <string name="filter_show">詳細フィルターを表示 ▼</string>
+    <string name="filter_hide">詳細フィルターを非表示 ▲</string>
+    <string name="filter_bathroom">近くのトイレ</string>
+    <string name="filter_entrance">入口の近く</string>
+    <string name="filter_views">景色あり</string>
+    <string name="filter_quiet">静かなエリア</string>
+    <string name="filter_shade">日陰のエリア</string>
+
+    <string name="parcel_name">区画</string>
+    <string name="parcel_status_free">空き</string>
+    <string name="parcel_status_reserved">予約済み</string>
+    <string name="parcel_status_interested">関心あり</string>
+    <string name="parcel_status_maintenance">メンテナンス中</string>
+    <string name="parcel_type_normal">通常</string>
+    <string name="parcel_type_semi">半区画</string>
+    <string name="parcel_type_label">タイプ</string>
+    <string name="parcel_features">特徴</string>
+    <string name="parcel_change_status">状態を変更</string>
+    <string name="confirm_change_title">確認</string>
+    <string name="confirm_change_status">%1$s に状態を変更してもよろしいですか？</string>
+</resources>

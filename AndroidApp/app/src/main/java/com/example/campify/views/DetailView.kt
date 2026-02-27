@@ -50,6 +50,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -153,7 +154,7 @@ fun DetailContent(
             Spacer(Modifier.height(16.dp))
             if (rolUsuario != "RECEPCIONISTA") {
                 Text(
-                    "Cambiar Estado",
+                    stringResource(R.string.parcel_change_status),
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onBackground
@@ -248,11 +249,19 @@ fun ConfirmDialog(
     onConfirm: (EstadoParcela) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val estadoTraducido = when (estado) {
+        EstadoParcela.LIBRE -> stringResource(R.string.parcel_status_free)
+        EstadoParcela.RESERVADA -> stringResource(R.string.parcel_status_reserved)
+        EstadoParcela.INTERESADO -> stringResource(R.string.parcel_status_interested)
+        EstadoParcela.MANTENIMIENTO -> stringResource(R.string.parcel_status_maintenance)
+        null -> "Desconocido"
+    }
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Confirmación",
+                text = stringResource(R.string.confirm_change_title),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = dynamicColor(Color(0xFF000000), Color(0xFFFFFFFF))
@@ -260,7 +269,7 @@ fun ConfirmDialog(
         },
         text = {
             Text(
-                "¿Estás seguro que quieres cambiar el estado a ${estado.name}?",
+                stringResource(R.string.confirm_change_status, estadoTraducido),
                 fontSize = 16.sp,
                 color = MaterialTheme.colorScheme.onBackground
             )
@@ -292,7 +301,7 @@ fun ConfirmDialog(
 @Composable
 fun ParcelaTitle(parcela: Parcela) {
     Text(
-        text = "Parcela ${parcela.id}",
+        text = "${stringResource(R.string.parcel_name)} ${parcela.id}",
         fontSize = 22.sp,
         fontWeight = FontWeight.Bold,
         color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
@@ -329,8 +338,16 @@ fun ParcelaEstadoCard(parcela: Parcela) {
 
             Spacer(Modifier.width(12.dp))
 
+            val estadoTraducido = when (parcela.estadoParcela) {
+                EstadoParcela.LIBRE -> stringResource(R.string.parcel_status_free)
+                EstadoParcela.RESERVADA -> stringResource(R.string.parcel_status_reserved)
+                EstadoParcela.INTERESADO -> stringResource(R.string.parcel_status_interested)
+                EstadoParcela.MANTENIMIENTO -> stringResource(R.string.parcel_status_maintenance)
+                null -> "Desconocido"
+            }
+
             Text(
-                text = parcela.estadoParcela.name.replaceFirstChar { it.uppercase() },
+                text = estadoTraducido,
                 fontWeight = FontWeight.Medium,
                 fontSize = 16.sp,
                 color = textColor
@@ -342,7 +359,7 @@ fun ParcelaEstadoCard(parcela: Parcela) {
 @Composable
 fun ParcelaCaracteristicas(parcela: Parcela) {
     Text(
-        "Características",
+        stringResource(R.string.parcel_features),
         fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp,
         color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
@@ -350,11 +367,11 @@ fun ParcelaCaracteristicas(parcela: Parcela) {
     Spacer(Modifier.height(8.dp))
 
     val booleanos = listOf(
-        "Baño cercano" to parcela.cercaBaño,
-        "Cerca de la entrada" to parcela.cercaEntrada,
-        "Tiene vistas" to parcela.tieneVistas,
-        "Zona tranquila" to parcela.zonaTranquila,
-        "Zona con sombra" to parcela.zonaSombra
+        stringResource(R.string.filter_bathroom) to parcela.cercaBaño,
+        stringResource(R.string.filter_entrance) to parcela.cercaEntrada,
+        stringResource(R.string.filter_views) to parcela.tieneVistas,
+        stringResource(R.string.filter_quiet) to parcela.zonaTranquila,
+        stringResource(R.string.filter_shade) to parcela.zonaSombra
     )
 
     booleanos.forEach { (label, valor) ->

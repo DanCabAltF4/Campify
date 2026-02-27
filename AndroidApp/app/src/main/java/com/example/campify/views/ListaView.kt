@@ -85,6 +85,15 @@ import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.ui.theme.textoSecundarioDark
 import com.example.campify.ui.theme.textoSecundarioLight
 import com.example.campify.viewmodels.ApiModel
+import android.util.Base64
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.Dialog
+import com.example.campify.data.model.enums.TipoParcela
+import kotlin.io.encoding.ExperimentalEncodingApi
 
 @Composable
 fun ListaView(navController: NavHostController, api: ApiModel) {
@@ -117,14 +126,36 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
         filtroSombra
     ) {
         parcelas.filter { parcela ->
+
+            val estadoEnum = parcela.estadoParcela
+
+            val estadoEs = when (estadoEnum) {
+                EstadoParcela.LIBRE -> "Libre"
+                EstadoParcela.RESERVADA -> "Reservada"
+                EstadoParcela.INTERESADO -> "Interesado"
+                EstadoParcela.MANTENIMIENTO -> "Mantenimiento"
+                null -> ""
+            }
+
+            val estadoEn = when (estadoEnum) {
+                EstadoParcela.LIBRE -> "Available"
+                EstadoParcela.RESERVADA -> "Reserved"
+                EstadoParcela.INTERESADO -> "Interested"
+                EstadoParcela.MANTENIMIENTO -> "Maintenance"
+                null -> ""
+            }
+
             val textoOk = searchText.isEmpty() ||
-                    parcela.estadoParcela.name.contains(searchText, ignoreCase = true) ||
+                    estadoEs.contains(searchText, true) ||
+                    estadoEn.contains(searchText, true) ||
                     parcela.id.toString().contains(searchText)
+
             val filtroOk = (!filtroBano || parcela.cercaBaño) &&
                     (!filtroEntrada || parcela.cercaEntrada) &&
                     (!filtroVistas || parcela.tieneVistas) &&
                     (!filtroTranquila || parcela.zonaTranquila) &&
                     (!filtroSombra || parcela.zonaSombra)
+
             textoOk && filtroOk
         }
     }
@@ -169,7 +200,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = if (showFiltros) "Ocultar filtros avanzados ▲" else "Mostrar filtros avanzados ▼",
+                    text = if (showFiltros) stringResource(R.string.filter_hide) else stringResource(R.string.filter_show),
                     fontWeight = FontWeight.Medium,
                     color = textPrimary
                 )
@@ -232,7 +263,7 @@ fun FiltroCheckboxes(
                             checkmarkColor = dynamicColor(Color.White, Color.Black)
                         )
                     )
-                    Text("Baño cercano", color = textColor)
+                    Text(stringResource(R.string.filter_bathroom), color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(
@@ -244,7 +275,7 @@ fun FiltroCheckboxes(
                             checkmarkColor = dynamicColor(Color.White, Color.Black)
                         )
                     )
-                    Text("Cerca entrada", color = textColor)
+                    Text(stringResource(R.string.filter_entrance), color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(
@@ -256,7 +287,7 @@ fun FiltroCheckboxes(
                             checkmarkColor = dynamicColor(Color.White, Color.Black)
                         )
                     )
-                    Text("Tiene vistas", color = textColor)
+                    Text(stringResource(R.string.filter_views), color = textColor)
                 }
             }
             Column {
@@ -270,7 +301,7 @@ fun FiltroCheckboxes(
                             checkmarkColor = dynamicColor(Color.White, Color.Black)
                         )
                     )
-                    Text("Zona tranquila", color = textColor)
+                    Text(stringResource(R.string.filter_quiet), color = textColor)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(
@@ -282,7 +313,7 @@ fun FiltroCheckboxes(
                             checkmarkColor = dynamicColor(Color.White, Color.Black)
                         )
                     )
-                    Text("Zona con sombra", color = textColor)
+                    Text(stringResource(R.string.filter_shade), color = textColor)
                 }
             }
         }
@@ -319,7 +350,7 @@ fun ListaTopBar(api: ApiModel) {
                     }
 
                     Text(
-                        text = "Gestión del parque",
+                        text = stringResource(R.string.list_subtitle),
                         fontSize = 12.sp,
                         color = secondaryText
                     )
@@ -347,7 +378,7 @@ fun SearchBar(value: String, textColor: Color, onValueChange: (String) -> Unit) 
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text("Buscar por ID o estado", color = textColor) },
+        placeholder = { Text(stringResource(R.string.search_placeholder), color = textColor) },
         leadingIcon = {
             Icon(Icons.Default.Search, contentDescription = null, tint = textColor)
         },
@@ -372,8 +403,10 @@ fun NavigationSegment(
     botonActivoColor: Color,
     textSecondary: Color
 ) {
-    val opciones = listOf("Mapa", "Lista")
-    var seleccionada by remember { mutableStateOf("Lista") }
+    val mapa = stringResource(R.string.nav_map)
+    val lista = stringResource(R.string.nav_list)
+    val opciones = listOf(mapa, lista)
+    var seleccionada by remember { mutableStateOf(lista) }
 
     Row(
         modifier = Modifier
@@ -396,7 +429,7 @@ fun NavigationSegment(
                     )
                     .clickable {
                         seleccionada = opcion
-                        navController.navigate(if (opcion == "Mapa") "Home" else "Lista")
+                        navController.navigate(if (opcion == mapa) "Home" else "Lista")
                     }
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
@@ -524,7 +557,7 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Parcela ${parcela.id}",
+                    text = "${stringResource(R.string.parcel_name)} ${parcela.id}",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = dynamicColor(textoPrincipalLight, textoPrincipalDark)
@@ -541,11 +574,16 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
                     )
 
                     Spacer(Modifier.width(6.dp))
+                    val estadoTraducido = when (parcela.estadoParcela?.name) {
+                        "LIBRE" -> stringResource(R.string.parcel_status_free)
+                        "RESERVADA" -> stringResource(R.string.parcel_status_reserved)
+                        "INTERESADO" -> stringResource(R.string.parcel_status_interested)
+                        "MANTENIMIENTO" -> stringResource(R.string.parcel_status_maintenance)
+                        else -> "Desconocido"
+                    }
 
                     Text(
-                        text = parcela.estadoParcela.name
-                            .lowercase()
-                            .replaceFirstChar { it.uppercase() },
+                        text = estadoTraducido,
                         fontSize = 14.sp,
                         color = colorEstado
                     )
@@ -553,8 +591,14 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
 
                 Spacer(Modifier.height(4.dp))
 
+                val tipoTraducido = when (parcela.tipoParcela) {
+                    TipoParcela.NORMAL -> stringResource(R.string.parcel_type_normal)
+                    TipoParcela.SEMIPARCELA -> stringResource(R.string.parcel_type_semi)
+                    else -> "Desconocido"
+                }
+
                 Text(
-                    text = "Tipo: ${parcela.tipoParcela.name}",
+                    text = "${stringResource(R.string.parcel_type_label)}: $tipoTraducido",
                     fontSize = 14.sp,
                     color = dynamicColor(textoSecundarioLight, textoSecundarioDark)
                 )
