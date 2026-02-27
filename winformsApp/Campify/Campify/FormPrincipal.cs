@@ -372,12 +372,10 @@ namespace Campify
 
         private void pbMapa_DoubleClick(object sender, EventArgs e)
         {
-            this.Hide();
             using (var form = new FormVerMapa())
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -561,12 +559,10 @@ namespace Campify
                 return;
             }
 
-            this.Hide();
             using (var form = new FormsVerImagen(_api, ucParcelaDatos.ParcelaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -575,7 +571,6 @@ namespace Campify
         /// </summary>
         private async void btnNuevaParcela_Click(object sender, EventArgs e)
         {
-            this.Hide();
             using (var form = new FormNuevaParcela(_api, null))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -585,7 +580,6 @@ namespace Campify
                     await CargarParcelas();
                 }
             }
-            this.Show();
         }
 
 
@@ -659,22 +653,21 @@ namespace Campify
                 {
                     ucEstanciaActual1.SetData(form.EstanciaCreada);
                     await CargarParcelas();
+
+                    // Descargar ficha de clientes de la estancia 
+                    int idEstancia = ucEstanciaActual1.EstanciaActual.Id;
+                    byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
+
+                    string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+                    int idParcela = ucEstanciaActual1.EstanciaActual.Parcela.Id;
+                    string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
+                    string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
+
+                    await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
+
+                    MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
                 }
-
-                // Descargar ficha de clientes de la estancia 
-                int idEstancia = ucEstanciaActual1.EstanciaActual.Id;
-                byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
-
-                string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
-                int idParcela = ucEstanciaActual1.EstanciaActual.Parcela.Id;
-                string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
-                string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
-
-                await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
-
-                MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
-
             }
             catch (HttpRequestException ex)
             {
@@ -754,12 +747,10 @@ namespace Campify
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
 
-            this.Hide();
             using (var form = new FormVerClientesEstancia(estanciaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -775,12 +766,10 @@ namespace Campify
                 return;
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
-            this.Hide();
             using (var form = new FormVerServiciosEstancia(estanciaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -873,14 +862,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormDatosEmpleado(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEmpleados();
                     ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1013,14 +1000,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormDatosServicio(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarServicios();
                     ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
