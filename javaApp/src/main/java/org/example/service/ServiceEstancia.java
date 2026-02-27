@@ -21,19 +21,22 @@ public class ServiceEstancia implements IServiceEstancia {
     private final ServicioRepository servicioRepo;
     private final ParcelaRepository parcelaRepo;
     private final EmpleadoRepository empleadoRepo;
+    private final ServicePdfClientes servicePdf;
 
     public ServiceEstancia(
             EstanciaRepository repo,
             ClienteRepository clienteRepo,
             ServicioRepository servicioRepo,
             ParcelaRepository parcelaRepo,
-            EmpleadoRepository empleadoRepo
+            EmpleadoRepository empleadoRepo,
+            ServicePdfClientes servicePdf
     ) {
         this.repo = repo;
         this.clienteRepo = clienteRepo;
         this.servicioRepo = servicioRepo;
         this.parcelaRepo = parcelaRepo;
         this.empleadoRepo = empleadoRepo;
+        this.servicePdf = servicePdf;
     }
 
     @Override
@@ -70,7 +73,6 @@ public class ServiceEstancia implements IServiceEstancia {
             serviciosManaged.forEach(estancia::addServicio);
         }
 
-        // Guardamos la estancia (Hibernate maneja cascadas si están configuradas)
         return repo.save(estancia);
     }
 
@@ -188,6 +190,12 @@ public class ServiceEstancia implements IServiceEstancia {
         estancia.setNumeroNinos(ninos);
     }
 
+
+    // Genera y devuelve un archivo pdf con la información de los clientes de una estancia
+    public byte[] generarPdfClientes(int id) {
+        Estancia estancia = repo.findById(id).orElseThrow(() -> new RuntimeException("Estancia no encontrada"));
+        return servicePdf.buildClientesPdf(estancia);
+    }
 }
 
 

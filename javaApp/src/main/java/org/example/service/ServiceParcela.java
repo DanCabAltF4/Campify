@@ -71,9 +71,8 @@ public class ServiceParcela implements  IServiceParcela{
         LocalDate hoy = LocalDate.now();
 
         for (Parcela parcela : parcelas) {
-            // Si ya está en MANTENIMIENTO, RESERVADA o INTERESADO, no lo tocamos
+            // Si ya está en MANTENIMIENTO o INTERESADO, no lo tocamos
             if (parcela.getEstado_parcela() == EstadoParcela.MANTENIMIENTO ||
-                    parcela.getEstado_parcela() == EstadoParcela.RESERVADA ||
                     parcela.getEstado_parcela() == EstadoParcela.INTERESADO) {
                 continue;
             }

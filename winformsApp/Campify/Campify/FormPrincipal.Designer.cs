@@ -87,6 +87,7 @@
             flpEmpleados = new FlowLayoutPanel();
             btnEstancias = new Button();
             pnlEstancias = new Panel();
+            btnDescargarFicha = new Button();
             btnEliminarEstancia = new Button();
             btnEditarEstancia = new Button();
             btnRefrescarEstancias = new Button();
@@ -109,6 +110,8 @@
             btnSalir = new Button();
             tmFechaHora = new System.Windows.Forms.Timer(components);
             lblCreditos = new Label();
+            pnlFondo = new Panel();
+            pnlMenu = new Panel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             pnlServicios.SuspendLayout();
             pnlMapaLista.SuspendLayout();
@@ -124,12 +127,14 @@
             pnlClientes.SuspendLayout();
             flpClientes.SuspendLayout();
             pnlTop.SuspendLayout();
+            pnlFondo.SuspendLayout();
+            pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
             // 
             pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(0, 36);
+            pbLogo.Location = new Point(0, 0);
             pbLogo.Margin = new Padding(3, 4, 3, 4);
             pbLogo.Name = "pbLogo";
             pbLogo.Size = new Size(106, 116);
@@ -143,7 +148,7 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEmpleados.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEmpleados.Location = new Point(667, 59);
+            btnEmpleados.Location = new Point(666, 23);
             btnEmpleados.Margin = new Padding(3, 4, 3, 4);
             btnEmpleados.Name = "btnEmpleados";
             btnEmpleados.Size = new Size(135, 59);
@@ -158,7 +163,7 @@
             btnParcelas.FlatStyle = FlatStyle.Flat;
             btnParcelas.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnParcelas.ForeColor = Color.FromArgb(44, 79, 29);
-            btnParcelas.Location = new Point(112, 59);
+            btnParcelas.Location = new Point(112, 23);
             btnParcelas.Margin = new Padding(3, 4, 3, 4);
             btnParcelas.Name = "btnParcelas";
             btnParcelas.Size = new Size(124, 59);
@@ -173,7 +178,7 @@
             btnServicios.FlatStyle = FlatStyle.Flat;
             btnServicios.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnServicios.ForeColor = Color.FromArgb(44, 79, 29);
-            btnServicios.Location = new Point(242, 59);
+            btnServicios.Location = new Point(242, 23);
             btnServicios.Margin = new Padding(3, 4, 3, 4);
             btnServicios.Name = "btnServicios";
             btnServicios.Size = new Size(135, 59);
@@ -184,15 +189,16 @@
             // 
             // pnlServicios
             // 
+            pnlServicios.BackColor = Color.FromArgb(197, 239, 170);
             pnlServicios.Controls.Add(btnRefrescarServicios);
             pnlServicios.Controls.Add(btnEliminarServicio);
             pnlServicios.Controls.Add(btnEditarServicio);
             pnlServicios.Controls.Add(btnNuevoServicio);
             pnlServicios.Controls.Add(ucServicioDatos1);
             pnlServicios.Controls.Add(flpServicios);
-            pnlServicios.Location = new Point(0, 151);
+            pnlServicios.Location = new Point(2, 151);
             pnlServicios.Name = "pnlServicios";
-            pnlServicios.Size = new Size(913, 483);
+            pnlServicios.Size = new Size(911, 483);
             pnlServicios.TabIndex = 19;
             pnlServicios.Visible = false;
             // 
@@ -511,6 +517,7 @@
             // 
             // pnlParcelas
             // 
+            pnlParcelas.BackColor = Color.FromArgb(197, 239, 170);
             pnlParcelas.Controls.Add(btnEditarParcela);
             pnlParcelas.Controls.Add(btnNuevaParcela);
             pnlParcelas.Controls.Add(btnEliminarParcela);
@@ -528,9 +535,9 @@
             pnlParcelas.Controls.Add(btnMantenimiento);
             pnlParcelas.Controls.Add(btnClientesEstancia);
             pnlParcelas.Controls.Add(btnServiciosEstancia);
-            pnlParcelas.Location = new Point(0, 153);
+            pnlParcelas.Location = new Point(2, 153);
             pnlParcelas.Name = "pnlParcelas";
-            pnlParcelas.Size = new Size(913, 480);
+            pnlParcelas.Size = new Size(911, 480);
             pnlParcelas.TabIndex = 18;
             // 
             // btnFiltros
@@ -762,15 +769,16 @@
             // 
             // pnlEmpleados
             // 
+            pnlEmpleados.BackColor = Color.FromArgb(197, 239, 170);
             pnlEmpleados.Controls.Add(btnRefrescarEmpleados);
             pnlEmpleados.Controls.Add(btnEliminarEmpleado);
             pnlEmpleados.Controls.Add(btnEditarEmpleado);
             pnlEmpleados.Controls.Add(btnNuevoEmpleado);
             pnlEmpleados.Controls.Add(ucEmpleadoDatos1);
             pnlEmpleados.Controls.Add(flpEmpleados);
-            pnlEmpleados.Location = new Point(1, 151);
+            pnlEmpleados.Location = new Point(2, 151);
             pnlEmpleados.Name = "pnlEmpleados";
-            pnlEmpleados.Size = new Size(913, 483);
+            pnlEmpleados.Size = new Size(911, 483);
             pnlEmpleados.TabIndex = 20;
             pnlEmpleados.Visible = false;
             // 
@@ -859,7 +867,7 @@
             btnEstancias.FlatStyle = FlatStyle.Flat;
             btnEstancias.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEstancias.ForeColor = Color.FromArgb(44, 79, 29);
-            btnEstancias.Location = new Point(384, 59);
+            btnEstancias.Location = new Point(384, 23);
             btnEstancias.Margin = new Padding(3, 4, 3, 4);
             btnEstancias.Name = "btnEstancias";
             btnEstancias.Size = new Size(135, 59);
@@ -870,16 +878,32 @@
             // 
             // pnlEstancias
             // 
+            pnlEstancias.BackColor = Color.FromArgb(197, 239, 170);
+            pnlEstancias.Controls.Add(btnDescargarFicha);
             pnlEstancias.Controls.Add(btnEliminarEstancia);
             pnlEstancias.Controls.Add(btnEditarEstancia);
             pnlEstancias.Controls.Add(btnRefrescarEstancias);
             pnlEstancias.Controls.Add(ucEstanciaActual2);
             pnlEstancias.Controls.Add(flpEstancias);
-            pnlEstancias.Location = new Point(1, 147);
+            pnlEstancias.Location = new Point(2, 147);
             pnlEstancias.Name = "pnlEstancias";
-            pnlEstancias.Size = new Size(913, 487);
+            pnlEstancias.Size = new Size(911, 487);
             pnlEstancias.TabIndex = 22;
             pnlEstancias.Visible = false;
+            // 
+            // btnDescargarFicha
+            // 
+            btnDescargarFicha.FlatAppearance.BorderSize = 0;
+            btnDescargarFicha.FlatStyle = FlatStyle.Flat;
+            btnDescargarFicha.Font = new Font("Segoe UI", 20F);
+            btnDescargarFicha.Image = (Image)resources.GetObject("btnDescargarFicha.Image");
+            btnDescargarFicha.Location = new Point(510, 3);
+            btnDescargarFicha.Margin = new Padding(0);
+            btnDescargarFicha.Name = "btnDescargarFicha";
+            btnDescargarFicha.Size = new Size(49, 43);
+            btnDescargarFicha.TabIndex = 26;
+            btnDescargarFicha.UseVisualStyleBackColor = true;
+            btnDescargarFicha.Click += btnDescargarFicha_Click;
             // 
             // btnEliminarEstancia
             // 
@@ -950,7 +974,7 @@
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClientes.ForeColor = Color.FromArgb(44, 79, 29);
-            btnClientes.Location = new Point(525, 59);
+            btnClientes.Location = new Point(525, 23);
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(135, 59);
@@ -961,15 +985,16 @@
             // 
             // pnlClientes
             // 
+            pnlClientes.BackColor = Color.FromArgb(197, 239, 170);
             pnlClientes.Controls.Add(flpClientes);
             pnlClientes.Controls.Add(btnRefrescarClientes);
             pnlClientes.Controls.Add(ucClienteDatos1);
             pnlClientes.Controls.Add(btnNuevoCliente);
             pnlClientes.Controls.Add(btnEditarCliente);
             pnlClientes.Controls.Add(btnEliminarCliente);
-            pnlClientes.Location = new Point(1, 151);
+            pnlClientes.Location = new Point(2, 151);
             pnlClientes.Name = "pnlClientes";
-            pnlClientes.Size = new Size(913, 483);
+            pnlClientes.Size = new Size(911, 483);
             pnlClientes.TabIndex = 24;
             pnlClientes.Visible = false;
             // 
@@ -997,10 +1022,10 @@
             btnRefrescarClientes.FlatStyle = FlatStyle.Flat;
             btnRefrescarClientes.Font = new Font("Segoe UI", 20F);
             btnRefrescarClientes.Image = Forms.Properties.Resources.refresh_arrow;
-            btnRefrescarClientes.Location = new Point(438, -8);
+            btnRefrescarClientes.Location = new Point(438, 2);
             btnRefrescarClientes.Margin = new Padding(0);
             btnRefrescarClientes.Name = "btnRefrescarClientes";
-            btnRefrescarClientes.Size = new Size(50, 53);
+            btnRefrescarClientes.Size = new Size(50, 43);
             btnRefrescarClientes.TabIndex = 23;
             btnRefrescarClientes.UseVisualStyleBackColor = true;
             btnRefrescarClientes.Click += RefrescarClientes;
@@ -1068,7 +1093,7 @@
             btnLogOut.ForeColor = Color.FromArgb(44, 79, 29);
             btnLogOut.Image = (Image)resources.GetObject("btnLogOut.Image");
             btnLogOut.ImageAlign = ContentAlignment.TopCenter;
-            btnLogOut.Location = new Point(824, 36);
+            btnLogOut.Location = new Point(821, 0);
             btnLogOut.Margin = new Padding(0);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(87, 82);
@@ -1085,10 +1110,9 @@
             pnlTop.Controls.Add(btnMinimizar);
             pnlTop.Controls.Add(lblTitulo);
             pnlTop.Controls.Add(btnSalir);
-            pnlTop.Dock = DockStyle.Top;
-            pnlTop.Location = new Point(0, 0);
+            pnlTop.Location = new Point(2, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(910, 36);
+            pnlTop.Size = new Size(911, 32);
             pnlTop.TabIndex = 26;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -1106,7 +1130,7 @@
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(832, 1);
+            btnMinimizar.Location = new Point(843, 1);
             btnMinimizar.Name = "btnMinimizar";
             btnMinimizar.Size = new Size(32, 32);
             btnMinimizar.TabIndex = 9;
@@ -1116,7 +1140,7 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(10, 11);
+            lblTitulo.Location = new Point(3, 7);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(175, 20);
             lblTitulo.TabIndex = 8;
@@ -1128,9 +1152,9 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(870, 1);
+            btnSalir.Location = new Point(881, 1);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(43, 32);
+            btnSalir.Size = new Size(32, 32);
             btnSalir.TabIndex = 7;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -1143,32 +1167,52 @@
             // 
             // lblCreditos
             // 
-            lblCreditos.Location = new Point(4, 39);
+            lblCreditos.Location = new Point(2, 2);
             lblCreditos.Name = "lblCreditos";
             lblCreditos.Size = new Size(16, 15);
             lblCreditos.TabIndex = 27;
             lblCreditos.DoubleClick += lblCreditos_DoubleClick;
+            // 
+            // pnlFondo
+            // 
+            pnlFondo.BackColor = Color.FromArgb(0, 64, 0);
+            pnlFondo.Controls.Add(pnlTop);
+            pnlFondo.Controls.Add(pnlMenu);
+            pnlFondo.Controls.Add(pnlParcelas);
+            pnlFondo.Controls.Add(pnlServicios);
+            pnlFondo.Controls.Add(pnlEstancias);
+            pnlFondo.Controls.Add(pnlClientes);
+            pnlFondo.Controls.Add(pnlEmpleados);
+            pnlFondo.Dock = DockStyle.Fill;
+            pnlFondo.Location = new Point(0, 0);
+            pnlFondo.Margin = new Padding(0);
+            pnlFondo.Name = "pnlFondo";
+            pnlFondo.Size = new Size(915, 637);
+            pnlFondo.TabIndex = 28;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = Color.FromArgb(197, 239, 170);
+            pnlMenu.Controls.Add(lblCreditos);
+            pnlMenu.Controls.Add(pbLogo);
+            pnlMenu.Controls.Add(btnParcelas);
+            pnlMenu.Controls.Add(btnServicios);
+            pnlMenu.Controls.Add(btnEmpleados);
+            pnlMenu.Controls.Add(btnEstancias);
+            pnlMenu.Controls.Add(btnClientes);
+            pnlMenu.Controls.Add(btnLogOut);
+            pnlMenu.Location = new Point(2, 34);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(911, 119);
+            pnlMenu.TabIndex = 28;
             // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(910, 632);
-            Controls.Add(pnlTop);
-            Controls.Add(lblCreditos);
-            Controls.Add(pnlParcelas);
-            Controls.Add(pnlEmpleados);
-            Controls.Add(pnlClientes);
-            Controls.Add(pnlEstancias);
-            Controls.Add(pnlServicios);
-            Controls.Add(pbLogo);
-            Controls.Add(btnParcelas);
-            Controls.Add(btnServicios);
-            Controls.Add(btnEmpleados);
-            Controls.Add(btnEstancias);
-            Controls.Add(btnClientes);
-            Controls.Add(btnLogOut);
+            ClientSize = new Size(915, 637);
+            Controls.Add(pnlFondo);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormPrincipal";
@@ -1192,6 +1236,8 @@
             flpClientes.ResumeLayout(false);
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
+            pnlFondo.ResumeLayout(false);
+            pnlMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1276,5 +1322,8 @@
         private ComboBox cbFiltroEstado;
         private NumericUpDown nudFiltroPrecioMax;
         private CheckBox ckFiltroPrecioMax;
+        private Button btnDescargarFicha;
+        private Panel pnlFondo;
+        private Panel pnlMenu;
     }
 }

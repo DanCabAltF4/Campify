@@ -372,12 +372,10 @@ namespace Campify
 
         private void pbMapa_DoubleClick(object sender, EventArgs e)
         {
-            this.Hide();
             using (var form = new FormVerMapa())
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -561,12 +559,10 @@ namespace Campify
                 return;
             }
 
-            this.Hide();
             using (var form = new FormsVerImagen(_api, ucParcelaDatos.ParcelaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -575,7 +571,6 @@ namespace Campify
         /// </summary>
         private async void btnNuevaParcela_Click(object sender, EventArgs e)
         {
-            this.Hide();
             using (var form = new FormNuevaParcela(_api, null))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -585,7 +580,6 @@ namespace Campify
                     await CargarParcelas();
                 }
             }
-            this.Show();
         }
 
 
@@ -654,15 +648,26 @@ namespace Campify
                     return;
                 }
 
-                this.Hide();
                 var form = new FormNuevaEstancia(parcelaSeleccionada, _api, null);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     ucEstanciaActual1.SetData(form.EstanciaCreada);
                     await CargarParcelas();
-                }
-                this.Show();
 
+                    // Descargar ficha de clientes de la estancia 
+                    int idEstancia = ucEstanciaActual1.EstanciaActual.Id;
+                    byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
+
+                    string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+                    int idParcela = ucEstanciaActual1.EstanciaActual.Parcela.Id;
+                    string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
+                    string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
+
+                    await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
+
+                    MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
+                }
             }
             catch (HttpRequestException ex)
             {
@@ -742,12 +747,10 @@ namespace Campify
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
 
-            this.Hide();
             using (var form = new FormVerClientesEstancia(estanciaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -763,12 +766,10 @@ namespace Campify
                 return;
             }
             var estanciaActual = ucEstanciaActual1.EstanciaActual;
-            this.Hide();
             using (var form = new FormVerServiciosEstancia(estanciaActual))
             {
                 form.ShowDialog(this);
             }
-            this.Show();
         }
 
 
@@ -797,8 +798,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoParcelas = false;
         private async void btnRefrescarParcelas_Click(object sender, EventArgs e)
         {
+            if (_cargandoParcelas) return;
+
+            _cargandoParcelas = true;
+            btnRefrescarParcelas.Enabled = false;
+
             try
             {
                 await CargarParcelas();
@@ -806,6 +813,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoParcelas = false;
+                btnRefrescarParcelas.Enabled = true;
             }
         }
 
@@ -850,14 +862,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormDatosEmpleado(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarEmpleados();
                     ucEmpleadoDatos1.MostrarDatos(form.EmpleadoGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -928,8 +938,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoEmpleados = false;
         private async void btnRefrescarEmpleados_Click(object sender, EventArgs e)
         {
+            if (_cargandoEmpleados) return;
+
+            _cargandoEmpleados = true;
+            btnRefrescarEmpleados.Enabled = false;
+
             try
             {
                 await CargarEmpleados();
@@ -937,6 +953,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoEmpleados = false;
+                btnRefrescarEmpleados.Enabled = true;
             }
         }
 
@@ -979,14 +1000,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormDatosServicio(null, _api);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     await CargarServicios();
                     ucServicioDatos1.MostrarDatos(form.ServicioGuardado);
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1057,8 +1076,14 @@ namespace Campify
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoServicios = false;
         private async void btnRefrescarServicios_Click(object sender, EventArgs e)
         {
+            if (_cargandoServicios) return;
+
+            _cargandoServicios = true;
+            btnRefrescarServicios.Enabled = false;
+
             try
             {
                 await CargarServicios();
@@ -1066,6 +1091,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoServicios = false;
+                btnRefrescarServicios.Enabled = true;
             }
         }
 
@@ -1102,11 +1132,41 @@ namespace Campify
         }
 
 
+        private async void btnDescargarFicha_Click(object sender, EventArgs e)
+        {
+            if (ucEstanciaActual2.EstanciaActual == null)
+            {
+                MessageBox.Show("Debe seleccionar una estancia para descargar su ficha.", "Estancia no seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idEstancia = ucEstanciaActual2.EstanciaActual.Id;
+            byte[] pdfBytes = await _api.GetBytesAsync($"/api/estancias/{idEstancia}/clientes/pdf");
+
+            string rutaDescargas = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+
+            int idParcela = ucEstanciaActual2.EstanciaActual.Parcela.Id;
+            string fecha = DateOnly.FromDateTime(DateTime.Now).ToString("dd-MM-yyyy");
+            string rutaCompleta = Path.Combine(rutaDescargas, $"Parcela_{idParcela}_{fecha}_clientes.pdf");
+
+            await File.WriteAllBytesAsync(rutaCompleta, pdfBytes);
+
+            MessageBox.Show($"PDF guardado en:\n{rutaCompleta}");
+
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
+        private bool _cargandoEstancias = false;
         private async void btnRefrescarEstancias_Click(object sender, EventArgs e)
         {
+            if (_cargandoEstancias) return;
+
+            _cargandoEstancias = true;
+            btnRefrescarEstancias.Enabled = false;
+
             try
             {
                 await CargarEstancias();
@@ -1114,6 +1174,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoEstancias = false;
+                btnRefrescarEstancias.Enabled = true;
             }
         }
 
@@ -1161,6 +1226,7 @@ namespace Campify
                     await _api.Delete<Estancia>("api/estancias", ucEstanciaActual2.EstanciaActual.Id);
                     MessageBox.Show("Estancia eliminada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await CargarEstancias();
+                    await CargarParcelas();
                     ucEstanciaActual2.Limpiar();
                 }
             }
@@ -1196,8 +1262,13 @@ namespace Campify
         }
 
 
+        private bool _cargandoClientes = false;
         private async void RefrescarClientes(object sender, EventArgs e)
         {
+            if (_cargandoClientes) return;
+
+            _cargandoClientes = true;
+            btnRefrescarClientes.Enabled = false;
             try
             {
                 await CargarClientes();
@@ -1205,6 +1276,11 @@ namespace Campify
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ApiCampify.MensajeErrorHttp(ex), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _cargandoClientes = false;
+                btnRefrescarClientes.Enabled = true;
             }
         }
 
@@ -1249,14 +1325,12 @@ namespace Campify
         {
             try
             {
-                this.Hide();
                 var form = new FormNuevoCliente(_api, null);
                 if (form.ShowDialog(this) == DialogResult.OK && form.ClienteNuevo != null)
                 {
                     var nuevoCliente = form.ClienteNuevo;
                     await CargarClientes();
                 }
-                this.Show();
             }
             catch (HttpRequestException ex)
             {
@@ -1294,10 +1368,11 @@ namespace Campify
 
         private void lblCreditos_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar", "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Random rnd = new Random();
+            int numero = rnd.Next(1, 251);
+            string msj = (numero == 1) ? ("Desarrollado por:\n\n-ChatGPT\n-Copilot\n-Gemini\n-Base44\n-Sudor y lágrimas") : ("Desarrollado por:\n\n-Daniel Cabeza\n-Oriol Fernández\n-Miguel Inglés\n-Raul Buenaga\n-Francisco Sitjar");
+            MessageBox.Show(msj, "Créditos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
 
 
     }

@@ -49,10 +49,10 @@
             // pbLogo
             // 
             pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(0, 29);
+            pbLogo.Location = new Point(0, 39);
             pbLogo.Margin = new Padding(0);
             pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(93, 87);
+            pbLogo.Size = new Size(106, 116);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 1;
             pbLogo.TabStop = false;
@@ -61,9 +61,9 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblPassword.Location = new Point(53, 170);
+            lblPassword.Location = new Point(61, 227);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(77, 15);
+            lblPassword.Size = new Size(98, 20);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "-Contraseña:";
             // 
@@ -73,10 +73,9 @@
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 10F);
-            btnLogin.Location = new Point(137, 221);
-            btnLogin.Margin = new Padding(3, 2, 3, 2);
+            btnLogin.Location = new Point(157, 295);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(106, 29);
+            btnLogin.Size = new Size(121, 39);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
@@ -84,30 +83,28 @@
             // 
             // tbUsuario
             // 
-            tbUsuario.Location = new Point(150, 122);
-            tbUsuario.Margin = new Padding(3, 2, 3, 2);
+            tbUsuario.Location = new Point(171, 163);
             tbUsuario.Name = "tbUsuario";
-            tbUsuario.Size = new Size(172, 23);
+            tbUsuario.Size = new Size(196, 27);
             tbUsuario.TabIndex = 1;
-            tbUsuario.Text = "ana@campify.com";
+            tbUsuario.Text = "daniel@campify.com";
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblUsuario.Location = new Point(53, 128);
+            lblUsuario.Location = new Point(61, 171);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(57, 15);
+            lblUsuario.Size = new Size(73, 20);
             lblUsuario.TabIndex = 5;
             lblUsuario.Text = "-Usuario:";
             // 
             // tbPassword
             // 
-            tbPassword.Location = new Point(150, 164);
-            tbPassword.Margin = new Padding(3, 2, 3, 2);
+            tbPassword.Location = new Point(171, 219);
             tbPassword.Name = "tbPassword";
             tbPassword.PasswordChar = '*';
-            tbPassword.Size = new Size(172, 23);
+            tbPassword.Size = new Size(196, 27);
             tbPassword.TabIndex = 2;
             tbPassword.Text = "1234";
             tbPassword.UseSystemPasswordChar = true;
@@ -117,10 +114,9 @@
             btnSalir.FlatAppearance.BorderSize = 0;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Image = (Image)resources.GetObject("btnSalir.Image");
-            btnSalir.Location = new Point(330, 1);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(377, 1);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(38, 24);
+            btnSalir.Size = new Size(43, 32);
             btnSalir.TabIndex = 5;
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
@@ -134,9 +130,8 @@
             pnlTop.Controls.Add(btnSalir);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
-            pnlTop.Margin = new Padding(3, 2, 3, 2);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(368, 27);
+            pnlTop.Size = new Size(421, 36);
             pnlTop.TabIndex = 8;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -144,9 +139,9 @@
             // 
             lblFechaHora.AutoSize = true;
             lblFechaHora.Font = new Font("Segoe UI", 8F);
-            lblFechaHora.Location = new Point(137, 8);
+            lblFechaHora.Location = new Point(157, 11);
             lblFechaHora.Name = "lblFechaHora";
-            lblFechaHora.Size = new Size(0, 13);
+            lblFechaHora.Size = new Size(0, 19);
             lblFechaHora.TabIndex = 9;
             lblFechaHora.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -155,10 +150,9 @@
             btnMinimizar.FlatAppearance.BorderSize = 0;
             btnMinimizar.FlatStyle = FlatStyle.Flat;
             btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(304, 1);
-            btnMinimizar.Margin = new Padding(3, 2, 3, 2);
+            btnMinimizar.Location = new Point(347, 1);
             btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(28, 24);
+            btnMinimizar.Size = new Size(32, 32);
             btnMinimizar.TabIndex = 4;
             btnMinimizar.UseVisualStyleBackColor = true;
             btnMinimizar.Click += btnMinimizar_Click;
@@ -166,9 +160,9 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(9, 8);
+            lblTitulo.Location = new Point(10, 11);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(37, 15);
+            lblTitulo.Size = new Size(46, 20);
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Login";
             lblTitulo.MouseDown += pnlTop_MouseDown;
@@ -181,10 +175,10 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(197, 239, 170);
-            ClientSize = new Size(368, 268);
+            ClientSize = new Size(421, 357);
             Controls.Add(pnlTop);
             Controls.Add(tbPassword);
             Controls.Add(lblUsuario);
@@ -195,7 +189,6 @@
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9F);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
