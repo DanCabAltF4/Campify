@@ -2,13 +2,44 @@ package com.example.campify.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,10 +58,21 @@ import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
-import com.example.campify.ui.theme.*
+import com.example.campify.ui.theme.botonActivoDark
+import com.example.campify.ui.theme.botonActivoLight
+import com.example.campify.ui.theme.colorInteresado
+import com.example.campify.ui.theme.colorLibre
+import com.example.campify.ui.theme.colorMantenimiento
+import com.example.campify.ui.theme.colorReservada
+import com.example.campify.ui.theme.dynamicColor
+import com.example.campify.ui.theme.fondoPrincipalDark
+import com.example.campify.ui.theme.fondoPrincipalLight
+import com.example.campify.ui.theme.fondoTarjetaDark
+import com.example.campify.ui.theme.fondoTarjetaLight
+import com.example.campify.ui.theme.textoPrincipalDark
+import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.viewmodels.ApiModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailView(
     navController: NavHostController,
@@ -48,7 +90,7 @@ fun DetailView(
         topBar = { DetailTopBar(navController) },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // <-- host
         content = { innerPadding ->
-            DetailContent(parcela, innerPadding, api, rolUsuario, snackbarHostState)
+            DetailContent(parcela, innerPadding, api, rolUsuario)
         }
     )
 }
@@ -78,7 +120,7 @@ fun DetailTopBar(navController: NavHostController) {
             },
             navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Volver", tint = textColor)
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver", tint = textColor)
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = containerColor, titleContentColor = textColor),
@@ -92,8 +134,7 @@ fun DetailContent(
     parcela: Parcela?,
     innerPadding: PaddingValues,
     api: ApiModel,
-    rolUsuario: String?,
-    snackbarHostState: SnackbarHostState
+    rolUsuario: String?
 ) {
     parcela?.let {
         val scrollState = rememberScrollState()
@@ -138,14 +179,13 @@ fun DetailContent(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EstadoParcelaSelector(
     parcela: Parcela,
     rolUsuario: String?,
     onEstadoChange: (EstadoParcela) -> Unit
 ) {
-    val estados = EstadoParcela.values().filter { estado ->
+    val estados = EstadoParcela.entries.filter { estado ->
         when (rolUsuario?.uppercase()) {
             "CAMPO" -> estado != EstadoParcela.MANTENIMIENTO && estado != EstadoParcela.RESERVADA
             else -> estado != EstadoParcela.RESERVADA
@@ -259,19 +299,6 @@ fun ConfirmDialog(
 }
 
 @Composable
-fun BooleanRow(label: String, value: Boolean) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(
-            imageVector = if (value) Icons.Filled.Check else Icons.Filled.Close,
-            contentDescription = null,
-            tint = if (value) Color(0xFF2E7D32) else Color(0xFFC62828)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(label, color = dynamicColor(textoPrincipalLight, textoPrincipalDark))
-    }
-}
-
-@Composable
 fun ParcelaTitle(parcela: Parcela) {
     Text(
         text = "${stringResource(R.string.parcel_name)} ${parcela.id}",
@@ -298,7 +325,6 @@ fun ParcelaEstadoCard(parcela: Parcela) {
                 EstadoParcela.RESERVADA -> colorReservada to Icons.Filled.DateRange
                 EstadoParcela.INTERESADO -> colorInteresado to Icons.Filled.Person
                 EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Filled.Close
-                null -> Color.Gray to Icons.Filled.Close
             }
 
             Box(

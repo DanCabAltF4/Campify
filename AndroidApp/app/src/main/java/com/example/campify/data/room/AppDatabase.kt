@@ -36,9 +36,9 @@ abstract class AppDatabase : RoomDatabase() {
                         },
                         Executors.newSingleThreadExecutor()
                     )
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(false)
                     .addCallback(
-                        object : RoomDatabase.Callback() {
+                        object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)
                                 Log.d("ROOM", "Base de datos creada correctamente")

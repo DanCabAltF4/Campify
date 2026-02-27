@@ -57,7 +57,6 @@ import com.example.campify.ui.theme.textoPrincipalDark
 import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.viewmodels.ApiModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginView(navController: NavController, apiModel: ApiModel) {
     var email by remember { mutableStateOf("") }

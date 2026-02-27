@@ -1,7 +1,6 @@
 package com.example.campify.viewmodels
 
 import android.util.Log
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +9,7 @@ import com.example.campify.data.model.enums.EstadoParcela
 import com.example.campify.data.remote.RetrofitClient
 import com.example.campify.data.room.AppDatabase
 import com.example.campify.data.room.repository.ParcelaRepository
-import com.example.kotlinapp.data.AuthRepository
+import com.example.campify.data.remote.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
-class ApiModel(private val authRepository: AuthRepository, private val roomDB: AppDatabase) : ViewModel() {
+class ApiModel(private val authRepository: AuthRepository, roomDB: AppDatabase) : ViewModel() {
 
     val token = authRepository.token
     val rol = authRepository.rol
@@ -27,21 +26,8 @@ class ApiModel(private val authRepository: AuthRepository, private val roomDB: A
     val parcelas = mutableStateOf<List<Parcela>>(emptyList())
 
 
-    fun tokenProvider(): ()-> String? = {
+    private fun tokenProvider(): ()-> String? = {
         runBlocking { token.first()}
-    }
-    fun inicializarParcelas() {
-        viewModelScope.launch {
-            try {
-                // Trae datos del API y los mete en Room
-                repo.syncParcelas()
-
-                // Lee los datos ya guardados en Room y actualiza el estado
-                parcelas.value = repo.getParcelas()
-            } catch (e: Exception) {
-                Log.e("API", "Error inicializando parcelas", e)
-            }
-        }
     }
 
 
@@ -91,7 +77,7 @@ class ApiModel(private val authRepository: AuthRepository, private val roomDB: A
         }
     }
 
-    fun onLoginSuccess() {
+    private fun onLoginSuccess() {
         viewModelScope.launch {
         }
     }
@@ -107,11 +93,11 @@ class ApiModel(private val authRepository: AuthRepository, private val roomDB: A
         _loginState.value = LoginState.Waiting
     }
 
-    sealed class LoginState() {
-        object Valid : LoginState()
-        object Invalid : LoginState()
-        object Waiting : LoginState()
-        object Expired : LoginState()
+    sealed class LoginState {
+        data object Valid : LoginState()
+        data object Invalid : LoginState()
+        data object Waiting : LoginState()
+        data object Expired : LoginState()
     }
 
     val loginState = _loginState.asStateFlow()
