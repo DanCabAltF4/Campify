@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ServiceEmpleado implements IServiceEmpleado{
 
-    private EmpleadoRepository repo;
+    private final EmpleadoRepository repo;
     private final PasswordEncoder encoder;
 
     public ServiceEmpleado(EmpleadoRepository repo, PasswordEncoder encoder) {

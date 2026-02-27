@@ -18,7 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -51,14 +50,12 @@ import com.example.campify.R
 import com.example.campify.ui.theme.botonActivo
 import com.example.campify.ui.theme.botonActivoTexto
 import com.example.campify.ui.theme.dynamicColor
-import com.example.campify.ui.theme.fondoPrincipal
 import com.example.campify.ui.theme.fondoPrincipalDark
 import com.example.campify.ui.theme.fondoPrincipalLight
 import com.example.campify.ui.theme.textoPrincipalDark
 import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.viewmodels.ApiModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginView(navController: NavController, apiModel: ApiModel) {
     var email by remember { mutableStateOf("") }

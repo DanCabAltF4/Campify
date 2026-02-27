@@ -25,7 +25,7 @@ class ParcelaRepository(
     suspend fun syncParcelas() {
         val remotas = api.findAll()
         if (remotas.isSuccessful) {
-            var remotasBody = remotas.body()
+            val remotasBody = remotas.body()
             dao.clear()
             Log.d("API_IMG", remotasBody?.firstOrNull()?.imagenParcela ?: "null")
             dao.insertAll(remotasBody!!.map { it.toEntity() })
@@ -45,11 +45,4 @@ class ParcelaRepository(
         dao.update(parcela.toEntity())
     }
 
-    // Actualiza Room y API
-    suspend fun actualizarParcela(parcela: Parcela) {
-        // Primero Room
-        updateLocal(parcela)
-        // Luego API
-        api.actualizarParcela(parcela.id, parcela)
-    }
 }
