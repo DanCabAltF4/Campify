@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class ServiceParcela implements  IServiceParcela{
 
-    private ParcelaRepository repoParcela;
-    private EstanciaRepository repoEstancia;
+    private final ParcelaRepository repoParcela;
+    private final EstanciaRepository repoEstancia;
 
     public ServiceParcela(ParcelaRepository repoParcela, EstanciaRepository repoEstancia) {
         this.repoParcela = repoParcela;

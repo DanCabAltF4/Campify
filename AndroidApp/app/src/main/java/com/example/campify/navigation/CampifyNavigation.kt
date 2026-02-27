@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.campify.views.HomeView
+import com.example.campify.views.HomeView
 import com.example.campify.viewmodels.ApiModel
 import com.example.campify.views.DetailView
 import com.example.campify.views.ListaView

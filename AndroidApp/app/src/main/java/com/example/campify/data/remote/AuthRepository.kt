@@ -1,9 +1,4 @@
-package com.example.kotlinapp.data
-
-import com.example.kotlinapp.data.services.AuthService
-
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+package com.example.campify.data.remote
 
 class AuthRepository(
     private val api: AuthService,

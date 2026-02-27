@@ -159,7 +159,7 @@ public class ServiceEstancia implements IServiceEstancia {
         LocalDate checkin = estancia.getCheckIn();
         LocalDate checkout = estancia.getCheckOut();
 
-        boolean ocupada = false;
+        boolean ocupada;
         if (checkout != null) {
             ocupada = !hoy.isBefore(checkin) && hoy.isBefore(checkout);
         } else {

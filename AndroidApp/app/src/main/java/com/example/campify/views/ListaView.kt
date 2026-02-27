@@ -1,44 +1,94 @@
 package com.example.campify.views
 
 import android.graphics.BitmapFactory
+import android.util.Base64
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.campify.R
 import com.example.campify.data.model.Parcela
 import com.example.campify.data.model.enums.EstadoParcela
-import com.example.campify.ui.theme.*
+import com.example.campify.ui.theme.botonActivoDark
+import com.example.campify.ui.theme.botonActivoLight
+import com.example.campify.ui.theme.colorInteresado
+import com.example.campify.ui.theme.colorLibre
+import com.example.campify.ui.theme.colorMantenimiento
+import com.example.campify.ui.theme.colorReservada
+import com.example.campify.ui.theme.dynamicColor
+import com.example.campify.ui.theme.fondoPrincipalDark
+import com.example.campify.ui.theme.fondoPrincipalLight
+import com.example.campify.ui.theme.fondoTarjetaDark
+import com.example.campify.ui.theme.fondoTarjetaLight
+import com.example.campify.ui.theme.textoPrincipalDark
+import com.example.campify.ui.theme.textoPrincipalLight
+import com.example.campify.ui.theme.textoSecundarioDark
+import com.example.campify.ui.theme.textoSecundarioLight
 import com.example.campify.viewmodels.ApiModel
-import android.util.Base64
-import androidx.compose.foundation.combinedClickable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.window.Dialog
-import kotlin.io.encoding.ExperimentalEncodingApi
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListaView(navController: NavHostController, api: ApiModel) {
-    val context = LocalContext.current
+    LocalContext.current
     var searchText by remember { mutableStateOf("") }
     val parcelas by api.parcelas
 
@@ -68,7 +118,7 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
     ) {
         parcelas.filter { parcela ->
             val textoOk = searchText.isEmpty() ||
-                    (parcela.estadoParcela?.name ?: "").contains(searchText, ignoreCase = true) ||
+                    parcela.estadoParcela.name.contains(searchText, ignoreCase = true) ||
                     parcela.id.toString().contains(searchText)
             val filtroOk = (!filtroBano || parcela.cercaBaño) &&
                     (!filtroEntrada || parcela.cercaEntrada) &&
@@ -98,7 +148,6 @@ fun ListaView(navController: NavHostController, api: ApiModel) {
                 navController,
                 segmentBackground,
                 botonActivoColor,
-                textPrimary,
                 textSecondary
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -288,7 +337,7 @@ fun ListaTopBar(api: ApiModel) {
             colors = TopAppBarDefaults.topAppBarColors(containerColor = containerColor)
         )
 
-        Divider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
+        HorizontalDivider(color = dynamicColor(Color(0x22000000), Color(0x22FFFFFF)), thickness = 1.dp)
     }
 }
 
@@ -321,7 +370,6 @@ fun NavigationSegment(
     navController: NavHostController,
     backgroundColor: Color,
     botonActivoColor: Color,
-    textPrimary: Color,
     textSecondary: Color
 ) {
     val opciones = listOf("Mapa", "Lista")
@@ -387,7 +435,6 @@ fun ParcelaList(
 }
 
 // ParcelaItem y ParcelaThumbnail
-@OptIn(ExperimentalEncodingApi::class)
 fun base64ToBitmap(base64: String): android.graphics.Bitmap? {
     return try {
         val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
@@ -439,9 +486,8 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
         EstadoParcela.RESERVADA -> colorReservada to Icons.Default.DateRange
         EstadoParcela.INTERESADO -> colorInteresado to Icons.Default.Person
         EstadoParcela.MANTENIMIENTO -> colorMantenimiento to Icons.Default.Build
-        null -> Color.Gray to Icons.Default.Clear
     }
-    val bitmap = remember(parcela.imagenParcela) {
+    remember(parcela.imagenParcela) {
         parcela.imagenParcela?.substringAfter("base64,", parcela.imagenParcela)
             ?.let { base64ToBitmap(it) }
     }
@@ -497,10 +543,9 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
                     Spacer(Modifier.width(6.dp))
 
                     Text(
-                        text = parcela.estadoParcela?.name
-                            ?.lowercase()
-                            ?.replaceFirstChar { it.uppercase() }
-                            ?: "Desconocido",
+                        text = parcela.estadoParcela.name
+                            .lowercase()
+                            .replaceFirstChar { it.uppercase() },
                         fontSize = 14.sp,
                         color = colorEstado
                     )
@@ -509,7 +554,7 @@ fun ParcelaItem(parcela: Parcela, onClick: () -> Unit, onDoubleClick: () -> Unit
                 Spacer(Modifier.height(4.dp))
 
                 Text(
-                    text = "Tipo: ${parcela.tipoParcela?.name ?: "Desconocido"}",
+                    text = "Tipo: ${parcela.tipoParcela.name}",
                     fontSize = 14.sp,
                     color = dynamicColor(textoSecundarioLight, textoSecundarioDark)
                 )
@@ -532,24 +577,42 @@ fun ImagenPopUp(parcela: Parcela, onDismiss: () -> Unit) {
                     base64ToBitmap(base64Data)
                 }
         }
+        var scale by remember { mutableFloatStateOf(1f) }
+        var offset by remember { mutableStateOf(Offset.Zero) }
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(Color.Black, RoundedCornerShape(16.dp)),
+                .pointerInput(Unit) {
+                    detectTransformGestures { _, pan, zoom, _ ->
+                        scale = (scale * zoom).coerceIn(1f, 5f) // límite de zoom 1x a 5x
+                        offset = Offset(
+                            x = (offset.x + pan.x).coerceIn(-1000f, 1000f),
+                            y = (offset.y + pan.y).coerceIn(-1000f, 1000f)
+                        )
+                    }
+                },
             contentAlignment = Alignment.Center
         ) {
             if (bitmap != null) {
                 Image(
                     bitmap = bitmap.asImageBitmap(),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.FillWidth
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(
+                            scaleX = scale,
+                            scaleY = scale,
+                            translationX = offset.x,
+                            translationY = offset.y
+                        ),
+                    contentScale = ContentScale.Fit
                 )
             } else {
                 LaunchedEffect(Unit) { onDismiss() }
             }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.kotlinapp.data
+package com.example.campify.data.remote
 
 import com.example.campify.data.model.enums.PuestoTrabajo
 
