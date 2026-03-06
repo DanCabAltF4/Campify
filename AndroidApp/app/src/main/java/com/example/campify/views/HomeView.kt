@@ -83,8 +83,8 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
         }
     }
 
-    dynamicColor(fondoPrincipal2, fondoPrincipal2) // puedes definir otro para oscuro
-    dynamicColor(textoPrincipalLight, textoPrincipalDark)
+    val segmentBackground = dynamicColor(Color(0xFFE5E5E5), Color(0xFF2C2C2C))
+    val textPrimary = dynamicColor(textoPrincipalLight, textoPrincipalDark)
     val textSecondary = dynamicColor(textoSecundarioLight, textoSecundarioDark)
 
     Scaffold(
@@ -96,7 +96,7 @@ fun HomeView(navController: NavHostController, apiModel: ApiModel) {
                 .padding(innerPadding)
                 .background(dynamicColor(Color(0xFFF3F3F3), Color(0xFF171717)))
         ) {
-            NavigationSegment(navController, seleccionInicial = stringResource(R.string.nav_map), segmentSelectedColor, textPrimary, textSecondary)
+            NavigationSegment(navController, seleccionInicial = stringResource(R.string.nav_map), textSecondary)
             Spacer(modifier = Modifier.height(8.dp))
             HomeContent(textSecondary)
         }

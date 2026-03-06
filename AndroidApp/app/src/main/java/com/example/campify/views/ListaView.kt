@@ -85,11 +85,9 @@ import com.example.campify.ui.theme.textoPrincipalLight
 import com.example.campify.ui.theme.textoSecundarioDark
 import com.example.campify.ui.theme.textoSecundarioLight
 import com.example.campify.viewmodels.ApiModel
-import android.util.Base64
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.window.Dialog
 import com.example.campify.data.model.enums.TipoParcela
